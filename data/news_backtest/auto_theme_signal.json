@@ -4,7 +4,7 @@
   "cutoff_time": "09:30",
   "lookback_hours": 60,
   "channels": "ALL",
-  "updated_at": "2026-06-11 16:53:50",
+  "updated_at": "2026-07-07 11:36:20",
   "fresh_theme_scores": {
     "510050": 0.85,
     "510300": 0.85,
@@ -45,8 +45,8 @@
   },
   "fresh_accepted_count": 206,
   "stale_accepted_count": 414,
-  "fresh_strong_count": 189,
-  "stale_strong_count": 389,
+  "fresh_strong_count": 205,
+  "stale_strong_count": 413,
   "theme_scores": {
     "510050": 0.85,
     "510300": 0.85,
@@ -84,7 +84,7 @@
     "516510": 0.85
   },
   "accepted_count": 620,
-  "strong_count": 578,
+  "strong_count": 618,
   "accepted_articles": [
     {
       "accepted": true,
@@ -486,8 +486,8 @@
       "title": "85亿港元资本涌入，港漂学生租房困境背后的生意",
       "source": "21世纪经济报道",
       "url": "http://biz.eastmoney.com/a/202604293724392517.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -499,11 +499,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -608,8 +606,8 @@
       "title": "【财经分析】多项关键前瞻性经济指标持续恶化 德国企业与消费者信心同步走低",
       "source": "新华财经",
       "url": "http://finance.eastmoney.com/a/202604293724555580.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -619,12 +617,10 @@
       "negative_hits": [],
       "theme_scores": {
         "510300": 0.315,
-        "518880": 0.142,
+        "518880": 0.315,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -982,8 +978,8 @@
       "title": "中国石化：预计短期内油价将继续维持高位 将加大非中东原油采购力度",
       "source": "证券时报网",
       "url": "http://finance.eastmoney.com/a/202604293724582216.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "采购"
@@ -995,11 +991,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -1221,8 +1215,8 @@
       "title": "钢协发布一季度行业运行数据：库存高企、出口量价齐跌 控产转型成破局关键",
       "source": "证券时报",
       "url": "http://finance.eastmoney.com/a/202604293724614354.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -1237,11 +1231,9 @@
         "下滑"
       ],
       "theme_scores": {
-        "518880": -0.142
+        "518880": -0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -1928,8 +1920,8 @@
       "title": "习近平在中共中央政治局第二十五次集体学习时强调 着力提高防范应对自然灾害能力 切实维护人民群众生命财产安全",
       "source": "央视新闻联播",
       "url": "cctv://xwlb/20260429#0000",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "technology_breakthrough": [
           "装备"
@@ -1938,11 +1930,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -2074,8 +2064,8 @@
       "title": "国际联播快讯",
       "source": "央视新闻联播",
       "url": "cctv://xwlb/20260429#0017",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -2088,11 +2078,9 @@
       "negative_hits": [],
       "theme_scores": {
         "510050": 0.315,
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -2277,8 +2265,8 @@
       "title": "面向“十五五”，江西如何再增1万亿？",
       "source": "上海证券报",
       "url": "http://finance.eastmoney.com/a/202604293725159693.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -2287,11 +2275,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -2322,8 +2308,8 @@
       "title": "英国推出新法案对养老金体系实施重大改革",
       "source": "中国新闻网",
       "url": "http://finance.eastmoney.com/a/202604293725227337.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "实施"
@@ -2332,11 +2318,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -2538,8 +2522,8 @@
       "title": "一季度湖南跨境收支总额238.7亿美元 创历史同期新高",
       "source": "中国新闻网",
       "url": "http://finance.eastmoney.com/a/202604293725225580.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -2552,11 +2536,9 @@
       "negative_hits": [],
       "theme_scores": {
         "510050": 0.315,
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -2932,8 +2914,8 @@
       "title": "一季度中国黄金需求总量创新高，投资需求爆发抵消金饰消费疲软",
       "source": "澎湃新闻",
       "url": "http://finance.eastmoney.com/a/202604293725160642.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -2945,12 +2927,10 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.189,
+        "518880": 0.42,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -3117,8 +3097,8 @@
       "title": "油价居高不下，是否调高全年产量目标？中国海油：维持不变",
       "source": "澎湃新闻",
       "url": "http://finance.eastmoney.com/a/202604293725078488.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "earnings": [
           "利润",
@@ -3129,11 +3109,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -3776,8 +3754,8 @@
       "title": "美联储再次按兵不动；特朗普称正通过电话同伊朗谈判 将继续对伊海上封锁丨每经早参",
       "source": "每日经济新闻",
       "url": "http://finance.eastmoney.com/a/202604303725309059.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -3787,11 +3765,9 @@
       "negative_hits": [],
       "theme_scores": {
         "510300": 0.315,
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -3862,8 +3838,8 @@
       "title": "2026-04-30 经济数据公布: 美国美国4月联邦基金利率目标上限(%); 美国美国4月联邦基金利率目标下限(%); 美国美国4月29日iShares黄金持仓-每日更新(吨); 美国美国4月29日SPDR黄金持仓-每日更新(吨); 美国美国4月28日COMEX黄金库存-每日更新(百盎司)",
       "source": "百度财经-经济数据日历",
       "url": "baidu_econ://20260430#summary",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "capital_investment": [
           "融资"
@@ -3874,12 +3850,10 @@
       "theme_scores": {
         "510050": 0.315,
         "510300": 0.42,
-        "518880": 0.17,
+        "518880": 0.378,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -4107,8 +4081,8 @@
       "title": "新华财经早报：4月30日",
       "source": "新华财经",
       "url": "http://finance.eastmoney.com/a/202604303725500766.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "earnings": [
           "业绩",
@@ -4122,11 +4096,9 @@
       "theme_scores": {
         "510050": 0.315,
         "510300": 0.315,
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -4238,8 +4210,8 @@
       "title": "40亿打造上海五大文旅项目 世界最高无轴摩天轮“上海之门”拟年底开工",
       "source": "第一财经",
       "url": "http://biz.eastmoney.com/a/202604293725134222.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "落地"
@@ -4252,12 +4224,10 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17,
+        "518880": 0.378,
         "516510": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -4322,8 +4292,8 @@
       "title": "美联储维持利率不变；深圳进一步优化调整房地产相关政策丨盘前情报",
       "source": "21世纪经济报道",
       "url": "http://finance.eastmoney.com/a/202604303725559682.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "fund_flow": [
           "放量"
@@ -4335,14 +4305,12 @@
         "510300": 0.315,
         "510330": 0.315,
         "159338": 0.315,
-        "518880": 0.142,
+        "518880": 0.315,
         "159915": 0.378,
         "512880": 0.315,
         "159949": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -4698,8 +4666,8 @@
       "title": "报告：一季度经济温和复苏 仍需呵护内生增长动力",
       "source": "新华财经",
       "url": "http://finance.eastmoney.com/a/202604273720886736.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -4708,11 +4676,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -4761,8 +4727,8 @@
       "title": "2025年上海会展中心海关服务保障国际性展会126场次",
       "source": "中国新闻网",
       "url": "http://biz.eastmoney.com/a/202604273720943344.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -4771,11 +4737,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -4842,8 +4806,8 @@
       "title": "多空分歧加大",
       "source": "期货日报",
       "url": "http://bond.eastmoney.com/a/202604273723222121.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -4855,11 +4819,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -5974,8 +5936,8 @@
       "title": "张斌答21：中东冲突对中国经济影响可控，人民币资产现避险属性",
       "source": "21世纪经济报道",
       "url": "http://finance.eastmoney.com/a/202604283721714296.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -5984,11 +5946,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -6719,8 +6679,8 @@
       "title": "【环球财经】美国关税政策调整将使美国预算赤字增加1.1万亿美元",
       "source": "新华财经",
       "url": "http://finance.eastmoney.com/a/202604283721998815.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "关税"
@@ -6729,11 +6689,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -7092,8 +7050,8 @@
       "title": "2026陆海新通道加速跑｜水陆空联动发力 重庆解锁渝货“出海”新路径",
       "source": "上游新闻",
       "url": "http://finance.eastmoney.com/a/202604283722080880.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -7105,11 +7063,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17
+        "518880": 0.378
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -7159,8 +7115,8 @@
       "title": "多家航司再度大幅上调5月航线燃油费",
       "source": "第一财经",
       "url": "http://finance.eastmoney.com/a/202604283721912946.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布",
@@ -7170,11 +7126,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -8838,8 +8792,8 @@
       "title": "英国4月零售销售量创40余年最大跌幅",
       "source": "中国新闻网",
       "url": "http://finance.eastmoney.com/a/202604283722340729.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -8851,12 +8805,10 @@
         "调查"
       ],
       "theme_scores": {
-        "518880": -0.142,
+        "518880": -0.315,
         "512690": -0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -9142,8 +9094,8 @@
       "title": "业绩承压再添“重击”！冠盛股份子公司突收美国海关上亿元税款账单",
       "source": "深圳商报·读创",
       "url": "http://finance.eastmoney.com/a/202604283722478696.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布",
@@ -9156,11 +9108,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -9447,8 +9397,8 @@
       "title": "《习近平谈治国理政》第五卷英文版中印尼推介会在雅加达举行",
       "source": "央视新闻联播",
       "url": "cctv://xwlb/20260428#0001",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "方案"
@@ -9459,11 +9409,9 @@
       ],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17
+        "518880": 0.378
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -9608,8 +9556,8 @@
       "title": "国际联播快讯",
       "source": "央视新闻联播",
       "url": "cctv://xwlb/20260428#0014",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -9622,11 +9570,9 @@
       "negative_hits": [],
       "theme_scores": {
         "510300": 0.315,
-        "518880": 0.189
+        "518880": 0.42
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -10039,8 +9985,8 @@
       "title": "中国煤炭工业协会：今年煤炭市场供需预计呈现总体平衡态势",
       "source": "经济参考网",
       "url": "http://finance.eastmoney.com/a/202604283723159431.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -10049,13 +9995,11 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142,
+        "518880": 0.315,
         "510880": 0.315,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -10126,8 +10070,8 @@
       "title": "国内外尿素价差扩大",
       "source": "期货日报网",
       "url": "http://finance.eastmoney.com/a/202604283723175373.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "招标"
@@ -10136,11 +10080,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -10512,8 +10454,8 @@
       "title": "神工股份：公司没有日资背景",
       "source": "证券日报",
       "url": "http://finance.eastmoney.com/a/202604283722953891.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "供应"
@@ -10522,13 +10464,11 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142,
+        "518880": 0.315,
         "588000": 0.315,
         "512880": 0.357
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -10764,8 +10704,8 @@
       "title": "增储上产成效显著 中国海油一季度实现量价齐升“开门红”",
       "source": "证券时报网",
       "url": "http://finance.eastmoney.com/a/202604283723024883.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -10780,11 +10720,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -11097,8 +11035,8 @@
       "title": "中国平煤神马梁五星：中东局势搅动市场 焦煤行业将迎深刻供给变革",
       "source": "证券时报",
       "url": "http://finance.eastmoney.com/a/202604293723219721.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "technology_breakthrough": [
           "突破"
@@ -11109,12 +11047,10 @@
       "theme_scores": {
         "510300": 0.315,
         "159338": 0.315,
-        "518880": 0.142,
+        "518880": 0.315,
         "510880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -11300,8 +11236,8 @@
       "title": "化肥全链保供稳价护春耕",
       "source": "经济日报",
       "url": "http://finance.eastmoney.com/a/202604293723239947.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "供应"
@@ -11310,11 +11246,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -11382,8 +11316,8 @@
       "title": "对话中国银河证券首席经济学家章俊：安全溢价非短期窗口 中国资产正趋势性重估",
       "source": "21世纪经济报道",
       "url": "http://finance.eastmoney.com/a/202604293723251449.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "交付"
@@ -11392,20 +11326,18 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142,
+        "518880": 0.315,
         "512880": 0.357
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
       "title": "2026-04-29 经济数据公布: 美国美国截至4月24日当周API原油库存变动(万桶); 美国美国截至4月24日当周API汽油库存变动(万桶); 美国美国4月28日iShares黄金持仓-每日更新(吨); 美国美国4月27日COMEX黄金库存-每日更新(百盎司); 美国美国4月28日iShares白银持仓-每日更新(吨)",
       "source": "百度财经-经济数据日历",
       "url": "baidu_econ://20260429#summary",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "capital_investment": [
           "开工"
@@ -11419,12 +11351,10 @@
       "negative_hits": [],
       "theme_scores": {
         "510300": 0.315,
-        "518880": 0.17,
+        "518880": 0.378,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -11639,8 +11569,8 @@
       "title": "4月29日投资日历 | 上海证券交易所主办数字芯片设计专场业绩说明会",
       "source": "东方财富研究中心",
       "url": "http://finance.eastmoney.com/a/202604293723438610.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -11653,13 +11583,11 @@
       "negative_hits": [],
       "theme_scores": {
         "510300": 0.315,
-        "518880": 0.142,
+        "518880": 0.315,
         "588000": 0.315,
         "512880": 0.357
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -12492,8 +12420,8 @@
       "title": "工信部批准《人工智能 深度合成图像系统技术规范》等690项行业标准",
       "source": "证券时报网",
       "url": "http://finance.eastmoney.com/a/202604293724106766.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "工信部"
@@ -12502,12 +12430,10 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17,
+        "518880": 0.378,
         "516510": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -13089,8 +13015,8 @@
       "title": "世界黄金协会：一季度中国市场黄金投资与消费需求总量达362吨 同比增长24%",
       "source": "财联社",
       "url": "http://finance.eastmoney.com/a/202604293724287719.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -13104,20 +13030,18 @@
       ],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17,
+        "518880": 0.378,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
       "title": "世界黄金协会：一季度中国市场黄金投资与消费需求创下有纪录以来同期新高",
       "source": "证券时报网",
       "url": "http://finance.eastmoney.com/a/202604293724295843.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -13131,12 +13055,10 @@
       ],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17,
+        "518880": 0.378,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -13169,8 +13091,8 @@
       "title": "深化产融结合 广东期货行业护航产业稳行致远",
       "source": "期货日报网",
       "url": "http://finance.eastmoney.com/a/202604293725265289.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "采购"
@@ -13182,12 +13104,10 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142,
+        "518880": 0.315,
         "515790": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -13787,8 +13707,8 @@
       "title": "85亿港元资本涌入，港漂学生租房困境背后的生意",
       "source": "21世纪经济报道",
       "url": "http://biz.eastmoney.com/a/202604293724392517.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -13800,11 +13720,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -13909,8 +13827,8 @@
       "title": "【财经分析】多项关键前瞻性经济指标持续恶化 德国企业与消费者信心同步走低",
       "source": "新华财经",
       "url": "http://finance.eastmoney.com/a/202604293724555580.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -13920,12 +13838,10 @@
       "negative_hits": [],
       "theme_scores": {
         "510300": 0.315,
-        "518880": 0.142,
+        "518880": 0.315,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -14283,8 +14199,8 @@
       "title": "中国石化：预计短期内油价将继续维持高位 将加大非中东原油采购力度",
       "source": "证券时报网",
       "url": "http://finance.eastmoney.com/a/202604293724582216.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "采购"
@@ -14296,11 +14212,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -14522,8 +14436,8 @@
       "title": "钢协发布一季度行业运行数据：库存高企、出口量价齐跌 控产转型成破局关键",
       "source": "证券时报",
       "url": "http://finance.eastmoney.com/a/202604293724614354.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -14538,11 +14452,9 @@
         "下滑"
       ],
       "theme_scores": {
-        "518880": -0.142
+        "518880": -0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -15229,8 +15141,8 @@
       "title": "习近平在中共中央政治局第二十五次集体学习时强调 着力提高防范应对自然灾害能力 切实维护人民群众生命财产安全",
       "source": "央视新闻联播",
       "url": "cctv://xwlb/20260429#0000",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "technology_breakthrough": [
           "装备"
@@ -15239,11 +15151,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -15375,8 +15285,8 @@
       "title": "国际联播快讯",
       "source": "央视新闻联播",
       "url": "cctv://xwlb/20260429#0017",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -15389,11 +15299,9 @@
       "negative_hits": [],
       "theme_scores": {
         "510050": 0.315,
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -15578,8 +15486,8 @@
       "title": "面向“十五五”，江西如何再增1万亿？",
       "source": "上海证券报",
       "url": "http://finance.eastmoney.com/a/202604293725159693.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -15588,11 +15496,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -15623,8 +15529,8 @@
       "title": "英国推出新法案对养老金体系实施重大改革",
       "source": "中国新闻网",
       "url": "http://finance.eastmoney.com/a/202604293725227337.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "实施"
@@ -15633,11 +15539,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -15839,8 +15743,8 @@
       "title": "一季度湖南跨境收支总额238.7亿美元 创历史同期新高",
       "source": "中国新闻网",
       "url": "http://finance.eastmoney.com/a/202604293725225580.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -15853,11 +15757,9 @@
       "negative_hits": [],
       "theme_scores": {
         "510050": 0.315,
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -16233,8 +16135,8 @@
       "title": "一季度中国黄金需求总量创新高，投资需求爆发抵消金饰消费疲软",
       "source": "澎湃新闻",
       "url": "http://finance.eastmoney.com/a/202604293725160642.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -16246,12 +16148,10 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.189,
+        "518880": 0.42,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -16418,8 +16318,8 @@
       "title": "油价居高不下，是否调高全年产量目标？中国海油：维持不变",
       "source": "澎湃新闻",
       "url": "http://finance.eastmoney.com/a/202604293725078488.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "earnings": [
           "利润",
@@ -16430,11 +16330,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -17077,8 +16975,8 @@
       "title": "美联储再次按兵不动；特朗普称正通过电话同伊朗谈判 将继续对伊海上封锁丨每经早参",
       "source": "每日经济新闻",
       "url": "http://finance.eastmoney.com/a/202604303725309059.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -17088,11 +16986,9 @@
       "negative_hits": [],
       "theme_scores": {
         "510300": 0.315,
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -17163,8 +17059,8 @@
       "title": "2026-04-30 经济数据公布: 美国美国4月联邦基金利率目标上限(%); 美国美国4月联邦基金利率目标下限(%); 美国美国4月29日iShares黄金持仓-每日更新(吨); 美国美国4月29日SPDR黄金持仓-每日更新(吨); 美国美国4月28日COMEX黄金库存-每日更新(百盎司)",
       "source": "百度财经-经济数据日历",
       "url": "baidu_econ://20260430#summary",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "capital_investment": [
           "融资"
@@ -17175,12 +17071,10 @@
       "theme_scores": {
         "510050": 0.315,
         "510300": 0.42,
-        "518880": 0.17,
+        "518880": 0.378,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -17408,8 +17302,8 @@
       "title": "新华财经早报：4月30日",
       "source": "新华财经",
       "url": "http://finance.eastmoney.com/a/202604303725500766.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "earnings": [
           "业绩",
@@ -17423,11 +17317,9 @@
       "theme_scores": {
         "510050": 0.315,
         "510300": 0.315,
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -17539,8 +17431,8 @@
       "title": "40亿打造上海五大文旅项目 世界最高无轴摩天轮“上海之门”拟年底开工",
       "source": "第一财经",
       "url": "http://biz.eastmoney.com/a/202604293725134222.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "落地"
@@ -17553,12 +17445,10 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17,
+        "518880": 0.378,
         "516510": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -17623,8 +17513,8 @@
       "title": "美联储维持利率不变；深圳进一步优化调整房地产相关政策丨盘前情报",
       "source": "21世纪经济报道",
       "url": "http://finance.eastmoney.com/a/202604303725559682.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "fund_flow": [
           "放量"
@@ -17636,14 +17526,12 @@
         "510300": 0.315,
         "510330": 0.315,
         "159338": 0.315,
-        "518880": 0.142,
+        "518880": 0.315,
         "159915": 0.378,
         "512880": 0.315,
         "159949": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -18001,8 +17889,8 @@
       "title": "报告：一季度经济温和复苏 仍需呵护内生增长动力",
       "source": "新华财经",
       "url": "http://finance.eastmoney.com/a/202604273720886736.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -18011,11 +17899,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -18064,8 +17950,8 @@
       "title": "2025年上海会展中心海关服务保障国际性展会126场次",
       "source": "中国新闻网",
       "url": "http://biz.eastmoney.com/a/202604273720943344.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -18074,11 +17960,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -18145,8 +18029,8 @@
       "title": "多空分歧加大",
       "source": "期货日报",
       "url": "http://bond.eastmoney.com/a/202604273723222121.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -18158,11 +18042,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -19277,8 +19159,8 @@
       "title": "张斌答21：中东冲突对中国经济影响可控，人民币资产现避险属性",
       "source": "21世纪经济报道",
       "url": "http://finance.eastmoney.com/a/202604283721714296.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -19287,11 +19169,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -20022,8 +19902,8 @@
       "title": "【环球财经】美国关税政策调整将使美国预算赤字增加1.1万亿美元",
       "source": "新华财经",
       "url": "http://finance.eastmoney.com/a/202604283721998815.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "关税"
@@ -20032,11 +19912,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -20395,8 +20273,8 @@
       "title": "2026陆海新通道加速跑｜水陆空联动发力 重庆解锁渝货“出海”新路径",
       "source": "上游新闻",
       "url": "http://finance.eastmoney.com/a/202604283722080880.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -20408,11 +20286,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17
+        "518880": 0.378
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -20462,8 +20338,8 @@
       "title": "多家航司再度大幅上调5月航线燃油费",
       "source": "第一财经",
       "url": "http://finance.eastmoney.com/a/202604283721912946.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布",
@@ -20473,11 +20349,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -22141,8 +22015,8 @@
       "title": "英国4月零售销售量创40余年最大跌幅",
       "source": "中国新闻网",
       "url": "http://finance.eastmoney.com/a/202604283722340729.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -22154,12 +22028,10 @@
         "调查"
       ],
       "theme_scores": {
-        "518880": -0.142,
+        "518880": -0.315,
         "512690": -0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -22445,8 +22317,8 @@
       "title": "业绩承压再添“重击”！冠盛股份子公司突收美国海关上亿元税款账单",
       "source": "深圳商报·读创",
       "url": "http://finance.eastmoney.com/a/202604283722478696.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布",
@@ -22459,11 +22331,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -22750,8 +22620,8 @@
       "title": "《习近平谈治国理政》第五卷英文版中印尼推介会在雅加达举行",
       "source": "央视新闻联播",
       "url": "cctv://xwlb/20260428#0001",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "方案"
@@ -22762,11 +22632,9 @@
       ],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17
+        "518880": 0.378
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -22911,8 +22779,8 @@
       "title": "国际联播快讯",
       "source": "央视新闻联播",
       "url": "cctv://xwlb/20260428#0014",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -22925,11 +22793,9 @@
       "negative_hits": [],
       "theme_scores": {
         "510300": 0.315,
-        "518880": 0.189
+        "518880": 0.42
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -23342,8 +23208,8 @@
       "title": "中国煤炭工业协会：今年煤炭市场供需预计呈现总体平衡态势",
       "source": "经济参考网",
       "url": "http://finance.eastmoney.com/a/202604283723159431.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -23352,13 +23218,11 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142,
+        "518880": 0.315,
         "510880": 0.315,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -23429,8 +23293,8 @@
       "title": "国内外尿素价差扩大",
       "source": "期货日报网",
       "url": "http://finance.eastmoney.com/a/202604283723175373.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "招标"
@@ -23439,11 +23303,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -23815,8 +23677,8 @@
       "title": "神工股份：公司没有日资背景",
       "source": "证券日报",
       "url": "http://finance.eastmoney.com/a/202604283722953891.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "供应"
@@ -23825,13 +23687,11 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142,
+        "518880": 0.315,
         "588000": 0.315,
         "512880": 0.357
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -24067,8 +23927,8 @@
       "title": "增储上产成效显著 中国海油一季度实现量价齐升“开门红”",
       "source": "证券时报网",
       "url": "http://finance.eastmoney.com/a/202604283723024883.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -24083,11 +23943,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -24400,8 +24258,8 @@
       "title": "中国平煤神马梁五星：中东局势搅动市场 焦煤行业将迎深刻供给变革",
       "source": "证券时报",
       "url": "http://finance.eastmoney.com/a/202604293723219721.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "technology_breakthrough": [
           "突破"
@@ -24412,12 +24270,10 @@
       "theme_scores": {
         "510300": 0.315,
         "159338": 0.315,
-        "518880": 0.142,
+        "518880": 0.315,
         "510880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -24603,8 +24459,8 @@
       "title": "化肥全链保供稳价护春耕",
       "source": "经济日报",
       "url": "http://finance.eastmoney.com/a/202604293723239947.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "供应"
@@ -24613,11 +24469,9 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142
+        "518880": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -24685,8 +24539,8 @@
       "title": "对话中国银河证券首席经济学家章俊：安全溢价非短期窗口 中国资产正趋势性重估",
       "source": "21世纪经济报道",
       "url": "http://finance.eastmoney.com/a/202604293723251449.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "交付"
@@ -24695,20 +24549,18 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142,
+        "518880": 0.315,
         "512880": 0.357
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
       "title": "2026-04-29 经济数据公布: 美国美国截至4月24日当周API原油库存变动(万桶); 美国美国截至4月24日当周API汽油库存变动(万桶); 美国美国4月28日iShares黄金持仓-每日更新(吨); 美国美国4月27日COMEX黄金库存-每日更新(百盎司); 美国美国4月28日iShares白银持仓-每日更新(吨)",
       "source": "百度财经-经济数据日历",
       "url": "baidu_econ://20260429#summary",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "capital_investment": [
           "开工"
@@ -24722,12 +24574,10 @@
       "negative_hits": [],
       "theme_scores": {
         "510300": 0.315,
-        "518880": 0.17,
+        "518880": 0.378,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -24942,8 +24792,8 @@
       "title": "4月29日投资日历 | 上海证券交易所主办数字芯片设计专场业绩说明会",
       "source": "东方财富研究中心",
       "url": "http://finance.eastmoney.com/a/202604293723438610.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -24956,13 +24806,11 @@
       "negative_hits": [],
       "theme_scores": {
         "510300": 0.315,
-        "518880": 0.142,
+        "518880": 0.315,
         "588000": 0.315,
         "512880": 0.357
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -25795,8 +25643,8 @@
       "title": "工信部批准《人工智能 深度合成图像系统技术规范》等690项行业标准",
       "source": "证券时报网",
       "url": "http://finance.eastmoney.com/a/202604293724106766.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "工信部"
@@ -25805,12 +25653,10 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17,
+        "518880": 0.378,
         "516510": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -26392,8 +26238,8 @@
       "title": "世界黄金协会：一季度中国市场黄金投资与消费需求总量达362吨 同比增长24%",
       "source": "财联社",
       "url": "http://finance.eastmoney.com/a/202604293724287719.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -26407,20 +26253,18 @@
       ],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17,
+        "518880": 0.378,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
       "title": "世界黄金协会：一季度中国市场黄金投资与消费需求创下有纪录以来同期新高",
       "source": "证券时报网",
       "url": "http://finance.eastmoney.com/a/202604293724295843.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "policy_landing": [
           "发布"
@@ -26434,12 +26278,10 @@
       ],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.17,
+        "518880": 0.378,
         "512690": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -26472,8 +26314,8 @@
       "title": "深化产融结合 广东期货行业护航产业稳行致远",
       "source": "期货日报网",
       "url": "http://finance.eastmoney.com/a/202604293725265289.html",
-      "quality": "weak",
-      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
       "event_hits": {
         "orders_and_delivery": [
           "采购"
@@ -26485,12 +26327,10 @@
       "vague_hits": [],
       "negative_hits": [],
       "theme_scores": {
-        "518880": 0.142,
+        "518880": 0.315,
         "515790": 0.315
       },
-      "risk_flags": [
-        "good_news_in_downtrend"
-      ]
+      "risk_flags": []
     },
     {
       "accepted": true,
@@ -27642,5 +27482,5 @@
       "content": "“五一”假期临近，全国各地将迎来旅游出行、聚会聚餐、购物消费的高峰。为倡导文明、健康、节约、环保的消费理念，维护广大消费者合法权益，4月27日，中国消费者协会特发布“五一”消费提示。——践行“光盘行动”，自觉抵制食品浪费。节日期间，家庭聚餐、婚宴酒席、旅游团餐等消费场景增多。消费者应树立正确食品消费观，做到按需点餐、合理搭配、剩菜打包，摒弃讲排场、比阔气等陈旧观念。"
     }
   ],
-  "path": "C:\\Users\\32872\\Desktop\\etf智能体\\etf_agent\\data\\news_backtest\\historical_news_signal\\v10_llm_final\\2026-04-30_v10_llm_final.json"
+  "path": "C:\\Users\\32872\\Desktop\\etf智能体\\etf_agent\\data\\news_backtest\\historical_news_signal\\rule_confirm\\2026-04-30_rule_confirm.json"
 }
