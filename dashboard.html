@@ -152,6 +152,86 @@
       .grid { grid-template-columns: 1fr; }
       .span2, .span4 { grid-column: span 1; }
     }
+
+    /* ── 参赛提交预览卡片 ── */
+    #submitPreviewCard {
+      background: var(--panel);
+      border: 2px solid var(--accent);
+      border-radius: 18px;
+      padding: 22px 26px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    }
+    .sp-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .sp-title { font-size: 20px; font-weight: 700; }
+    .sp-team { font-size: 15px; color: var(--muted); }
+    .sp-status {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .sp-status.ok { background: rgba(34,197,94,.15); color: var(--green); }
+    .sp-status.empty { background: rgba(245,158,11,.15); color: var(--yellow); }
+    .sp-status.missing { background: rgba(239,68,68,.15); color: var(--red); }
+    .sp-date { font-size: 34px; font-weight: 800; margin-bottom: 14px; }
+    .sp-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 18px; }
+    .sp-json {
+      max-height: 260px;
+      font-size: 14px;
+    }
+    .sp-checklist { list-style: none; margin: 0; padding: 0; font-size: 14px; }
+    .sp-checklist li { padding: 5px 0; display: flex; align-items: center; gap: 8px; }
+    .sp-checklist .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .sp-checklist .dot.on { background: var(--green); }
+    .sp-checklist .dot.off { background: var(--yellow); }
+    .sp-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .sp-configwarn {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--banner-warn-bg);
+      color: var(--banner-warn-text);
+      border: 1px solid var(--banner-warn-border);
+      font-size: 13px;
+    }
+    @media (max-width: 900px) {
+      .sp-grid { grid-template-columns: 1fr; }
+    }
+
+    /* 截图模式：只保留提交预览卡片，隐藏其余所有内容，方便一键截图 */
+    body.screenshot-mode header .actions,
+    body.screenshot-mode #weekendBanner,
+    body.screenshot-mode .grid,
+    body.screenshot-mode .sp-actions {
+      display: none !important;
+    }
+    body.screenshot-mode #submitPreviewCard {
+      border-width: 3px;
+      max-width: 900px;
+      margin: 40px auto;
+    }
+    body.screenshot-mode .sp-date { font-size: 44px; }
+    #screenshotHint {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 50;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.15);
+    }
   </style>
 </head>
 <body data-theme="light">
@@ -174,6 +254,39 @@
   </header>
 
   <main>
+    <div id="submitPreviewCard">
+      <div class="sp-head">
+        <div>
+          <div class="sp-title">参赛提交预览 · 今日投资建议</div>
+          <div class="sp-team" id="spTeam">团队：--</div>
+        </div>
+        <span class="sp-status" id="spStatus">--</span>
+      </div>
+      <div class="sp-date" id="spDate">--</div>
+      <div class="sp-grid">
+        <div>
+          <table>
+            <thead><tr><th>代码</th><th>名称</th><th>数量（股）</th></tr></thead>
+            <tbody id="spRows"></tbody>
+          </table>
+        </div>
+        <div>
+          <div class="small" style="margin-bottom:6px;">提交用 JSON（对应 investment-daily-submit.html 的「投资建议」字段）</div>
+          <pre id="spJson" class="sp-json">[]</pre>
+        </div>
+      </div>
+      <ul class="sp-checklist" id="spChecklist"></ul>
+      <div class="sp-actions">
+        <button type="button" class="primary" id="btnCopyJson">复制 JSON</button>
+        <button type="button" id="btnScreenshotMode">进入截图模式</button>
+        <button type="button" id="btnOpenSubmit">打开提交页面</button>
+      </div>
+      <div class="sp-configwarn" id="spConfigWarn" style="display:none;"></div>
+    </div>
+    <div id="screenshotHint" class="small" style="display:none;text-align:center;margin:-8px 0 14px;color:var(--muted);">
+      按 Esc 或点击下方按钮退出截图模式
+      <div style="margin-top:8px;"><button type="button" id="btnExitScreenshot">退出截图模式</button></div>
+    </div>
     <div id="weekendBanner" class="card" style="display:none;margin-bottom:14px;">
       <strong>今日 A 股休市。</strong>
       <span class="small" id="weekendBannerDetail"></span>
@@ -433,6 +546,71 @@
         "提交文件: " + (data.submit_path || "暂无"),
         "新闻文件: " + (data.news_path || "暂无")
       ].join("\n");
+
+      renderSubmitPreview(data, submit);
+    }
+
+    function renderSubmitPreview(data, submit) {
+      var team = data.team_config || {};
+      var hasPrediction = !!data.full;
+      var isEmpty = hasPrediction && submit.length === 0;
+
+      document.getElementById("spTeam").textContent = "团队：" + (team.team_name || "--") +
+        (team.submit_deadline ? "　提交截止：" + team.submit_deadline : "");
+      document.getElementById("spDate").textContent = (data.full && data.full.date) || data.today || "--";
+
+      var statusEl = document.getElementById("spStatus");
+      if (!hasPrediction) {
+        statusEl.textContent = "尚未生成";
+        statusEl.className = "sp-status missing";
+      } else if (isEmpty) {
+        statusEl.textContent = "今日空仓";
+        statusEl.className = "sp-status empty";
+      } else {
+        statusEl.textContent = "已生成 " + submit.length + " 只";
+        statusEl.className = "sp-status ok";
+      }
+
+      var rowsHtml = "";
+      for (var i = 0; i < submit.length; i++) {
+        rowsHtml += "<tr><td>" + submit[i].symbol + "</td><td>" + submit[i].symbol_name +
+          "</td><td>" + fmt.format(submit[i].volume || 0) + "</td></tr>";
+      }
+      document.getElementById("spRows").innerHTML = rowsHtml ||
+        '<tr><td colspan="3" class="small">' + (hasPrediction ? "空仓，无买入" : "暂无预测") + '</td></tr>';
+      document.getElementById("spJson").textContent = JSON.stringify(submit, null, 2);
+
+      var isPlaceholder = function(v) { return !v || String(v).indexOf("填写") === 0; };
+      var items = [
+        ["团队名称", !isPlaceholder(team.team_name)],
+        ["负责人姓名", !isPlaceholder(team.leader_name)],
+        ["负责人手机号", !isPlaceholder(team.leader_phone)],
+        ["提交口令", !isPlaceholder(team.submit_password)],
+        ["智能体输出截图（每次提交前手动截取）", false],
+      ];
+      var liHtml = "";
+      for (var i = 0; i < items.length; i++) {
+        liHtml += '<li><span class="dot ' + (items[i][1] ? "on" : "off") + '"></span>' + items[i][0] + '</li>';
+      }
+      document.getElementById("spChecklist").innerHTML = liHtml;
+
+      var warnEl = document.getElementById("spConfigWarn");
+      if (!team.configured) {
+        warnEl.style.display = "block";
+        warnEl.textContent = "尚未填写团队信息：请复制 data/team_config.example.json 为 data/team_config.json 并填入真实团队名/负责人/手机号/提交口令（该文件不会被提交到 GitHub）。";
+      } else {
+        warnEl.style.display = "none";
+      }
+
+      var openBtn = document.getElementById("btnOpenSubmit");
+      openBtn.onclick = function() {
+        window.open(team.submit_url || "http://120.92.212.20:3000/investment-daily-submit.html", "_blank");
+      };
+    }
+
+    function setScreenshotMode(on) {
+      document.body.classList.toggle("screenshot-mode", on);
+      document.getElementById("screenshotHint").style.display = on ? "block" : "none";
     }
 
     async function runDaily(skipPriceUpdate, force) {
@@ -475,8 +653,35 @@
     document.getElementById("btnQuick").addEventListener("click", function() { runDaily(true, false); });
     document.getElementById("btnFull").addEventListener("click", function() { runDaily(false, false); });
     document.getElementById("btnForce").addEventListener("click", function() { runDaily(false, true); });
+
+    document.getElementById("btnCopyJson").addEventListener("click", function() {
+      var text = document.getElementById("spJson").textContent;
+      var btn = this;
+      var done = function(ok) {
+        var old = btn.textContent;
+        btn.textContent = ok ? "已复制 ✓" : "复制失败，请手动选取";
+        setTimeout(function() { btn.textContent = old; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() { done(true); }, function() { done(false); });
+      } else {
+        done(false);
+      }
+    });
+    document.getElementById("btnScreenshotMode").addEventListener("click", function() { setScreenshotMode(true); });
+    document.getElementById("btnExitScreenshot").addEventListener("click", function() { setScreenshotMode(false); });
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") setScreenshotMode(false);
+    });
+
     applyWeekendUi();
     loadStatus();
+
+    // 计划任务可用 http://127.0.0.1:8765/?screenshot=1 直接打开截图模式，
+    // 配合 start_auto.bat 在生成完当日预测后自动拉起浏览器，免去手动点击。
+    if (new URLSearchParams(location.search).get("screenshot") === "1") {
+      setScreenshotMode(true);
+    }
   </script>
 </body>
 </html>

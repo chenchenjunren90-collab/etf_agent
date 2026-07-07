@@ -31,6 +31,9 @@ if %ERR% neq 0 (
     echo [失败] 退出码 %ERR%
 ) else (
     echo [完成] 输出目录: data\daily_output
+    echo 正在打开仪表盘（截图模式）用于参赛提交...
+    start "" /min py -3 dashboard_server.py --no-browser
+    timeout /t 2 >nul
+    start "" "http://127.0.0.1:8765/?screenshot=1"
 )
-pause
 exit /b %ERR%

@@ -21,6 +21,7 @@ Thumbs.db
 # Secrets — never commit
 .env
 .env.local
+data/team_config.json
 
 # LLM / data caches (regeneratable, can be large)
 data/llm_cache/

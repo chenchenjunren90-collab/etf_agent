@@ -35,10 +35,33 @@ HOST = "127.0.0.1"
 PORT = 8765
 
 INDEX_HTML_PATH = BASE_DIR / "dashboard.html"
+TEAM_CONFIG_PATH = BASE_DIR / "data" / "team_config.json"
+TEAM_CONFIG_EXAMPLE_PATH = BASE_DIR / "data" / "team_config.example.json"
 
 
 def _load_html() -> str:
     return INDEX_HTML_PATH.read_text(encoding="utf-8")
+
+
+def _load_team_config() -> dict[str, Any]:
+    """读取参赛团队信息（团队名/口令/提交截止时间等），仅用于本地仪表盘展示。
+
+    ``team_config.json`` 已加入 .gitignore，不会随代码提交；未配置时回退到
+    示例文件并标记 configured=False，前端据此提示用户先填写。
+    """
+    path = TEAM_CONFIG_PATH if TEAM_CONFIG_PATH.exists() else TEAM_CONFIG_EXAMPLE_PATH
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        data = {}
+    placeholder_markers = ("填写", "示例")
+    configured = TEAM_CONFIG_PATH.exists() and not any(
+        isinstance(v, str) and any(m in v for m in placeholder_markers)
+        for k, v in data.items()
+        if k in ("team_name", "leader_name", "leader_phone", "submit_password")
+    )
+    data["configured"] = configured
+    return data
 
 def _read_json(path: Path | None) -> Any:
     if path is None or not path.exists():
@@ -147,6 +170,7 @@ def load_status(view_date: str | None = None) -> dict[str, Any]:
         "submit_path": str(submit_path) if submit_path else None,
         "news_path": str(news_path) if news_path else None,
         "system_info": _system_info(),
+        "team_config": _load_team_config(),
     }
 
 
@@ -241,17 +265,23 @@ def main():
     parser = argparse.ArgumentParser(description="ETF Agent Dashboard")
     parser.add_argument("--host", default=HOST)
     parser.add_argument("--port", type=int, default=PORT)
+    parser.add_argument(
+        "--no-browser",
+        action="store_true",
+        help="不自动打开浏览器（配合 start_auto.bat 由外层脚本延时打开截图模式页面，避免开两个标签页）。",
+    )
     args = parser.parse_args()
 
     server = ThreadingHTTPServer((args.host, args.port), DashboardHandler)
     url = f"http://{args.host}:{args.port}"
     print(f"Dashboard running at {url}")
 
-    def _open_browser() -> None:
-        time.sleep(0.4)
-        webbrowser.open(url)
+    if not args.no_browser:
+        def _open_browser() -> None:
+            time.sleep(0.4)
+            webbrowser.open(url)
 
-    threading.Thread(target=_open_browser, daemon=True).start()
+        threading.Thread(target=_open_browser, daemon=True).start()
     try:
         server.serve_forever()
     except KeyboardInterrupt:
