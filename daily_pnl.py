@@ -1,4 +1,8 @@
-"""Review the previous daily prediction using open-to-close ETF returns."""
+"""Review the previous daily prediction using platform settlement returns.
+
+平台结算口径（investment-daily-submit.html）：买入价=前一交易日收盘价，
+卖出价=当日收盘价，pnl = amount × (今收-昨收) / 昨收。见 settlement_prices.py。
+"""
 
 from __future__ import annotations
 
@@ -9,6 +13,7 @@ from typing import Any
 
 import pandas as pd
 
+from settlement_prices import get_close_to_close
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -16,26 +21,12 @@ OUTPUT_DIR = DATA_DIR / "daily_output"
 
 
 def _load_bar(code: str, trade_date: str) -> dict[str, float] | None:
-    path = DATA_DIR / f"{str(code).zfill(6)}.csv"
-    if not path.exists():
+    """返回 {"prev_close": 前一交易日收盘价, "close": 当日收盘价}（平台结算口径）。"""
+    prices = get_close_to_close(code, trade_date, data_dir=DATA_DIR)
+    if prices is None:
         return None
-    df = pd.read_csv(path).rename(columns={
-        "日期": "date",
-        "开盘": "open",
-        "收盘": "close",
-        "最高": "high",
-        "最低": "low",
-        "成交量": "volume",
-    })
-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
-    row = df[df["date"] == pd.to_datetime(trade_date)]
-    if row.empty:
-        return None
-    item = row.iloc[0]
-    return {
-        "open": float(item["open"]),
-        "close": float(item["close"]),
-    }
+    prev_close, today_close = prices
+    return {"prev_close": prev_close, "close": today_close}
 
 
 def _output_files_before(as_of: str) -> list[Path]:
@@ -54,7 +45,7 @@ def _output_files_before(as_of: str) -> list[Path]:
 
 
 def review_previous_prediction(as_of: str | None = None) -> dict[str, Any] | None:
-    """Find the latest prediction before ``as_of`` and compute same-day P&L."""
+    """Find the latest prediction before ``as_of`` and settle it 昨收→今收（平台口径）。"""
     as_of = as_of or datetime.now().strftime("%Y-%m-%d")
     files = _output_files_before(as_of)
     if not files:
@@ -73,15 +64,17 @@ def review_previous_prediction(as_of: str | None = None) -> dict[str, Any] | Non
         bar = _load_bar(code, trade_date)
         if not code or volume <= 0 or bar is None:
             continue
-        pnl = (bar["close"] - bar["open"]) * volume
+        prev_close = bar["prev_close"]
+        close = bar["close"]
+        pnl = (close - prev_close) * volume
         rows.append({
             "symbol": code,
             "symbol_name": pick.get("symbol_name", ""),
             "volume": volume,
-            "open": round(bar["open"], 4),
-            "close": round(bar["close"], 4),
+            "prev_close": round(prev_close, 4),
+            "close": round(close, 4),
             "pnl": round(float(pnl), 2),
-            "return_pct": round((bar["close"] / bar["open"] - 1) * 100, 3) if bar["open"] else 0.0,
+            "return_pct": round((close / prev_close - 1) * 100, 3) if prev_close else 0.0,
         })
         total += pnl
 
@@ -103,13 +96,13 @@ def write_pnl_report(report: dict[str, Any] | None) -> Path:
 
     lines = [
         f"预测日期: {report['prediction_date']}",
-        f"单日收益: {report['total_pnl']:+.2f} 元",
+        f"单日收益: {report['total_pnl']:+.2f} 元（按平台口径：昨收→今收）",
         "",
     ]
     for row in report["positions"]:
         lines.append(
             f"{row['symbol']} {row['symbol_name']} vol={row['volume']} "
-            f"open={row['open']} close={row['close']} "
+            f"昨收={row['prev_close']} 今收={row['close']} "
             f"ret={row['return_pct']:+.3f}% pnl={row['pnl']:+.2f}"
         )
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")

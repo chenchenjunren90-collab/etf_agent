@@ -25,6 +25,7 @@ from scoring import score_stock, SCORE_GATE
 from position import evaluate_market_regime, short_race_max_positions, allocate_short_race
 from strategy import TRADING_POOL, OFFENSIVE_POOL, OFFENSIVE_ON_THRESHOLD, reset_rotation_tracker
 from sentiment_aggregator import ETF_INDEX_MAP
+from settlement_prices import get_close_to_close
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -139,13 +140,13 @@ def simulate_day(trade_date, capital, csdn_cache, weights, econ_payload=None):
     from scoring import _update_rotation_tracker
     _update_rotation_tracker([r["code"] for r in ranked[:3]])
 
-    # P&L
+    # P&L —— 平台口径：买入价=前一交易日收盘价，卖出价=当日收盘价（见 settlement_prices.py）
     pnl = 0.0
     for item in result.get("summary", {}).get("held_stocks", []):
         bar = _get_bar(item["code"], trade_date)
         if not bar:
             continue
-        open_p, close_p = bar
+        prev_close, close_p = bar
         amount = float(item.get("amount", 0))
         price = float(item.get("latest_price", 0))
         if amount <= 0 or price <= 0:
@@ -153,7 +154,7 @@ def simulate_day(trade_date, capital, csdn_cache, weights, econ_payload=None):
         vol = int(amount // price // 100 * 100)
         if vol <= 0:
             continue
-        pnl += (close_p - open_p) * vol
+        pnl += (close_p - prev_close) * vol
 
     return {
         "date": trade_date, "pnl": round(pnl, 2),
@@ -174,15 +175,8 @@ def _market_avg_ret(date_str):
 
 
 def _get_bar(code, trade_date):
-    path = DATA_DIR / f"{str(code).zfill(6)}.csv"
-    if not path.exists():
-        return None
-    df = pd.read_csv(path).rename(columns={"日期": "date", "开盘": "open", "收盘": "close"})
-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
-    row = df[df["date"] == pd.to_datetime(trade_date)]
-    if row.empty:
-        return None
-    return float(row.iloc[0]["open"]), float(row.iloc[0]["close"])
+    """返回 (前一交易日收盘价, 当日收盘价)——平台结算口径，见 settlement_prices.py。"""
+    return get_close_to_close(code, trade_date, data_dir=DATA_DIR)
 
 
 def _load_trading_dates(start, end):

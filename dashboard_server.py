@@ -89,6 +89,7 @@ def _latest_file(pattern: str, directory: Path, only_weekdays: bool = False) -> 
 
 
 def _settle_prediction(full_path: Path) -> dict[str, Any] | None:
+    """按平台结算口径复盘上一日预测：买入价=昨收，卖出价=今收（见 settlement_prices.py）。"""
     if not full_path.exists():
         return None
     date_str = full_path.name.split("_")[0]
@@ -105,15 +106,14 @@ def _settle_prediction(full_path: Path) -> dict[str, Any] | None:
         code = item.get("symbol", "")
         name = item.get("symbol_name", "")
         volume = item.get("volume", 0)
-        # fetch the settle bar
         bar = _load_bar(code, date_str)
         if bar is None:
             continue
-        prev_close = float(bar.get("open", 0))
+        prev_close = float(bar.get("prev_close", 0))
         close = float(bar.get("close", 0))
         if prev_close == 0:
             continue
-        pnl = round(volume * (close / prev_close - 1) - volume * 6 / 10000, 2)
+        pnl = round(volume * (close / prev_close - 1), 2)
         total_pnl += pnl
         pnl_rows.append(dict(code=code, name=name, volume=volume, open=prev_close, close=close, pnl=pnl))
     return dict(prediction_date=date_str, total_pnl=round(total_pnl, 2), rows=pnl_rows)

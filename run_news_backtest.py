@@ -6,7 +6,9 @@ This is intentionally simple and transparent:
   - Save it through ``theme_signal.save_theme_signal`` so ``strategy.py`` uses
     the same path as live daily prediction.
   - Run the current short-race strategy.
-  - Settle open-to-close P&L for that date.
+  - Settle P&L using the platform's own convention: buy at previous trading
+    day's close, sell at that day's close (see settlement_prices.py) —
+    matches investment-daily-submit.html's stated settlement formula.
 """
 
 from __future__ import annotations
@@ -31,6 +33,7 @@ import llm_decider
 from econ_calendar import load_econ_payload
 from historical_news_builder import build_historical_signal
 from news_signal import summarize_for_llm
+from settlement_prices import get_close_to_close
 from strategy import (
     OFFENSIVE_POOL,
     OFFENSIVE_ON_THRESHOLD,
@@ -89,16 +92,8 @@ def _load_ref_dates(start: str, end: str) -> list[str]:
 
 
 def _bar(code: str, trade_date: str) -> tuple[float, float] | None:
-    path = DATA_DIR / f"{str(code).zfill(6)}.csv"
-    if not path.exists():
-        return None
-    df = pd.read_csv(path).rename(columns={"日期": "date", "开盘": "open", "收盘": "close"})
-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
-    row = df[df["date"] == pd.to_datetime(trade_date)]
-    if row.empty:
-        return None
-    item = row.iloc[0]
-    return float(item["open"]), float(item["close"])
+    """返回 (前一交易日收盘价, 当日收盘价)——平台结算口径，见 settlement_prices.py。"""
+    return get_close_to_close(code, trade_date, data_dir=DATA_DIR)
 
 
 def _competition_like_positions(result: dict[str, Any]) -> list[dict[str, Any]]:
@@ -231,14 +226,14 @@ def simulate_day(
         bar = _bar(pos["symbol"], trade_date)
         if not bar:
             continue
-        open_price, close_price = bar
-        day_pnl = (close_price - open_price) * int(pos["volume"])
+        prev_close, close_price = bar
+        day_pnl = (close_price - prev_close) * int(pos["volume"])
         pnl += day_pnl
         settled.append({
             **pos,
-            "open": round(open_price, 4),
+            "prev_close": round(prev_close, 4),
             "close": round(close_price, 4),
-            "return_pct": round((close_price / open_price - 1) * 100, 3) if open_price else 0.0,
+            "return_pct": round((close_price / prev_close - 1) * 100, 3) if prev_close else 0.0,
             "pnl": round(float(day_pnl), 2),
         })
 

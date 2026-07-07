@@ -12,25 +12,24 @@ from pathlib import Path
 
 import pandas as pd
 
+from settlement_prices import get_close_to_close
+
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 
 BASELINE_POOL = ["510300", "510050", "510500", "510330", "159338", "510880", "512880", "512010"]
 
 
-def open_close_baseline(dates: list[str], codes: list[str]) -> float:
-    """等权持有 codes、每天开→收的累计收益（%）。"""
+def close_to_close_baseline(dates: list[str], codes: list[str]) -> float:
+    """等权持有 codes、每天昨收→今收（平台结算口径）的累计收益（%）。"""
     rets_by_date: dict[str, list[float]] = {}
     for code in codes:
-        path = DATA_DIR / f"{code}.csv"
-        if not path.exists():
-            continue
-        df = pd.read_csv(path)
-        dcol = df.columns[0]
-        df[dcol] = df[dcol].astype(str)
-        sub = df[df[dcol].isin(dates)]
-        for _, row in sub.iterrows():
-            rets_by_date.setdefault(row[dcol], []).append(float(row["收盘"]) / float(row["开盘"]) - 1)
+        for d in dates:
+            prices = get_close_to_close(code, d, data_dir=DATA_DIR)
+            if prices is None:
+                continue
+            prev_close, close = prices
+            rets_by_date.setdefault(d, []).append(close / prev_close - 1)
     eq = 1.0
     for d in dates:
         rs = rets_by_date.get(d, [])
@@ -82,8 +81,8 @@ def main(report_path: str) -> int:
     print(f"平均资金占用 {sum(ratios)/n:.1%}   空仓日 {sum(1 for x in ratios if x <= 0.001)}")
     print(f"主题分饱和日(>=6只顶格0.8+): {sat_days}/{n}")
 
-    base = open_close_baseline(dates, BASELINE_POOL)
-    print(f"\n基线-等权池({len(BASELINE_POOL)}只)开→收: {base:+.2f}%")
+    base = close_to_close_baseline(dates, BASELINE_POOL)
+    print(f"\n基线-等权池({len(BASELINE_POOL)}只)昨收→今收(平台口径): {base:+.2f}%")
     strat = float(j.get("total_return_pct") or 0)
     print(f"策略 vs 基线: {strat - base:+.2f} 个百分点  {'跑赢' if strat > base else '跑输'}")
     return 0
