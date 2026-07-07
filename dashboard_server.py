@@ -113,7 +113,10 @@ def _settle_prediction(full_path: Path) -> dict[str, Any] | None:
         close = float(bar.get("close", 0))
         if prev_close == 0:
             continue
-        pnl = round(volume * (close / prev_close - 1), 2)
+        # 平台口径：amount=volume×昨收，pnl=amount×(今收-昨收)/昨收，
+        # 化简即 volume×(今收-昨收)；此前误写成 volume×涨跌幅（少乘一次
+        # 昨收价，量纲错误，早盘价格<1元时会把盈亏放大数倍）。
+        pnl = round(volume * (close - prev_close), 2)
         total_pnl += pnl
         pnl_rows.append(dict(code=code, name=name, volume=volume, open=prev_close, close=close, pnl=pnl))
     return dict(prediction_date=date_str, total_pnl=round(total_pnl, 2), rows=pnl_rows)

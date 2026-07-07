@@ -1,11 +1,13 @@
 {
   "_说明": "复制本文件为 team_config.json（同目录），填入真实信息。team_config.json 已加入 .gitignore，不会被提交到 GitHub。",
-  "team_name": "示例团队名",
+  "team_name": "示例团队名（与大赛报名一致，如：驼灵先锋队）",
   "leader_name": "示例负责人",
-  "leader_phone": "13800000000",
-  "submit_password": "填入平台分配的提交口令",
+  "leader_phone": "11位手机号",
+  "submit_password": "向组委会或维护者索取",
   "submit_url": "http://120.92.212.20:3000/investment-daily-submit.html",
   "notice_url": "http://120.92.212.20:3000/tuoling-competition-semifinal-notice.html",
-  "submit_deadline": "08:10",
-  "notes": "以上字段仅用于本地仪表盘展示提醒，实际提交仍需手动登录平台完成；deadline 请以平台通知页最终显示为准。"
+  "submit_window_start": "交易日前一日 18:00",
+  "submit_deadline": "08:30",
+  "miss_penalty_yuan": 10000,
+  "notes": "已按平台通知原文核实（2026-07）：提交窗口为交易日前一日18:00起至交易日08:30前（含08:29）；08:30后未提交扣款1万元/次；每个交易日限提交一次且不可修改。"
 }

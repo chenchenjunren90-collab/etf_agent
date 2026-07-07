@@ -555,8 +555,9 @@
       var hasPrediction = !!data.full;
       var isEmpty = hasPrediction && submit.length === 0;
 
-      document.getElementById("spTeam").textContent = "团队：" + (team.team_name || "--") +
-        (team.submit_deadline ? "　提交截止：" + team.submit_deadline : "");
+      var deadlineText = team.submit_deadline ? "　提交截止：交易日 " + team.submit_deadline + " 前" : "";
+      var penaltyText = team.miss_penalty_yuan ? "（逾期扣款 " + fmt.format(team.miss_penalty_yuan) + " 元）" : "";
+      document.getElementById("spTeam").textContent = "团队：" + (team.team_name || "--") + deadlineText + penaltyText;
       document.getElementById("spDate").textContent = (data.full && data.full.date) || data.today || "--";
 
       var statusEl = document.getElementById("spStatus");

@@ -1,19 +1,21 @@
 # 注册 Windows 计划任务：自动运行 ETF 每日预测 + 拉起浏览器展示提交预览
 # 用法：右键 -> 用 PowerShell 运行，或在管理员 PowerShell 中执行
 #
-# 时间设定说明：
-#   比赛（智投未来 · 驼灵大赛复赛）当前已知的每日提交截止约为 08:10（上海时区）。
-#   为留出网络抓取/大模型调用的缓冲，主任务提前到 07:40 启动；
-#   若主任务因偶发网络问题失败，07:55 的备份任务会自动重跑一次
+# 时间设定说明（已核对平台通知原文，2026-07）：
+#   提交窗口：交易日前一日 18:00 起，至交易日 08:30 前（含 08:29）。
+#   08:30 后仍未提交，系统自动扣款 10000 元/次。
+#
+#   为留出网络抓取/大模型调用的缓冲，主任务设在 07:50 启动；
+#   若主任务因偶发网络问题失败，08:10 的备份任务会自动重跑一次
 #   （daily_job.py 对同一天是幂等的：已成功生成的预测不会被重复覆盖，
 #   见 daily_run_guard.has_daily_run，重跑只会原样打印已有结果，安全无副作用）。
+#   两个时间距 08:30 硬截止均留有 ≥20 分钟人工兜底缓冲。
 #
-#   **请务必以平台通知页 (tuoling-competition-semifinal-notice.html /
-#   investment-daily-submit.html) 实际显示的截止时间为准**，如与 08:10 不同，
-#   请修改下方 $PrimaryTime / $RetryTime 后重新运行本脚本。
+#   若平台通知时间有更新，请修改下方 $PrimaryTime / $RetryTime 后重新运行本脚本，
+#   并同步更新 data/team_config.json 里的 submit_deadline / miss_penalty_yuan。
 
-$PrimaryTime = "07:40"
-$RetryTime   = "07:55"
+$PrimaryTime = "07:50"
+$RetryTime   = "08:10"
 
 $taskName      = "ETF_Agent_DailyJob"
 $retryTaskName = "ETF_Agent_DailyJob_Retry"
