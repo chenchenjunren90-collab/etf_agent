@@ -229,6 +229,23 @@ def _run_daily_job(options: dict[str, Any]) -> dict[str, Any]:
         return {"output": str(e), "status": "error"}
 
 
+def _today_advice(view_date: str | None) -> list[dict[str, Any]]:
+    """当日投资建议，纯 JSON 数组格式，供比赛平台自动拉取。
+
+    对应 investment-daily-submit.html 描述的机器解析格式：
+    ``[{"symbol", "symbol_name", "volume"}, ...]``；无预测或空仓时返回
+    ``[]``（而非错误对象），避免打断调度程序的 JSON 解析。
+
+    注：本项目暂未拿到平台「自动调用与结算对接」的技术对接文档，此接口
+    是按公开的 JSON 格式规范预先搭好的；具体调用路径/鉴权方式请以正式
+    对接文档为准，届时可能需要调整路由或加签名校验。
+    """
+    status = load_status(view_date)
+    full = status.get("full") or {}
+    comp = full.get("competition_output")
+    return comp if isinstance(comp, list) else []
+
+
 class DashboardHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         parsed = urlparse(self.path)
@@ -244,6 +261,17 @@ class DashboardHandler(BaseHTTPRequestHandler):
             qs = parse_qs(parsed.query)
             view_date = qs.get("date", [None])[0]
             self._json_response(load_status(view_date))
+        elif parsed.path in ("/api/today_advice", "/api/submit"):
+            from urllib.parse import parse_qs
+            qs = parse_qs(parsed.query)
+            view_date = qs.get("date", [None])[0]
+            payload = _today_advice(view_date)
+            body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
         else:
             self.send_error(404)
 
