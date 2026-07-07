@@ -36,7 +36,10 @@ ECON_TIER3_CAP = 0.65   # 6+条高影响
 SCORE_GATE_DYNAMIC_FLOOR = 42.0
 
 # 轮动惩罚参数
-ROTATION_MAX_PENALTY = 10.0
+# 2026-07 实测关闭：开→收比赛口径下惩罚"连续强势"是反动量，
+# 85 日回测 +5.19%(开) vs +9.11%(关)，两个子窗口均为关闭更优
+# （3~4月 +3.43%、5~7月 +5.48%）。追踪器保留仅供审计展示。
+ROTATION_MAX_PENALTY = 0.0
 ROTATION_RESET_THRESHOLD = 3
 
 MAX_POSITIONS = 6
@@ -55,11 +58,8 @@ def reset_rotation_tracker():
 
 
 def _get_rotation_penalty(code: str) -> float:
-    """连续入选 Top3 天数越多，惩罚越大（0~8分）。"""
-    n = _rotation_tracker.get(code, 0)
-    if n < 1:
-        return 0.0
-    return min(n * 2.5, ROTATION_MAX_PENALTY)
+    """轮动惩罚已停用（见 ROTATION_MAX_PENALTY 注释），恒返回 0。"""
+    return 0.0
 
 
 def _update_rotation_tracker(top_codes: list[str]):
