@@ -1,0 +1,11 @@
+# Core data + market access.
+akshare>=1.13.0
+pandas>=2.0
+numpy>=1.24
+requests>=2.31
+
+# Loads DEEPSEEK_API_KEY from .env at startup (llm_client.py).
+python-dotenv>=1.0
+
+# Optional: enable to use the official SDK instead of the built-in urllib path.
+# openai>=1.30

@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local virtual envs
+.venv/
+venv/
+env/
+
+# Editor / OS
+.vscode/
+.idea/
+.cursor/
+.DS_Store
+Thumbs.db
+
+# Secrets — never commit
+.env
+.env.local
+
+# LLM / data caches (regeneratable, can be large)
+data/llm_cache/
+data/econ_calendar_cache/
+
+# Generated artefacts
+*.log
