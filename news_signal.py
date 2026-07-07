@@ -330,8 +330,14 @@ def build_news_signal(
     trend_context: dict[str, Any] | None = None,
     date: str | None = None,
 ) -> dict[str, Any]:
-    """Aggregate screened articles into ETF-level theme scores."""
-    total_scores = {code: 0.0 for code in ETF_THEME_KEYWORDS}
+    """Aggregate screened articles into ETF-level theme scores.
+
+    聚合规则：每只 ETF 只取 |贡献分| 最大的前 3 条，按 1.0/0.5/0.25 权重合成。
+    此前是全量累加再 clamp，±0.85 上限在新闻量大时天天全池顶格
+    （85 日回测实测 85/85 天有 ≥6 只 ETF 饱和），新闻层完全失去横截面
+    区分度；top-3 衰减合成让「一条重磅」仍能打满、大量弱提及不再饱和。
+    """
+    contrib: dict[str, list[float]] = {code: [] for code in ETF_THEME_KEYWORDS}
     accepted = []
     rejected = []
 
@@ -340,9 +346,15 @@ def build_news_signal(
         if scored["accepted"]:
             accepted.append(scored)
             for code, value in scored["theme_scores"].items():
-                total_scores[code] = total_scores.get(code, 0.0) + float(value)
+                contrib.setdefault(code, []).append(float(value))
         else:
             rejected.append(scored)
+
+    _TOPK_WEIGHTS = (1.0, 0.5, 0.25)
+    total_scores: dict[str, float] = {}
+    for code, values in contrib.items():
+        top = sorted(values, key=abs, reverse=True)[: len(_TOPK_WEIGHTS)]
+        total_scores[code] = sum(v * w for v, w in zip(top, _TOPK_WEIGHTS))
 
     theme_scores = {
         code: round(float(max(-0.85, min(0.85, value))), 3)
