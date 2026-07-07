@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ETF 智能体 - 每日预测面板</title>
+  <style>
+    :root, html[data-theme="dark"] {
+      --bg: #0f172a;
+      --panel: #111c33;
+      --panel2: #17233d;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --line: #26344f;
+      --accent: #38bdf8;
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --input-bg: #0b1222;
+      --header-bg-start: #1e3a8a;
+      --banner-warn-bg: #451a03;
+      --banner-warn-border: #92400e;
+      --banner-warn-text: #fde68a;
+      --banner-info-bg: #1e3a8a;
+      --banner-info-border: #1d4ed8;
+      --banner-info-text: #bfdbfe;
+    }
+    html[data-theme="light"] {
+      --bg: #f1f5f9;
+      --panel: #ffffff;
+      --panel2: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #cbd5e1;
+      --accent: #0284c7;
+      --green: #16a34a;
+      --red: #dc2626;
+      --yellow: #d97706;
+      --input-bg: #f8fafc;
+      --header-bg-start: #dbeafe;
+      --banner-warn-bg: #fef3c7;
+      --banner-warn-border: #d97706;
+      --banner-warn-text: #92400e;
+      --banner-info-bg: #dbeafe;
+      --banner-info-border: #3b82f6;
+      --banner-info-text: #1e40af;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, var(--header-bg-start) 0, var(--bg) 38%);
+      color: var(--text);
+      transition: background .2s, color .2s;
+    }
+    header {
+      position: relative;
+      z-index: 20;
+      padding: 28px 32px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      transition: border-color .2s;
+    }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    .sub { color: var(--muted); font-size: 14px; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; align-items: center; }
+    .theme-btn {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+    button, input {
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+    button { cursor: pointer; }
+    button.primary { background: #0369a1; border-color: #0284c7; color: #f8fafc; }
+    button:hover { filter: brightness(1.1); }
+    main { padding: 24px 32px 40px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.06);
+    }
+    .span2 { grid-column: span 2; }
+    .span4 { grid-column: span 4; }
+    .label { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    .value { font-size: 26px; font-weight: 700; }
+    .small { font-size: 13px; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+    th { color: var(--muted); font-weight: 500; font-size: 13px; }
+    td { font-size: 14px; }
+    code, pre {
+      font-family: Consolas, "SFMono-Regular", monospace;
+      background: var(--input-bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--text);
+    }
+    pre { padding: 14px; overflow: auto; max-height: 360px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--input-bg);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      margin: 0 6px 6px 0;
+    }
+    .green { color: var(--green); }
+    .red { color: var(--red); }
+    .yellow { color: var(--yellow); }
+    .article {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .article a { color: var(--accent); text-decoration: none; }
+    .article a:hover { text-decoration: underline; }
+    .footer-log {
+      white-space: pre-wrap;
+      color: var(--muted);
+      max-height: 260px;
+      overflow: auto;
+    }
+    @media (max-width: 980px) {
+      header { flex-direction: column; }
+      .grid { grid-template-columns: 1fr; }
+      .span2, .span4 { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <header>
+    <div>
+      <h1>ETF 智能体 - 每日预测面板</h1>
+      <div class="sub">基于经济日历、新闻情绪与量价分析的 ETF 每日配置智能体</div>
+      <div id="sysBadges" style="margin-top:10px;"></div>
+    </div>
+    <div class="actions">
+      <button type="button" class="theme-btn" id="themeToggle" title="切换白天/黑夜模式">黑夜模式</button>
+      <span class="small" style="align-self:center;color:var(--muted);">查看日期</span>
+      <input id="viewDate" type="date" />
+      <button type="button" id="btnRefresh">刷新页面</button>
+      <button type="button" id="btnQuick" class="primary">运行今日预测（快速）</button>
+      <button type="button" id="btnFull" class="primary">运行今日预测（完整）</button>
+      <button type="button" id="btnForce" title="会覆盖今日已有结果，并先备份原档案">强制重跑（完整）</button>
+      <div id="weekendHint" class="small" style="display:none;color:var(--yellow);align-self:center;">今天 A 股休市</div>
+    </div>
+  </header>
+
+  <main>
+    <div id="weekendBanner" class="card" style="display:none;margin-bottom:14px;">
+      <strong>今日 A 股休市。</strong>
+      <span class="small" id="weekendBannerDetail"></span>
+    </div>
+    <section class="grid">
+      <div class="card">
+        <div class="label">输出日期</div>
+        <div id="date" class="value">--</div>
+      </div>
+      <div class="card">
+        <div class="label">新闻置信度</div>
+        <div id="confidence" class="value">--</div>
+      </div>
+      <div class="card">
+        <div class="label">入选 / 原始新闻</div>
+        <div id="newsCount" class="value">--</div>
+      </div>
+      <div class="card">
+        <div class="label">最近一日预测收益（open→close）</div>
+        <div id="pnl" class="value">--</div>
+      </div>
+      <div class="card span2">
+        <div class="label">比赛格式输出</div>
+        <table>
+          <thead><tr><th>代码</th><th>名称</th><th>数量</th></tr></thead>
+          <tbody id="submitRows"></tbody>
+        </table>
+      </div>
+      <div class="card span2">
+        <div class="label">策略持仓明细</div>
+        <table>
+          <thead><tr><th>代码</th><th>权重</th><th>分数</th><th>理由</th></tr></thead>
+          <tbody id="holdRows"></tbody>
+        </table>
+      </div>
+      <div class="card span2">
+        <div class="label">新闻热词</div>
+        <div id="keywords"></div>
+      </div>
+      <div class="card span2">
+        <div class="label">ETF 主题分</div>
+        <div id="themeScores"></div>
+      </div>
+      <div class="card span4" id="llmCard">
+        <div class="label">今日决策溯源</div>
+        <div id="llmSummary" style="margin-bottom:10px;font-size:15px;line-height:1.7;"></div>
+        <div id="llmMeta" class="small" style="margin-bottom:10px;"></div>
+        <div class="label" style="margin-top:6px;">硬规则 / 触发动作</div>
+        <div id="hardRules" style="margin-bottom:10px;"></div>
+      </div>
+      <div class="card span2">
+        <div class="label">经济日历事件（最高优先级）</div>
+        <div id="econEvents"></div>
+      </div>
+      <div class="card span2">
+        <div class="label">LLM 每只 ETF 评分</div>
+        <table>
+          <thead><tr><th>代码</th><th>方向</th><th>评分</th><th>理由</th></tr></thead>
+          <tbody id="llmEtfRows"></tbody>
+        </table>
+      </div>
+      <div class="card span4">
+        <div class="label">高质量新闻样本</div>
+        <div id="articles"></div>
+      </div>
+      <div class="card span2">
+        <div class="label">比赛 JSON（可直接提交）</div>
+        <pre id="submitJson">[]</pre>
+      </div>
+      <div class="card span2">
+        <div class="label">运行日志 / 状态</div>
+        <div id="log" class="footer-log">等待加载...</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const fmt = new Intl.NumberFormat("zh-CN");
+
+    const themeToggle = document.getElementById('themeToggle');
+    const THEME_KEY = 'etf-dashboard-theme';
+
+    function storageGet(key) {
+      try { return localStorage.getItem(key); } catch (e) { return null; }
+    }
+    function storageSet(key, val) {
+      try { localStorage.setItem(key, val); } catch (e) {}
+    }
+
+    function applyTheme(theme) {
+      var t = theme === 'light' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      document.body.setAttribute('data-theme', t);
+      if (themeToggle) {
+        themeToggle.textContent = t === 'dark' ? '白天模式' : '黑夜模式';
+        themeToggle.title = t === 'dark' ? '切换到浅色界面' : '切换到深色界面';
+      }
+      storageSet(THEME_KEY, t);
+    }
+
+    function toggleTheme() {
+      var cur = document.documentElement.getAttribute('data-theme') || 'light';
+      applyTheme(cur === 'dark' ? 'light' : 'dark');
+    }
+
+    applyTheme(storageGet(THEME_KEY) || 'light');
+
+    function clsForNumber(v) {
+      if (v > 0) return "green";
+      if (v < 0) return "red";
+      return "";
+    }
+
+    async function loadStatus() {
+      var date = document.getElementById("viewDate").value;
+      var url = date ? "/api/status?date=" + encodeURIComponent(date) : "/api/status";
+      try {
+        var res = await fetch(url);
+        var data = await res.json();
+        render(data);
+      } catch(e) {
+        document.getElementById("log").textContent = "加载失败: " + e.message;
+      }
+    }
+
+    function render(data) {
+      var full = data.full || {};
+      var news = full.news_signal || data.news_signal || {};
+      var strategy = full.strategy_result || {};
+      var summary = strategy.summary || {};
+      var submit = full.competition_output || data.submit || [];
+      var pnl = data.previous_pnl || full.previous_pnl || null;
+      var sys = data.system_info || {};
+
+      var badges = [
+        '<span class="pill">50万虚拟资金 · 最多3只ETF · 日内交易</span>'
+      ];
+      if (sys.today_is_weekend) {
+        badges.push('<span class="pill yellow">今日休市 · ' + (sys.weekday_name || '') + '</span>');
+      }
+      document.getElementById("sysBadges").innerHTML = badges.join("");
+
+      var banner = document.getElementById("weekendBanner");
+      var detail = document.getElementById("weekendBannerDetail");
+      if (data.today_is_weekend) {
+        banner.style.display = "block";
+        banner.style.background = "var(--banner-warn-bg)";
+        banner.style.borderColor = "var(--banner-warn-border)";
+        banner.style.color = "var(--banner-warn-text)";
+        detail.style.color = "var(--banner-warn-text)";
+        detail.textContent = " 今天 A 股休市。";
+      } else if (!data.today_predicted && data.view_date !== data.today) {
+        banner.style.display = "block";
+        banner.style.background = "var(--banner-info-bg)";
+        banner.style.borderColor = "var(--banner-info-border)";
+        banner.style.color = "var(--banner-info-text)";
+        detail.style.color = "var(--banner-info-text)";
+        detail.textContent = " 今日（" + data.today + "）尚未生成预测。";
+      } else {
+        banner.style.display = "none";
+      }
+
+      document.getElementById("date").textContent = full.date || data.latest_date || "--";
+      document.getElementById("confidence").textContent = news.confidence == null ? "--" : (Math.round(news.confidence * 100) + "%");
+      document.getElementById("newsCount").textContent = (news.accepted_count || 0) + " / " + (news.article_count || 0);
+
+      var pnlEl = document.getElementById("pnl");
+      var pnlVal = pnl ? Number(pnl.total_pnl || 0) : 0;
+      if (pnl) {
+        var sign = pnlVal >= 0 ? "+" : "";
+        pnlEl.textContent = sign + fmt.format(pnlVal) + " 元";
+      } else {
+        pnlEl.textContent = "--";
+      }
+      pnlEl.className = "value " + clsForNumber(pnlVal);
+
+      var submitHtml = "";
+      for (var i = 0; i < submit.length; i++) {
+        submitHtml += "<tr><td>" + submit[i].symbol + "</td><td>" + submit[i].symbol_name + "</td><td>" + fmt.format(submit[i].volume || 0) + "</td></tr>";
+      }
+      document.getElementById("submitRows").innerHTML = submitHtml || '<tr><td colspan="3" class="small">暂无输出</td></tr>';
+
+      var holds = summary.held_stocks || [];
+      var holdHtml = "";
+      for (var i = 0; i < holds.length; i++) {
+        holdHtml += "<tr><td>" + holds[i].code + "<br><span class='small'>" + holds[i].name + "</span></td><td>" + (holds[i].target_weight || holds[i].weight || "--") + "%</td><td>" + (holds[i].score || "--") + "</td><td class='small'>" + (holds[i].reason || "") + "</td></tr>";
+      }
+      document.getElementById("holdRows").innerHTML = holdHtml || '<tr><td colspan="4" class="small">暂无持仓</td></tr>';
+
+      var kwHtml = "";
+      var kws = news.hot_keywords || [];
+      for (var i = 0; i < kws.length; i++) { kwHtml += '<span class="pill">' + kws[i] + '</span>'; }
+      document.getElementById("keywords").innerHTML = kwHtml || '<span class="small">暂无</span>';
+
+      var scores = news.theme_scores || {};
+      var scoreHtml = "";
+      var keys = Object.keys(scores).sort(function(a,b){ return Math.abs(scores[b]) - Math.abs(scores[a]); });
+      for (var i = 0; i < Math.min(keys.length, 12); i++) {
+        scoreHtml += '<span class="pill ' + clsForNumber(Number(scores[keys[i]])) + '">' + keys[i] + ': ' + Number(scores[keys[i]]).toFixed(3) + '</span>';
+      }
+      document.getElementById("themeScores").innerHTML = scoreHtml || '<span class="small">暂无</span>';
+
+      var accepted = news.accepted_articles || [];
+      var artHtml = "";
+      for (var i = 0; i < Math.min(accepted.length, 12); i++) {
+        var a = accepted[i];
+        var title = a.url ? '<a href="' + a.url + '" target="_blank">' + a.title + '</a>' : a.title;
+        artHtml += '<div class="article"><div>' + title + '</div><div class="small">' + (a.quality || '') + ' · ' + (a.source || '') + '</div></div>';
+      }
+      document.getElementById("articles").innerHTML = artHtml || '<span class="small">暂无高质量新闻</span>';
+
+      var llmTrace = full.llm_trace || null;
+      var llmMeta = full.llm_meta || null;
+      var econ = full.econ_calendar || null;
+
+      if (llmTrace) {
+        document.getElementById("llmCard").style.display = "block";
+        document.getElementById("llmSummary").innerHTML = '<div><strong>LLM 摘要：</strong>' + (llmTrace.summary_zh || "（无）") + '</div>';
+        document.getElementById("llmMeta").innerHTML = '模型：' + (llmMeta ? llmMeta.model : "--") + '　缓存：' + (llmMeta && llmMeta.cache_hit ? "命中" : "未命中");
+        var rulesHtml = "";
+        var rules = llmTrace.hard_rules_applied || [];
+        for (var i = 0; i < rules.length; i++) { rulesHtml += '<span class="pill yellow">' + rules[i] + '</span>'; }
+        document.getElementById("hardRules").innerHTML = rulesHtml || '<span class="small">未触发硬规则</span>';
+
+        var views = llmTrace.per_etf_view || [];
+        var etfHtml = "";
+        for (var i = 0; i < views.length; i++) {
+          var v = views[i];
+          var sc = Number(v.score || 0);
+          var dir = sc > 0.1 ? "看多" : (sc < -0.1 ? "看空" : "中性");
+          etfHtml += '<tr><td>' + v.code + '</td><td class="' + clsForNumber(sc) + '">' + dir + '</td><td><strong>' + sc.toFixed(2) + '</strong></td><td class="small">' + (v.reason || "") + '</td></tr>';
+        }
+        document.getElementById("llmEtfRows").innerHTML = etfHtml || '<tr><td colspan="4" class="small">LLM 无具体 ETF 评分</td></tr>';
+      } else {
+        document.getElementById("llmCard").style.display = "none";
+      }
+
+      if (econ) {
+        var high = econ.high_importance_events || [];
+        var med = econ.medium_importance_events || [];
+        var econHtml = "";
+        for (var i = 0; i < high.length; i++) {
+          var e = high[i];
+          econHtml += '<div class="article"><div>★★★ ' + (e.region || '') + (e.event || '') + '</div><div class="small">公布=' + (e.actual || '-') + '　预期=' + (e.expected || '-') + '　前值=' + (e.previous || '-') + '</div></div>';
+        }
+        for (var i = 0; i < Math.min(med.length, 10); i++) {
+          var e = med[i];
+          econHtml += '<div class="article"><div>★★ ' + (e.region || '') + (e.event || '') + '</div><div class="small">公布=' + (e.actual || '-') + '　预期=' + (e.expected || '-') + '　前值=' + (e.previous || '-') + '</div></div>';
+        }
+        document.getElementById("econEvents").innerHTML = econHtml || '<span class="small">无重要经济事件</span>';
+      }
+
+      document.getElementById("submitJson").textContent = JSON.stringify(submit, null, 2);
+      document.getElementById("log").textContent = [
+        "ETF 智能体",
+        "最新文件: " + (data.full_path || "暂无"),
+        "提交文件: " + (data.submit_path || "暂无"),
+        "新闻文件: " + (data.news_path || "暂无")
+      ].join("\n");
+    }
+
+    async function runDaily(skipPriceUpdate, force) {
+      var todayDow = new Date().getDay();
+      if (todayDow === 0 || todayDow === 6) {
+        document.getElementById("log").textContent = "今天是" + (todayDow === 6 ? "周六" : "周日") + "，A 股休市。";
+        return;
+      }
+      if (force && !confirm("将覆盖今日已有预测，原档案会备份到 archive。确定强制重跑？")) return;
+      document.getElementById("log").textContent = force ? "正在强制重跑 daily_job.py，请等待..." : "正在运行 daily_job.py，请等待...";
+      try {
+        var res = await fetch("/api/run", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({skip_price_update: skipPriceUpdate, force: !!force})
+        });
+        var data = await res.json();
+        document.getElementById("log").textContent = data.output || data.error || "运行结束";
+        await loadStatus();
+      } catch(e) {
+        document.getElementById("log").textContent = "运行失败: " + e.message;
+      }
+    }
+
+    function applyWeekendUi() {
+      var todayDow = new Date().getDay();
+      var weekend = (todayDow === 0 || todayDow === 6);
+      document.getElementById("btnQuick").disabled = weekend;
+      document.getElementById("btnFull").disabled = weekend;
+      document.getElementById("btnForce").disabled = weekend;
+      document.getElementById("weekendHint").style.display = weekend ? "block" : "none";
+    }
+
+    var todayIso = new Date().toISOString().slice(0,10);
+    document.getElementById("viewDate").value = "";
+    document.getElementById("viewDate").max = todayIso;
+    document.getElementById("viewDate").addEventListener("change", loadStatus);
+    if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
+    document.getElementById("btnRefresh").addEventListener("click", loadStatus);
+    document.getElementById("btnQuick").addEventListener("click", function() { runDaily(true, false); });
+    document.getElementById("btnFull").addEventListener("click", function() { runDaily(false, false); });
+    document.getElementById("btnForce").addEventListener("click", function() { runDaily(false, true); });
+    applyWeekendUi();
+    loadStatus();
+  </script>
+</body>
+</html>
