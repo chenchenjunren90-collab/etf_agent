@@ -39,7 +39,9 @@ def evaluate_market_regime(date_str=None):
         return 0.80, "市场环境数据不足，采用80%仓位"
 
     avg_score = float(np.mean(scores))
-    # 极端跌(<=-5%)保留约15%试探仓
+    # 弱市保留 15% 试探仓：曾按「开→收比赛口径」测试改为直接空仓，
+    # 43 日全链路回测收益反而从 +2.61% 降至 +0.80%（被空掉的弱势日
+    # 合计为正收益），故维持试探仓设计。
     if avg_score <= -5.0:
         return 0.15, f"宽基极端走弱({'; '.join(details)})，15%试探仓(利用反弹概率)"
     # 市场评估阈值
