@@ -4,7 +4,7 @@
   "cutoff_time": "09:30",
   "lookback_hours": 60,
   "channels": "ALL",
-  "updated_at": "2026-07-07 12:06:08",
+  "updated_at": "2026-07-07 12:19:16",
   "fresh_theme_scores": {
     "510050": 0.85,
     "510300": 0.85,
@@ -8910,5 +8910,5 @@
       "content": "【国家能源局负责人出席第十一届金砖国家能源部长会】6月25日，第十一届金砖国家能源部长会在印度古尔冈市召开。中国国家能源局负责人应邀出席会议并发言。万劲松表示，当前全球能源转型深入推进，中国持续加快推进清洁低碳、安全高效的新型能源体系建设，已建成全球规模最大的清洁能源体系，为全球能源转型积累了重要经验。"
     }
   ],
-  "path": "C:\\Users\\32872\\Desktop\\etf智能体\\etf_agent\\data\\news_backtest\\historical_news_signal\\rule_oos_oldpool\\2026-07-03_rule_oos_oldpool.json"
+  "path": "C:\\Users\\32872\\Desktop\\etf智能体\\etf_agent\\data\\news_backtest\\historical_news_signal\\rule_full\\2026-07-03_rule_full.json"
 }
