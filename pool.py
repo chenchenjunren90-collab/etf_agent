@@ -39,15 +39,17 @@ TRADING_POOL: list[dict] = [
     {"code": "512010", "name": "医药ETF",        "category": "医疗"},
 ]
 
-# 动态进攻池：仅当宽基 5 日均涨 ≥ +3% 时临时启用，搭强势顺风车；
-# 一旦行情转弱（≤ +1%）自动退出。
+# 动态进攻池：宽基复合趋势分 ≥ +1% 即启用。
+# 科创50/创业板50 是全池开→收日内漂移最强的标的（近250日约 +0.35%/日），
+# 原 +3% 阈值使其大部分交易日被排除；比赛按开→收结算，放宽到 +1%
+# 让评分排序自然竞争，弱市仍由市场评估仓位约束兜底。
 OFFENSIVE_POOL: list[dict] = [
     {"code": "159915", "name": "创业板ETF",  "category": "创业板"},
     {"code": "588000", "name": "科创50ETF",  "category": "科创板"},
     {"code": "159949", "name": "创业板50ETF", "category": "创蓝筹"},
 ]
-OFFENSIVE_ON_THRESHOLD: float = 3.0   # 宽基 5 日均涨 ≥ +3% 加进攻池
-OFFENSIVE_OFF_THRESHOLD: float = 1.0  # ≤ +1% 退出
+OFFENSIVE_ON_THRESHOLD: float = 1.0   # 宽基复合趋势分 ≥ +1% 加进攻池
+OFFENSIVE_OFF_THRESHOLD: float = 1.0  # 与启用阈值一致（每日独立评估，无需滞回）
 
 
 # ================================================
