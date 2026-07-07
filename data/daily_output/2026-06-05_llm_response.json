@@ -1,0 +1,1027 @@
+{
+  "decision": {
+    "regime": "risk_on",
+    "regime_reason": "盘后大量AI/半导体/算力利好新闻集中爆发，且经济日历中欧元区零售数据略不及预期但影响有限，美国非农数据未公布但预期偏弱，整体市场情绪偏积极。",
+    "econ_drivers": [
+      {
+        "event": "欧元区4月零售销售年率",
+        "importance": "high",
+        "direction": "+",
+        "impact": "公布值1.0高于预期0.3，利好欧元区经济，间接利好A股出口相关板块。"
+      },
+      {
+        "event": "欧元区4月零售销售月率",
+        "importance": "high",
+        "direction": "-",
+        "impact": "公布值-0.4低于预期-0.3，小幅利空，但影响有限。"
+      },
+      {
+        "event": "美国5月非农就业人口变动",
+        "importance": "high",
+        "direction": "0",
+        "impact": "未公布，预期8.5万低于前值11.5万，若不及预期可能利空美元，利好A股。"
+      },
+      {
+        "event": "美国5月失业率",
+        "importance": "high",
+        "direction": "0",
+        "impact": "未公布，预期4.3与前值持平，影响中性。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "高端光棒价格涨幅近550% 拥有光棒产能的企业或成本轮行情最大受益方",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "AI算力的尽头竟是“钻石”？培育钻石概念集体暴涨",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "中信建投：AI算力增长持续打开超高导热金刚石材料增长空间",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "MLCC指数四连涨 “下一个存储”确认否？",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "开源证券：白酒底部布局 大众品把握三条主线",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "华泰证券：光模块设备或迎量升价增拐点",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "算力租赁市场热度提升 上市公司抢抓机遇",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "半导体行业景气度攀升 产业链公司受益明显",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "加拿大推出国家人工智能战略 入股扶持本土优秀AI企业",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "抢跑IPO盛宴！Coinbase推出SpaceX上市前永续合约",
+        "etf": "518880",
+        "direction": "+",
+        "weight": 0.42
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.4,
+        "reason": "盘后利好新闻较多，但宽基指数动量中性，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": -0.3,
+        "reason": "保险业利空新闻，且动量偏弱，温和看空。"
+      },
+      {
+        "code": "510500",
+        "score": -0.5,
+        "reason": "5日跌幅-2.32%，趋势走弱，温和看空。"
+      },
+      {
+        "code": "510330",
+        "score": 0.2,
+        "reason": "与510300类似但成交量低，中性偏多。"
+      },
+      {
+        "code": "159338",
+        "score": 0.3,
+        "reason": "动量中性，成交量正常，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": 0.6,
+        "reason": "黄金ETF受益于AI/航天新闻及避险情绪，趋势向上，温和看好。"
+      },
+      {
+        "code": "159985",
+        "score": -0.6,
+        "reason": "5日跌幅-2.64%，趋势走弱，温和看空。"
+      },
+      {
+        "code": "510880",
+        "score": 0.7,
+        "reason": "5日涨幅+4.95%，趋势强劲，强烈看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.5,
+        "reason": "盘后多条利好券商新闻，但动量中性，温和看好。"
+      },
+      {
+        "code": "512010",
+        "score": -0.7,
+        "reason": "5日跌幅-3.27%，趋势走弱，强烈看空。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，欧元区零售数据略好于预期但影响有限，美国非农数据未公布但预期偏弱，整体影响中性。盘后AI、半导体、算力等板块利好新闻密集，市场情绪积极，但考虑到非农数据未公布，建议半仓操作，重点配置红利ETF和黄金ETF，回避医药和豆粕。"
+  },
+  "prompt_hash": "489073882248abe18d3b29ae38b664bf",
+  "model": "deepseek-chat",
+  "usage": {
+    "prompt_tokens": 5150,
+    "completion_tokens": 1256,
+    "total_tokens": 6406,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 5150
+  },
+  "cache_hit": false,
+  "cached_at": "2026-06-05 09:57:53",
+  "econ_payload_snapshot": {
+    "date": "2026-06-05",
+    "source": "akshare_live",
+    "high_importance_events": [
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售年率(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "1.0",
+        "previous": "1.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售月率(%)",
+        "importance": 2,
+        "expected": "-0.3",
+        "actual": "-0.4",
+        "previous": "-0.1"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月贸易帐(亿欧元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-68.64"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区第一季度季调后GDP季率终值(%)",
+        "importance": 2,
+        "expected": "0.1",
+        "actual": "",
+        "previous": "0.1"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区第一季度季调后GDP年率终值(%)",
+        "importance": 2,
+        "expected": "0.8",
+        "actual": "",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月私营企业非农就业人数变动(万)",
+        "importance": 2,
+        "expected": "8.5",
+        "actual": "",
+        "previous": "12.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月非农就业人口变动季调后(万)",
+        "importance": 2,
+        "expected": "8.5",
+        "actual": "",
+        "previous": "11.5"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月失业率(%)",
+        "importance": 2,
+        "expected": "4.3",
+        "actual": "",
+        "previous": "4.3"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.17",
+        "previous": "15036.17"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "477.93",
+        "previous": "478.37"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1026.86",
+        "previous": "1028.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "283281.96",
+        "previous": "283128.33"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月商品及服务贸易帐(亿澳元)",
+        "importance": 2,
+        "expected": "18.0",
+        "actual": "17.91",
+        "previous": "-18.41"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月出口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "7.2",
+        "previous": "-2.7"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月进口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.8",
+        "previous": "14.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1.3",
+        "previous": "2.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.7",
+        "previous": "-0.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士5月CPI年率(%)",
+        "importance": 2,
+        "expected": "0.8",
+        "actual": "0.6",
+        "previous": "0.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月季调后失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.0",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月未季调失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.1",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-536.0",
+        "previous": "-2238.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周燃料总库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "3814.3",
+        "previous": "4428.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国5月挑战者企业裁员人数(万)",
+        "importance": 2,
+        "expected": "",
+        "actual": "9.7",
+        "previous": "8.34"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月30日当周初请失业金人数(万)",
+        "importance": 2,
+        "expected": "21.3",
+        "actual": "22.5",
+        "previous": "21.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月23日当周续请失业金人数(万)",
+        "importance": 2,
+        "expected": "178.0",
+        "actual": "177.7",
+        "previous": "178.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "22:05",
+        "region": "全球",
+        "event": "全球5月供应链压力指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "1.77",
+        "previous": "1.82"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至6月3日美联储资产负债表(万亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "6.71",
+        "previous": "6.7"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1025.14",
+        "previous": "1026.86"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "477.52",
+        "previous": "477.93"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "282288.11",
+        "previous": "283281.96"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.15",
+        "previous": "15036.17"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月5日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月5日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-536.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大5月失业率(%)",
+        "importance": 2,
+        "expected": "6.9",
+        "actual": "",
+        "previous": "6.9"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月制造业就业人口变动季调后(万)",
+        "importance": 2,
+        "expected": "0.2",
+        "actual": "",
+        "previous": "-0.2"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月劳动参与率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "61.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大5月就业人数变动(万)",
+        "importance": 2,
+        "expected": "1.0",
+        "actual": "",
+        "previous": "-1.77"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月平均每小时工资年率(%)",
+        "importance": 2,
+        "expected": "3.4",
+        "actual": "",
+        "previous": "3.6"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "22:00",
+        "region": "加拿大",
+        "event": "加拿大5月IVEY季调后PMI",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "57.7"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "22:00",
+        "region": "加拿大",
+        "event": "加拿大5月IVEY未季调PMI",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "61.5"
+      }
+    ],
+    "has_high_impact_event": true
+  },
+  "news_summary_snapshot": [
+    {
+      "title": "中天科技与隆基绿能战略合作签约",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "515790": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "高端光棒价格涨幅近550% 拥有光棒产能的企业或成本轮行情最大受益方",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "AI算力的尽头竟是“钻石”？培育钻石概念集体暴涨却少有个股研报 杠杆资金快速增长引发警惕",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "512880": 0.378,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "中信建投：AI算力增长持续打开超高导热金刚石材料增长空间",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "MLCC指数四连涨 “下一个存储”确认否？",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "开源证券：白酒底部布局 大众品把握三条主线",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512880": 0.357,
+        "512690": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "Anthropic联合创始人称高昂的AI模型开发成本推动公司寻求上市",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "华泰证券：光模块设备或迎量升价增拐点",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "fund_flow"
+      ],
+      "etf_scores": {
+        "512880": 0.357,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "算力租赁市场热度提升 上市公司抢抓机遇",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "orders_and_delivery",
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "半导体行业景气度攀升 产业链公司受益明显",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "518880": 0.315,
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "加拿大推出国家人工智能战略 入股扶持本土优秀AI企业",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "加拿大推出国家人工智能战略：入股扶持本土“AI冠军”",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "抢跑IPO盛宴！Coinbase推出SpaceX上市前永续合约",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "518880": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "博通CEO：AI增长潜力远超并购收益",
+      "source": "futu_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "518880": 0.315,
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "资产划转税务处理口径存争议 业内建议出台可量化细则与指引",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "518880": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "交易所强化交易业务单元监管 严禁为个别投资者提供特殊便利 券商启动全面自查整改",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512880": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "东方财富财经早餐 6月5日周五",
+      "source": "eastmoney_cjzc",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "512880": 0.378,
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "华泰证券：保险业盈利反弹临近 建议重视二季报投资机会",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "510050": -0.315,
+        "512880": -0.357
+      },
+      "negative": true,
+      "risk_flags": []
+    },
+    {
+      "title": "SpaceX上市募资规模料创纪录 有望提振商业航天板块",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "518880": 0.315,
+        "512880": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "华泰证券：保险业盈利反弹临近 重视二季报投资机会",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "510050": -0.315,
+        "512880": -0.357
+      },
+      "negative": true,
+      "risk_flags": []
+    }
+  ],
+  "raw_response": {
+    "regime": "risk_on",
+    "regime_reason": "盘后大量AI/半导体/算力利好新闻集中爆发，且经济日历中欧元区零售数据略不及预期但影响有限，美国非农数据未公布但预期偏弱，整体市场情绪偏积极。",
+    "econ_drivers": [
+      {
+        "event": "欧元区4月零售销售年率",
+        "importance": "high",
+        "direction": "+",
+        "impact": "公布值1.0高于预期0.3，利好欧元区经济，间接利好A股出口相关板块。"
+      },
+      {
+        "event": "欧元区4月零售销售月率",
+        "importance": "high",
+        "direction": "-",
+        "impact": "公布值-0.4低于预期-0.3，小幅利空，但影响有限。"
+      },
+      {
+        "event": "美国5月非农就业人口变动",
+        "importance": "high",
+        "direction": "0",
+        "impact": "未公布，预期8.5万低于前值11.5万，若不及预期可能利空美元，利好A股。"
+      },
+      {
+        "event": "美国5月失业率",
+        "importance": "high",
+        "direction": "0",
+        "impact": "未公布，预期4.3与前值持平，影响中性。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "高端光棒价格涨幅近550% 拥有光棒产能的企业或成本轮行情最大受益方",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "AI算力的尽头竟是“钻石”？培育钻石概念集体暴涨",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "中信建投：AI算力增长持续打开超高导热金刚石材料增长空间",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "MLCC指数四连涨 “下一个存储”确认否？",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "开源证券：白酒底部布局 大众品把握三条主线",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "华泰证券：光模块设备或迎量升价增拐点",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "算力租赁市场热度提升 上市公司抢抓机遇",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "半导体行业景气度攀升 产业链公司受益明显",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "加拿大推出国家人工智能战略 入股扶持本土优秀AI企业",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "抢跑IPO盛宴！Coinbase推出SpaceX上市前永续合约",
+        "etf": "518880",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "博通CEO：AI增长潜力远超并购收益",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "华泰证券：保险业盈利反弹临近 建议重视二季报投资机会",
+        "etf": "510050",
+        "direction": "-",
+        "weight": 0.32
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.4,
+        "reason": "盘后利好新闻较多，但宽基指数动量中性，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": -0.3,
+        "reason": "保险业利空新闻，且动量偏弱，温和看空。"
+      },
+      {
+        "code": "510500",
+        "score": -0.5,
+        "reason": "5日跌幅-2.32%，趋势走弱，温和看空。"
+      },
+      {
+        "code": "510330",
+        "score": 0.2,
+        "reason": "与510300类似但成交量低，中性偏多。"
+      },
+      {
+        "code": "159338",
+        "score": 0.3,
+        "reason": "动量中性，成交量正常，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": 0.6,
+        "reason": "黄金ETF受益于AI/航天新闻及避险情绪，趋势向上，温和看好。"
+      },
+      {
+        "code": "159985",
+        "score": -0.6,
+        "reason": "5日跌幅-2.64%，趋势走弱，温和看空。"
+      },
+      {
+        "code": "510880",
+        "score": 0.7,
+        "reason": "5日涨幅+4.95%，趋势强劲，强烈看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.5,
+        "reason": "盘后多条利好券商新闻，但动量中性，温和看好。"
+      },
+      {
+        "code": "512010",
+        "score": -0.7,
+        "reason": "5日跌幅-3.27%，趋势走弱，强烈看空。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，欧元区零售数据略好于预期但影响有限，美国非农数据未公布但预期偏弱，整体影响中性。盘后AI、半导体、算力等板块利好新闻密集，市场情绪积极，但考虑到非农数据未公布，建议半仓操作，重点配置红利ETF和黄金ETF，回避医药和豆粕。"
+  }
+}

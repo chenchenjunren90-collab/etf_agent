@@ -1,0 +1,342 @@
+{
+  "date": "2026-07-06",
+  "source": "split_fresh_stale",
+  "cutoff_time": "09:30",
+  "updated_at": "2026-07-06 18:11:54",
+  "fresh_theme_scores": {
+    "510300": 0.63,
+    "159338": 0.315,
+    "588000": 0.357,
+    "512880": 0.378,
+    "516510": 0.42
+  },
+  "fresh_accepted_count": 4,
+  "fresh_strong_count": 4,
+  "fresh_accepted_articles": [
+    {
+      "accepted": true,
+      "title": "东方财富财经早餐 7月6日周一",
+      "source": "eastmoney_cjzc",
+      "url": "http://finance.eastmoney.com/a/202607053794319895.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ],
+        "fund_flow": [
+          "回购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "商圈",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-07-06/102461252.html?cxapp_link=true",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "订单"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.378
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-29/102458865.html?cxapp_link=true",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "earnings": [
+          "业绩"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.357,
+        "516510": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "家庭财富",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-29/102458795.html?cxapp_link=true",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315,
+        "159338": 0.315
+      },
+      "risk_flags": []
+    }
+  ],
+  "stale_theme_scores": {},
+  "stale_accepted_count": 0,
+  "stale_strong_count": 0,
+  "stale_accepted_articles": [],
+  "theme_scores": {
+    "510300": 0.63,
+    "159338": 0.315,
+    "588000": 0.357,
+    "512880": 0.378,
+    "516510": 0.42
+  },
+  "scores": {
+    "510300": 0.63,
+    "159338": 0.315,
+    "588000": 0.357,
+    "512880": 0.378,
+    "516510": 0.42
+  },
+  "accepted_count": 4,
+  "strong_count": 4,
+  "weak_count": 0,
+  "article_count": 15,
+  "rejected_count": 11,
+  "accepted_articles": [
+    {
+      "accepted": true,
+      "title": "东方财富财经早餐 7月6日周一",
+      "source": "eastmoney_cjzc",
+      "url": "http://finance.eastmoney.com/a/202607053794319895.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ],
+        "fund_flow": [
+          "回购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "商圈",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-07-06/102461252.html?cxapp_link=true",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "订单"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.378
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-29/102458865.html?cxapp_link=true",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "earnings": [
+          "业绩"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.357,
+        "516510": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "家庭财富",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-29/102458795.html?cxapp_link=true",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315,
+        "159338": 0.315
+      },
+      "risk_flags": []
+    }
+  ],
+  "raw_articles": [
+    {
+      "title": "东方财富财经早餐 7月6日周一",
+      "content": "【东方财富财经早餐 7月6日周一】1、证监会修改再融资规则，定增、小额融资全面松绑。2、华为何庭波发布V2版“韬定律”论文补充工程细节和实测数据。3、央行今日开展10000亿买断式逆回购操作。",
+      "source": "eastmoney_cjzc",
+      "published_at": "2026-07-06 06:00:40",
+      "url": "http://finance.eastmoney.com/a/202607053794319895.html"
+    },
+    {
+      "title": "商圈",
+      "content": "互联网券商Robinhood核心盈利模式，本质上是将散户交易订单转卖给华尔街的大型做市商。这意味着，散户在平台上每一次满怀希望的敲击，都在为大型机构提供套利对手盘",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-06/102461252.html?cxapp_link=true"
+    },
+    {
+      "title": "霍尔木兹周报",
+      "content": "上周美伊多哈会谈并未就海峡问题取得实际进展，霍尔木兹海峡全域威胁等级评定为“较高”",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-06/102461222.html?cxapp_link=true"
+    },
+    {
+      "title": "市场动态",
+      "content": "拥有芯片巨头三星电子和SK海力士的韩国，有望迎来一笔高额企业税增收",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-06/102461175.html?cxapp_link=true"
+    },
+    {
+      "title": "CCI快报",
+      "content": "供给回升处于高位，需求疲软，原油价格震荡下跌",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-04/102460691.html?cxapp_link=true"
+    },
+    {
+      "title": "数据图解",
+      "content": "2026年6月，新经济入职工资“溢价”较高的城市包括廊坊（49.5%）、岳阳（43.6%）、哈尔滨（41.9%）、滨州（35.9%）、镇江（33.7%）等",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-04/102460907.html?cxapp_link=true"
+    },
+    {
+      "title": "周刊提前读",
+      "content": "【本文系数据通用户提前专享】如何在日益扩大的人民币需求与汇率波动中，拓展金融衍生工具，增加市场深度",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-04/102460762.html?cxapp_link=true"
+    },
+    {
+      "title": "市场洞察",
+      "content": "考虑到通胀数据好于预期且劳动力市场稳定，该行对未来半年通胀下行持谨慎乐观态度",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-04/102460725.html?cxapp_link=true"
+    },
+    {
+      "title": "风电观察",
+      "content": "2026年5月风电招标数据环比下降73%，同比下降50%",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-03/102460148.html?cxapp_link=true"
+    },
+    {
+      "title": "市场速递",
+      "content": "目前诸多指标表明韩股依然有较大的脆弱性",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-02/102459865.html?cxapp_link=true"
+    },
+    {
+      "title": "量化观察",
+      "content": "6月，高质量因子策略跑输沪深300指数3.09%",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-01/102459687.html?cxapp_link=true"
+    },
+    {
+      "title": "并购簿",
+      "content": "当二级市场给你一个昂贵的估值时，这种估值能不能被当成真正的支付手段使用？",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-30/102459001.html?cxapp_link=true"
+    },
+    {
+      "title": "权益周观察",
+      "content": "科技板块行情明显缩圈，AI链条交易分化，资金出逃算力硬件方向，流向业绩支撑明显的存储芯片、半导体材料和玻璃基板等",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-29/102458865.html?cxapp_link=true"
+    },
+    {
+      "title": "家庭财富",
+      "content": "黄仁勋30年财富布局的优势与短板，结合苏姿丰的稳健配置思路，对当下国内A股、港股科创实控人家族，具备极强的落地借鉴意义",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-29/102458795.html?cxapp_link=true"
+    },
+    {
+      "title": "华尔街原声",
+      "content": "谷歌母公司Alphabet在6月29日将正式成为道琼斯工业平均指数的30只成分股之一，取代电信公司威瑞森（Verizon）",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-29/102458584.html?cxapp_link=true"
+    }
+  ],
+  "confidence": 0.8,
+  "market_sentiment": 0.493,
+  "max_abs_theme": 0.63,
+  "hot_keywords": [
+    "沪深300",
+    "沪指",
+    "云计算",
+    "AI",
+    "券商",
+    "证券",
+    "科创板",
+    "科创50",
+    "中证A500",
+    "A500"
+  ],
+  "auto_news": {
+    "enabled": true,
+    "article_count": 15,
+    "confidence": 0.8,
+    "market_sentiment": 0.493,
+    "catalyst_hits": 7,
+    "max_abs_theme": 0.63
+  }
+}

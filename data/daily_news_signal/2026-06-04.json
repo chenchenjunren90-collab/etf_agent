@@ -1,0 +1,304 @@
+{
+  "date": "2026-06-04",
+  "source": "split_fresh_stale",
+  "cutoff_time": "09:30",
+  "updated_at": "2026-06-04 21:30:53",
+  "fresh_theme_scores": {
+    "510300": 0.315,
+    "159338": 0.315
+  },
+  "fresh_accepted_count": 1,
+  "fresh_strong_count": 1,
+  "fresh_accepted_articles": [
+    {
+      "accepted": true,
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "earnings": [
+          "业绩"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315,
+        "159338": 0.315
+      },
+      "risk_flags": []
+    }
+  ],
+  "stale_theme_scores": {
+    "510300": 0.315,
+    "159338": 0.315,
+    "588000": 0.378,
+    "516510": 0.315
+  },
+  "stale_accepted_count": 2,
+  "stale_strong_count": 2,
+  "stale_accepted_articles": [
+    {
+      "accepted": true,
+      "title": "东方财富财经早餐 6月3日周三",
+      "source": "eastmoney_cjzc",
+      "url": "http://finance.eastmoney.com/a/202606023757876430.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "突破"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "东方财富财经早餐 6月2日周二",
+      "source": "eastmoney_cjzc",
+      "url": "http://finance.eastmoney.com/a/202606013756375746.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315,
+        "159338": 0.315,
+        "588000": 0.378
+      },
+      "risk_flags": []
+    }
+  ],
+  "theme_scores": {
+    "510300": 0.315,
+    "159338": 0.315
+  },
+  "scores": {
+    "510300": 0.315,
+    "159338": 0.315
+  },
+  "accepted_count": 3,
+  "strong_count": 3,
+  "weak_count": 0,
+  "article_count": 18,
+  "rejected_count": 15,
+  "accepted_articles": [
+    {
+      "accepted": true,
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "earnings": [
+          "业绩"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315,
+        "159338": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "东方财富财经早餐 6月3日周三",
+      "source": "eastmoney_cjzc",
+      "url": "http://finance.eastmoney.com/a/202606023757876430.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "突破"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "东方财富财经早餐 6月2日周二",
+      "source": "eastmoney_cjzc",
+      "url": "http://finance.eastmoney.com/a/202606013756375746.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315,
+        "159338": 0.315,
+        "588000": 0.378
+      },
+      "risk_flags": []
+    }
+  ],
+  "raw_articles": [
+    {
+      "title": "东方财富财经早餐 6月4日周四",
+      "content": "【东方财富财经早餐 6月4日周四】1、新闻联播：长线外资看好中国，持续加码硬科技。2、特朗普：与伊朗谈判进展“非常顺利”，伊朗已同意不会拥有核武器。3、富时中国A50指数纳入兆易创新、澜起科技等股票。",
+      "source": "eastmoney_cjzc",
+      "published_at": "2026-06-04 06:00:55",
+      "url": "http://finance.eastmoney.com/a/202606033759360884.html"
+    },
+    {
+      "title": "东方财富财经早餐 6月3日周三",
+      "content": "【东方财富财经早餐 6月3日周三】1、国务院印发《加快农业农村现代化“十五五”规划》。2、腾讯云：DeepSeek-V4系列模型降价，最高降幅达97.5%。3、全球首条，正式开通！我国光通信技术实现重要突破。",
+      "source": "eastmoney_cjzc",
+      "published_at": "2026-06-03 06:00:57",
+      "url": "http://finance.eastmoney.com/a/202606023757876430.html"
+    },
+    {
+      "title": "东方财富财经早餐 6月2日周二",
+      "content": "【东方财富财经早餐 6月2日周二】1、宇树科技IPO过会！冲刺A股“人形机器人第一股”。2、特朗普：黎以所有交火行动将立即停止，与伊朗的谈判正“快速推进”。3、智谱：建议A股发行并在科创板上市。",
+      "source": "eastmoney_cjzc",
+      "published_at": "2026-06-02 06:00:23",
+      "url": "http://finance.eastmoney.com/a/202606013756375746.html"
+    },
+    {
+      "title": "市场动态",
+      "content": "美国科技公司在5月份宣布的裁员人数达到近两年来最高水平，而与此同时，这些公司正大幅增加对人工智能(AI)的投入",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-04/102450973.html?cxapp_link=true"
+    },
+    {
+      "title": "华尔街原声",
+      "content": "加皇环球资产管理公司（RBC Global Asset Management）的美国固定收益主管Andrzej Skiba表示，随着AI领域庞大资本支出不断拉动GDP增长，美联储将不得不重新审视经济过热的风险，甚至可能需要考虑加息",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-04/102450929.html?cxapp_link=true"
+    },
+    {
+      "title": "今日热点",
+      "content": "三大指数调整、科创50仍上涨，存储芯片概念连续三日表现强势，煤炭行业整体再领涨，工业气体概念大涨。有色金属、商贸零售、电池等板块跌幅居前",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-04/102450883.html?cxapp_link=true"
+    },
+    {
+      "title": "霍尔木兹日报",
+      "content": "美伊近日出现新一轮军事冲突。特朗普6月3日表态仍积极，称美国同伊朗的谈判进展顺利，协议可能在本周末达成",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-04/102450857.html?cxapp_link=true"
+    },
+    {
+      "title": "商圈",
+      "content": "普尔特是本届特朗普政府中争议最大的人物之一 ，他的任命也再次引发美国政界的反对",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-04/102450760.html?cxapp_link=true"
+    },
+    {
+      "title": "市场洞察",
+      "content": "摩根大通建议关注人工智能产业链、能源安全和机器人三大方向",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-04/102450749.html?cxapp_link=true"
+    },
+    {
+      "title": "数据图解",
+      "content": "今年是AI浪潮下的第二个高考年，舆论更加聚焦在飞速迭代的AI技术对升学、就业所造成的影响，准大学生们面临着比往年更大的变化",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-03/102450596.html?cxapp_link=true"
+    },
+    {
+      "title": "市场速递",
+      "content": "市场交易热度和拥挤度达高位，止盈盘压力增加，资金面减持消息扰动明显。两大存储龙头的上市进程，亦是板块情绪和节奏重要变量",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-02/102450300.html?cxapp_link=true"
+    },
+    {
+      "title": "权益周观察",
+      "content": "进入6月，一方面处于业绩真空期，另一方面，市场对于流动性有收缩预期，多家机构认为，6月A股难现此前涨势，大概率维持震荡",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true"
+    },
+    {
+      "title": "量化观察",
+      "content": "5月，高质量因子策略跑输沪深300指数3.86%",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-01/102449794.html?cxapp_link=true"
+    },
+    {
+      "title": "研报精华",
+      "content": "机构认为，受益方向分三层看：第一层是架构和设计，第二层是先进封装和测试，第三层是设备、材料和存储",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-01/102449699.html?cxapp_link=true"
+    },
+    {
+      "title": "风电观察",
+      "content": "2026年4月风电招标数据环比上涨263%，同比上涨154%",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-01/102449688.html?cxapp_link=true"
+    },
+    {
+      "title": "大宗观察",
+      "content": "下半年虽然发生“厄尔尼诺”事件的概率较高，但强弱程度仍有很大分歧，不同强度下，大宗商品价格波动斜率差异较大",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-01/102449681.html?cxapp_link=true"
+    },
+    {
+      "title": "周刊提前读",
+      "content": "【本文系数据通用户提前专享】作为传统汽车工业高地，欧洲的技术变革与市场转型缓慢而必然，中国车企面临的监管与投资环境趋严，如何抓住“出海”窗口期？",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-05-30/102449349.html?cxapp_link=true"
+    },
+    {
+      "title": "CCI快报",
+      "content": "地缘溢价回吐，需求预期走弱，原油价格大幅下挫",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-05-29/102449135.html?cxapp_link=true"
+    }
+  ],
+  "confidence": 0.2,
+  "market_sentiment": 0.315,
+  "max_abs_theme": 0.315,
+  "hot_keywords": [
+    "沪深300",
+    "沪指",
+    "中证A500",
+    "A500"
+  ],
+  "auto_news": {
+    "enabled": true,
+    "article_count": 18,
+    "confidence": 0.2,
+    "market_sentiment": 0.315,
+    "catalyst_hits": 1,
+    "max_abs_theme": 0.315
+  }
+}

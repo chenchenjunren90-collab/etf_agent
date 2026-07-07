@@ -1,0 +1,561 @@
+{
+  "date": "2026-05-22",
+  "competition_output": [
+    {
+      "symbol": "510300",
+      "symbol_name": "沪深300ETF",
+      "volume": 57800
+    },
+    {
+      "symbol": "588000",
+      "symbol_name": "科创50ETF",
+      "volume": 89400
+    }
+  ],
+  "news_signal": {
+    "date": "2026-05-22",
+    "source": "strict_news_filter",
+    "confidence": 0.23,
+    "market_sentiment": 0.315,
+    "hot_keywords": [
+      "沪深300",
+      "沪指",
+      "云计算",
+      "AI"
+    ],
+    "theme_scores": {
+      "510300": 0.315,
+      "516510": 0.142
+    },
+    "article_count": 14,
+    "accepted_count": 2,
+    "rejected_count": 12,
+    "strong_count": 1,
+    "weak_count": 1,
+    "catalyst_hits": 2,
+    "max_abs_theme": 0.315,
+    "accepted_articles": [
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 5月22日周五",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202605213745575429.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "fund_flow": [
+            "放量"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "周刊提前读",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-05-23/102446813.html?cxapp_link=true",
+        "quality": "weak",
+        "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+        "event_hits": {
+          "capital_investment": [
+            "融资"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.142
+        },
+        "risk_flags": [
+          "good_news_in_downtrend"
+        ]
+      }
+    ],
+    "rejection_reasons": {
+      "no_clear_sector_or_etf_mapping": 11,
+      "no_concrete_catalyst": 1
+    },
+    "updated_at": "2026-05-23 22:10:29",
+    "cutoff_time": "09:30",
+    "raw_articles": [
+      {
+        "title": "东方财富财经早餐 5月22日周五",
+        "content": "【东方财富财经早餐 5月22日周五】1、国常会：研究推进全国统一大市场建设有关工作。2、商务部：中美双方应为双向农产品贸易创造有利条件，推动恢复并不断拓展农产品贸易合作。3、A股放量回调，小作文惹祸？多家基金公司解读：高位科技兑现与海外利率扰动是主因。",
+        "source": "eastmoney_cjzc",
+        "published_at": "2026-05-22 06:00:14",
+        "url": "http://finance.eastmoney.com/a/202605213745575429.html"
+      },
+      {
+        "title": "东方财富财经早餐 5月21日周四",
+        "content": "【东方财富财经早餐 5月21日周四】1、SpaceX申请美国IPO，代码SPCX。 2、5月27日上会！国产存储巨头长鑫科技IPO新进展。3、李强签署国务院令，公布《中华人民共和国矿产资源法实施条例》。",
+        "source": "eastmoney_cjzc",
+        "published_at": "2026-05-21 06:00:33",
+        "url": "http://finance.eastmoney.com/a/202605203743874950.html"
+      },
+      {
+        "title": "东方财富财经早餐 5月20日周三",
+        "content": "【东方财富财经早餐 5月20日周三】1、特朗普称美方可能不得不对伊朗“再予以一击”。2、沪金主力合约夜盘疑似出现乌龙指。3、长江存储启动IPO辅导。",
+        "source": "eastmoney_cjzc",
+        "published_at": "2026-05-20 06:00:48",
+        "url": "http://finance.eastmoney.com/a/202605193742375993.html"
+      },
+      {
+        "title": "周刊提前读",
+        "content": "【本文系数据通用户提前专享】全球资本追逐AI“船票”，融资轮次之快、估值竞赛之热史无前例",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-23/102446813.html?cxapp_link=true"
+      },
+      {
+        "title": "CCI快报",
+        "content": "供给维持高位、需求边际转弱，焦煤价格承压下挫",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-23/102446842.html?cxapp_link=true"
+      },
+      {
+        "title": "数据图解",
+        "content": "美国咨询机构认为AI所引发的“裁员潮”或许即将到来；在国内招聘市场，企业仍亟需AI顶尖人才，想跳槽的职场人倾心AI相关的工作，在职的人员担心自身岗位的前途",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-22/102446755.html?cxapp_link=true"
+      },
+      {
+        "title": "华尔街原声",
+        "content": "亚马逊创始人杰夫·贝索斯（Jeff Bezos）认为，当前航天行业的核心任务完全聚焦于经济效益，即如何打造既能顺利完成飞行任务，又具备显著低成本优势的运载工具，以此来真正解锁人类在太空探索领域的诸多可能性",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-22/102446683.html?cxapp_link=true"
+      },
+      {
+        "title": "霍尔木兹日报",
+        "content": "5月22日03:23，一艘挂伊朗船旗的液体散货船“DALIA”驶出霍尔木兹海峡，但尚未突破美军封锁",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-22/102446518.html?cxapp_link=true"
+      },
+      {
+        "title": "市场动态",
+        "content": "中国股票型ETF正迈向连续第八周的资金流出，国家队减持可能仍是原因之一。而据彭博行业研究(BI)的预测，国家队资金的撤退或已进入最后阶段",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-22/102446515.html?cxapp_link=true"
+      },
+      {
+        "title": "公司速递",
+        "content": "文远知行一季报发布后股价表现萎靡，或显示市场对于“讲故事”提估值的叙事逐渐审慎，开始更关注基本面的盈利进展",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-22/102446483.html?cxapp_link=true"
+      },
+      {
+        "title": "今日热点",
+        "content": "机器人概念再度活跃，康平科技、鼎泰高科“20cm”涨停，格灵深瞳、欧科亿、索辰科技、正业科技、华瑞股份、国瓷材料等涨超10%",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-22/102446446.html?cxapp_link=true"
+      },
+      {
+        "title": "权益周观察",
+        "content": "油价的冲击正在慢慢转化成更广泛的成本压力，CPI、PPI读数上不断超预期上行，通胀预期也在慢慢抬升，偏鹰派的沃什上台后，施策主张或指向抗通胀，本轮降息周期或因此扭转，从而压制全球风险资产",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-19/102445556.html?cxapp_link=true"
+      },
+      {
+        "title": "市场洞察",
+        "content": "瑞银认为今年市场上行动能并不光靠估值，也不单靠盈利，是一个双向的结合",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-18/102444836.html?cxapp_link=true"
+      },
+      {
+        "title": "量化观察",
+        "content": "预测2026年5月经营质量、会计质量等因子表现更优",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-15/102444288.html?cxapp_link=true"
+      }
+    ]
+  },
+  "strategy_result": {
+    "allocations": {
+      "510300": 281200,
+      "588000": 168700
+    },
+    "summary": {
+      "total_candidates_scored": 15,
+      "stocks_held": 2,
+      "capital_used": 449900,
+      "cash_reserve": 50100,
+      "utilization_rate": 90.0,
+      "held_stocks": [
+        {
+          "code": "510300",
+          "name": "沪深300ETF",
+          "amount": 281200,
+          "weight": 56.2,
+          "target_weight": 56.2,
+          "type": "short_race",
+          "score": 57.85,
+          "historical_score": 61.7,
+          "trend_score": 49.74,
+          "theme_score": 65.75,
+          "theme_raw": 0.32,
+          "pred_return": null,
+          "latest_price": 4.862,
+          "ret_1d": 1.12,
+          "ret_3d": -0.14,
+          "ret_5d": -0.33,
+          "volume_ratio": 1.13,
+          "risk_penalty": 0.0,
+          "reason": "strong: 东方财富财经早餐 5月22日周五 (concrete_catalyst_and_clear_sector)"
+        },
+        {
+          "code": "588000",
+          "name": "科创50ETF",
+          "amount": 168700,
+          "weight": 33.7,
+          "target_weight": 33.8,
+          "type": "short_race",
+          "score": 52.38,
+          "historical_score": 68.8,
+          "trend_score": 58.24,
+          "theme_score": 50.0,
+          "theme_raw": 0.0,
+          "pred_return": null,
+          "latest_price": 1.887,
+          "ret_1d": 1.45,
+          "ret_3d": 0.86,
+          "ret_5d": 5.6,
+          "volume_ratio": 0.96,
+          "risk_penalty": 0.0,
+          "reason": "未命中高质量新闻。"
+        }
+      ],
+      "invest_ratio": 0.9,
+      "mode": "short_race_theme_rotation"
+    },
+    "date": "2026-05-22",
+    "ranked": [
+      {
+        "code": "510300",
+        "name": "沪深300ETF",
+        "category": "全市场",
+        "score": 57.85,
+        "historical_score": 61.7,
+        "theme_score": 65.75,
+        "theme_raw": 0.32,
+        "theme_reason": "strong: 东方财富财经早餐 5月22日周五 (concrete_catalyst_and_clear_sector)",
+        "pred_return": null,
+        "latest_price": 4.862,
+        "ret_1d": 1.12,
+        "ret_3d": -0.14,
+        "ret_5d": -0.33,
+        "ret_10d": -0.49,
+        "volume_ratio": 1.13,
+        "rsi": 53.7,
+        "macd_hist": -0.0162,
+        "bollinger_position": 0.488,
+        "bollinger_width": 0.0141,
+        "price_position_20d": 0.372,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -0.18,
+        "trend_score": 49.74,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "588000",
+        "name": "科创50ETF",
+        "category": "科创板",
+        "score": 52.38,
+        "historical_score": 68.8,
+        "theme_score": 50.0,
+        "theme_raw": 0.0,
+        "theme_reason": "未命中高质量新闻。",
+        "pred_return": null,
+        "latest_price": 1.887,
+        "ret_1d": 1.45,
+        "ret_3d": 0.86,
+        "ret_5d": 5.6,
+        "ret_10d": 9.26,
+        "volume_ratio": 0.96,
+        "rsi": 72.5,
+        "macd_hist": 0.0078,
+        "bollinger_position": 0.783,
+        "bollinger_width": 0.079,
+        "price_position_20d": 0.896,
+        "above_ma": true,
+        "high_break": false,
+        "drawdown_5d": -2.28,
+        "trend_score": 58.24,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "159949",
+        "name": "创业板50ETF",
+        "category": "创蓝筹",
+        "score": 50.09,
+        "historical_score": 59.9,
+        "theme_score": 50.0,
+        "theme_raw": 0.0,
+        "theme_reason": "未命中高质量新闻。",
+        "pred_return": null,
+        "latest_price": 1.896,
+        "ret_1d": 3.04,
+        "ret_3d": 1.07,
+        "ret_5d": 0.21,
+        "ret_10d": 4.12,
+        "volume_ratio": 1.11,
+        "rsi": 66.3,
+        "macd_hist": -0.0062,
+        "bollinger_position": 0.736,
+        "bollinger_width": 0.0347,
+        "price_position_20d": 0.789,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": 0.0,
+        "trend_score": 54.41,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "516510",
+        "name": "云计算ETF",
+        "category": "TMT科技",
+        "score": 50.03,
+        "historical_score": 55.7,
+        "theme_score": 57.1,
+        "theme_raw": 0.14,
+        "theme_reason": "weak: 周刊提前读 (concrete_catalyst_and_clear_sector_but_price_risk; 风险=good_news_in_downtrend)",
+        "pred_return": null,
+        "latest_price": 1.835,
+        "ret_1d": 1.66,
+        "ret_3d": -4.72,
+        "ret_5d": -2.96,
+        "ret_10d": -4.87,
+        "volume_ratio": 0.93,
+        "rsi": 53.6,
+        "macd_hist": -0.0122,
+        "bollinger_position": 0.324,
+        "bollinger_width": 0.0303,
+        "price_position_20d": 0.282,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -4.72,
+        "trend_score": 41.07,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510330",
+        "name": "华夏沪深300ETF",
+        "category": "全市场",
+        "score": 49.95,
+        "historical_score": 63.7,
+        "theme_score": 50.0,
+        "theme_raw": 0.0,
+        "theme_reason": "未命中高质量新闻。",
+        "pred_return": null,
+        "latest_price": 5.064,
+        "ret_1d": 1.14,
+        "ret_3d": -0.02,
+        "ret_5d": -0.3,
+        "ret_10d": -0.43,
+        "volume_ratio": 1.44,
+        "rsi": 54.0,
+        "macd_hist": -0.0167,
+        "bollinger_position": 0.501,
+        "bollinger_width": 0.0142,
+        "price_position_20d": 0.379,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -0.12,
+        "trend_score": 51.56,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "159845",
+        "name": "中证1000ETF",
+        "category": "小盘",
+        "score": 49.62,
+        "historical_score": 61.6,
+        "theme_score": 50.0,
+        "theme_raw": 0.0,
+        "theme_reason": "未命中高质量新闻。",
+        "pred_return": null,
+        "latest_price": 3.592,
+        "ret_1d": 2.07,
+        "ret_3d": -1.26,
+        "ret_5d": 0.11,
+        "ret_10d": -0.42,
+        "volume_ratio": 1.4,
+        "rsi": 61.5,
+        "macd_hist": -0.0096,
+        "bollinger_position": 0.605,
+        "bollinger_width": 0.0255,
+        "price_position_20d": 0.65,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.37,
+        "trend_score": 51.54,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "159915",
+        "name": "创业板ETF",
+        "category": "创业板",
+        "score": 49.58,
+        "historical_score": 60.4,
+        "theme_score": 50.0,
+        "theme_raw": 0.0,
+        "theme_reason": "未命中高质量新闻。",
+        "pred_return": null,
+        "latest_price": 3.946,
+        "ret_1d": 2.6,
+        "ret_3d": 0.61,
+        "ret_5d": -0.6,
+        "ret_10d": 3.68,
+        "volume_ratio": 1.06,
+        "rsi": 65.8,
+        "macd_hist": -0.0124,
+        "bollinger_position": 0.718,
+        "bollinger_width": 0.0336,
+        "price_position_20d": 0.771,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": 0.0,
+        "trend_score": 52.09,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510500",
+        "name": "中证500ETF",
+        "category": "中盘成长",
+        "score": 49.46,
+        "historical_score": 61.6,
+        "theme_score": 50.0,
+        "theme_raw": 0.0,
+        "theme_reason": "未命中高质量新闻。",
+        "pred_return": null,
+        "latest_price": 8.658,
+        "ret_1d": 1.82,
+        "ret_3d": -0.52,
+        "ret_5d": 0.53,
+        "ret_10d": -1.27,
+        "volume_ratio": 1.08,
+        "rsi": 57.3,
+        "macd_hist": -0.0294,
+        "bollinger_position": 0.554,
+        "bollinger_width": 0.0244,
+        "price_position_20d": 0.523,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.03,
+        "trend_score": 50.88,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "515790",
+        "name": "光伏ETF",
+        "category": "新能源",
+        "score": 49.05,
+        "historical_score": 62.0,
+        "theme_score": 50.0,
+        "theme_raw": 0.0,
+        "theme_reason": "未命中高质量新闻。",
+        "pred_return": null,
+        "latest_price": 1.111,
+        "ret_1d": 1.65,
+        "ret_3d": -0.54,
+        "ret_5d": 0.27,
+        "ret_10d": 1.37,
+        "volume_ratio": 0.82,
+        "rsi": 61.8,
+        "macd_hist": 0.0007,
+        "bollinger_position": 0.639,
+        "bollinger_width": 0.0264,
+        "price_position_20d": 0.67,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.33,
+        "trend_score": 48.98,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "512100",
+        "name": "中证1000ETF",
+        "category": "小盘",
+        "score": 48.97,
+        "historical_score": 60.4,
+        "theme_score": 50.0,
+        "theme_raw": 0.0,
+        "theme_reason": "未命中高质量新闻。",
+        "pred_return": null,
+        "latest_price": 3.495,
+        "ret_1d": 1.84,
+        "ret_3d": -1.33,
+        "ret_5d": 0.2,
+        "ret_10d": -0.31,
+        "volume_ratio": 1.1,
+        "rsi": 61.9,
+        "macd_hist": -0.0084,
+        "bollinger_position": 0.612,
+        "bollinger_width": 0.0263,
+        "price_position_20d": 0.658,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.41,
+        "trend_score": 49.62,
+        "risk_penalty": 0.0
+      }
+    ],
+    "theme_signals": {
+      "source": "strict_news_filter",
+      "updated_at": "2026-05-23 22:10:29",
+      "market_view": "news_positive",
+      "hot_keywords": [
+        "沪深300",
+        "沪指",
+        "云计算",
+        "AI"
+      ],
+      "auto_news": {
+        "enabled": true,
+        "confidence": 0.23,
+        "market_sentiment": 0.315,
+        "article_count": 2,
+        "raw_article_count": 14,
+        "catalyst_hits": 2,
+        "max_abs_theme": 0.315,
+        "accepted_count": 2,
+        "rejected_count": 12,
+        "strong_count": 1,
+        "weak_count": 1
+      }
+    },
+    "market_reason": "市场环境中性偏可做(510300:5日-0.33%; 159915:5日-0.60%; 588000:5日+5.60%)，保持90%仓位",
+    "reasoning": "Short-race ETF rotation: price-only historical model plus real-time theme overlay. Market regime: 市场环境中性偏可做(510300:5日-0.33%; 159915:5日-0.60%; 588000:5日+5.60%)，保持90%仓位. Theme source: strict_news_filter, view=news_positive. 510300(沪深300ETF): score=57.85, trend=49.74, theme=65.75, 1d=+1.12%, 3d=-0.14%, 5d=-0.33%, volume=1.13x; strong: 东方财富财经早餐 5月22日周五 (concrete_catalyst_and_clear_sector) 588000(科创50ETF): score=52.38, trend=58.24, theme=50.0, 1d=+1.45%, 3d=+0.86%, 5d=+5.60%, volume=0.96x; 未命中高质量新闻。 Capital used 449,900 CNY (90.0%), cash reserve 50,100 CNY."
+  },
+  "previous_pnl": {
+    "review_date": "2026-05-23",
+    "prediction_date": "2026-05-21",
+    "source_file": "C:\\Users\\32872\\Desktop\\etf智能体\\etf_agent\\data\\daily_output\\2026-05-21_full.json",
+    "total_pnl": -8624.2,
+    "positions": [
+      {
+        "symbol": "588000",
+        "symbol_name": "科创50ETF",
+        "volume": 80600,
+        "open": 1.967,
+        "close": 1.86,
+        "pnl": -8624.2,
+        "return_pct": -5.44
+      }
+    ]
+  }
+}

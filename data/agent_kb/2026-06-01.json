@@ -1,0 +1,641 @@
+{
+  "date": "2026-06-01",
+  "updated_at": "2026-06-01 09:36:08",
+  "competition_output": [
+    {
+      "symbol": "512010",
+      "symbol_name": "医药ETF",
+      "volume": 256300
+    },
+    {
+      "symbol": "512880",
+      "symbol_name": "证券ETF",
+      "volume": 85300
+    },
+    {
+      "symbol": "518880",
+      "symbol_name": "黄金ETF",
+      "volume": 7800
+    }
+  ],
+  "is_empty_position": false,
+  "decision_summary_zh": "今日经济日历仅有中国5月官方制造业PMI（未公布），影响中性；但新闻情绪强烈正面，AI、算力、券商、医药等板块利好密集，且部分ETF趋势向好，因此整体偏乐观。建议半仓参与，重点配置券商、医药、红利及科技相关ETF。",
+  "market_context_zh": "市场偏强(510300:5日+1.25%; 159915:5日+4.31%; 588000:5日+0.74%)，90% 仓位",
+  "positions": [
+    {
+      "symbol": "512010",
+      "symbol_name": "医药ETF",
+      "volume": 256300,
+      "reason": "strong: 睿健医药完成2.1亿C1轮融资 (concrete_catalyst_and_clear_sector)",
+      "related_news": [
+        {
+          "title": "睿健医药完成2.1亿C1轮融资",
+          "url": "https://finance.eastmoney.com/a/202606013755299395.html",
+          "quality": "strong",
+          "direction": "偏多",
+          "strength": 0.357
+        },
+        {
+          "title": "终止筹划控制权变更事项 百诚医药6月1日开市起复牌",
+          "url": "https://finance.eastmoney.com/a/202605313755242082.html",
+          "quality": "strong",
+          "direction": "偏多",
+          "strength": 0.357
+        },
+        {
+          "title": "中国创新药迎高光！康方生物核心产品战胜PD-1联合化疗总生存期结果",
+          "url": "https://finance.eastmoney.com/a/202605313755214061.html",
+          "quality": "strong",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "title": "一条指数的成长记：透过十大权重股 五大维度解码创业板",
+          "url": "https://finance.eastmoney.com/a/202606013755246255.html",
+          "quality": "strong",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "symbol": "512880",
+      "symbol_name": "证券ETF",
+      "volume": 85300,
+      "reason": "strong: 南网能源：2026年将持续做强电力交易与虚拟电厂业务 (concrete_catalyst_and_clear_sector)",
+      "related_news": [
+        {
+          "title": "南网能源：2026年将持续做强电力交易与虚拟电厂业务",
+          "url": "https://finance.eastmoney.com/a/202606013755311188.html",
+          "quality": "strong",
+          "direction": "偏多",
+          "strength": 0.378
+        },
+        {
+          "title": "主流券商研报认为A股上市白酒企业本轮调整“筑底”信号显现",
+          "url": "https://finance.eastmoney.com/a/202606013755260922.html",
+          "quality": "strong",
+          "direction": "偏空",
+          "strength": 0.378
+        },
+        {
+          "title": "券商5月最牛金股涨幅翻倍 6月电子板块最受青睐",
+          "url": "https://finance.eastmoney.com/a/202606013755246535.html",
+          "quality": "strong",
+          "direction": "偏多",
+          "strength": 0.378
+        },
+        {
+          "title": "中信证券点评PMI：景气总体平稳 K型分化延续",
+          "url": "https://finance.eastmoney.com/a/202606013755294476.html",
+          "quality": "strong",
+          "direction": "偏多",
+          "strength": 0.357
+        }
+      ]
+    },
+    {
+      "symbol": "518880",
+      "symbol_name": "黄金ETF",
+      "volume": 7800,
+      "reason": "strong: 欧洲央行执委Schnabel：供应冲击被认为是巨大且具有高度持续性的 (concrete_catalyst_and_clear_sector)",
+      "related_news": [
+        {
+          "title": "欧洲央行执委Schnabel：供应冲击被认为是巨大且具有高度持续性的",
+          "url": "https://finance.eastmoney.com/a/202606013755310393.html",
+          "quality": "strong",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "title": "美国公司据悉拟在乌战场测试升级版人形机器人",
+          "url": "https://finance.eastmoney.com/a/202606013755289571.html",
+          "quality": "strong",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "title": "招商证券：判断6月A股仍处盈利驱动的上行第三阶段",
+          "url": "https://finance.eastmoney.com/a/202606013755283981.html",
+          "quality": "strong",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "title": "大金重工：与挪威、希腊船东签署3亿美元船舶建造合同",
+          "url": "https://finance.eastmoney.com/a/202606013755283782.html",
+          "quality": "strong",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    }
+  ],
+  "news_stats": {
+    "article_count": 226,
+    "accepted_count": 59,
+    "strong_count": 59,
+    "confidence": 1.0,
+    "market_sentiment": 0.819,
+    "hot_keywords": [
+      "上证50",
+      "大蓝筹",
+      "沪深300",
+      "沪指",
+      "中证A500",
+      "A500",
+      "黄金",
+      "金价",
+      "科创板",
+      "科创50",
+      "券商",
+      "证券"
+    ]
+  },
+  "news_digest": [
+    {
+      "title": "央行今日开展110亿元7天期逆回购操作",
+      "url": "https://finance.eastmoney.com/a/202606013755317064.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "南网能源：2026年将持续做强电力交易与虚拟电厂业务",
+      "url": "https://finance.eastmoney.com/a/202606013755311188.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "偏多",
+          "strength": 0.378
+        },
+        {
+          "symbol": "515790",
+          "symbol_name": "515790",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "欧洲央行执委Schnabel：供应冲击被认为是巨大且具有高度持续性的",
+      "url": "https://finance.eastmoney.com/a/202606013755310393.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "4月中国产汽车在韩国注册登记进口榜排第三 史上首超日本车",
+      "url": "https://finance.eastmoney.com/a/202606013755304859.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "盘前题材挖掘",
+      "url": "https://finance.eastmoney.com/a/202606013755302077.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "偏多",
+          "strength": 0.42
+        },
+        {
+          "symbol": "515790",
+          "symbol_name": "515790",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "睿健医药完成2.1亿C1轮融资",
+      "url": "https://finance.eastmoney.com/a/202606013755299395.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512010",
+          "symbol_name": "医药ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        },
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "6月1日投资避雷针：3连板人气股提示风险 未取得PCB、核聚变相关业务收入",
+      "url": "https://finance.eastmoney.com/a/202606013755298320.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "515790",
+          "symbol_name": "515790",
+          "direction": "偏多",
+          "strength": 0.378
+        },
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "中信证券点评PMI：景气总体平稳 K型分化延续",
+      "url": "https://finance.eastmoney.com/a/202606013755294476.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        },
+        {
+          "symbol": "510050",
+          "symbol_name": "上证50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "512690",
+          "symbol_name": "512690",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "中信证券：预计银行基本面将延续修复趋势 行业估值提升可期",
+      "url": "https://finance.eastmoney.com/a/202606013755295294.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        },
+        {
+          "symbol": "510050",
+          "symbol_name": "上证50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "全国首个绿色算力全栈AI平台上线 算电协同加速走向项目落地",
+      "url": "https://finance.eastmoney.com/a/202606013755287726.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "偏多",
+          "strength": 0.42
+        }
+      ]
+    },
+    {
+      "title": "AIDC火爆需求推动产业化加速 SST或成为电力设备领域新风口",
+      "url": "https://finance.eastmoney.com/a/202606013755287839.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "偏多",
+          "strength": 0.42
+        },
+        {
+          "symbol": "515790",
+          "symbol_name": "515790",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "义乌AI玩具全球爆单 AI玩具行业迎来加速渗透期",
+      "url": "https://finance.eastmoney.com/a/202606013755287914.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512690",
+          "symbol_name": "512690",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "AI热潮即将进入下一阶段？投资者正挖掘“亚洲非造芯”赢家",
+      "url": "https://finance.eastmoney.com/a/202606013755291760.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "偏多",
+          "strength": 0.42
+        }
+      ]
+    },
+    {
+      "title": "AI短剧低门槛外行蜂拥投资 从业者预计99%亏损",
+      "url": "https://finance.eastmoney.com/a/202605313755156713.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "中国创新药迎高光！康方生物核心产品战胜PD-1联合化疗总生存期结果",
+      "url": "https://finance.eastmoney.com/a/202605313755214061.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512010",
+          "symbol_name": "医药ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "美国公司据悉拟在乌战场测试升级版人形机器人",
+      "url": "https://finance.eastmoney.com/a/202606013755289571.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "512690",
+          "symbol_name": "512690",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "纳税信息成为企业融资好帮手",
+      "url": "https://finance.eastmoney.com/a/202606013755267767.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "510050",
+          "symbol_name": "上证50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "强化创业板产业培育功能",
+      "url": "https://finance.eastmoney.com/a/202606013755265878.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "159915",
+          "symbol_name": "创业板ETF",
+          "direction": "偏多",
+          "strength": 0.378
+        },
+        {
+          "symbol": "159949",
+          "symbol_name": "创业板50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "有效适配硬科技企业融资需求",
+      "url": "https://finance.eastmoney.com/a/202606013755265992.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "510050",
+          "symbol_name": "上证50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "招商证券：高端电子布涨价预期充分 持续关注龙头企业",
+      "url": "https://finance.eastmoney.com/a/202606013755285823.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "偏多",
+          "strength": 0.42
+        },
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        }
+      ]
+    },
+    {
+      "title": "“贩卖焦虑”之风不可长",
+      "url": "https://finance.eastmoney.com/a/202606013755268141.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512690",
+          "symbol_name": "512690",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "招商证券：判断6月A股仍处盈利驱动的上行第三阶段",
+      "url": "https://finance.eastmoney.com/a/202606013755283981.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        },
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "大金重工：与挪威、希腊船东签署3亿美元船舶建造合同",
+      "url": "https://finance.eastmoney.com/a/202606013755283782.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "伯克希尔·哈撒韦将收购住宅建筑商泰勒·莫里森 企业总价值近85亿美元",
+      "url": "https://finance.eastmoney.com/a/202606013755282130.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "A股限售股解禁一览：118.78亿元市值限售股今日解禁",
+      "url": "https://finance.eastmoney.com/a/202606013755279940.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "510050",
+          "symbol_name": "上证50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    }
+  ],
+  "econ_headlines": [],
+  "scope_note": "本智能体仅解答 A 股 ETF 日内配置、赛事实盘建议、已筛选新闻与持仓解读；不披露内部评分公式、闸门阈值与程序实现细节。"
+}

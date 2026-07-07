@@ -1,0 +1,365 @@
+{
+  "date": "2026-06-02",
+  "updated_at": "2026-06-02 13:08:38",
+  "competition_output": [
+    {
+      "symbol": "510880",
+      "symbol_name": "红利ETF",
+      "volume": 4600
+    },
+    {
+      "symbol": "159338",
+      "symbol_name": "中证A500ETF",
+      "volume": 10500
+    },
+    {
+      "symbol": "159985",
+      "symbol_name": "豆粕ETF",
+      "volume": 5200
+    }
+  ],
+  "is_empty_position": false,
+  "decision_summary_zh": "今日美国ISM制造业PMI超预期，美元走强人民币承压，外资流出风险加大，整体市场偏弱。但红利ETF逆势走强，证券、医药等板块受新闻利好，可适度参与结构性机会。建议仓位控制在40%以内，重点配置红利ETF及受新闻驱动的证券、医药ETF。",
+  "market_context_zh": "宽基趋势明显转弱(510300:5日-1.40%; 159915:5日-1.74%; 588000:5日-12.21%)，空仓回避",
+  "positions": [
+    {
+      "symbol": "510880",
+      "symbol_name": "红利ETF",
+      "volume": 4600,
+      "reason": "未命中高质量新闻。",
+      "related_news": []
+    },
+    {
+      "symbol": "159338",
+      "symbol_name": "中证A500ETF",
+      "volume": 10500,
+      "reason": "weak: 6月2日投资避雷针：晋控电力、深南电A等电力股密集澄清 不涉及算电协同业务 (concrete_catalyst_and_clear_sector_but_price_risk; 风险=good_news_in_downtrend)",
+      "related_news": [
+        {
+          "title": "6月2日投资避雷针：晋控电力、深南电A等电力股密集澄清 不涉及算电协同业务",
+          "url": "https://finance.eastmoney.com/a/202606023756692658.html",
+          "quality": "weak",
+          "direction": "中性",
+          "strength": 0.142
+        },
+        {
+          "title": "东方财富财经早餐 6月2日周二",
+          "url": "http://finance.eastmoney.com/a/202606013756375746.html",
+          "quality": "weak",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    },
+    {
+      "symbol": "159985",
+      "symbol_name": "豆粕ETF",
+      "volume": 5200,
+      "reason": "未命中高质量新闻。",
+      "related_news": []
+    }
+  ],
+  "news_stats": {
+    "article_count": 76,
+    "accepted_count": 8,
+    "strong_count": 0,
+    "confidence": 1.0,
+    "market_sentiment": 0.638,
+    "hot_keywords": [
+      "科创板",
+      "科创50",
+      "券商",
+      "证券",
+      "云计算",
+      "AI",
+      "光伏",
+      "新能源",
+      "沪深300",
+      "沪指",
+      "医药",
+      "医疗"
+    ]
+  },
+  "news_digest": [
+    {
+      "title": "央行今日开展2亿元7天逆回购操作",
+      "url": "https://finance.eastmoney.com/a/202606023756896112.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    },
+    {
+      "title": "汉钟精机：真空产品已向部分国内芯片制造商批量供货",
+      "url": "https://finance.eastmoney.com/a/202606023756863717.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "算力合同引纠纷：讯众通信被诉违约 涉案金额超1.8亿元",
+      "url": "https://finance.eastmoney.com/a/202606023756842743.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "中信证券：管网更新东风起 钢管板块迎价值重估",
+      "url": "https://finance.eastmoney.com/a/202606023756788142.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        }
+      ]
+    },
+    {
+      "title": "深圳出台十条措施 优化前海国际化支付",
+      "url": "https://finance.eastmoney.com/a/202606023756742632.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512690",
+          "symbol_name": "512690",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "韩国股市市值超越印度 跃居全球第六",
+      "url": "https://finance.eastmoney.com/a/202606023756729343.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "6月2日投资避雷针：晋控电力、深南电A等电力股密集澄清 不涉及算电协同业务",
+      "url": "https://finance.eastmoney.com/a/202606023756692658.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "515790",
+          "symbol_name": "515790",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.142
+        },
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    },
+    {
+      "title": "海兰信与中交三航局、中交资本将聚焦海底算力中心建设等深度合作",
+      "url": "https://finance.eastmoney.com/a/202606023756690491.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "中信证券：AI商业化加速 科技行情震荡分化",
+      "url": "https://finance.eastmoney.com/a/202606023756693735.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        },
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "医药代表学历新规倒计时 有人仓皇“补票”遇陷阱",
+      "url": "https://finance.eastmoney.com/a/202606013756378667.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512010",
+          "symbol_name": "医药ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        }
+      ]
+    },
+    {
+      "title": "中信建投：算力等高频高速需求快速增长 电子级PTFE有望大规模应用",
+      "url": "https://finance.eastmoney.com/a/202606023756688122.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "偏多",
+          "strength": 0.378
+        }
+      ]
+    },
+    {
+      "title": "半导体和机器人两个赛道火到什么程度了？今年前4月利润井喷 “投资人约不到企业负责人！”",
+      "url": "https://finance.eastmoney.com/a/202606013756386058.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "华泰证券：618低价竞争降温 平台聚焦效率升级",
+      "url": "https://finance.eastmoney.com/a/202606023756685170.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        }
+      ]
+    },
+    {
+      "title": "华西证券：关注电子铜箔国产化以及锂电铜箔进入涨价周期机遇",
+      "url": "https://finance.eastmoney.com/a/202606023756685290.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        },
+        {
+          "symbol": "515790",
+          "symbol_name": "515790",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "东方财富财经早餐 6月2日周二",
+      "url": "http://finance.eastmoney.com/a/202606013756375746.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "偏多",
+          "strength": 0.378
+        },
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.142
+        },
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    },
+    {
+      "title": "华尔街原声",
+      "url": "https://database.caixin.com/2026-06-01/102449779.html?cxapp_link=true",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    }
+  ],
+  "econ_headlines": [],
+  "scope_note": "本智能体仅解答 A 股 ETF 日内配置、赛事实盘建议、已筛选新闻与持仓解读；不披露内部评分公式、闸门阈值与程序实现细节。"
+}

@@ -1,0 +1,1898 @@
+{
+  "date": "2026-07-06",
+  "competition_output": [
+    {
+      "symbol": "512880",
+      "symbol_name": "证券ETF",
+      "volume": 35000
+    },
+    {
+      "symbol": "512010",
+      "symbol_name": "医药ETF",
+      "volume": 111500
+    },
+    {
+      "symbol": "518880",
+      "symbol_name": "黄金ETF",
+      "volume": 3800
+    }
+  ],
+  "news_signal": {
+    "date": "2026-07-06",
+    "source": "split_fresh_stale",
+    "cutoff_time": "09:30",
+    "updated_at": "2026-07-06 18:11:54",
+    "fresh_theme_scores": {
+      "510300": 0.63,
+      "159338": 0.315,
+      "588000": 0.357,
+      "512880": 0.378,
+      "516510": 0.42
+    },
+    "fresh_accepted_count": 4,
+    "fresh_strong_count": 4,
+    "fresh_accepted_articles": [
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 7月6日周一",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202607053794319895.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "capital_investment": [
+            "融资",
+            "定增"
+          ],
+          "fund_flow": [
+            "回购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "商圈",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-07-06/102461252.html?cxapp_link=true",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "orders_and_delivery": [
+            "订单"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.378
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "权益周观察",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-06-29/102458865.html?cxapp_link=true",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "业绩"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.357,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "家庭财富",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-06-29/102458795.html?cxapp_link=true",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "落地"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      }
+    ],
+    "stale_theme_scores": {},
+    "stale_accepted_count": 0,
+    "stale_strong_count": 0,
+    "stale_accepted_articles": [],
+    "theme_scores": {
+      "510300": 0.63,
+      "159338": 0.315,
+      "588000": 0.357,
+      "512880": 0.378,
+      "516510": 0.42
+    },
+    "scores": {
+      "510300": 0.63,
+      "159338": 0.315,
+      "588000": 0.357,
+      "512880": 0.378,
+      "516510": 0.42
+    },
+    "accepted_count": 4,
+    "strong_count": 4,
+    "weak_count": 0,
+    "article_count": 15,
+    "rejected_count": 11,
+    "accepted_articles": [
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 7月6日周一",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202607053794319895.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "capital_investment": [
+            "融资",
+            "定增"
+          ],
+          "fund_flow": [
+            "回购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "商圈",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-07-06/102461252.html?cxapp_link=true",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "orders_and_delivery": [
+            "订单"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.378
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "权益周观察",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-06-29/102458865.html?cxapp_link=true",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "业绩"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.357,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "家庭财富",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-06-29/102458795.html?cxapp_link=true",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "落地"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      }
+    ],
+    "raw_articles": [
+      {
+        "title": "东方财富财经早餐 7月6日周一",
+        "content": "【东方财富财经早餐 7月6日周一】1、证监会修改再融资规则，定增、小额融资全面松绑。2、华为何庭波发布V2版“韬定律”论文补充工程细节和实测数据。3、央行今日开展10000亿买断式逆回购操作。",
+        "source": "eastmoney_cjzc",
+        "published_at": "2026-07-06 06:00:40",
+        "url": "http://finance.eastmoney.com/a/202607053794319895.html"
+      },
+      {
+        "title": "商圈",
+        "content": "互联网券商Robinhood核心盈利模式，本质上是将散户交易订单转卖给华尔街的大型做市商。这意味着，散户在平台上每一次满怀希望的敲击，都在为大型机构提供套利对手盘",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-07-06/102461252.html?cxapp_link=true"
+      },
+      {
+        "title": "霍尔木兹周报",
+        "content": "上周美伊多哈会谈并未就海峡问题取得实际进展，霍尔木兹海峡全域威胁等级评定为“较高”",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-07-06/102461222.html?cxapp_link=true"
+      },
+      {
+        "title": "市场动态",
+        "content": "拥有芯片巨头三星电子和SK海力士的韩国，有望迎来一笔高额企业税增收",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-07-06/102461175.html?cxapp_link=true"
+      },
+      {
+        "title": "CCI快报",
+        "content": "供给回升处于高位，需求疲软，原油价格震荡下跌",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-07-04/102460691.html?cxapp_link=true"
+      },
+      {
+        "title": "数据图解",
+        "content": "2026年6月，新经济入职工资“溢价”较高的城市包括廊坊（49.5%）、岳阳（43.6%）、哈尔滨（41.9%）、滨州（35.9%）、镇江（33.7%）等",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-07-04/102460907.html?cxapp_link=true"
+      },
+      {
+        "title": "周刊提前读",
+        "content": "【本文系数据通用户提前专享】如何在日益扩大的人民币需求与汇率波动中，拓展金融衍生工具，增加市场深度",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-07-04/102460762.html?cxapp_link=true"
+      },
+      {
+        "title": "市场洞察",
+        "content": "考虑到通胀数据好于预期且劳动力市场稳定，该行对未来半年通胀下行持谨慎乐观态度",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-07-04/102460725.html?cxapp_link=true"
+      },
+      {
+        "title": "风电观察",
+        "content": "2026年5月风电招标数据环比下降73%，同比下降50%",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-07-03/102460148.html?cxapp_link=true"
+      },
+      {
+        "title": "市场速递",
+        "content": "目前诸多指标表明韩股依然有较大的脆弱性",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-07-02/102459865.html?cxapp_link=true"
+      },
+      {
+        "title": "量化观察",
+        "content": "6月，高质量因子策略跑输沪深300指数3.09%",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-07-01/102459687.html?cxapp_link=true"
+      },
+      {
+        "title": "并购簿",
+        "content": "当二级市场给你一个昂贵的估值时，这种估值能不能被当成真正的支付手段使用？",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-30/102459001.html?cxapp_link=true"
+      },
+      {
+        "title": "权益周观察",
+        "content": "科技板块行情明显缩圈，AI链条交易分化，资金出逃算力硬件方向，流向业绩支撑明显的存储芯片、半导体材料和玻璃基板等",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-29/102458865.html?cxapp_link=true"
+      },
+      {
+        "title": "家庭财富",
+        "content": "黄仁勋30年财富布局的优势与短板，结合苏姿丰的稳健配置思路，对当下国内A股、港股科创实控人家族，具备极强的落地借鉴意义",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-29/102458795.html?cxapp_link=true"
+      },
+      {
+        "title": "华尔街原声",
+        "content": "谷歌母公司Alphabet在6月29日将正式成为道琼斯工业平均指数的30只成分股之一，取代电信公司威瑞森（Verizon）",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-29/102458584.html?cxapp_link=true"
+      }
+    ],
+    "confidence": 0.8,
+    "market_sentiment": 0.493,
+    "max_abs_theme": 0.63,
+    "hot_keywords": [
+      "沪深300",
+      "沪指",
+      "云计算",
+      "AI",
+      "券商",
+      "证券",
+      "科创板",
+      "科创50",
+      "中证A500",
+      "A500"
+    ],
+    "auto_news": {
+      "enabled": true,
+      "article_count": 15,
+      "confidence": 0.8,
+      "market_sentiment": 0.493,
+      "catalyst_hits": 7,
+      "max_abs_theme": 0.63
+    }
+  },
+  "econ_calendar": {
+    "date": "2026-07-06",
+    "lookback_days": 1,
+    "source": "akshare_live",
+    "events": [
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球6月ANZ商品价格指数月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-1.0",
+        "previous": "0.7"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球6月ANZ商品价格指数年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "2.7",
+        "previous": "1.3"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:40",
+        "region": "中国",
+        "event": "中国5月全社会用电量年率-每月(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "6.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:40",
+        "region": "中国",
+        "event": "中国5月全社会用电量-每月(亿千瓦时)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "8205.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士6月季调后失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.1",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士6月未季调失业率(%)",
+        "importance": 2,
+        "expected": "3.1",
+        "actual": "2.9",
+        "previous": "3.1"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月6日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月6日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-4300.0",
+        "previous": "-1607.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "16:30",
+        "region": "欧元区",
+        "event": "欧元区6月Sentix投资者信心指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-13.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "16:30",
+        "region": "欧元区",
+        "event": "欧元区7月Sentix投资者信心指数",
+        "importance": 2,
+        "expected": "-10.0",
+        "actual": "-3.1",
+        "previous": "-13.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月零售销售年率(%)",
+        "importance": 2,
+        "expected": "1.6",
+        "actual": "1.6",
+        "previous": "1.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月零售销售月率(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "0.2",
+        "previous": "-0.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月ISM非制造业PMI",
+        "importance": 2,
+        "expected": "54.0",
+        "actual": "",
+        "previous": "54.5"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:05",
+        "region": "全球",
+        "event": "全球6月供应链压力指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1.77"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:00",
+        "region": "澳大利亚",
+        "event": "澳大利亚6月TD-MI通胀指数月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.4",
+        "previous": "-0.3"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:00",
+        "region": "澳大利亚",
+        "event": "澳大利亚6月TD-MI通胀指数年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.9",
+        "previous": "4.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚6月季调后ANZ总招聘广告年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.5",
+        "previous": "2.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "新西兰",
+        "event": "新西兰6月ANZ商品价格指数年率-纽元计价(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "6.6",
+        "previous": "1.9"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "新西兰",
+        "event": "新西兰6月ANZ商品价格指数-纽元计价",
+        "importance": 1,
+        "expected": "",
+        "actual": "360.2",
+        "previous": "357.1"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "新西兰",
+        "event": "新西兰6月ANZ商品价格指数月率-纽元计价(%)(6-7日)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": ""
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球6月ANZ商品价格指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "405.8",
+        "previous": "410.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚6月季调后ANZ总招聘广告月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.2",
+        "previous": "1.8"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "13:00",
+        "region": "新加坡",
+        "event": "新加坡5月零售销售年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.0",
+        "previous": "5.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "13:00",
+        "region": "新加坡",
+        "event": "新加坡5月季调后零售销售月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-2.3",
+        "previous": "0.3"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "13:00",
+        "region": "新加坡",
+        "event": "新加坡5月核心零售销售年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.7",
+        "previous": "4.5"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "13:00",
+        "region": "新加坡",
+        "event": "新加坡5月季调后核心零售销售月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-1.8",
+        "previous": "0.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:00",
+        "region": "德国",
+        "event": "德国5月季调后消费品指数-制造业分项",
+        "importance": 1,
+        "expected": "",
+        "actual": "115.6",
+        "previous": "113.7"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:00",
+        "region": "德国",
+        "event": "德国5月工作日调整后制造业订单年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "6.2",
+        "previous": "1.6"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:00",
+        "region": "德国",
+        "event": "德国5月工业订单月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1.9",
+        "previous": "-3.8"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:00",
+        "region": "德国",
+        "event": "德国5月制造业产出当前价格年率-季调后(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "7.7",
+        "previous": "3.8"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:00",
+        "region": "德国",
+        "event": "德国5月季调后制造业订单月率(%)",
+        "importance": 1,
+        "expected": "1.5",
+        "actual": "1.9",
+        "previous": "-3.8"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月6日上期所每日仓单变动-黄金(千克)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月6日上期所每日仓单变动-白银(千克)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-1195.0",
+        "previous": "6812.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月6日上期所每日仓单变动-燃料油(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "-17500.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "16:00",
+        "region": "瑞士",
+        "event": "瑞士截至7月3日当周活期存款总计金额(亿瑞郎)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "4746.78"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "16:00",
+        "region": "英国",
+        "event": "英国6月乘用车新车登记(辆)",
+        "importance": 1,
+        "expected": "",
+        "actual": "213166.0",
+        "previous": "160662.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "16:00",
+        "region": "瑞士",
+        "event": "瑞士截至7月3日当周国内活期存款周平均额(亿瑞郎)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "4405.95"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "16:20",
+        "region": "中国台湾",
+        "event": "中国台湾6月外汇存底(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "5971.52",
+        "previous": "6050.74"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月PPI月率(%)",
+        "importance": 1,
+        "expected": "0.2",
+        "actual": "0.2",
+        "previous": "0.6"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月PPI年率(%)",
+        "importance": 1,
+        "expected": "5.7",
+        "actual": "5.9",
+        "previous": "4.9"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "19:30",
+        "region": "印度",
+        "event": "印度6月出口额USD终值(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "452.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "19:30",
+        "region": "印度",
+        "event": "印度6月进口额USD终值(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "734.1"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "19:30",
+        "region": "印度",
+        "event": "印度6月政府贸易赤字USD终值(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "282.1"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "20:00",
+        "region": "加拿大",
+        "event": "加拿大截至7月3日当周全国经济信心指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "50.9"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "20:00",
+        "region": "墨西哥",
+        "event": "墨西哥4月固定资产投资总额月率(%)",
+        "importance": 1,
+        "expected": "3.0",
+        "actual": "",
+        "previous": "0.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "20:00",
+        "region": "墨西哥",
+        "event": "墨西哥4月固定资产投资总额年率(%)",
+        "importance": 1,
+        "expected": "3.8",
+        "actual": "",
+        "previous": "-2.6"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "21:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯6月预算占GDP比重(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "-2.6"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月ISM非制造业就业指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "47.9"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月ISM非制造业供应商交付指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "55.2"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月ISM非制造业PMI分项-企业活动指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "57.7"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月ISM非制造业新订单指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "57.3"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月ISM非制造业库存指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "62.5"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月谘商会就业趋势指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "107.01"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月ISM非制造业投入物价指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "71.3"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国7月6日6个月期国债竞拍-投标倍数(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "2.58"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "23:30",
+        "region": "加拿大",
+        "event": "加拿大第二季度企业展望未来12个月销售(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "25.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国7月6日6个月期国债竞拍-中标利率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.84"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国7月6日6个月期国债竞拍-总金额(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "841.19"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国7月6日3个月期国债竞拍-总金额(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "979.61"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国7月6日3个月期国债竞拍-高配置百分比(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "85.81"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国7月6日3个月期国债竞拍-中标利率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.74"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国7月6日6个月期国债竞拍-高配置百分比(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "96.12"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国7月6日3个月期国债竞拍-投标倍数(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "2.32"
+      }
+    ],
+    "high_importance_events": [
+      {
+        "date": "2026-07-06",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月零售销售年率(%)",
+        "importance": 2,
+        "expected": "1.6",
+        "actual": "1.6",
+        "previous": "1.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月零售销售月率(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "0.2",
+        "previous": "-0.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月ISM非制造业PMI",
+        "importance": 2,
+        "expected": "54.0",
+        "actual": "",
+        "previous": "54.5"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球6月ANZ商品价格指数月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-1.0",
+        "previous": "0.7"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球6月ANZ商品价格指数年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "2.7",
+        "previous": "1.3"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:40",
+        "region": "中国",
+        "event": "中国5月全社会用电量年率-每月(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "6.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:40",
+        "region": "中国",
+        "event": "中国5月全社会用电量-每月(亿千瓦时)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "8205.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士6月季调后失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.1",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士6月未季调失业率(%)",
+        "importance": 2,
+        "expected": "3.1",
+        "actual": "2.9",
+        "previous": "3.1"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月6日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月6日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-4300.0",
+        "previous": "-1607.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "16:30",
+        "region": "欧元区",
+        "event": "欧元区6月Sentix投资者信心指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-13.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "16:30",
+        "region": "欧元区",
+        "event": "欧元区7月Sentix投资者信心指数",
+        "importance": 2,
+        "expected": "-10.0",
+        "actual": "-3.1",
+        "previous": "-13.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:05",
+        "region": "全球",
+        "event": "全球6月供应链压力指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1.77"
+      }
+    ],
+    "has_high_impact_event": true,
+    "is_data_release_day": true,
+    "event_count": 63,
+    "high_impact_count": 3,
+    "generated_at": "2026-07-06 18:11:55"
+  },
+  "llm_trace": {
+    "regime": "risk_on",
+    "regime_reason": "盘后新鲜新闻全面利好，覆盖宽基、科技、券商等板块，且经济日历中欧元区Sentix信心指数超预期，整体情绪偏多。",
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.6,
+    "summary_zh": "盘后新鲜新闻全面利好，覆盖沪深300、科技、券商等板块，且欧元区Sentix信心指数超预期提振情绪。今日高重要度事件美国ISM非制造业PMI尚未公布，适度保守，建议仓位60%。",
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻利好，财经早餐和家庭财富均指向沪深300，5日动量虽弱但放量，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": 0.3,
+        "reason": "盘后无直接新闻，5日动量小幅正，但量能不足，温和看好。"
+      },
+      {
+        "code": "510500",
+        "score": 0.3,
+        "reason": "盘后无直接新闻，5日动量小幅正，但量能一般，温和看好。"
+      },
+      {
+        "code": "510330",
+        "score": 0.2,
+        "reason": "盘后无直接新闻，5日动量略负，量能极低，中性偏弱。"
+      },
+      {
+        "code": "159338",
+        "score": 0.5,
+        "reason": "盘后新鲜新闻家庭财富利好，5日动量略负但量能正常，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": 0.6,
+        "reason": "盘后无直接新闻，但5日动量+3.36%趋势强劲，避险情绪支撑，温和看好。"
+      },
+      {
+        "code": "159985",
+        "score": 0.5,
+        "reason": "盘后无直接新闻，5日动量+2.89%趋势向好，量能放大，温和看好。"
+      },
+      {
+        "code": "510880",
+        "score": 0.6,
+        "reason": "盘后无直接新闻，5日动量+2.37%趋势向好，防御属性，温和看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻商圈利好，5日动量+4.34%趋势强劲，强烈看好。"
+      },
+      {
+        "code": "512010",
+        "score": 0.5,
+        "reason": "盘后无直接新闻，5日动量+8.36%趋势极强，但RSI 70接近超买，温和看好。"
+      }
+    ],
+    "econ_drivers": [
+      {
+        "event": "欧元区5月零售销售年率",
+        "importance": "high",
+        "direction": "0",
+        "impact": "符合预期，对A股影响中性。"
+      },
+      {
+        "event": "欧元区5月零售销售月率",
+        "importance": "high",
+        "direction": "-",
+        "impact": "略低于预期，但前值上修，整体影响有限。"
+      },
+      {
+        "event": "美国6月ISM非制造业PMI",
+        "importance": "high",
+        "direction": "0",
+        "impact": "预期略低于前值，若公布值超预期可能压制A股，但尚未公布，需谨慎。"
+      },
+      {
+        "event": "欧元区7月Sentix投资者信心指数",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "大幅超预期，提振全球风险偏好，利好A股。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "权益周观察",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "权益周观察",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "商圈",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.38
+      },
+      {
+        "title": "东方财富财经早餐 7月6日周一",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "家庭财富",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "家庭财富",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.32
+      }
+    ],
+    "hard_rules_applied": [],
+    "final_invest_ratio": 0.23,
+    "final_top_score": 56.55,
+    "rotation_tracker": {
+      "512010": 1,
+      "518880": 1,
+      "512880": 1
+    }
+  },
+  "llm_meta": {
+    "model": "deepseek-chat",
+    "usage": {
+      "prompt_tokens": 2983,
+      "completion_tokens": 975,
+      "total_tokens": 3958,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 2983
+    },
+    "cache_hit": false,
+    "prompt_hash": "333c014f421c8b01ad4b7609a37da6f9",
+    "cached_at": "2026-07-06 18:12:32",
+    "prompt_file": "decider_zh.md"
+  },
+  "strategy_result": {
+    "allocations": {
+      "512880": 40500,
+      "512010": 40500,
+      "518880": 33800
+    },
+    "summary": {
+      "total_candidates_scored": 10,
+      "stocks_held": 3,
+      "capital_used": 114800,
+      "cash_reserve": 385200,
+      "utilization_rate": 23.0,
+      "held_stocks": [
+        {
+          "code": "512880",
+          "name": "证券ETF",
+          "amount": 40500,
+          "weight": 8.1,
+          "target_weight": 8.1,
+          "type": "short_race",
+          "score": 56.55,
+          "historical_score": 62.0,
+          "trend_score": 59.68,
+          "fresh_theme_score": 85.0,
+          "stale_theme_score": 50.0,
+          "theme_score": 85.0,
+          "theme_raw": 0.7,
+          "pred_return": null,
+          "latest_price": 1.155,
+          "ret_1d": 0.43,
+          "ret_3d": 2.58,
+          "ret_5d": 4.34,
+          "volume_ratio": 0.9,
+          "risk_penalty": 0.0,
+          "reason": "LLM: 盘后新鲜新闻商圈利好，5日动量+4.34%趋势强劲，强烈看好。"
+        },
+        {
+          "code": "512010",
+          "name": "医药ETF",
+          "amount": 40500,
+          "weight": 8.1,
+          "target_weight": 8.1,
+          "type": "short_race",
+          "score": 56.43,
+          "historical_score": 56.4,
+          "trend_score": 71.32,
+          "fresh_theme_score": 75.0,
+          "stale_theme_score": 50.0,
+          "theme_score": 75.0,
+          "theme_raw": 0.5,
+          "pred_return": null,
+          "latest_price": 0.363,
+          "ret_1d": 1.68,
+          "ret_3d": 3.71,
+          "ret_5d": 8.36,
+          "volume_ratio": 1.13,
+          "risk_penalty": 0.0,
+          "reason": "LLM: 盘后无直接新闻，5日动量+8.36%趋势极强，但RSI 70接近超买，温和看好。"
+        },
+        {
+          "code": "518880",
+          "name": "黄金ETF",
+          "amount": 33800,
+          "weight": 6.8,
+          "target_weight": 6.8,
+          "type": "short_race",
+          "score": 55.25,
+          "historical_score": 59.7,
+          "trend_score": 61.03,
+          "fresh_theme_score": 80.0,
+          "stale_theme_score": 50.0,
+          "theme_score": 80.0,
+          "theme_raw": 0.6,
+          "pred_return": null,
+          "latest_price": 8.672,
+          "ret_1d": 2.32,
+          "ret_3d": 3.51,
+          "ret_5d": 3.36,
+          "volume_ratio": 1.16,
+          "risk_penalty": 0.0,
+          "reason": "LLM: 盘后无直接新闻，但5日动量+3.36%趋势强劲，避险情绪支撑，温和看好。"
+        }
+      ],
+      "invest_ratio": 0.22999999999999998,
+      "mode": "short_race_theme_rotation"
+    },
+    "date": "2026-07-06",
+    "ranked": [
+      {
+        "code": "512880",
+        "name": "证券ETF",
+        "category": "券商周期",
+        "score": 56.55,
+        "historical_score": 62.0,
+        "fresh_theme_score": 85.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.7,
+        "stale_theme_raw": 0.0,
+        "theme_score": 85.0,
+        "theme_raw": 0.7,
+        "theme_reason": "LLM: 盘后新鲜新闻商圈利好，5日动量+4.34%趋势强劲，强烈看好。",
+        "pred_return": null,
+        "latest_price": 1.155,
+        "ret_1d": 0.43,
+        "ret_3d": 2.58,
+        "ret_5d": 4.34,
+        "ret_10d": 10.0,
+        "volume_ratio": 0.9,
+        "rsi": 65.7,
+        "macd_hist": 0.008,
+        "bollinger_position": 0.799,
+        "bollinger_width": 0.0524,
+        "price_position_20d": 0.88,
+        "above_ma": true,
+        "high_break": false,
+        "drawdown_5d": -1.79,
+        "trend_score": 59.68,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "512010",
+        "name": "医药ETF",
+        "category": "医疗",
+        "score": 56.43,
+        "historical_score": 56.4,
+        "fresh_theme_score": 75.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.5,
+        "stale_theme_raw": 0.0,
+        "theme_score": 75.0,
+        "theme_raw": 0.5,
+        "theme_reason": "LLM: 盘后无直接新闻，5日动量+8.36%趋势极强，但RSI 70接近超买，温和看好。",
+        "pred_return": null,
+        "latest_price": 0.363,
+        "ret_1d": 1.68,
+        "ret_3d": 3.71,
+        "ret_5d": 8.36,
+        "ret_10d": 11.35,
+        "volume_ratio": 1.13,
+        "rsi": 70.1,
+        "macd_hist": 0.0046,
+        "bollinger_position": 0.988,
+        "bollinger_width": 0.0412,
+        "price_position_20d": 1.0,
+        "above_ma": true,
+        "high_break": true,
+        "drawdown_5d": 0.0,
+        "trend_score": 71.32,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "518880",
+        "name": "黄金ETF",
+        "category": "商品避险",
+        "score": 55.25,
+        "historical_score": 59.7,
+        "fresh_theme_score": 80.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.6,
+        "stale_theme_raw": 0.0,
+        "theme_score": 80.0,
+        "theme_raw": 0.6,
+        "theme_reason": "LLM: 盘后无直接新闻，但5日动量+3.36%趋势强劲，避险情绪支撑，温和看好。",
+        "pred_return": null,
+        "latest_price": 8.672,
+        "ret_1d": 2.32,
+        "ret_3d": 3.51,
+        "ret_5d": 3.36,
+        "ret_10d": -2.65,
+        "volume_ratio": 1.16,
+        "rsi": 50.4,
+        "macd_hist": 0.0188,
+        "bollinger_position": 0.495,
+        "bollinger_width": 0.0318,
+        "price_position_20d": 0.409,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": 0.0,
+        "trend_score": 61.03,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "159985",
+        "name": "豆粕ETF",
+        "category": "商品避险",
+        "score": 54.46,
+        "historical_score": 55.9,
+        "fresh_theme_score": 75.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.5,
+        "stale_theme_raw": 0.0,
+        "theme_score": 75.0,
+        "theme_raw": 0.5,
+        "theme_reason": "LLM: 盘后无直接新闻，5日动量+2.89%趋势向好，量能放大，温和看好。",
+        "pred_return": null,
+        "latest_price": 2.065,
+        "ret_1d": -0.05,
+        "ret_3d": 4.03,
+        "ret_5d": 2.89,
+        "ret_10d": 3.04,
+        "volume_ratio": 1.61,
+        "rsi": 63.0,
+        "macd_hist": 0.0099,
+        "bollinger_position": 1.0,
+        "bollinger_width": 0.0113,
+        "price_position_20d": 0.988,
+        "above_ma": true,
+        "high_break": true,
+        "drawdown_5d": -0.05,
+        "trend_score": 65.09,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510880",
+        "name": "红利ETF",
+        "category": "高股息防御",
+        "score": 50.31,
+        "historical_score": 53.9,
+        "fresh_theme_score": 68.6,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.6,
+        "stale_theme_raw": 0.0,
+        "theme_score": 68.6,
+        "theme_raw": 0.6,
+        "theme_reason": "LLM: 盘后无直接新闻，5日动量+2.37%趋势向好，防御属性，温和看好。",
+        "pred_return": null,
+        "latest_price": 3.024,
+        "ret_1d": 1.04,
+        "ret_3d": 3.7,
+        "ret_5d": 2.37,
+        "ret_10d": -2.39,
+        "volume_ratio": 0.91,
+        "rsi": 26.2,
+        "macd_hist": -0.0131,
+        "bollinger_position": 0.312,
+        "bollinger_width": 0.044,
+        "price_position_20d": 0.267,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": 0.0,
+        "trend_score": 57.93,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510300",
+        "name": "沪深300ETF",
+        "category": "全市场",
+        "score": 48.66,
+        "historical_score": 59.4,
+        "fresh_theme_score": 71.7,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.7,
+        "stale_theme_raw": 0.0,
+        "theme_score": 71.7,
+        "theme_raw": 0.7,
+        "theme_reason": "LLM: 盘后新鲜新闻利好，财经早餐和家庭财富均指向沪深300，5日动量虽弱但放量，温和看好。",
+        "pred_return": null,
+        "latest_price": 4.876,
+        "ret_1d": 0.54,
+        "ret_3d": -2.85,
+        "ret_5d": -0.63,
+        "ret_10d": -2.17,
+        "volume_ratio": 1.54,
+        "rsi": 52.9,
+        "macd_hist": -0.01,
+        "bollinger_position": 0.414,
+        "bollinger_width": 0.0199,
+        "price_position_20d": 0.389,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -2.85,
+        "trend_score": 46.17,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "159338",
+        "name": "中证A500ETF",
+        "category": "全市场",
+        "score": 48.07,
+        "historical_score": 56.4,
+        "fresh_theme_score": 75.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.5,
+        "stale_theme_raw": 0.0,
+        "theme_score": 75.0,
+        "theme_raw": 0.5,
+        "theme_reason": "LLM: 盘后新鲜新闻家庭财富利好，5日动量略负但量能正常，温和看好。",
+        "pred_return": null,
+        "latest_price": 1.302,
+        "ret_1d": 0.54,
+        "ret_3d": -3.12,
+        "ret_5d": -0.53,
+        "ret_10d": -1.59,
+        "volume_ratio": 0.85,
+        "rsi": 56.4,
+        "macd_hist": -0.0014,
+        "bollinger_position": 0.503,
+        "bollinger_width": 0.026,
+        "price_position_20d": 0.536,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -3.12,
+        "trend_score": 43.47,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510500",
+        "name": "中证500ETF",
+        "category": "中盘成长",
+        "score": 46.24,
+        "historical_score": 58.1,
+        "fresh_theme_score": 65.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.3,
+        "stale_theme_raw": 0.0,
+        "theme_score": 65.0,
+        "theme_raw": 0.3,
+        "theme_reason": "LLM: 盘后无直接新闻，5日动量小幅正，但量能一般，温和看好。",
+        "pred_return": null,
+        "latest_price": 8.901,
+        "ret_1d": 0.59,
+        "ret_3d": -3.19,
+        "ret_5d": 0.45,
+        "ret_10d": 0.83,
+        "volume_ratio": 0.84,
+        "rsi": 65.1,
+        "macd_hist": 0.0191,
+        "bollinger_position": 0.643,
+        "bollinger_width": 0.0421,
+        "price_position_20d": 0.74,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -3.19,
+        "trend_score": 44.58,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510050",
+        "name": "上证50ETF",
+        "category": "大盘蓝筹",
+        "score": 45.27,
+        "historical_score": 57.9,
+        "fresh_theme_score": 59.3,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.3,
+        "stale_theme_raw": 0.0,
+        "theme_score": 59.3,
+        "theme_raw": 0.3,
+        "theme_reason": "LLM: 盘后无直接新闻，5日动量小幅正，但量能不足，温和看好。",
+        "pred_return": null,
+        "latest_price": 3.023,
+        "ret_1d": 0.67,
+        "ret_3d": -1.95,
+        "ret_5d": 0.77,
+        "ret_10d": 0.2,
+        "volume_ratio": 0.64,
+        "rsi": 53.6,
+        "macd_hist": 0.0027,
+        "bollinger_position": 0.577,
+        "bollinger_width": 0.0194,
+        "price_position_20d": 0.622,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.95,
+        "trend_score": 46.21,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510330",
+        "name": "华夏沪深300ETF",
+        "category": "全市场",
+        "score": 43.01,
+        "historical_score": 53.7,
+        "fresh_theme_score": 57.8,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.2,
+        "stale_theme_raw": 0.0,
+        "theme_score": 57.8,
+        "theme_raw": 0.2,
+        "theme_reason": "LLM: 盘后无直接新闻，5日动量略负，量能极低，中性偏弱。",
+        "pred_return": null,
+        "latest_price": 5.096,
+        "ret_1d": 0.73,
+        "ret_3d": -2.56,
+        "ret_5d": -0.31,
+        "ret_10d": -1.83,
+        "volume_ratio": 0.27,
+        "rsi": 54.1,
+        "macd_hist": -0.0091,
+        "bollinger_position": 0.455,
+        "bollinger_width": 0.0201,
+        "price_position_20d": 0.429,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -2.56,
+        "trend_score": 42.73,
+        "risk_penalty": 0.0
+      }
+    ],
+    "theme_signals": {
+      "source": "split_fresh_stale",
+      "updated_at": "2026-07-06 18:11:54",
+      "market_view": "news_positive",
+      "hot_keywords": [
+        "沪深300",
+        "沪指",
+        "云计算",
+        "AI",
+        "券商",
+        "证券",
+        "科创板",
+        "科创50",
+        "中证A500",
+        "A500"
+      ],
+      "auto_news": {
+        "enabled": true,
+        "confidence": 0.8,
+        "market_sentiment": 0.493,
+        "article_count": 4,
+        "raw_article_count": 15,
+        "catalyst_hits": 0,
+        "max_abs_theme": 0.63,
+        "accepted_count": 4,
+        "rejected_count": 11,
+        "strong_count": 4,
+        "weak_count": 0
+      }
+    },
+    "market_reason": "宽基极端走弱(510300:5日-0.63%; 159915:5日-4.22%; 588000:5日-1.45%)，15%试探仓(利用反弹概率)；高可信新闻情绪偏积极(sentiment=+0.49, confidence=0.80)，仓位调整至23%",
+    "reasoning": "Short-race ETF rotation: price-only historical model plus real-time theme overlay. Market regime: 宽基极端走弱(510300:5日-0.63%; 159915:5日-4.22%; 588000:5日-1.45%)，15%试探仓(利用反弹概率)；高可信新闻情绪偏积极(sentiment=+0.49, confidence=0.80)，仓位调整至23%. Theme source: split_fresh_stale, view=news_positive. 512880(证券ETF): score=56.55, trend=59.68, fresh_theme=85.0, stale_theme=50.0, 1d=+0.43%, 3d=+2.58%, 5d=+4.34%, volume=0.9x; LLM: 盘后新鲜新闻商圈利好，5日动量+4.34%趋势强劲，强烈看好。 512010(医药ETF): score=56.43, trend=71.32, fresh_theme=75.0, stale_theme=50.0, 1d=+1.68%, 3d=+3.71%, 5d=+8.36%, volume=1.13x; LLM: 盘后无直接新闻，5日动量+8.36%趋势极强，但RSI 70接近超买，温和看好。 518880(黄金ETF): score=55.25, trend=61.03, fresh_theme=80.0, stale_theme=50.0, 1d=+2.32%, 3d=+3.51%, 5d=+3.36%, volume=1.16x; LLM: 盘后无直接新闻，但5日动量+3.36%趋势强劲，避险情绪支撑，温和看好。 Capital used 114,800 CNY (23.0%), cash reserve 385,200 CNY.",
+    "llm_trace": {
+      "regime": "risk_on",
+      "regime_reason": "盘后新鲜新闻全面利好，覆盖宽基、科技、券商等板块，且经济日历中欧元区Sentix信心指数超预期，整体情绪偏多。",
+      "cash_decision": "partial",
+      "position_ratio_hint": 0.6,
+      "summary_zh": "盘后新鲜新闻全面利好，覆盖沪深300、科技、券商等板块，且欧元区Sentix信心指数超预期提振情绪。今日高重要度事件美国ISM非制造业PMI尚未公布，适度保守，建议仓位60%。",
+      "per_etf_view": [
+        {
+          "code": "510300",
+          "score": 0.7,
+          "reason": "盘后新鲜新闻利好，财经早餐和家庭财富均指向沪深300，5日动量虽弱但放量，温和看好。"
+        },
+        {
+          "code": "510050",
+          "score": 0.3,
+          "reason": "盘后无直接新闻，5日动量小幅正，但量能不足，温和看好。"
+        },
+        {
+          "code": "510500",
+          "score": 0.3,
+          "reason": "盘后无直接新闻，5日动量小幅正，但量能一般，温和看好。"
+        },
+        {
+          "code": "510330",
+          "score": 0.2,
+          "reason": "盘后无直接新闻，5日动量略负，量能极低，中性偏弱。"
+        },
+        {
+          "code": "159338",
+          "score": 0.5,
+          "reason": "盘后新鲜新闻家庭财富利好，5日动量略负但量能正常，温和看好。"
+        },
+        {
+          "code": "518880",
+          "score": 0.6,
+          "reason": "盘后无直接新闻，但5日动量+3.36%趋势强劲，避险情绪支撑，温和看好。"
+        },
+        {
+          "code": "159985",
+          "score": 0.5,
+          "reason": "盘后无直接新闻，5日动量+2.89%趋势向好，量能放大，温和看好。"
+        },
+        {
+          "code": "510880",
+          "score": 0.6,
+          "reason": "盘后无直接新闻，5日动量+2.37%趋势向好，防御属性，温和看好。"
+        },
+        {
+          "code": "512880",
+          "score": 0.7,
+          "reason": "盘后新鲜新闻商圈利好，5日动量+4.34%趋势强劲，强烈看好。"
+        },
+        {
+          "code": "512010",
+          "score": 0.5,
+          "reason": "盘后无直接新闻，5日动量+8.36%趋势极强，但RSI 70接近超买，温和看好。"
+        }
+      ],
+      "econ_drivers": [
+        {
+          "event": "欧元区5月零售销售年率",
+          "importance": "high",
+          "direction": "0",
+          "impact": "符合预期，对A股影响中性。"
+        },
+        {
+          "event": "欧元区5月零售销售月率",
+          "importance": "high",
+          "direction": "-",
+          "impact": "略低于预期，但前值上修，整体影响有限。"
+        },
+        {
+          "event": "美国6月ISM非制造业PMI",
+          "importance": "high",
+          "direction": "0",
+          "impact": "预期略低于前值，若公布值超预期可能压制A股，但尚未公布，需谨慎。"
+        },
+        {
+          "event": "欧元区7月Sentix投资者信心指数",
+          "importance": "medium",
+          "direction": "+",
+          "impact": "大幅超预期，提振全球风险偏好，利好A股。"
+        }
+      ],
+      "news_drivers": [
+        {
+          "title": "权益周观察",
+          "etf": "588000",
+          "direction": "+",
+          "weight": 0.36
+        },
+        {
+          "title": "权益周观察",
+          "etf": "516510",
+          "direction": "+",
+          "weight": 0.42
+        },
+        {
+          "title": "商圈",
+          "etf": "512880",
+          "direction": "+",
+          "weight": 0.38
+        },
+        {
+          "title": "东方财富财经早餐 7月6日周一",
+          "etf": "510300",
+          "direction": "+",
+          "weight": 0.32
+        },
+        {
+          "title": "家庭财富",
+          "etf": "510300",
+          "direction": "+",
+          "weight": 0.32
+        },
+        {
+          "title": "家庭财富",
+          "etf": "159338",
+          "direction": "+",
+          "weight": 0.32
+        }
+      ],
+      "hard_rules_applied": [],
+      "final_invest_ratio": 0.23,
+      "final_top_score": 56.55,
+      "rotation_tracker": {
+        "512010": 1,
+        "518880": 1,
+        "512880": 1
+      }
+    }
+  },
+  "previous_pnl": {
+    "review_date": "2026-07-06",
+    "prediction_date": "2026-07-02",
+    "source_file": "C:\\Users\\32872\\Desktop\\etf智能体\\etf_agent\\data\\daily_output\\2026-07-02_full.json",
+    "total_pnl": -2542.2,
+    "positions": [
+      {
+        "symbol": "512010",
+        "symbol_name": "医药ETF",
+        "volume": 294700,
+        "open": 0.358,
+        "close": 0.357,
+        "pnl": -294.7,
+        "return_pct": -0.279
+      },
+      {
+        "symbol": "512880",
+        "symbol_name": "证券ETF",
+        "volume": 89900,
+        "open": 1.175,
+        "close": 1.15,
+        "pnl": -2247.5,
+        "return_pct": -2.128
+      },
+      {
+        "symbol": "588000",
+        "symbol_name": "科创50ETF",
+        "volume": 38500,
+        "open": 2.22,
+        "close": 2.22,
+        "pnl": 0.0,
+        "return_pct": 0.0
+      }
+    ]
+  },
+  "data_quality_warnings": [
+    "有效新闻仅4条(阈值5)"
+  ],
+  "confidence": "low"
+}

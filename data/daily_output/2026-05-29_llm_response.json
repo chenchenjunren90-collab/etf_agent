@@ -1,0 +1,794 @@
+{
+  "decision": {
+    "regime": "risk_on",
+    "regime_reason": "经济日历方面，美国芝加哥PMI预期回升至扩张区间，日本东京CPI和德国CPI初值可能显示通胀韧性，整体偏正面；新闻方面，AI算力、数据中心等利好密集，与科技ETF高度相关，且创业板、科创50趋势强劲，综合判断市场情绪偏乐观。",
+    "econ_drivers": [
+      {
+        "event": "美国5月芝加哥PMI",
+        "importance": "high",
+        "direction": "+",
+        "impact": "预期回升至51.2，高于前值49.2，利好美股及全球风险偏好，间接利好A股科技板块。"
+      },
+      {
+        "event": "日本5月东京CPI年率",
+        "importance": "high",
+        "direction": "0",
+        "impact": "前值1.5%，预期未公布，若超预期可能引发紧缩担忧，但影响有限。"
+      },
+      {
+        "event": "德国5月CPI年率初值",
+        "importance": "high",
+        "direction": "0",
+        "impact": "前值2.9%，预期未公布，关注通胀变化对欧央行政策影响。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "联想在天津投建新一代AI算力研发制造中心",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "华为推出星河AI数据中心网络方案 Token生产效率提升2~5倍",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "5月29日投资避雷针：高盛测算显示全球原油库存逼近“百日警戒线”",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "德祥地产：与荣联科技围绕AI算力基础设施达成战略合作",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "全球AI竞赛日益“以内存为中心” 机构称存储价格有望继续保持强劲",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "新场景催生电力市场更大活力",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "迎全新战略机遇期 国产AI基础设施产业链寻求高质量发展",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "投入变收入 互联网大厂AI战略商业兑现尝到甜头",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "多方案齐头并进 浸没式液冷发展势头强劲",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "东方财富财经早餐 5月28日周四",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.38
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.5,
+        "reason": "经济日历偏正面，新闻有央行逆回购和原油库存利好，5日动量+2.58%趋势向上，但量能不足，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": -0.3,
+        "reason": "5日动量-0.30%横盘，RSI 36.4偏弱，经济日历无直接利好，新闻关联度低，温和看空。"
+      },
+      {
+        "code": "510500",
+        "score": 0.3,
+        "reason": "5日动量+1.72%接近趋势门槛，新闻无直接映射，经济日历中性，温和看好。"
+      },
+      {
+        "code": "510330",
+        "score": 0.5,
+        "reason": "与510300类似，5日动量+2.56%趋势向上，量能偏低，温和看好。"
+      },
+      {
+        "code": "159338",
+        "score": 0.5,
+        "reason": "5日动量+2.11%趋势向上，量能0.89接近放量，经济日历和新闻偏正面，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": -0.7,
+        "reason": "5日动量-3.37%趋势向下，RSI 16.2超卖，经济日历无利好，新闻无关联，强烈看空。"
+      },
+      {
+        "code": "159985",
+        "score": 0.0,
+        "reason": "5日动量-0.10%横盘，经济日历无直接驱动，新闻无关联，中性。"
+      },
+      {
+        "code": "510880",
+        "score": -0.3,
+        "reason": "5日动量-0.06%横盘，RSI 22.4偏低，经济日历无利好，新闻无关联，温和看空。"
+      },
+      {
+        "code": "512880",
+        "score": -0.6,
+        "reason": "5日动量-3.13%趋势向下，RSI 32.5偏弱，经济日历无利好，新闻无关联，温和看空。"
+      },
+      {
+        "code": "512010",
+        "score": -0.7,
+        "reason": "5日动量-3.72%趋势向下，RSI 20.0超卖，经济日历无利好，新闻无关联，强烈看空。"
+      },
+      {
+        "code": "159915",
+        "score": 0.8,
+        "reason": "5日动量+7.59%强势，RSI 71.1接近超买但未过热，量能1.03放量，经济日历和新闻利好科技，强烈看好。"
+      },
+      {
+        "code": "588000",
+        "score": 0.7,
+        "reason": "5日动量+4.41%强势，RSI 65.6中性偏强，量能1.09放量，新闻大量利好AI和科创板，强烈看好。"
+      },
+      {
+        "code": "159949",
+        "score": 0.8,
+        "reason": "5日动量+8.86%最强，RSI 72.3接近超买，量能1.43明显放量，经济日历和新闻利好，强烈看好。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，美国芝加哥PMI预期回升至扩张区间，日本和德国CPI数据待公布，整体偏正面；新闻方面，AI算力、数据中心等利好密集，强烈指向科技ETF。创业板、科创50趋势强劲，建议偏多配置科技类ETF，但考虑高重要度事件未完全落地，仓位控制在50%左右。"
+  },
+  "prompt_hash": "d19cda442b385f0a199239db4f1b73c7",
+  "model": "deepseek-chat",
+  "usage": {
+    "prompt_tokens": 3416,
+    "completion_tokens": 1883,
+    "total_tokens": 5299,
+    "prompt_tokens_details": {
+      "cached_tokens": 1664
+    },
+    "prompt_cache_hit_tokens": 1664,
+    "prompt_cache_miss_tokens": 1752
+  },
+  "cache_hit": false,
+  "cached_at": "2026-05-29 10:27:32",
+  "econ_payload_snapshot": {
+    "date": "2026-05-29",
+    "source": "sqlite_summary",
+    "high_importance_events": [
+      {
+        "date": "2026-05-28",
+        "time": "",
+        "region": "美国",
+        "event": "美国第一季度实际GDP年化季率修正值(%)",
+        "importance": 2,
+        "expected": "2.0",
+        "actual": "",
+        "previous": "2.0"
+      },
+      {
+        "date": "2026-05-28",
+        "time": "",
+        "region": "美国",
+        "event": "美国第一季度GDP价格指数季率修正值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "3.6"
+      },
+      {
+        "date": "2026-05-28",
+        "time": "",
+        "region": "美国",
+        "event": "美国第一季度GDP隐性平减指数季率-季调后修正值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "3.6"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "",
+        "region": "日本",
+        "event": "日本4月失业率(%)",
+        "importance": 2,
+        "expected": "2.7",
+        "actual": "",
+        "previous": "2.7"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "",
+        "region": "日本",
+        "event": "日本5月东京CPI年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1.5"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "",
+        "region": "法国",
+        "event": "法国第一季度GDP年率终值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1.1"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "",
+        "region": "德国",
+        "event": "德国5月季调后失业率(%)",
+        "importance": 2,
+        "expected": "6.4",
+        "actual": "",
+        "previous": "6.4"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "",
+        "region": "德国",
+        "event": "德国5月CPI年率初值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "2.9"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "",
+        "region": "加拿大",
+        "event": "加拿大3月季调后GDP月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "0.2"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "",
+        "region": "加拿大",
+        "event": "加拿大3月季调后GDP年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1.0"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "",
+        "region": "加拿大",
+        "event": "加拿大第一季度GDP年化季率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-0.6"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "",
+        "region": "加拿大",
+        "event": "加拿大第一季度GDP季率-季调后(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1.0"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "",
+        "region": "美国",
+        "event": "美国5月芝加哥PMI",
+        "importance": 2,
+        "expected": "51.2",
+        "actual": "",
+        "previous": "49.2"
+      }
+    ],
+    "medium_importance_events": [],
+    "has_high_impact_event": true
+  },
+  "news_summary_snapshot": [
+    {
+      "title": "联想在天津投建新一代AI算力研发制造中心",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "华为推出星河AI数据中心网络方案 Token生产效率提升2~5倍",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "5月29日投资避雷针：高盛测算显示全球原油库存逼近“百日警戒线”",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "510300": 0.315,
+        "159338": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "德祥地产：与荣联科技围绕AI算力基础设施达成战略合作",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "全球AI竞赛日益“以内存为中心” 机构称存储价格有望继续保持强劲",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "新场景催生电力市场更大活力",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "515790": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "迎全新战略机遇期 国产AI基础设施产业链寻求高质量发展",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "588000": 0.42,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "投入变收入 互联网大厂AI战略商业兑现尝到甜头",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "多方案齐头并进 浸没式液冷发展势头强劲",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "东方财富财经早餐 5月28日周四",
+      "source": "eastmoney_cjzc",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "央行今日开展1230亿元7天逆回购操作",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "fund_flow"
+      ],
+      "etf_scores": {
+        "510300": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "三体计算星座：建在太空的人工智能基础设施",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "大行AIC“押中”存储赛道：交行曾预判周期底部半年至3年",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "北京商报侃股：韬定律不是无厘头炒作的工具",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "李殿勋在武汉市调研工业母机产业",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "博泰车联：与英伟达举行战略合作签约仪式",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "多重因素推动人民币走强 未来走势如何？",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512690": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "行业高景气与国产化并行 先进封装市场规模持续扩大",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "588000": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "Anthropic计划几周内发布“具备Mythos级别能力”的AI模型",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "技能培训不能成了“割韭菜”",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    }
+  ],
+  "raw_response": {
+    "regime": "risk_on",
+    "regime_reason": "经济日历方面，美国芝加哥PMI预期回升至扩张区间，日本东京CPI和德国CPI初值可能显示通胀韧性，整体偏正面；新闻方面，AI算力、数据中心等利好密集，与科技ETF高度相关，且创业板、科创50趋势强劲，综合判断市场情绪偏乐观。",
+    "econ_drivers": [
+      {
+        "event": "美国5月芝加哥PMI",
+        "importance": "high",
+        "direction": "+",
+        "impact": "预期回升至51.2，高于前值49.2，利好美股及全球风险偏好，间接利好A股科技板块。"
+      },
+      {
+        "event": "日本5月东京CPI年率",
+        "importance": "high",
+        "direction": "0",
+        "impact": "前值1.5%，预期未公布，若超预期可能引发紧缩担忧，但影响有限。"
+      },
+      {
+        "event": "德国5月CPI年率初值",
+        "importance": "high",
+        "direction": "0",
+        "impact": "前值2.9%，预期未公布，关注通胀变化对欧央行政策影响。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "联想在天津投建新一代AI算力研发制造中心",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "华为推出星河AI数据中心网络方案 Token生产效率提升2~5倍",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "5月29日投资避雷针：高盛测算显示全球原油库存逼近“百日警戒线”",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "德祥地产：与荣联科技围绕AI算力基础设施达成战略合作",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "全球AI竞赛日益“以内存为中心” 机构称存储价格有望继续保持强劲",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "新场景催生电力市场更大活力",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "迎全新战略机遇期 国产AI基础设施产业链寻求高质量发展",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "投入变收入 互联网大厂AI战略商业兑现尝到甜头",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "多方案齐头并进 浸没式液冷发展势头强劲",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "东方财富财经早餐 5月28日周四",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.38
+      },
+      {
+        "title": "央行今日开展1230亿元7天逆回购操作",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "三体计算星座：建在太空的人工智能基础设施",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "大行AIC“押中”存储赛道：交行曾预判周期底部半年至3年",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "北京商报侃股：韬定律不是无厘头炒作的工具",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "李殿勋在武汉市调研工业母机产业",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "博泰车联：与英伟达举行战略合作签约仪式",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "多重因素推动人民币走强 未来走势如何？",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "行业高景气与国产化并行 先进封装市场规模持续扩大",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "Anthropic计划几周内发布“具备Mythos级别能力”的AI模型",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "技能培训不能成了“割韭菜”",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.32
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.5,
+        "reason": "经济日历偏正面，新闻有央行逆回购和原油库存利好，5日动量+2.58%趋势向上，但量能不足，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": -0.3,
+        "reason": "5日动量-0.30%横盘，RSI 36.4偏弱，经济日历无直接利好，新闻关联度低，温和看空。"
+      },
+      {
+        "code": "510500",
+        "score": 0.3,
+        "reason": "5日动量+1.72%接近趋势门槛，新闻无直接映射，经济日历中性，温和看好。"
+      },
+      {
+        "code": "510330",
+        "score": 0.5,
+        "reason": "与510300类似，5日动量+2.56%趋势向上，量能偏低，温和看好。"
+      },
+      {
+        "code": "159338",
+        "score": 0.5,
+        "reason": "5日动量+2.11%趋势向上，量能0.89接近放量，经济日历和新闻偏正面，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": -0.7,
+        "reason": "5日动量-3.37%趋势向下，RSI 16.2超卖，经济日历无利好，新闻无关联，强烈看空。"
+      },
+      {
+        "code": "159985",
+        "score": 0.0,
+        "reason": "5日动量-0.10%横盘，经济日历无直接驱动，新闻无关联，中性。"
+      },
+      {
+        "code": "510880",
+        "score": -0.3,
+        "reason": "5日动量-0.06%横盘，RSI 22.4偏低，经济日历无利好，新闻无关联，温和看空。"
+      },
+      {
+        "code": "512880",
+        "score": -0.6,
+        "reason": "5日动量-3.13%趋势向下，RSI 32.5偏弱，经济日历无利好，新闻无关联，温和看空。"
+      },
+      {
+        "code": "512010",
+        "score": -0.7,
+        "reason": "5日动量-3.72%趋势向下，RSI 20.0超卖，经济日历无利好，新闻无关联，强烈看空。"
+      },
+      {
+        "code": "159915",
+        "score": 0.8,
+        "reason": "5日动量+7.59%强势，RSI 71.1接近超买但未过热，量能1.03放量，经济日历和新闻利好科技，强烈看好。"
+      },
+      {
+        "code": "588000",
+        "score": 0.7,
+        "reason": "5日动量+4.41%强势，RSI 65.6中性偏强，量能1.09放量，新闻大量利好AI和科创板，强烈看好。"
+      },
+      {
+        "code": "159949",
+        "score": 0.8,
+        "reason": "5日动量+8.86%最强，RSI 72.3接近超买，量能1.43明显放量，经济日历和新闻利好，强烈看好。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，美国芝加哥PMI预期回升至扩张区间，日本和德国CPI数据待公布，整体偏正面；新闻方面，AI算力、数据中心等利好密集，强烈指向科技ETF。创业板、科创50趋势强劲，建议偏多配置科技类ETF，但考虑高重要度事件未完全落地，仓位控制在50%左右。"
+  }
+}

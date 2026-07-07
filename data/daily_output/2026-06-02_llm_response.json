@@ -1,0 +1,805 @@
+{
+  "decision": {
+    "regime": "risk_off",
+    "regime_reason": "美国ISM制造业PMI超预期至54，美元走强人民币承压，外资流出风险加大；同时欧元区失业率略高于预期，全球增长担忧升温。A股宽基指数普遍下跌，趋势偏弱。",
+    "econ_drivers": [
+      {
+        "event": "美国5月ISM制造业PMI",
+        "importance": "high",
+        "direction": "+",
+        "impact": "超预期利好美元，人民币贬值压力增大，外资可能流出A股，利空宽基指数。"
+      },
+      {
+        "event": "欧元区4月失业率",
+        "importance": "high",
+        "direction": "-",
+        "impact": "略高于预期，显示欧洲就业市场疲软，全球需求担忧加剧，利空出口相关板块。"
+      },
+      {
+        "event": "欧元区4月季调后货币供应M3年率",
+        "importance": "medium",
+        "direction": "-",
+        "impact": "低于预期，欧元区流动性收紧，间接影响全球风险偏好。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "中信建投：算力等高频高速需求快速增长 电子级PTFE有望大规模应用",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.38
+      },
+      {
+        "title": "中信证券：管网更新东风起 钢管板块迎价值重估",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "中信证券：AI商业化加速 科技行情震荡分化",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "医药代表学历新规倒计时 有人仓皇“补票”遇陷阱",
+        "etf": "512010",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "华泰证券：618低价竞争降温 平台聚焦效率升级",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "华西证券：关注电子铜箔国产化以及锂电铜箔进入涨价周期机遇",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "汉钟精机：真空产品已向部分国内芯片制造商批量供货",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "算力合同引纠纷：讯众通信被诉违约 涉案金额超1.8亿元",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "深圳出台十条措施 优化前海国际化支付",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "韩国股市市值超越印度 跃居全球第六",
+        "etf": "518880",
+        "direction": "+",
+        "weight": 0.32
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": -0.5,
+        "reason": "美国PMI超预期利空外资流入，沪深300趋势偏弱，5日跌幅-1.4%，RSI 41.7，量能萎缩。"
+      },
+      {
+        "code": "510050",
+        "score": -0.5,
+        "reason": "上证50受外资流出影响大，5日跌幅-2.34%，RSI 27.1超卖但趋势仍弱。"
+      },
+      {
+        "code": "510500",
+        "score": -0.6,
+        "reason": "中证500跌幅最大，5日-4.73%，趋势明显走坏，经济日历利空叠加。"
+      },
+      {
+        "code": "510330",
+        "score": -0.5,
+        "reason": "华夏沪深300与510300类似，量能极低，趋势偏弱。"
+      },
+      {
+        "code": "159338",
+        "score": -0.5,
+        "reason": "中证A500ETF跌幅较大，5日-2.89%，RSI 38，量能放大但方向向下。"
+      },
+      {
+        "code": "518880",
+        "score": 0.3,
+        "reason": "黄金ETF受美元走强压制，但避险情绪提供支撑，5日-1.77%，中性偏弱。"
+      },
+      {
+        "code": "159985",
+        "score": 0.2,
+        "reason": "豆粕ETF横盘，5日+0.83%，无明显趋势，中性。"
+      },
+      {
+        "code": "510880",
+        "score": 0.7,
+        "reason": "红利ETF逆势走强，5日+3.83%，RSI 58.5，量能放大，防御属性受青睐。"
+      },
+      {
+        "code": "512880",
+        "score": 0.5,
+        "reason": "证券ETF受多条新闻利好（管网、AI、618等），但趋势偏弱，5日-0.96%，温和看好。"
+      },
+      {
+        "code": "512010",
+        "score": 0.5,
+        "reason": "医药ETF受新规新闻利好，5日持平，RSI 21.4超卖，有反弹预期。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.4,
+    "summary_zh": "今日美国ISM制造业PMI超预期，美元走强人民币承压，外资流出风险加大，整体市场偏弱。但红利ETF逆势走强，证券、医药等板块受新闻利好，可适度参与结构性机会。建议仓位控制在40%以内，重点配置红利ETF及受新闻驱动的证券、医药ETF。"
+  },
+  "prompt_hash": "7504ad995f9e8d68f05475940b86ebd9",
+  "model": "deepseek-chat",
+  "usage": {
+    "prompt_tokens": 3363,
+    "completion_tokens": 1498,
+    "total_tokens": 4861,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 3363
+  },
+  "cache_hit": false,
+  "cached_at": "2026-06-02 13:08:38",
+  "econ_payload_snapshot": {
+    "date": "2026-06-02",
+    "source": "akshare_live",
+    "high_importance_events": [
+      {
+        "date": "2026-06-01",
+        "time": "14:00",
+        "region": "德国",
+        "event": "德国4月实际零售销售月率(%)",
+        "importance": 2,
+        "expected": "-2",
+        "actual": "-0.3",
+        "previous": "-2"
+      },
+      {
+        "date": "2026-06-01",
+        "time": "14:00",
+        "region": "德国",
+        "event": "德国4月实际零售销售年率(%)",
+        "importance": 2,
+        "expected": "-2",
+        "actual": "-0.3",
+        "previous": "-2"
+      },
+      {
+        "date": "2026-06-01",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月失业率(%)",
+        "importance": 2,
+        "expected": "6.2",
+        "actual": "6.3",
+        "previous": "6.2"
+      },
+      {
+        "date": "2026-06-01",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月ISM制造业PMI",
+        "importance": 2,
+        "expected": "52.7",
+        "actual": "54",
+        "previous": "52.7"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月核心调和CPI年率-未季调初值(%)",
+        "importance": 2,
+        "expected": "2.1",
+        "actual": "未公布",
+        "previous": "2.1"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月调和CPI年率-未季调初值(%)",
+        "importance": 2,
+        "expected": "3",
+        "actual": "未公布",
+        "previous": "3"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月JOLTs职位空缺(万)",
+        "importance": 2,
+        "expected": "686.6",
+        "actual": "未公布",
+        "previous": "686.6"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-06-01",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士第一季度GDP季率(%)",
+        "importance": 2,
+        "expected": "0.1",
+        "actual": "0.7",
+        "previous": "0.1"
+      },
+      {
+        "date": "2026-06-01",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士第一季度GDP年率(%)",
+        "importance": 2,
+        "expected": "0.7",
+        "actual": "0.5",
+        "previous": "0.7"
+      },
+      {
+        "date": "2026-06-01",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月1日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "16",
+        "actual": "5047",
+        "previous": "16"
+      },
+      {
+        "date": "2026-06-01",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月1日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "0",
+        "actual": "0",
+        "previous": "0"
+      },
+      {
+        "date": "2026-06-01",
+        "time": "16:00",
+        "region": "欧元区",
+        "event": "欧元区4月季调后货币供应M3年率(%)",
+        "importance": 2,
+        "expected": "3.2",
+        "actual": "2.7",
+        "previous": "3.2"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "15118.69",
+        "actual": "15080.7",
+        "previous": "15118.69"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "478.47",
+        "actual": "478.47",
+        "previous": "478.47"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "1029.14",
+        "actual": "1028.86",
+        "previous": "1029.14"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国5月29日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "282828.69",
+        "actual": "282828.69",
+        "previous": "282828.69"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "08:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚截至5月31日当周ANZ消费者信心指数",
+        "importance": 2,
+        "expected": "66.1",
+        "actual": "68.8",
+        "previous": "66.1"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "08:30",
+        "region": "马来西亚",
+        "event": "马来西亚5月制造业PMI",
+        "importance": 2,
+        "expected": "51.6",
+        "actual": "49.9",
+        "previous": "51.6"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度经常帐(亿澳元)",
+        "importance": 2,
+        "expected": "-211",
+        "actual": "-271",
+        "previous": "-211"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度黄金勘探支出额(万澳元)",
+        "importance": 2,
+        "expected": "46930",
+        "actual": "45090",
+        "previous": "46930"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度石油勘探支出年率-季调后(%)",
+        "importance": 2,
+        "expected": "22",
+        "actual": "-4.8",
+        "previous": "22"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月2日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "5047",
+        "actual": "未公布",
+        "previous": "5047"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月2日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "0",
+        "actual": "未公布",
+        "previous": "0"
+      }
+    ],
+    "has_high_impact_event": true
+  },
+  "news_summary_snapshot": [
+    {
+      "title": "中信建投：算力等高频高速需求快速增长 电子级PTFE有望大规模应用",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "516510": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "中信证券：管网更新东风起 钢管板块迎价值重估",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512880": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "中信证券：AI商业化加速 科技行情震荡分化",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "512880": 0.357,
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "医药代表学历新规倒计时 有人仓皇“补票”遇陷阱",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512010": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "华泰证券：618低价竞争降温 平台聚焦效率升级",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512880": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "华西证券：关注电子铜箔国产化以及锂电铜箔进入涨价周期机遇",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "fund_flow"
+      ],
+      "etf_scores": {
+        "512880": 0.357,
+        "515790": 0.315,
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "汉钟精机：真空产品已向部分国内芯片制造商批量供货",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "588000": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "算力合同引纠纷：讯众通信被诉违约 涉案金额超1.8亿元",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "深圳出台十条措施 优化前海国际化支付",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512690": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "韩国股市市值超越印度 跃居全球第六",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "518880": 0.315,
+        "588000": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "海兰信与中交三航局、中交资本将聚焦海底算力中心建设等深度合作",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "半导体和机器人两个赛道火到什么程度了？今年前4月利润井喷 “投资人约不到企业负责人！”",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "earnings",
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "588000": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "华尔街原声",
+      "source": "caixin_main",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "588000": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "东方财富财经早餐 6月2日周二",
+      "source": "eastmoney_cjzc",
+      "quality": "weak",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "510300": 0.142,
+        "159338": 0.142,
+        "588000": 0.378
+      },
+      "negative": false,
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "title": "6月2日投资避雷针：晋控电力、深南电A等电力股密集澄清 不涉及算电协同业务",
+      "source": "eastmoney_global",
+      "quality": "weak",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "510300": 0.142,
+        "159338": 0.142,
+        "515790": 0.315,
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "title": "央行今日开展2亿元7天逆回购操作",
+      "source": "eastmoney_global",
+      "quality": "weak",
+      "event_tags": [
+        "fund_flow"
+      ],
+      "etf_scores": {
+        "510300": 0.142
+      },
+      "negative": false,
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    }
+  ],
+  "raw_response": {
+    "regime": "risk_off",
+    "regime_reason": "美国ISM制造业PMI超预期至54，美元走强人民币承压，外资流出风险加大；同时欧元区失业率略高于预期，全球增长担忧升温。A股宽基指数普遍下跌，趋势偏弱。",
+    "econ_drivers": [
+      {
+        "event": "美国5月ISM制造业PMI",
+        "importance": "high",
+        "direction": "+",
+        "impact": "超预期利好美元，人民币贬值压力增大，外资可能流出A股，利空宽基指数。"
+      },
+      {
+        "event": "欧元区4月失业率",
+        "importance": "high",
+        "direction": "-",
+        "impact": "略高于预期，显示欧洲就业市场疲软，全球需求担忧加剧，利空出口相关板块。"
+      },
+      {
+        "event": "欧元区4月季调后货币供应M3年率",
+        "importance": "medium",
+        "direction": "-",
+        "impact": "低于预期，欧元区流动性收紧，间接影响全球风险偏好。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "中信建投：算力等高频高速需求快速增长 电子级PTFE有望大规模应用",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.38
+      },
+      {
+        "title": "中信证券：管网更新东风起 钢管板块迎价值重估",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "中信证券：AI商业化加速 科技行情震荡分化",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "医药代表学历新规倒计时 有人仓皇“补票”遇陷阱",
+        "etf": "512010",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "华泰证券：618低价竞争降温 平台聚焦效率升级",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "华西证券：关注电子铜箔国产化以及锂电铜箔进入涨价周期机遇",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "汉钟精机：真空产品已向部分国内芯片制造商批量供货",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "算力合同引纠纷：讯众通信被诉违约 涉案金额超1.8亿元",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "深圳出台十条措施 优化前海国际化支付",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "韩国股市市值超越印度 跃居全球第六",
+        "etf": "518880",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "海兰信与中交三航局、中交资本将聚焦海底算力中心建设等深度合作",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "半导体和机器人两个赛道火到什么程度了？今年前4月利润井喷 “投资人约不到企业负责人！”",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "华尔街原声",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.14
+      },
+      {
+        "title": "6月2日投资避雷针：晋控电力、深南电A等电力股密集澄清 不涉及算电协同业务",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.14
+      },
+      {
+        "title": "央行今日开展2亿元7天逆回购操作",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.14
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": -0.5,
+        "reason": "美国PMI超预期利空外资流入，沪深300趋势偏弱，5日跌幅-1.4%，RSI 41.7，量能萎缩。"
+      },
+      {
+        "code": "510050",
+        "score": -0.5,
+        "reason": "上证50受外资流出影响大，5日跌幅-2.34%，RSI 27.1超卖但趋势仍弱。"
+      },
+      {
+        "code": "510500",
+        "score": -0.6,
+        "reason": "中证500跌幅最大，5日-4.73%，趋势明显走坏，经济日历利空叠加。"
+      },
+      {
+        "code": "510330",
+        "score": -0.5,
+        "reason": "华夏沪深300与510300类似，量能极低，趋势偏弱。"
+      },
+      {
+        "code": "159338",
+        "score": -0.5,
+        "reason": "中证A500ETF跌幅较大，5日-2.89%，RSI 38，量能放大但方向向下。"
+      },
+      {
+        "code": "518880",
+        "score": 0.3,
+        "reason": "黄金ETF受美元走强压制，但避险情绪提供支撑，5日-1.77%，中性偏弱。"
+      },
+      {
+        "code": "159985",
+        "score": 0.2,
+        "reason": "豆粕ETF横盘，5日+0.83%，无明显趋势，中性。"
+      },
+      {
+        "code": "510880",
+        "score": 0.7,
+        "reason": "红利ETF逆势走强，5日+3.83%，RSI 58.5，量能放大，防御属性受青睐。"
+      },
+      {
+        "code": "512880",
+        "score": 0.5,
+        "reason": "证券ETF受多条新闻利好（管网、AI、618等），但趋势偏弱，5日-0.96%，温和看好。"
+      },
+      {
+        "code": "512010",
+        "score": 0.5,
+        "reason": "医药ETF受新规新闻利好，5日持平，RSI 21.4超卖，有反弹预期。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.4,
+    "summary_zh": "今日美国ISM制造业PMI超预期，美元走强人民币承压，外资流出风险加大，整体市场偏弱。但红利ETF逆势走强，证券、医药等板块受新闻利好，可适度参与结构性机会。建议仓位控制在40%以内，重点配置红利ETF及受新闻驱动的证券、医药ETF。"
+  }
+}

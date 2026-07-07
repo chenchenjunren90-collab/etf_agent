@@ -1,0 +1,17 @@
+[
+  {
+    "symbol": "512880",
+    "symbol_name": "证券ETF",
+    "volume": 35000
+  },
+  {
+    "symbol": "512010",
+    "symbol_name": "医药ETF",
+    "volume": 111500
+  },
+  {
+    "symbol": "518880",
+    "symbol_name": "黄金ETF",
+    "volume": 3800
+  }
+]

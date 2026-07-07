@@ -1,0 +1,819 @@
+{
+  "decision": {
+    "regime": "risk_on",
+    "regime_reason": "经济日历方面，中国5月官方制造业PMI前值50.3，市场预期偏稳，但未公布实际值，需谨慎；新闻情绪强烈正面，AI、算力、券商等板块利好集中，且多数ETF动量或趋势向好，因此整体偏乐观。",
+    "econ_drivers": [
+      {
+        "event": "中国5月官方制造业PMI",
+        "importance": "high",
+        "direction": "0",
+        "impact": "数据未公布，市场预期中性，对宽基指数影响不确定，但需关注实际值是否超预期。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "盘前题材挖掘",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "盘前题材挖掘",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "全国首个绿色算力全栈AI平台上线",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "AIDC火爆需求推动产业化加速",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "AIDC火爆需求推动产业化加速",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "AI热潮即将进入下一阶段？投资者正挖掘亚洲非造芯赢家",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "招商证券：高端电子布涨价预期充分",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "招商证券：高端电子布涨价预期充分",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "白酒巨头联手推一两装",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "中信建投：关注Computex2026",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.7
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.3,
+        "reason": "经济日历中性，新闻正面偏多，但5日动量+1.25%未达阈值，趋势中性，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": 0.2,
+        "reason": "经济日历中性，新闻正面，但5日动量仅+0.07%，趋势偏弱，中性偏多。"
+      },
+      {
+        "code": "510500",
+        "score": -0.5,
+        "reason": "5日动量-2.48%跌破-2%阈值，趋势偏空，新闻无直接利好，温和看空。"
+      },
+      {
+        "code": "510330",
+        "score": 0.3,
+        "reason": "类似510300，经济日历中性，新闻正面，5日动量+1.18%，温和看好。"
+      },
+      {
+        "code": "159338",
+        "score": 0.2,
+        "reason": "经济日历中性，新闻正面，但5日动量-0.08%横盘，中性偏多。"
+      },
+      {
+        "code": "518880",
+        "score": 0.5,
+        "reason": "经济日历中性，新闻正面（韩国出口利好），5日动量-0.68%但昨日大涨2.9%，趋势转好，温和看好。"
+      },
+      {
+        "code": "159985",
+        "score": 0.0,
+        "reason": "经济日历中性，新闻无直接关联，5日动量-0.34%横盘，中性。"
+      },
+      {
+        "code": "510880",
+        "score": 0.6,
+        "reason": "经济日历中性，新闻正面（国企改革），5日动量+1.58%接近阈值，趋势向好，温和看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.7,
+        "reason": "经济日历中性，新闻强烈正面（券商金股、国企改革、电子布），5日动量-0.39%但昨日涨1.18%，趋势改善，强烈看好。"
+      },
+      {
+        "code": "512010",
+        "score": 0.6,
+        "reason": "经济日历中性，新闻正面（医保目录），5日动量-0.29%但昨日涨2.38%，趋势转好，温和看好。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "今日经济日历仅有中国5月官方制造业PMI（未公布），影响中性；但新闻情绪强烈正面，AI、算力、券商、医药等板块利好密集，且部分ETF趋势向好，因此整体偏乐观。建议半仓参与，重点配置券商、医药、红利及科技相关ETF。"
+  },
+  "prompt_hash": "af4e0918b52c5fbe4828931477f7b750",
+  "model": "deepseek-chat",
+  "usage": {
+    "prompt_tokens": 3223,
+    "completion_tokens": 2468,
+    "total_tokens": 5691,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 3223
+  },
+  "cache_hit": false,
+  "cached_at": "2026-06-01 09:36:07",
+  "econ_payload_snapshot": {
+    "date": "2026-06-01",
+    "source": "sqlite_summary",
+    "high_importance_events": [
+      {
+        "date": "2026-05-31",
+        "time": "",
+        "region": "中国",
+        "event": "中国5月官方制造业PMI",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "50.3"
+      }
+    ],
+    "medium_importance_events": [],
+    "has_high_impact_event": true
+  },
+  "news_summary_snapshot": [
+    {
+      "title": "盘前题材挖掘",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "515790": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "全国首个绿色算力全栈AI平台上线 算电协同加速走向项目落地",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "AIDC火爆需求推动产业化加速 SST或成为电力设备领域新风口",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "515790": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "AI热潮即将进入下一阶段？投资者正挖掘“亚洲非造芯”赢家",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "招商证券：高端电子布涨价预期充分 持续关注龙头企业",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "512880": 0.357,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "白酒巨头联手推“一两装” 冲刺年轻化市场",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "512690": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "中信建投：关注Computex2026 继续推荐算力产业链",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "对比史上两轮科技股浪潮 本轮AI行情基金表现呈三大特征",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "515790": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "多家PCB上市公司发布扩产计划",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "earnings",
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "医保目录调整方案公布 企业如何应对这些变化？",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "510050": 0.315,
+        "512010": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "半年涨价40% 人工智能带火这种“算力金属”",
+      "source": "futu_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "588000": -0.315,
+        "512690": -0.315,
+        "516510": -0.42
+      },
+      "negative": true,
+      "risk_flags": []
+    },
+    {
+      "title": "韩国5月份出口额同比猛增60.7%",
+      "source": "futu_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "510300": 0.315,
+        "518880": 0.42,
+        "588000": 0.315,
+        "516510": 0.399
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "南网能源：2026年将持续做强电力交易与虚拟电厂业务",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "512880": 0.378,
+        "515790": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "6月1日投资避雷针：3连板人气股提示风险 未取得PCB、核聚变相关业务收入",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "510300": 0.315,
+        "159338": 0.315,
+        "515790": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "强化创业板产业培育功能",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "159915": 0.378,
+        "159949": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "一条指数的成长记：透过十大权重股 五大维度解码创业板",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "510050": 0.315,
+        "159915": 0.378,
+        "159949": 0.315,
+        "512010": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "主流券商研报认为A股上市白酒企业本轮调整“筑底”信号显现",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "510300": -0.315,
+        "159338": -0.315,
+        "512880": -0.378,
+        "512690": -0.357
+      },
+      "negative": true,
+      "risk_flags": []
+    },
+    {
+      "title": "券商5月最牛金股涨幅翻倍 6月电子板块最受青睐",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512880": 0.378,
+        "515790": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "确认了！新一轮国企改革方案正式下发 多地密集开会部署",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512880": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "大模型双雄再聚A股 融资竞速无人敢停",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "510300": 0.315,
+        "159338": 0.315,
+        "588000": 0.378,
+        "512880": 0.357,
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    }
+  ],
+  "raw_response": {
+    "regime": "risk_on",
+    "regime_reason": "经济日历方面，中国5月官方制造业PMI前值50.3，市场预期偏稳，但未公布实际值，需谨慎；新闻情绪强烈正面，AI、算力、券商等板块利好集中，且多数ETF动量或趋势向好，因此整体偏乐观。",
+    "econ_drivers": [
+      {
+        "event": "中国5月官方制造业PMI",
+        "importance": "high",
+        "direction": "0",
+        "impact": "数据未公布，市场预期中性，对宽基指数影响不确定，但需关注实际值是否超预期。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "盘前题材挖掘",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "盘前题材挖掘",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "全国首个绿色算力全栈AI平台上线",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "AIDC火爆需求推动产业化加速",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "AIDC火爆需求推动产业化加速",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "AI热潮即将进入下一阶段？投资者正挖掘亚洲非造芯赢家",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "招商证券：高端电子布涨价预期充分",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "招商证券：高端电子布涨价预期充分",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "白酒巨头联手推一两装",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "中信建投：关注Computex2026",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "中信建投：关注Computex2026",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "对比史上两轮科技股浪潮",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "对比史上两轮科技股浪潮",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "对比史上两轮科技股浪潮",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "多家PCB上市公司发布扩产计划",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "医保目录调整方案公布",
+        "etf": "510050",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "医保目录调整方案公布",
+        "etf": "512010",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "半年涨价40% 人工智能带火这种算力金属",
+        "etf": "588000",
+        "direction": "-",
+        "weight": 0.6
+      },
+      {
+        "title": "半年涨价40% 人工智能带火这种算力金属",
+        "etf": "512690",
+        "direction": "-",
+        "weight": 0.6
+      },
+      {
+        "title": "半年涨价40% 人工智能带火这种算力金属",
+        "etf": "516510",
+        "direction": "-",
+        "weight": 0.6
+      },
+      {
+        "title": "韩国5月份出口额同比猛增60.7%",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "韩国5月份出口额同比猛增60.7%",
+        "etf": "518880",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "韩国5月份出口额同比猛增60.7%",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "韩国5月份出口额同比猛增60.7%",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "南网能源：2026年将持续做强电力交易与虚拟电厂业务",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "南网能源：2026年将持续做强电力交易与虚拟电厂业务",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "6月1日投资避雷针",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.5
+      },
+      {
+        "title": "6月1日投资避雷针",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.5
+      },
+      {
+        "title": "6月1日投资避雷针",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.5
+      },
+      {
+        "title": "强化创业板产业培育功能",
+        "etf": "159915",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "强化创业板产业培育功能",
+        "etf": "159949",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "一条指数的成长记",
+        "etf": "510050",
+        "direction": "+",
+        "weight": 0.5
+      },
+      {
+        "title": "一条指数的成长记",
+        "etf": "159915",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "一条指数的成长记",
+        "etf": "159949",
+        "direction": "+",
+        "weight": 0.5
+      },
+      {
+        "title": "一条指数的成长记",
+        "etf": "512010",
+        "direction": "+",
+        "weight": 0.5
+      },
+      {
+        "title": "主流券商研报认为A股上市白酒企业本轮调整筑底信号显现",
+        "etf": "510300",
+        "direction": "-",
+        "weight": 0.5
+      },
+      {
+        "title": "主流券商研报认为A股上市白酒企业本轮调整筑底信号显现",
+        "etf": "159338",
+        "direction": "-",
+        "weight": 0.5
+      },
+      {
+        "title": "主流券商研报认为A股上市白酒企业本轮调整筑底信号显现",
+        "etf": "512880",
+        "direction": "-",
+        "weight": 0.5
+      },
+      {
+        "title": "主流券商研报认为A股上市白酒企业本轮调整筑底信号显现",
+        "etf": "512690",
+        "direction": "-",
+        "weight": 0.5
+      },
+      {
+        "title": "券商5月最牛金股涨幅翻倍 6月电子板块最受青睐",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "券商5月最牛金股涨幅翻倍 6月电子板块最受青睐",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "确认了！新一轮国企改革方案正式下发",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "大模型双雄再聚A股",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "大模型双雄再聚A股",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "大模型双雄再聚A股",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "大模型双雄再聚A股",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "大模型双雄再聚A股",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.6
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.3,
+        "reason": "经济日历中性，新闻正面偏多，但5日动量+1.25%未达阈值，趋势中性，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": 0.2,
+        "reason": "经济日历中性，新闻正面，但5日动量仅+0.07%，趋势偏弱，中性偏多。"
+      },
+      {
+        "code": "510500",
+        "score": -0.5,
+        "reason": "5日动量-2.48%跌破-2%阈值，趋势偏空，新闻无直接利好，温和看空。"
+      },
+      {
+        "code": "510330",
+        "score": 0.3,
+        "reason": "类似510300，经济日历中性，新闻正面，5日动量+1.18%，温和看好。"
+      },
+      {
+        "code": "159338",
+        "score": 0.2,
+        "reason": "经济日历中性，新闻正面，但5日动量-0.08%横盘，中性偏多。"
+      },
+      {
+        "code": "518880",
+        "score": 0.5,
+        "reason": "经济日历中性，新闻正面（韩国出口利好），5日动量-0.68%但昨日大涨2.9%，趋势转好，温和看好。"
+      },
+      {
+        "code": "159985",
+        "score": 0.0,
+        "reason": "经济日历中性，新闻无直接关联，5日动量-0.34%横盘，中性。"
+      },
+      {
+        "code": "510880",
+        "score": 0.6,
+        "reason": "经济日历中性，新闻正面（国企改革），5日动量+1.58%接近阈值，趋势向好，温和看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.7,
+        "reason": "经济日历中性，新闻强烈正面（券商金股、国企改革、电子布），5日动量-0.39%但昨日涨1.18%，趋势改善，强烈看好。"
+      },
+      {
+        "code": "512010",
+        "score": 0.6,
+        "reason": "经济日历中性，新闻正面（医保目录），5日动量-0.29%但昨日涨2.38%，趋势转好，温和看好。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "今日经济日历仅有中国5月官方制造业PMI（未公布），影响中性；但新闻情绪强烈正面，AI、算力、券商、医药等板块利好密集，且部分ETF趋势向好，因此整体偏乐观。建议半仓参与，重点配置券商、医药、红利及科技相关ETF。"
+  }
+}

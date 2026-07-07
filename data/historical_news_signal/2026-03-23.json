@@ -1,0 +1,4493 @@
+{
+  "date": "2026-03-23",
+  "source": "historical_eastmoney_sqlite",
+  "confidence": 1.0,
+  "market_sentiment": 0.693,
+  "hot_keywords": [
+    "上证50",
+    "大蓝筹",
+    "沪深300",
+    "沪指",
+    "科创板",
+    "科创50",
+    "券商",
+    "证券",
+    "白酒",
+    "消费",
+    "医药",
+    "医疗"
+  ],
+  "theme_scores": {
+    "510050": 0.85,
+    "510300": 0.85,
+    "159915": 0.378,
+    "588000": 0.85,
+    "512100": 0.284,
+    "510880": -0.357,
+    "512880": 0.85,
+    "512690": 0.85,
+    "159949": 0.315,
+    "512010": 0.85,
+    "515790": 0.85,
+    "516510": 0.85
+  },
+  "article_count": 769,
+  "accepted_count": 165,
+  "rejected_count": 604,
+  "strong_count": 78,
+  "weak_count": 87,
+  "catalyst_hits": 286,
+  "max_abs_theme": 0.85,
+  "accepted_articles": [
+    {
+      "accepted": true,
+      "title": "毕马威：算力基建投资或在“十五五”时期快速扩张",
+      "source": "证券时报",
+      "url": "http://finance.eastmoney.com/a/202603203679316424.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.189
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "道道全：粕类业务收入下滑主要是因为中加贸易摩擦导致菜籽进口受阻",
+      "source": "证券日报",
+      "url": "http://finance.eastmoney.com/a/202603203679254598.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "earnings": [
+          "同比增长"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [
+        "下滑"
+      ],
+      "theme_scores": {
+        "512880": -0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "不只是旅游！扩大入境消费“16条”来了",
+      "source": "券商中国",
+      "url": "http://biz.eastmoney.com/a/202603203679247047.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "2025年独董履职“红黑榜”出炉！有人被罚款120万元 也有人对“突击保壳”坚决说“不”",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603203679481315.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [
+        "处罚"
+      ],
+      "theme_scores": {
+        "512880": -0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "优化消费环境 入境游政策再“加码”",
+      "source": "证券日报",
+      "url": "http://biz.eastmoney.com/a/202603203679325284.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "国务院国资委答《证券日报》记者问：支持中央企业牵头建设节能装备制造基地",
+      "source": "证券日报",
+      "url": "http://finance.eastmoney.com/a/202603203679324860.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施",
+          "方案"
+        ],
+        "technology_breakthrough": [
+          "装备"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "商业银行以信用卡为重要抓手 助力消费潜能释放",
+      "source": "证券日报",
+      "url": "http://finance.eastmoney.com/a/202603203679521052.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315,
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "航司燃油费上涨预期走强 消费者开始提前“囤”机票",
+      "source": "证券日报",
+      "url": "http://finance.eastmoney.com/a/202603203679311712.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "earnings": [
+          "翻倍"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中国人民银行、国家外汇管理局将境内企业境外放款纳入宏观审慎管理",
+      "source": "证券日报",
+      "url": "http://finance.eastmoney.com/a/202603203679324976.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "通知"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "服务业开放多点突破",
+      "source": "中国证券报",
+      "url": "http://biz.eastmoney.com/a/202603213679346725.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "technology_breakthrough": [
+          "突破"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142,
+        "512010": 0.315
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "两部门发布境外放款新规：境内企业境外放款宏观 审慎调节系数上调至0.6",
+      "source": "上海证券报",
+      "url": "http://finance.eastmoney.com/a/202603213679535276.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "通知"
+        ],
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "两部门统一本外币境外放款管理 便利企业跨境融资",
+      "source": "证券时报",
+      "url": "http://finance.eastmoney.com/a/202603213679330316.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施",
+          "通知"
+        ],
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "推动人工智能在中央企业规模化落地",
+      "source": "中国证券报",
+      "url": "http://finance.eastmoney.com/a/202603213679521398.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "新华财经晚报：中央网信办全面规范短视频内容标注",
+      "source": "新华财经",
+      "url": "http://finance.eastmoney.com/a/202603213679611059.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "以投资消费良性循环为抓手 筑牢扩大内需战略根基",
+      "source": "中国经营网",
+      "url": "http://finance.eastmoney.com/a/202603213679612730.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "“网售”新指标有啥不一样",
+      "source": "经济日报",
+      "url": "http://finance.eastmoney.com/a/202603213679635180.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "earnings": [
+          "同比增长"
+        ],
+        "technology_breakthrough": [
+          "首次"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "河北发布“人工智能+”典型案例",
+      "source": "人民日报",
+      "url": "http://finance.eastmoney.com/a/202603213679659551.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512010": 0.357,
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "9部门发布16条政策举措 促进旅行服务出口 扩大入境消费",
+      "source": "人民日报",
+      "url": "http://biz.eastmoney.com/a/202603213679659020.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "【早报】金融法草案向社会公开征求意见；关于霍尔木兹海峡通行，伊朗表态",
+      "source": "财联社",
+      "url": "http://biz.eastmoney.com/a/202603213679345742.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "更好满足企业跨境运营资金需要 境外放款余额上限提高",
+      "source": "中国证券报",
+      "url": "http://finance.eastmoney.com/a/202603213679557497.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "通知"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "国家电投集团与德国巴斯夫集团就进一步深化能源领域合作进行交流",
+      "source": "人民财讯",
+      "url": "http://finance.eastmoney.com/a/202603213679531843.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "采购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "航司燃油费上涨预期走强 消费者开始提前“囤”机票",
+      "source": "南方财经网",
+      "url": "http://finance.eastmoney.com/a/202603213679536714.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "earnings": [
+          "翻倍"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161,
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "国家电投集团与德国巴斯夫集团就进一步深化能源领域合作进行交流",
+      "source": "界面新闻",
+      "url": "http://finance.eastmoney.com/a/202603213679541961.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "采购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "新能源和智能化优势凸显！2月我国汽车海外销量同比增长52.4％",
+      "source": "华夏时报网",
+      "url": "http://finance.eastmoney.com/a/202603213679553790.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "earnings": [
+          "同比增长"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "中国石化建成全国最大车用LNG加注网络",
+      "source": "上海证券报·中国证券网",
+      "url": "http://finance.eastmoney.com/a/202603213679551544.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "突破"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "21评论丨适度宽松的货币政策有哪些重点？",
+      "source": "21世纪经济报道",
+      "url": "http://finance.eastmoney.com/a/202603213679544366.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施",
+          "降准"
+        ],
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "金融法要来了！五大部门重磅发布3月20日起向社会公开征求意见",
+      "source": "21世纪经济报道",
+      "url": "http://finance.eastmoney.com/a/202603213679557512.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "全国首个省级开源鸿蒙适配中心花落黄埔",
+      "source": "21世纪经济报道",
+      "url": "http://finance.eastmoney.com/a/202603213679553027.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "首个",
+          "认证"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "政策解读：金融法是一部什么样的法律？",
+      "source": "人民日报",
+      "url": "http://finance.eastmoney.com/a/202603213679524327.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "方案"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "境外放款新规来了！余额上限提升，专家：对企业境外融资的替代效应会更明显",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603213679650571.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施",
+          "通知"
+        ],
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "GTC大会的“隐形赢家”？PCB行业迎来扩产升级潮",
+      "source": "财联社",
+      "url": "http://finance.eastmoney.com/a/202603213679555848.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "方案"
+        ],
+        "capital_investment": [
+          "扩产"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中央网信办指导网站平台全面规范短视频内容标注工作",
+      "source": "人民财讯",
+      "url": "http://finance.eastmoney.com/a/202603213679560037.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "一周全球热点事件",
+      "source": "东方财富Choice数据",
+      "url": "http://finance.eastmoney.com/a/202603213679559423.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "capital_investment": [
+          "收购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中央网信办指导网站平台全面规范短视频内容标注工作",
+      "source": "南方财经网",
+      "url": "http://biz.eastmoney.com/a/202603213679562253.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中央网信办指导网站平台全面规范短视频内容标注工作",
+      "source": "中国网信网",
+      "url": "http://biz.eastmoney.com/a/202603213679562152.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "上海航交所：油价推高航运成本，沿海散货综合运价指数大幅上涨",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603213679647355.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "orders_and_delivery": [
+          "采购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142,
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "上海航交所：原油运价大幅回调",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603213679647067.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "上海航交所：出口集装箱运输市场走势分化",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603213679646964.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "单个项目最高贴息1200万元，陕西省一揽子贷款贴息政策公布",
+      "source": "大河财立方",
+      "url": "http://finance.eastmoney.com/a/202603213679567451.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施",
+          "通知"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "境外放款新规出台：提高额度并强化风控 支持企业真实出海需求",
+      "source": "21世纪经济报道",
+      "url": "http://finance.eastmoney.com/a/202603213679566438.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "通知"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "3月份沪牌拍卖下周六举行 警示价92900元",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603213679644421.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "翻倍牛股大动作！布局“算电协同”",
+      "source": "中国证券报",
+      "url": "http://finance.eastmoney.com/a/202603213679570851.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "earnings": [
+          "翻倍"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.17
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "海南自贸港封关后首家金融租赁管理型项目公司落户海口",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603213679627658.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "落地"
+        ],
+        "capital_investment": [
+          "融资"
+        ],
+        "technology_breakthrough": [
+          "突破"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "我国首台550兆瓦F级燃气机组投产发电",
+      "source": "人民财讯",
+      "url": "http://finance.eastmoney.com/a/202603213679590772.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "投产"
+        ],
+        "orders_and_delivery": [
+          "装机"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "河北将培育一批工业大模型 聚焦钢铁、化工、生物医药等重点行业",
+      "source": "上海证券报·中国证券网",
+      "url": "http://finance.eastmoney.com/a/202603213679593271.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161,
+        "512010": 0.357,
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中部非省会第一城，要争夺下一个“算力枢纽”",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603213679593636.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发改委"
+        ],
+        "technology_breakthrough": [
+          "首次"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512010": 0.315,
+        "515790": 0.315,
+        "516510": 0.189
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "我国首台550兆瓦F级燃气机组投产发电",
+      "source": "南方财经网",
+      "url": "http://finance.eastmoney.com/a/202603213679628863.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "投产"
+        ],
+        "orders_and_delivery": [
+          "装机"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "加码在华布局 赛诺菲首个中国创新与运营中心在成都高新区启用",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603213679598126.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "方案"
+        ],
+        "orders_and_delivery": [
+          "采购",
+          "供应"
+        ],
+        "technology_breakthrough": [
+          "首个",
+          "临床"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512010": 0.357
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "华源证券2026年春季策略会在武汉落幕",
+      "source": "中国证券报·中证网",
+      "url": "http://finance.eastmoney.com/a/202603213679618526.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "一日内一宗成交两宗挂牌，深圳加快优质地块供应节奏",
+      "source": "深圳商报·读创",
+      "url": "http://biz.eastmoney.com/a/202603213679612222.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "orders_and_delivery": [
+          "供应"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "深铁8.69亿元落子罗湖AI高地，打造产城融合新样本",
+      "source": "深圳商报·读创",
+      "url": "http://finance.eastmoney.com/a/202603213679610641.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "capital_investment": [
+          "开工"
+        ],
+        "technology_breakthrough": [
+          "首次"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "内蒙古今年将计划实施能源重大项目382个，完成投资3240亿元",
+      "source": "人民财讯",
+      "url": "http://finance.eastmoney.com/a/202603213679614587.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "IPO雷达 | 千岸科技即将北交所上会：预计今年一季度业绩下滑，亚马逊“依赖症”难解，关税与存货风险高悬",
+      "source": "深圳商报·读创",
+      "url": "http://finance.eastmoney.com/a/202603213679615786.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "关税"
+        ],
+        "earnings": [
+          "业绩"
+        ],
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [
+        "下滑"
+      ],
+      "theme_scores": {
+        "512880": -0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "九部门联合发文促旅行服务出口 16条举措发力入境消费全链条",
+      "source": "期货日报网",
+      "url": "http://biz.eastmoney.com/a/202603213679617879.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "【财闻联播】健身App暴露航母位置，法国将“采取行动”！多家品牌金饰价格跌破1400元/克",
+      "source": "券商中国",
+      "url": "http://biz.eastmoney.com/a/202603213679620128.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "航母"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "内蒙古今年将实施能源重大项目382个，完成投资3240亿元",
+      "source": "新京报",
+      "url": "http://finance.eastmoney.com/a/202603213679623054.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "国家能源局：截至2月底我国电动汽车充电基础设施（枪）总数达2101万个",
+      "source": "上海证券报·中国证券网",
+      "url": "http://finance.eastmoney.com/a/202603213679628322.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "earnings": [
+          "同比增长"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "“中国版SCI”在沪发布：生命科学中国贡献率超三成，上海AI4S优势明显",
+      "source": "上观新闻",
+      "url": "http://biz.eastmoney.com/a/202603213679640047.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "第二届上海临床转化生态论坛举行，临转院模式实现 “可复制、可推广”",
+      "source": "上观新闻",
+      "url": "http://finance.eastmoney.com/a/202603213679637557.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "临床"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "养老消费券是否“雁过拔毛”？上海民政：暂未发现资金套取、顺势涨价违规行为",
+      "source": "上观新闻",
+      "url": "http://biz.eastmoney.com/a/202603213679643310.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "实施",
+          "补贴"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：深化金融市场互联互通、支付系统跨境互联",
+      "source": "北京商报",
+      "url": "http://finance.eastmoney.com/a/202603223679790740.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：完备的产业链、供应链体系提升中国产业国际竞争力",
+      "source": "北京商报",
+      "url": "http://finance.eastmoney.com/a/202603223679790612.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "供应"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "【金融街发布】中国人民银行行长潘功胜：坚持支持性的货币政策立场 加大金融支持中国经济结构转型力度",
+      "source": "新华财经",
+      "url": "http://finance.eastmoney.com/a/202603223679790535.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：继续实施适度宽松的货币政策",
+      "source": "北京商报",
+      "url": "http://finance.eastmoney.com/a/202603223679790493.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "3天闪电成交！上海楼市回暖信号明显",
+      "source": "上海证券报",
+      "url": "http://biz.eastmoney.com/a/202603213679622474.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ],
+        "fund_flow": [
+          "放量"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "监管重提多元补充中小金融机构资本 释放何种信号？",
+      "source": "证券时报",
+      "url": "http://finance.eastmoney.com/a/202603213679330282.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "专项债"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "上海医院创新转化模式：“医院专利许可+临转院现金入股”加速成果产业化",
+      "source": "上观新闻",
+      "url": "http://biz.eastmoney.com/a/202603223679658427.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "临床",
+          "专利"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "推动绿色电力与算力协同布局（延伸阅读）",
+      "source": "人民日报",
+      "url": "http://finance.eastmoney.com/a/202603223679666977.html",
+      "quality": "weak",
+      "reason": "vague_theme_only",
+      "event_hits": {},
+      "vague_hits": [
+        "爆发式增长"
+      ],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.12
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "盐湖提锂实现关键技术突破",
+      "source": "经济日报",
+      "url": "http://finance.eastmoney.com/a/202603223679663361.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "突破",
+          "技术突破"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.378
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "南京市：调整汽车购新补贴政策内容",
+      "source": "人民财讯",
+      "url": "http://finance.eastmoney.com/a/202603223679694498.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "通知",
+          "补贴"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "南京调整汽车购新补贴政策内容",
+      "source": "界面新闻",
+      "url": "http://finance.eastmoney.com/a/202603223679706061.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "补贴"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "韩文秀：全方位应对人工智能冲击 促进高质量充分就业",
+      "source": "南方财经网",
+      "url": "http://finance.eastmoney.com/a/202603223679694712.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "首次"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "汇丰集团行政总裁艾桥智：中国将塑造全球增长的下一个时代",
+      "source": "上海证券报·中国证券网",
+      "url": "http://finance.eastmoney.com/a/202603223679699973.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "突破"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "央行行长：运用多种工具保持流动性充裕",
+      "source": "中国新闻网",
+      "url": "http://finance.eastmoney.com/a/202603223679696649.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行行长：运用多种工具保持流动性充裕",
+      "source": "南方财经网",
+      "url": "http://finance.eastmoney.com/a/202603223679704320.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行行长：运用多种工具保持流动性充裕",
+      "source": "中新网",
+      "url": "http://finance.eastmoney.com/a/202603223679704472.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：中国没有必要 也无意通过汇率贬值获取贸易竞争优势",
+      "source": "21世纪经济报道",
+      "url": "http://finance.eastmoney.com/a/202603223679700536.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "首个"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142,
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "入境游不止于“游”：九部门联合发文促进旅行服务出口，覆盖文娱、赛事等消费场景",
+      "source": "华夏时报网",
+      "url": "http://biz.eastmoney.com/a/202603223679703857.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中国发展高层论坛今日召开，央行行长：运用多种工具保持流动性充裕",
+      "source": "界面新闻",
+      "url": "http://finance.eastmoney.com/a/202603223679704126.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行行长潘功胜：运用多种工具保持流动性充裕",
+      "source": "券商中国",
+      "url": "http://finance.eastmoney.com/a/202603223679708352.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：将稳步推动金融业的高水平开放",
+      "source": "界面新闻",
+      "url": "http://finance.eastmoney.com/a/202603223679710260.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：将稳步推动金融业的高水平开放",
+      "source": "人民财讯",
+      "url": "http://finance.eastmoney.com/a/202603223679709796.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：将持续完善人民币跨境使用制度安排和金融基础设施建设",
+      "source": "人民财讯",
+      "url": "http://finance.eastmoney.com/a/202603223679709517.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：将继续实施适度宽松的货币政策，保持流动性充裕",
+      "source": "中国证券报·中证金牛座",
+      "url": "http://finance.eastmoney.com/a/202603223679712110.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：深化金融市场互联互通、支付系统跨境互联，便利更多投资者投资中国金融市场",
+      "source": "中国证券报·中证金牛座",
+      "url": "http://finance.eastmoney.com/a/202603223679712566.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "公积金改革四大方向浮出水面，11万亿沉淀资金正化身“第二钱包”",
+      "source": "第一财经",
+      "url": "http://biz.eastmoney.com/a/202603223679714545.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "周末要闻汇总：金融法草案公开征求意见 建立健全金融市场风险快速反应机制",
+      "source": "东方财富Choice数据",
+      "url": "http://finance.eastmoney.com/a/202603223679718166.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [
+        "制裁"
+      ],
+      "theme_scores": {
+        "512690": -0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "韩文秀：将制定实施城乡居民增收计划，促进居民消费率明显提高",
+      "source": "21世纪经济报道",
+      "url": "http://finance.eastmoney.com/a/202603223679717772.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "刚刚，潘功胜重磅发声！",
+      "source": "中国基金报",
+      "url": "http://finance.eastmoney.com/a/202603223679762832.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "供应"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "2500亿元支持消费品以旧换新，财政部将加大直达消费者的普惠政策力度",
+      "source": "界面新闻",
+      "url": "http://finance.eastmoney.com/a/202603223679829143.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "专项债"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "2500亿元支持消费品以旧换新 财政部将加大直达消费者的普惠政策力度",
+      "source": "财联社",
+      "url": "http://finance.eastmoney.com/a/202603223679719397.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "专项债"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中国将加快成为全球需求核心市场！潘功胜最新发言！",
+      "source": "券商中国",
+      "url": "http://finance.eastmoney.com/a/202603223679720055.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "韩文秀：在今后一个时期，扩大消费是重中之重也是难中之难",
+      "source": "第一财经",
+      "url": "http://finance.eastmoney.com/a/202603223679760711.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜发声！坚持支持性的货币政策立场",
+      "source": "中国证券报",
+      "url": "http://finance.eastmoney.com/a/202603223679760320.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "中国人民银行行长潘功胜：深化金融市场互联互通等 便利更多投资者投资中国金融市场",
+      "source": "上海证券报·中国证券网",
+      "url": "http://finance.eastmoney.com/a/202603223679746539.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315,
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中国产业国际竞争力来源于不合理的产业补贴？潘功胜：可以到中国多走走、多看看，有助于对中国产业有更准确、全面的认知",
+      "source": "上海证券报·中国证券网",
+      "url": "http://finance.eastmoney.com/a/202603223679746855.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "补贴"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315,
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "百利天恒：创新药BL-ARC002获准开展晚期实体瘤临床试验",
+      "source": "财联社",
+      "url": "http://finance.eastmoney.com/a/202603223679721769.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "通知"
+        ],
+        "technology_breakthrough": [
+          "临床"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512010": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "迪哲医药：舒沃哲一线治疗EGFR exon20ins非小细胞肺癌III期临床试验获阳性结果",
+      "source": "财联社",
+      "url": "http://finance.eastmoney.com/a/202603223679722017.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "临床"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512010": 0.357
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜最新发声：将继续实施适度宽松的货币政策！",
+      "source": "证券日报",
+      "url": "http://finance.eastmoney.com/a/202603223679764247.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "华灿光电：2025年净利润亏损4.38亿元",
+      "source": "财联社",
+      "url": "http://finance.eastmoney.com/a/202603223679723924.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "earnings": [
+          "利润",
+          "净利润",
+          "同比增长"
+        ],
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [
+        "亏损"
+      ],
+      "theme_scores": {
+        "510880": -0.357
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "雪峰科技：控股股东广东宏大拟增持1.5亿-3亿元公司股份",
+      "source": "财联社",
+      "url": "http://finance.eastmoney.com/a/202603223679736878.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "fund_flow": [
+          "增持"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：完备的产业链、劳动力资源优势等提升中国产业国际竞争力｜中国发展高层论坛",
+      "source": "界面新闻",
+      "url": "http://finance.eastmoney.com/a/202603223679827466.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "补贴"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜最新发声！稳步推动金融业高水平开放",
+      "source": "期货日报",
+      "url": "http://finance.eastmoney.com/a/202603223679765493.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "中信证券：美伊冲突的扰动强度超出市场预期 预计我国出口将继续保持较高景气度",
+      "source": "财联社",
+      "url": "http://finance.eastmoney.com/a/202603223679747978.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "方案"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [
+        "利空"
+      ],
+      "theme_scores": {
+        "512880": -0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "【长三角日报】最高直补7000元！江苏多地发布汽车购新补贴政策",
+      "source": "上观新闻",
+      "url": "http://finance.eastmoney.com/a/202603223679763916.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "通知",
+          "补贴"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中国央行行长：将继续实施适度宽松的货币政策",
+      "source": "中国新闻网",
+      "url": "http://finance.eastmoney.com/a/202603223679821833.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "首次突破3万亿元",
+      "source": "中国基金报",
+      "url": "http://finance.eastmoney.com/a/202603223679758134.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "technology_breakthrough": [
+          "突破",
+          "首次"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512010": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "上交所受理宇树科技科创板IPO申请 近20家上市公司互动易等平台回复参股投资",
+      "source": "财联社",
+      "url": "http://finance.eastmoney.com/a/202603223679757126.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "capital_investment": [
+          "融资"
+        ],
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.17
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜最新发声：中国不靠汇率贬值获取贸易竞争优势，货币政策继续“适度宽松”",
+      "source": "新京报",
+      "url": "http://finance.eastmoney.com/a/202603223679804916.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行行长潘功胜：以预期引导及运用宏观审慎管理工具，校正市场失灵，防破坏性均衡｜快讯",
+      "source": "华夏时报网",
+      "url": "http://finance.eastmoney.com/a/202603223679819987.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "光威复材：丙烯腈库存可满足3–4个月 涨价可能会带来一定的成本压力",
+      "source": "财联社",
+      "url": "http://finance.eastmoney.com/a/202603223679765728.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "采购",
+          "合同"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "渣打集团温拓思答21：渣打将继续深度参与共建“一带一路”",
+      "source": "21世纪经济报道",
+      "url": "http://finance.eastmoney.com/a/202603223679768940.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行行长潘功胜：继续实施适度宽松的货币政策",
+      "source": "广州日报",
+      "url": "http://finance.eastmoney.com/a/202603223679814458.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "阿里巴巴蔡崇信：AI的终极目标是造福社会",
+      "source": "上海证券报·中国证券网",
+      "url": "http://finance.eastmoney.com/a/202603223679776039.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "突破"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161,
+        "516510": 0.189
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "思科大中华区CEO黄志明答上证报：中国为世界经济提供宝贵的稳定性与确定性",
+      "source": "上海证券报·中国证券网",
+      "url": "http://finance.eastmoney.com/a/202603223679775595.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "orders_and_delivery": [
+          "供应"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "“NXA”航空三字代码启用 雄安国际空港正式投用",
+      "source": "上海证券报·中国证券网",
+      "url": "http://finance.eastmoney.com/a/202603223679781588.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "首个"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "短期调整无碍向好格局",
+      "source": "期货日报",
+      "url": "http://finance.eastmoney.com/a/202603223680993469.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "降息"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "湾财周报 | 大事记 手机行业迎来结构性涨价潮；一线城市新房价止跌；“央国企高端新能源第一股”登陆港交所",
+      "source": "湾财ND",
+      "url": "http://finance.eastmoney.com/a/202603223679786471.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "orders_and_delivery": [
+          "供应"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.161,
+        "515790": 0.315
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "国家发改委主任郑栅洁会见大众汽车集团管理董事会主席奥博穆",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603223679810450.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发改委"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "【中证快报】3月22日中证投资资讯 | 华为发布新一代算力芯片",
+      "source": "中国证券报·中证金牛座",
+      "url": "http://finance.eastmoney.com/a/202603223679807217.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.142,
+        "516510": 0.189
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中国人民银行：稳步推动金融业高水平开放",
+      "source": "期货日报网",
+      "url": "http://finance.eastmoney.com/a/202603223679833137.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "中国人民银行行长潘功胜：欢迎境外投资者参与和投资中国金融市场",
+      "source": "证券日报",
+      "url": "http://finance.eastmoney.com/a/202603223679832275.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "四大证券报精华摘要：3月23日",
+      "source": "新华财经",
+      "url": "http://finance.eastmoney.com/a/202603233679886323.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "国家知识产权局：专项行动实施以来已累计发放知识产权质押贷款约6000亿元",
+      "source": "新华财经",
+      "url": "http://finance.eastmoney.com/a/202603233681282784.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施"
+        ],
+        "technology_breakthrough": [
+          "专利"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315,
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "去年全国知识产权使用费出口额增长26.3% 专利转化如何带动创新变现",
+      "source": "北京商报",
+      "url": "http://finance.eastmoney.com/a/202603233681277375.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施",
+          "方案"
+        ],
+        "technology_breakthrough": [
+          "专利"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "我国首次完成全国2700多所高校和科研机构134.9万件存量专利盘点",
+      "source": "北京商报",
+      "url": "http://finance.eastmoney.com/a/202603233680867273.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "首次",
+          "专利"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "2025年全国知识产权使用费进出口总额达4253.5亿元",
+      "source": "北京商报",
+      "url": "http://finance.eastmoney.com/a/202603233680866990.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "technology_breakthrough": [
+          "专利"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "2025年我国涉及专利的技术合同成交额达1.18万亿元",
+      "source": "北京商报",
+      "url": "http://finance.eastmoney.com/a/202603233680866611.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "orders_and_delivery": [
+          "合同"
+        ],
+        "earnings": [
+          "同比增长"
+        ],
+        "technology_breakthrough": [
+          "专利"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "直击业绩发布会丨不拼护城河、做宽“缓冲带”，中信银行负债成本管理这么打",
+      "source": "北京商报",
+      "url": "http://finance.eastmoney.com/a/202603233680952238.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "earnings": [
+          "业绩",
+          "利润",
+          "净利润"
+        ],
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315,
+        "510300": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "不良资产包密集上架 银行业市场出清再提速",
+      "source": "经济参考报",
+      "url": "http://finance.eastmoney.com/a/202603233679851095.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "获批"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "一周流动性观察 | 本周逆回购到期量降至低位 25日MLF将迎常规续作",
+      "source": "新华财经",
+      "url": "http://finance.eastmoney.com/a/202603233680849615.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "fund_flow": [
+          "回购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "上下游“两头承压” 中国淀粉2025年营收利润双降",
+      "source": "经济参考报",
+      "url": "http://finance.eastmoney.com/a/202603233679848395.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "earnings": [
+          "业绩",
+          "利润",
+          "营收"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中国人民银行行长潘功胜：加大金融支持中国经济结构转型力度",
+      "source": "证券时报",
+      "url": "http://finance.eastmoney.com/a/202603233679843123.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "“赏花+”激活新业态 深圳“科技+文旅”催热春日经济",
+      "source": "上海证券报",
+      "url": "http://biz.eastmoney.com/a/202603233679837852.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "方案"
+        ],
+        "technology_breakthrough": [
+          "首次"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "中国人民银行行长潘功胜：便利更多投资者投资中国金融市场",
+      "source": "上海证券报",
+      "url": "http://finance.eastmoney.com/a/202603233679837481.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "新华社权威快报｜盘清专利“家底”！我国首次完成全国2700多所高校和科研机构存量专利盘点",
+      "source": "新华社",
+      "url": "http://finance.eastmoney.com/a/202603233680929633.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施"
+        ],
+        "technology_breakthrough": [
+          "首次",
+          "专利"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "平安银行副行长项有志：受房地产去化周期变长等影响，涉房业务不良率有所上升",
+      "source": "北京商报",
+      "url": "http://finance.eastmoney.com/a/202603233680923092.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "earnings": [
+          "业绩"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "【金融街发布】中国人民银行召开2026年国库工作会议",
+      "source": "新华财经",
+      "url": "http://finance.eastmoney.com/a/202603233680908764.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行行长潘功胜最新发声：当前社会融资条件处于宽松状态",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603223679814327.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行：综合运用货币政策工具 保持流动性充裕",
+      "source": "中国证券报",
+      "url": "http://finance.eastmoney.com/a/202603233679849116.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "事关货币政策等 潘功胜最新发声；OpenClaw安全使用实践指南发布；马斯克要建芯片厂：目标年产1太瓦算力丨每经早参",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603233679862326.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315,
+        "588000": 0.142,
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "制度突破牵引产业突围",
+      "source": "经济日报",
+      "url": "http://finance.eastmoney.com/a/202603233679858025.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "突破"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512010": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "两部门推出16条政策举措 促进高校毕业生等青年就业",
+      "source": "人民日报",
+      "url": "http://finance.eastmoney.com/a/202603233679859784.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "实施",
+          "通知"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512100": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "有新盘项目宣布提价 上海楼市“小阳春”行情愈发清晰",
+      "source": "上海证券报",
+      "url": "http://finance.eastmoney.com/a/202603233679836925.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ],
+        "fund_flow": [
+          "放量"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.189
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "彩客科技过会 “港拆北”路径渐趋成熟",
+      "source": "中国证券报",
+      "url": "http://finance.eastmoney.com/a/202603233679866542.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "capital_investment": [
+          "募资"
+        ],
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512100": 0.142,
+        "515790": 0.315
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "上海二手房周成交创下2021年以来最高纪录；印力集团逾16.5亿元兴业银行贷款获展期一年｜房产早参",
+      "source": "每日经济新闻",
+      "url": "http://finance.eastmoney.com/a/202603233679868956.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315,
+        "512880": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "“经济开门红”难掩滞涨隐忧；美联储降息预期延至下半年 | 债市周报",
+      "source": "东方财富Choice数据",
+      "url": "http://bond.eastmoney.com/a/202603233679875751.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "降息"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "【财经早报】A股龙头 利润分派率达81%",
+      "source": "中国证券报",
+      "url": "http://finance.eastmoney.com/a/202603233679871186.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "earnings": [
+          "利润"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "让资本市场“活水”更好滋润硬科技",
+      "source": "经济参考报",
+      "url": "http://finance.eastmoney.com/a/202603233679853286.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "capital_investment": [
+          "融资"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "早新闻 | 事关未来产业，工信部发声",
+      "source": "数据宝",
+      "url": "http://finance.eastmoney.com/a/202603233679883477.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "工信部"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "盘前必读丨富时中国A50指数调整生效；宇树科技IPO申请获受理",
+      "source": "第一财经",
+      "url": "http://finance.eastmoney.com/a/202603233679883771.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "实施"
+        ],
+        "technology_breakthrough": [
+          "专利"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "具身智能资本局：百亿估值企业涌现 投融资热潮助推IPO奇点加速到来",
+      "source": "中国证券报",
+      "url": "http://finance.eastmoney.com/a/202603233679871067.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "capital_investment": [
+          "融资",
+          "募资"
+        ],
+        "earnings": [
+          "翻倍"
+        ],
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315,
+        "588000": 0.17
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "潘功胜：运用多种工具保持流动性充裕；上交所受理宇树科技科创板IPO申请……盘前重要消息还有这些",
+      "source": "证券时报",
+      "url": "http://finance.eastmoney.com/a/202603233679888123.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315,
+        "588000": 0.17
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "机构：充电桩行业转向高质量发展",
+      "source": "证券时报网",
+      "url": "http://finance.eastmoney.com/a/202603233680090822.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "earnings": [
+          "同比增长"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "金融法草案公开征求意见；华为春季新品发布会将举办｜盘前情报",
+      "source": "21世纪经济报道",
+      "url": "http://finance.eastmoney.com/a/202603233679893531.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.315,
+        "159915": 0.378,
+        "159949": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "3月23日投资避雷针：恒立液压、三安光电实控人被留置",
+      "source": "财联社",
+      "url": "http://finance.eastmoney.com/a/202603233679892520.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "订单"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [
+        "调查"
+      ],
+      "theme_scores": {
+        "510300": -0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "工信部部长李乐成：统筹有序推进未来产业先导区建设｜快讯",
+      "source": "华夏时报网",
+      "url": "http://finance.eastmoney.com/a/202603233680997449.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "工信部"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512690": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "债市早参3月23日|金融法草案公开征求意见；上周黄金创43年最大单周跌幅",
+      "source": "财联社",
+      "url": "http://bond.eastmoney.com/a/202603233679902055.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "通知"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "中东地缘冲突持续升级 部分上市公司回应受影响情况",
+      "source": "证券时报",
+      "url": "http://finance.eastmoney.com/a/202603233679901187.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "华泰证券：重申对电力板块的全面看多",
+      "source": "南方财经网",
+      "url": "http://finance.eastmoney.com/a/202603233680989897.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "512880": 0.161,
+        "515790": 0.315
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "高层论坛2026丨中国人民银行行长潘功胜：将坚持支持性的货币政策立场",
+      "source": "新华社",
+      "url": "http://finance.eastmoney.com/a/202603233680965550.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "实施"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "国家能源局：坚持多能融合发展，构建安全韧性的能源体系",
+      "source": "界面新闻",
+      "url": "http://finance.eastmoney.com/a/202603233680986531.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "供应"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.378
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行今日开展80亿元7天期逆回购操作",
+      "source": "证券时报",
+      "url": "http://finance.eastmoney.com/a/202603233680184426.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "招标"
+        ],
+        "fund_flow": [
+          "回购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "万劲松：能源安全挑战加剧，维护全球新能源产业链稳定至关重要｜中国发展高层论坛",
+      "source": "界面新闻",
+      "url": "http://finance.eastmoney.com/a/202603233680986313.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "供应"
+        ],
+        "technology_breakthrough": [
+          "首次"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行开展80亿元7天期逆回购操作",
+      "source": "大河财立方",
+      "url": "http://finance.eastmoney.com/a/202603233680291445.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "招标"
+        ],
+        "fund_flow": [
+          "回购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510050": 0.315
+      },
+      "risk_flags": []
+    }
+  ],
+  "rejection_reasons": {
+    "no_clear_sector_or_etf_mapping": 443,
+    "no_concrete_catalyst": 161
+  },
+  "cutoff_time": "09:30",
+  "lookback_hours": 60,
+  "updated_at": "2026-05-23 00:05:15",
+  "raw_articles": [
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679208484.html",
+      "title": "大商所焦煤期货夜盘拉升 涨超5.5%",
+      "published_at": "2026-03-20 21:35:17",
+      "source": "东方财富Choice数据",
+      "content": "大商所焦煤期货夜盘拉升，涨超5.5%。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679229774.html",
+      "title": "协鑫能科浙江建德抽蓄项目百亿银团组团成功",
+      "published_at": "2026-03-20 21:44:00",
+      "source": "证券日报",
+      "content": "本报讯近日，由协鑫能源科技股份有限公司（以下简称“协鑫能科”）投建的浙江建德协鑫抽水蓄能电站项目百亿银团签约仪式在浙江省建德市举办。8家金融机构组成的银团，为浙江建德抽蓄项目提供为期32年、总金额达100亿元的贷款，标志着华东地区在建规模最大的抽水蓄能电站融资全面落地，以金融赋能绿色能源发展，推动“大国建造”项目步入快车道。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679316424.html",
+      "title": "毕马威：算力基建投资或在“十五五”时期快速扩张",
+      "published_at": "2026-03-20 21:44:00",
+      "source": "证券时报",
+      "content": "毕马威3月20日发布《骐骥启新程——“十五五”规划宏观趋势与展望》报告（以下简称“报告”），解读“十五五”规划纲要。报告提到，为满足中长期新兴产业的发展需求，新型基础设施将在未来五年迎来超前布局；其中，为落实“人工智能+”行动，提供高效算力供给，算力基建投资或在“十五五”时期步入快速扩张阶段。“十五五”规划纲要明确，构建以先进制造业为骨干的现代化产业体系。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679221659.html",
+      "title": "省机场集团及重点航司前方指挥部进驻，佛山高明临空经济即将起飞",
+      "published_at": "2026-03-20 21:50:00",
+      "source": "21世纪经济报道",
+      "content": "3月20日，佛山高明区举行高质量发展大会暨投资推介大会。会上，广东省机场集团及南航、中联航两大航司前方指挥部正式进驻高明。随着两大航司基地落地，广州新机场的航线网络、客源组织、枢纽运营能力将得到全方位支撑。依托南航、中联航的品牌形象、客户基础与枢纽运营经验，高明将加速吸引航空修造、临空物流、航空食品、航空会展、高端制造、先进材料等产业链集聚，全面迈入临空经济新时代。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679326789.html",
+      "title": "“2026寻找宁波最具投资价值企业”活动报名突破100家",
+      "published_at": "2026-03-20 21:52:00",
+      "source": "证券日报",
+      "content": "本报讯3月11日，“2026寻找宁波最具投资价值企业”活动启动新闻发布会举行，活动自启动以来获得多方关注，短期内报名企业数量已突破100家。据悉，该活动为连续多年举办的品牌活动，本届以“科创引领”为核心主题，通过多元化渠道及升级服务，吸引宁波全市优质企业参与，展现当地经济发展活力。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679316393.html",
+      "title": "开车加油要涨价了，下周或重回“9元时代”！",
+      "published_at": "2026-03-20 21:55:00",
+      "source": "证券时报",
+      "content": "下周家庭出行和物流行业成本将出现较大幅度的增长。3月23日24时，国内成品油价格将迎来年内第六轮调整。据卓创资讯测算，3月23日当天成品油上调幅度在2000元/吨左右，为年内第五次上调，上调幅度为年内最大。92号汽油、95号汽油、0号柴油将分别上调1.73元/升、1.83元/升、1.87元/升。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679225437.html",
+      "title": "又一家老牌房企告别房地产开发业务，房企“退房潮”持续，部分已见转型成效",
+      "published_at": "2026-03-20 21:56:45",
+      "source": "华夏时报网",
+      "content": "又有一家房企决定不再从事房地产开发方面的业务。3月16日，京投发展股份有限公司（600683.SH，下称“京投发展”）发布公告，表示拟将持有的房地产开发业务相关资产及负债转让给控股股东，交易拟采用现金支付的方式，但尚未确定价格。3月19日，有知情人士对《华夏时报》记者表示，若将来交易达成，后续大股东京投公司会继续做房地产开发。京投公司综合实力更强，可以更好地发展业务。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679535765.html",
+      "title": "从家门口到厂门口 宁夏贺兰以点对点劳务输送拓宽就业增收路",
+      "published_at": "2026-03-20 21:59:59",
+      "source": "中国新闻网",
+      "content": "中新网银川3月20日电(记者李佩珊)3月20日，一场集岗位对接、政策服务、劳务输送于一体的专场就业服务活动在宁夏银川市贺兰县举行。活动聚焦高校毕业生、退役军人、脱贫劳动力、失业人员等重点群体，以精准化、全链条服务搭建暖心高效的就业供需平台。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679221895.html",
+      "title": "国内石油化工期货夜盘大幅拉升 液化石油气涨7%",
+      "published_at": "2026-03-20 22:00:10",
+      "source": "东方财富Choice数据",
+      "content": "【国内石油化工期货夜盘大幅拉升 液化石油气涨7%】国内石油化工期货夜盘大幅拉升，液化石油气涨7%，合成橡胶涨超6.8%，乙二醇涨超5%，塑料涨4%，聚丙烯涨3.5%，对二甲苯、苯乙烯涨近3%。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679254598.html",
+      "title": "道道全：粕类业务收入下滑主要是因为中加贸易摩擦导致菜籽进口受阻",
+      "published_at": "2026-03-20 22:33:00",
+      "source": "证券日报",
+      "content": "证券日报网3月20日讯，道道全在接受调研者提问时表示，粕类业务收入下滑主要是因为中加贸易摩擦导致菜籽进口受阻，菜籽加工量减少，产出菜粕相应减少，导致菜粕收入同比下降。散装油销售收入实现了同比增长，主要归因于成功拓展了工厂所在地的政府粮油储备企业渠道和贸易客户拓展增多。产品线的发展优先级：坚持包装油为主、高端化提速、配套业务稳健的策略。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603203679247047.html",
+      "title": "不只是旅游！扩大入境消费“16条”来了",
+      "published_at": "2026-03-20 22:39:00",
+      "source": "券商中国",
+      "content": "3月20日，商务部等9部门发布了《关于促进旅行服务出口扩大入境消费的政策措施》（下称《措施》），从扩大入境旅游消费、便利入境商务活动、激活入境赛事消费、繁荣入境文娱消费、拓展入境健康消费、发展入境教育培训消费、完善保障措施等7方面提出16条政策举措。旅行服务（包括旅游、留学、就医等）是我国服务贸易第一大领域，进出口规模占服务贸易总额的比重超过1/4。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679242627.html",
+      "title": "加速全球化布局 中联重科智能高机匈牙利工厂（一期）开业",
+      "published_at": "2026-03-20 22:39:00",
+      "source": "上海证券报·中国证券网",
+      "content": "上证报中国证券网讯（记者夏子航）3月20日，记者获悉，中联重科智能高机匈牙利工厂（一期）开业仪式在匈牙利举行。新工厂的开业是中联重科深化全球化布局的又一里程碑，标志着公司正以“1+N”制造与服务模式加速融入全球产业生态，其将进一步增强公司在欧洲的生产制造、研发创新和服务能力，有力推动海外业务发展。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679481315.html",
+      "title": "2025年独董履职“红黑榜”出炉！有人被罚款120万元 也有人对“突击保壳”坚决说“不”",
+      "published_at": "2026-03-20 23:00:55",
+      "source": "每日经济新闻",
+      "content": "2025年度，上市公司独立董事履职情况如何？一份最新的“红黑榜”揭晓了答案。3月19日，中国上市公司协会发布了《独董制度执行简报》（第8期），对2025年度上市公司独立董事的履职情况进行了总结。简报显示，2025年度，因违法违规被证监会（含派出机构）、沪深北证券交易所处罚处分及采取监管措施的上市公司独立董事合计76名，案例合计29例。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679544044.html",
+      "title": "中国工程机械工业协会：1至2月我国工程机械进出口贸易额110.72亿美元，同比增长31.4%",
+      "published_at": "2026-03-20 23:17:13",
+      "source": "界面新闻",
+      "content": "3月20日，中国工程机械工业协会发布2026年1-2月工程机械产品进出口快报。据海关数据整理，2026年1月我国工程机械进出口贸易额为57.62亿美元，同比增长17%，其中：进口额2.06亿美元，同比增长5.53%；出口额55.56亿美元，同比增长17.5%。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679310260.html",
+      "title": "上证观察家丨“十五五”规划的十大新方向",
+      "published_at": "2026-03-20 23:36:00",
+      "source": "上海证券报·中国证券网",
+      "content": "沈建光教授现任京东集团副总裁、首席经济学家，曾任瑞穗证券亚洲有限公司董事总经理兼首席经济学家。也是莫干山研究院执行院长。在加入瑞穗之前，他是欧洲央行（ECB）的高级经济学家，负责亚洲经济预测和分析。除在中国人民银行担任访问学者外，他还在国际货币基金组织、经合组织、芬兰银行和中金公司担任经济学家和高级经济学家职务。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603203679325284.html",
+      "title": "优化消费环境 入境游政策再“加码”",
+      "published_at": "2026-03-20 23:37:00",
+      "source": "证券日报",
+      "content": "3月20日，商务部发布《关于促进旅行服务出口扩大入境消费的政策措施》（以下简称《政策措施》），从扩大入境旅游消费、便利入境商务活动、激活入境赛事消费、繁荣入境文娱消费、拓展入境健康消费、发展入境教育培训消费、完善保障措施等七方面提出16条具体政策举措。在优化入境消费环境方面，《政策措施》提出，办好“购在中国”系列活动，创新商旅文体健融合消费场景，提升入境消费全流程便利化水平。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679324860.html",
+      "title": "国务院国资委答《证券日报》记者问：支持中央企业牵头建设节能装备制造基地",
+      "published_at": "2026-03-20 23:37:00",
+      "source": "证券日报",
+      "content": "3月20日，工业和信息化部召开新闻发布会，介绍由工业和信息化部、国家发展改革委、国务院国资委、国家能源局联合发布的《节能装备高质量发展实施方案（2026—2028年）》（以下简称《实施方案》）。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679324740.html",
+      "title": "前两月高技术产业实际使用外资同比增20.4%",
+      "published_at": "2026-03-20 23:37:00",
+      "source": "证券日报",
+      "content": "3月20日，商务部发布数据显示，2026年1月份至2月份，全国新设立外商投资企业8631家，同比增长14%；实际使用外资金额1614.5亿元人民币，同比下降5.7%。从行业看，制造业实际使用外资475.2亿元人民币，服务业实际使用外资1112.2亿元人民币。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679324627.html",
+      "title": "多地着力推动中小企业数字化转型",
+      "published_at": "2026-03-20 23:37:00",
+      "source": "证券日报",
+      "content": "3月份以来，许昌市、揭阳市、荆门市、温州市、中山市、济南市等地就中小企业数字化转型部署了新一轮工作。例如，中山市工业和信息化局3月19日发布《关于开展2026年中小企业数字化转型城市试点数字化转型产品与服务目录征集的通知》，提出“面向全国各地数字化服务供应商及其产品与服务，经企业推荐，按照择优入选原则纳入清单，供广大中小企业数字化改造参考选用”。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679521052.html",
+      "title": "商业银行以信用卡为重要抓手 助力消费潜能释放",
+      "published_at": "2026-03-20 23:37:00",
+      "source": "证券日报",
+      "content": "近期，政策层面密集释放金融支持提振消费的信号，一系列针对性举措落地，为信用卡发挥促消费作用提供了有力支撑。作为金融促消费的重要抓手之一，各大银行迅速响应政策部署，以信用卡为切入点，通过降低分期成本、叠加财政贴息、丰富消费场景、优化产品服务等一系列举措，切实降低居民信贷成本，为提振消费注入金融动能。政策精准发力今年以来，提振消费成为政策发力重点，金融支持举措多点发力。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679311712.html",
+      "title": "航司燃油费上涨预期走强 消费者开始提前“囤”机票",
+      "published_at": "2026-03-20 23:37:00",
+      "source": "证券日报",
+      "content": "国际原油价格持续高位震荡，航司成本压力正加速向客户端传导。近期，国内多家航司密集上调国际航线燃油附加费，涨幅普遍在50%以上，部分航线甚至翻倍。虽然国内市场仍处于节后传统淡季，但随着燃油费上调预期持续走强，不少消费者开始提前预订两周后甚至一个月后的出行机票，试图锁定当前相对较低的出行成本。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603203679325085.html",
+      "title": "探索“资本+产业”跨区域协同新路",
+      "published_at": "2026-03-20 23:38:00",
+      "source": "证券日报",
+      "content": "■贾丽日前，国家创业投资引导基金京津冀基金“创投赋能，领新未来”宣讲暨融资对接系列活动正式启动。作为国家创业投资引导基金首批落地的三只区域基金之一，这一总规模达500亿元的国家级“耐心资本”扬帆启航，不仅将为京津冀协同发展注入强劲资本动能，更释放出“耐心资本”将不断壮大的积极信号。深入实施区域协调发展战略，是关乎我国经济发展全局的重要部署。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679324976.html",
+      "title": "中国人民银行、国家外汇管理局将境内企业境外放款纳入宏观审慎管理",
+      "published_at": "2026-03-20 23:38:00",
+      "source": "证券日报",
+      "content": "为深入贯彻落实党的二十届四中全会精神和“十五五”规划部署，提升资本项目开放水平，满足企业跨境运营资金合理需要，2026年3月20日，中国人民银行、国家外汇管理局联合发布《关于印发的通知》（以下简称《通知》），进一步规范境内企业开展境外放款业务。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679521177.html",
+      "title": "金融法草案向社会公开征求意见",
+      "published_at": "2026-03-20 23:38:00",
+      "source": "证券日报",
+      "content": "新华社北京3月20日电3月20日，司法部、中国人民银行、金融监管总局、中国证监会、国家外汇局在门户网站公布《中华人民共和国金融法（草案）》，向社会公开征求意见。制定金融法，是党中央作出的重要决策部署。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679591566.html",
+      "title": "国家发展规划法正式施行 对规划实施情况全周期监测和评估",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "中国经营报",
+      "content": "3月19日，国家发展改革委规划司负责人在答记者问时表示，国家发展规划是其他各级各类规划的总遵循，体现战略性、宏观性、政策性，增强指导和约束功能；国家级国土空间规划、专项规划、区域规划均依据国家发展规划编制，并按规定适时调整；国家健全各级各类规划落实国家发展规划的机制，保证其与国家发展规划协调一致。国家发展规划法经十四届全国人大四次会议审议通过，并于3月12日正式施行。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679591461.html",
+      "title": "惩治“蝇贪蚁腐”，两高联合发布“三农”领域职务犯罪典型案例",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "中国经营报",
+      "content": "3月20日，最高人民法院、最高人民检察院联合发布5件依法惩治“三农”领域职务犯罪典型案例，依法从严惩处“三农”领域职务犯罪，强力惩治“蝇贪蚁腐”，助推反腐败斗争向基层延伸、向群众身边延伸。“三农”工作涵盖农业发展、农村建设、农民增收等多项重点任务，点多面广，链长域宽。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679575748.html",
+      "title": "【新华解读】四部门推动节能装备高质量发展 聚焦六类重点装备",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "新华财经",
+      "content": "新华财经北京3月21日电（记者刘旭阳、李唐宁）20日，工业和信息化部等四部委联合印发了《节能装备高质量发展实施方案（2026—2028年）》（下称“方案”），提出到2028年，节能装备关键材料、零部件取得突破，重点行业领域用能系统匹配性、实际运行效率持续提升，电机、变压器等节能装备能效水平达到国际领先。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679569415.html",
+      "title": "全球最大电子玻纤生产线点火 中国巨石抢占高端电子基材风口",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "中国经营报",
+      "content": "3月18日，随着中国巨石淮安公司年产10万吨电子玻纤暨3.9亿米电子布生产线成功点火，全球玻纤行业首个零碳智能制造基地建设迈入全新阶段。《中国经营报》记者了解到，这不仅是中国巨石在打造全球第二大粗细纱综合生产基地征程上的关键落子，也是新材料行业响应国家“双碳”战略、探索绿色可持续发展的标志性事件。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679564153.html",
+      "title": "中央网信办指导网站平台全面规范短视频内容标注工作",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "新华财经",
+      "content": "新华财经北京3月21日电据网信中国微信公众号，当前，网站平台关于短视频内容标注的标准和尺度不一，一些含有虚构演绎、摆拍营销、AI生成等内容的短视频未进行规范标注，严重误导公众认知，扰乱社会秩序，污染网络生态。对此，中央网信办拟指导网站平台全面规范短视频内容标注。一是对短视频内容标注使用的标签进行规范，明确必须设置的标签种类。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679653954.html",
+      "title": "如何加速培育未来产业？北京市发布122项细分任务",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "中国经营报",
+      "content": "3月20日，2026年北京市未来产业发展重点工作新闻发布会召开。《中国经营报》记者在会上获悉，北京在2025年未来产业发展指数中排名全球第二。2025年，北京市共同发力，抢占新赛道，培育新企业，产出开放众创6G通感算智融合试验装置、工程化液氢重卡等21项全球首创新技术新产品。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679653814.html",
+      "title": "北京计划每年投入上亿元扶持潜力企业及创新团队",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "中国经营报",
+      "content": "3月20日，2026年北京市未来产业发展重点工作新闻发布会召开。北京市经济和信息化局党组成员、副局长李辉在发布会上表示，未来产业由前沿技术驱动，需要汇聚高水平创新资源，开展多层次开放合作。李辉表示，在工作部署中，北京市将提升未来产业创新体系的开放性与影响力。在2026中关村论坛期间，将在脑机接口、元宇宙等领域分享发展案例、交流创新经验。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679551941.html",
+      "title": "【高端访谈】发展接续基金等工具，为并购基金提供合规顺畅的退出渠道——访中信资本董事长张懿宸",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "新华财经",
+      "content": "新华财经北京3月21日电（记者丁雅雯、刘玉龙）“金融的根基在实体经济。”中信资本董事长张懿宸近日在接受新华财经专访时表示，深化资本市场改革是畅通金融服务实体经济渠道的关键抓手。张懿宸认为，当前需聚焦“募投管退”全链条，通过畅通多元化退出机制，发展S基金、接续基金等工具，拓展壮大耐心资本，更高效地服务科技创新与产业升级。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679346826.html",
+      "title": "促进旅行服务出口 扩大入境消费",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "中国证券报",
+      "content": "商务部3月20日消息，近日，商务部会同中央网信办、外交部、教育部、文化和旅游部、国家卫生健康委、广电总局、体育总局和国家移民局等8部门印发《关于促进旅行服务出口扩大入境消费的政策措施》。商务部服贸司负责人表示，下一步，商务部将会同有关各部门强化政策协同，指导地方抓好政策落实，做好对外宣传解读，切实扩大入境消费，推动服务出口，拓展服务消费新空间。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679346725.html",
+      "title": "服务业开放多点突破",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "中国证券报",
+      "content": "“十五五”规划纲要提出，以服务业为重点扩大市场准入和开放领域，推动电信、互联网、教育、文化、医疗等领域有序扩大开放，稳妥实施增值电信、生物技术、外商独资医院等开放试点。专家表示，“十五五”时期，要加快推进服务业开放实现从“准入”到“准营”的实质性跨越。锚定开放重点领域服务业开放的重点领域，既贴合跨国企业投资需求，也紧扣国内产业升级与民生消费痛点。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679344439.html",
+      "title": "地缘局势紧张推升国际油价 3月以来A股多个受益板块表现强势",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "中国证券报",
+      "content": "在地缘局势紧张的影响下，3月以来，国际原油价格走势强劲，其中布伦特原油期货一度逼近120美元/桶，最新仍在105美元/桶左右。在原油价格大涨的带动下，多个受益板块表现强势，3月以来煤炭板块累计涨逾6%，煤化工板块涨逾22%，石油开采板块累计涨近15%。业内人士表示，中东地缘冲突持续加剧，霍尔木兹海峡航运受阻，导致近期国际油价持续飙升，短期油价或继续冲高。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679535276.html",
+      "title": "两部门发布境外放款新规：境内企业境外放款宏观 审慎调节系数上调至0.6",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "上海证券报",
+      "content": "境外放款新规释放跨境融资便利化新信号。3月20日，中国人民银行、国家外汇管理局联合发布《关于印发〈境内企业境外放款管理办法〉的通知》（下称《通知》），进一步支持和规范境内企业开展境外放款业务。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679534884.html",
+      "title": "从“买商品”到“买感觉” 体验经济带动多元消费",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "上海证券报",
+      "content": "从“买商品”到“买感觉”体验经济带动多元消费◎记者杨翔菲在浙江横店影视城，游客“穿越”进片场与演员互动；在苏州未来科幻馆，小朋友体验无人机足球；在扬州爱奇艺乐园，剧迷打卡《我的阿勒泰》中的张凤侠小卖部……一场场由“体验”引发的消费场景正不断上演。今年全国两会，“消费”依旧是高频议题，政府工作报告多次提及“消费”，既彰显了扩大内需、提振消费的坚定决心，也折射出消费市场的深刻变革。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679534555.html",
+      "title": "我国金融领域将迎来第一部管总的基础性法律 金融法草案向社会公开征求意见",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "上海证券报",
+      "content": "我国金融领域将迎来第一部管总的基础性法律金融法草案向社会公开征求意见◎记者张琼斯3月20日，司法部、中国人民银行、金融监管总局、中国证监会、国家外汇局在门户网站公布《中华人民共和国金融法（草案）》（简称“草案”），向社会公开征求意见。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679330659.html",
+      "title": "完善基本法律制度 金融法草案向社会征求意见",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "证券时报",
+      "content": "3月20日，司法部、中国人民银行、金融监管总局、中国证监会、国家外汇局联合公布《中华人民共和国金融法（草案）》，并向社会公开征求意见。草案共11章95条，聚焦完善金融基本法律制度，强化对金融各领域法律法规的协调统领，对涉及金融发展根本性、原则性、方向性问题明确法律要求，为加快建设金融强国提供坚实法治保障。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679330593.html",
+      "title": "前2个月全国吸收外资1614.5亿元",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "证券时报",
+      "content": "记者20日从商务部获悉，今年前2个月，全国新设立外商投资企业8631家，同比增长14%；实际使用外资金额1614.5亿元，同比下降5.7%。从行业看，制造业实际使用外资475.2亿元，服务业实际使用外资1112.2亿元。高技术产业实际使用外资632.1亿元，同比增长20.4%，占全国实际使用外资的39.2%，较去年同期提升8.5个百分点。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679330466.html",
+      "title": "LPR报价连续10个月维持不变",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "证券时报",
+      "content": "3月20日，中国人民银行授权全国银行间同业拆借中心公布的新一期贷款市场报价利率（LPR）维持上期报价不变，其中1年期LPR为3.0%，5年期以上LPR为3.5%。目前，LPR报价已连续10个月维持不变。从经济基本面看，开年以来我国经济运行总体平稳，外贸进出口等数据表现好于预期。今年1月，央行已出台一揽子货币金融政策措施，包括下调各类结构性货币政策工具利率0.25个百分点。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679330316.html",
+      "title": "两部门统一本外币境外放款管理 便利企业跨境融资",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "证券时报",
+      "content": "为提升资本项目开放水平，满足企业跨境运营资金合理需要，中国人民银行、国家外汇管理局3月20日联合发布《关于印发〈境内企业境外放款管理办法〉的通知》（以下简称《通知》），明确自4月20日起实施。《通知》将境内企业人民币和外币境外放款业务纳入统一管理，将境内企业境外放款纳入宏观审慎管理，并整体提高境外放款余额上限，进一步支持和规范境内企业开展境外放款业务。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679330140.html",
+      "title": "让企业在科技创新浪潮中“挑大梁”",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "证券时报",
+      "content": "“十五五”时期是基本实现社会主义现代化夯实基础、全面发力的关键时期，科技创新作为发展新质生产力的核心要素，被置于更加突出的核心位置。“十五五”规划纲要明确提出，要加快高水平科技自立自强，引领发展新质生产力，并对加强原始创新和关键核心技术攻关等进行了部署。其中，“强化企业科技创新主体地位”“建立企业研发准备金制度”等诸多新提法格外引起市场关注。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679521619.html",
+      "title": "金融法草案向社会公开征求意见",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "中国证券报",
+      "content": "●进一步明确中央银行职能定位●提升金融产品和服务规范性●健全金融市场稳定机制●完善金融消费者、投资者权益保护体制机制●着力完善金融风险处置机制●本报记者彭扬3月20日，司法部、中国人民银行、金融监管总局、中国证监会、国家外汇局在门户网站公布《中华人民共和国金融法（草案）》，向社会公开征求意见。制定金融法，是党中央作出的重要决策部署。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679521398.html",
+      "title": "推动人工智能在中央企业规模化落地",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "中国证券报",
+      "content": "3月19日，国务院国资委党委与中央企业党委（党组）开展理论学习中心组“人工智能+”专题联学，深入学习贯彻习近平总书记关于人工智能发展的重要指示精神，贯彻落实全国两会有关部署要求，坚持自立自强，突出应用导向，以更大力度推动国资央企充分发挥自身优势，体系化推进“人工智能+”产业创新和赋能应用，为我国人工智能产业健康有序发展贡献更大力量。国务院国资委党委书记、主任张玉卓主持联学。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679611059.html",
+      "title": "新华财经晚报：中央网信办全面规范短视频内容标注",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "新华财经",
+      "content": "【重点关注】·事关虚假摆拍、AI生成短视频等中央网信办全面规范短视频内容标注·拨款法案再度受挫美国土安全部“停摆”僵局持续·西班牙出台50亿欧元措施缓解中东局势对其经济社会影响【国内要闻】·3月21日，国家能源局发布2026年2月全国电动汽车充电设施数据。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679600590.html",
+      "title": "国家能源局：截至2月底全国电动汽车充电基础设施总数同比增长47.8%",
+      "published_at": "2026-03-21 00:00:00",
+      "source": "新华财经",
+      "content": "新华财经北京3月21日电3月21日，国家能源局发布2026年2月全国电动汽车充电设施数据。根据国家充电设施监测服务平台数据，截至2026年2月底，我国电动汽车充电基础设施（枪）总数达到2101万个，同比增长47.8%。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679529744.html",
+      "title": "伊朗发动大规模打击，还要全球追杀美以官员：在国外度假也“不再安全”！伊最高领袖新年致辞：发展“抵抗经济” 增强国家韧性",
+      "published_at": "2026-03-21 00:54:34",
+      "source": "每日经济新闻",
+      "content": "今年3月21日是伊朗传统节日诺鲁孜节，即伊朗新年。当地时间20日，伊朗最高领袖穆杰塔巴·哈梅内伊就传统节日诺鲁孜节，即伊朗新年发表贺词，将新一年的口号定为“在民族团结和国家安全的庇护下实现经济韧性”。伊朗最高领袖发表新年致辞：发展“抵抗经济”，增强国家韧性穆杰塔巴表示，过去一年伊朗经历多轮“军事与安全冲突”，造成包括军方指挥官和民众在内的人员伤亡。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679612730.html",
+      "title": "以投资消费良性循环为抓手 筑牢扩大内需战略根基",
+      "published_at": "2026-03-21 02:07:12",
+      "source": "中国经营网",
+      "content": "统筹促消费与扩投资，是建设强大国内市场的必然要求。近日发布的《中华人民共和国国民经济和社会发展第十五个五年规划纲要》（以下简称《纲要》）为扩大内需、推动高质量发展提供了根本遵循。在扩大有效投资方面，《纲要》明确提出“促进投资消费良性循环”。这一要求与党的二十届四中全会强调的“坚持扩大内需这个战略基点”“促进消费和投资、供给和需求良性互动”一脉相承。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679612395.html",
+      "title": "“十五五”交通蓝图定调：“一网四化”强韧性 跨境通道谋新局",
+      "published_at": "2026-03-21 02:13:05",
+      "source": "中国经营网",
+      "content": "交通是经济的脉络，也是文明的纽带。3月13日，《中华人民共和国国民经济和社会发展第十五个五年规划纲要》（以下简称《纲要》）正式发布，其中多个篇章涉及交通运输领域，描绘了未来五年交通强国建设新蓝图。《纲要》在阐述“构建现代化基础设施体系”这一部分提出，坚持适度超前、不过度超前，加强基础设施统筹规划，优化布局结构，促进集成融合，提升安全韧性和运营可持续性。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679339552.html",
+      "title": "政策红利+市场驱动 银行押注制造业中长期贷款",
+      "published_at": "2026-03-21 02:31:25",
+      "source": "中国经营网",
+      "content": "近来，包括国有大行、股份制银行、城商银行等在内的不少银行纷纷对旗下企业信用贷产品在额度提升、流程优化、利率优惠和准入门槛放宽等方面进行多方面升级。整体来看，2026年年初以来，商业银行在对公信贷业务领域积极布局、持续发力，规模实现快速增长。数据显示，2月企业中长期贷款新增8900亿元，创近三年单月同比多增的新高。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679612538.html",
+      "title": "连续12年写入《政府工作报告》 出口信用保险持续加码“稳外贸”",
+      "published_at": "2026-03-21 02:43:14",
+      "source": "中国经营网",
+      "content": "出口信用保险的价值正在不断凸显。2026年《政府工作报告》中提到，“推动外贸稳规模优结构。加大信贷、信保支持，扩大人民币跨境使用”。这已是《政府工作报告》自2009年以来第15次、2015年以来连续第12年明确提及“出口信用保险”有关内容。此外，《中国经营报》记者注意到，2026年以来，不到三个月时间，出口信用保险已被纳入多项国家及省市政府出台的政策文件中。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679611530.html",
+      "title": "构建“拎包入住”式创业环境 合肥高新区争创AI OPC创业生态示范区",
+      "published_at": "2026-03-21 02:52:16",
+      "source": "中国经营网",
+      "content": "“参加座谈会后的感触是，合肥高新区对经济新形势、行业新趋势的判断非常前沿，可以说走在全国前列。”“一人公司”（OnePersonCompany，以下简称“OPC”）创业者费宏飞日前向《中国经营报》记者感慨。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679611793.html",
+      "title": "对话OPC创业者：人工智能时代，“个体户”也能起势腾飞",
+      "published_at": "2026-03-21 02:55:30",
+      "source": "中国经营网",
+      "content": "近期，“一人公司”（OnePersonCompany，以下简称“OPC”）风潮席卷多地，成为各界热议话题。2026年全国两会期间，OPC也受到多位代表、委员关注。全国政协委员汪小帆表示：“OPC社区兴起，有利于更好激发包括高校毕业生在内的青年一代的创新创业活力。”全国政协委员周志华也认为，OPC的关键价值在于，让想创业的年轻人知道今天的人工智能技术能做些什么。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679611684.html",
+      "title": "超十地扎堆出台OPC扶持政策，谁是长三角“勇敢尝鲜者”？",
+      "published_at": "2026-03-21 02:58:15",
+      "source": "中国经营网",
+      "content": "“一人公司”（OnePersonCompany，以下简称“OPC”）旋风劲吹之下，多地密集推出了扶持政策，加速推进OPC社区落地步伐。据《中国经营报》记者不完全统计，自今年1月以来，仅在长三角地区，已有上海临港新片区、杭州市上城区、合肥高新区、无锡高新区、太仓市、常熟市、宿迁市等十余地推出OPC支持政策。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679611981.html",
+      "title": "成都数据集团探路“AI全链条”要素运营新范式",
+      "published_at": "2026-03-21 03:07:16",
+      "source": "中国经营网",
+      "content": "2025年，成都市累计完成规上企业智改数转4073家，累计项目投资总额达1508.7亿元，预计2026年人工智能核心产业规模达到1700亿元，人工智能相关企业数量超过1000家。《中国经营报》记者注意到，在成都数字经济蓬勃发展的背后，成都数据集团股份有限公司（以下简称“成都数据集团”）正通过布局数据要素市场化转型，深度融入全市发展大局。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679341359.html",
+      "title": "运营商互通再进一步 工信部批准5G消息新标准",
+      "published_at": "2026-03-21 03:25:27",
+      "source": "中国经营网",
+      "content": "5G消息有了最新进展。日前，据工业和信息化部（以下简称“工信部”）官方公告，批准包括《5G消息不同运营商业务互通设备技术要求》在内的453项行业标准。公告显示，此次标准规定了不同运营商5G消息业务网间互通设备的功能要求、协议要求、结算功能要求、运维管理要求、性能及可靠性要求、容灾要求、安全要求和同步要求。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679341234.html",
+      "title": "部分实际回款周期仍达9个月左右？车企60天账期承诺落地调查",
+      "published_at": "2026-03-21 03:43:17",
+      "source": "中国经营网",
+      "content": "“账期起算点不统一、验收流程被拉长、商业汇票变相延期甚至‘缩短账期’成了降价的筹码。”2026年全国两会期间，全国人大代表、骆驼股份董事长刘长来细数的这四大“软性拖延”，使得产业链账期治理成为焦点。自2025年6月新修订的《保障中小企业款项支付条例》实施、17家头部车企相继发布60天账期公开承诺以来，这场政策驱动的供应链纾困行动已落地数月。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679637027.html",
+      "title": "马面裙出海“圈粉”",
+      "published_at": "2026-03-21 05:54:25",
+      "source": "经济日报",
+      "content": "“今年年初的马面裙海外订单量，大概是去年同期的10倍！”山东曹县晟名服饰有限公司负责人侯国栋自豪地说。中国马面裙的海外订单迎来爆发式增长，侯国栋所在公司的快速发展，正是一个生动缩影。侯国栋告诉记者：“过去是外国客户要什么，我们就做什么；最近一年，我们在汉服设计中巧妙融入国际时尚元素，激发客户新需求。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679637367.html",
+      "title": "精准滴灌发展银发经济",
+      "published_at": "2026-03-21 05:54:26",
+      "source": "经济日报",
+      "content": "“十五五”规划纲要提出，“积极开发老年人力资源，大力发展银发经济”，凸显了银发经济在促进人口高质量发展中的重要作用。2025年12月，民政部等8部门联合印发《关于培育养老服务经营主体促进银发经济发展的若干措施》，提出“促进银发经济发展，更好满足老年人多层次多样化养老服务需求”，从培育经营主体、完善服务供给体系、优化发展环境等层面，为银发经济持续健康发展提供了制度保障。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679635825.html",
+      "title": "春假官宣 市场响应",
+      "published_at": "2026-03-21 05:54:26",
+      "source": "经济日报",
+      "content": "今年《政府工作报告》提出，支持有条件的地方推广中小学春秋假，落实职工带薪错峰休假制度。消息一出，多地响应，成都、南京、杭州等地纷纷官宣春假时间表，多与即将到来的清明或“五一”假期形成多日连休。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679342160.html",
+      "title": "北京海淀 科创优势转为产业胜势",
+      "published_at": "2026-03-21 05:54:27",
+      "source": "经济日报",
+      "content": "近日，来自北京海淀AI企业的重磅成果持续刷屏——智谱开源大模型GLM-5编程能力、Agent工程能力再创新高，字节跳动Seedance2.0视频生成能力“炸裂”，银河通用具身大模型机器人登上春晚后又赶场到科技庙会……当企业用实际行动助力中国AI产业从“跟跑”向“并跑”“领跑”跨越，北京海淀也立足国家使命、对标全球一流，用建设世界领先科技园区的城市宣言，以前瞻布局抢占发展先机。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679636266.html",
+      "title": "“开门服务”让更多资源为民所用",
+      "published_at": "2026-03-21 05:54:27",
+      "source": "经济日报",
+      "content": "春节假期，广东省汕头市统筹协调部分机关事业单位设施对外开放，推出479个房间、615个床位，为来汕游客提供应急住宿资源。这些公共房源床位在一定程度上缓解了游客住宿的燃眉之急，反映了城市面对旅游高峰压力时的主动作为。细数发现，利用培训用房、人才用房、机关周转房等资源接待游客，正成为部分旅游城市在旅游高峰时段的现实选择。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679635180.html",
+      "title": "“网售”新指标有啥不一样",
+      "published_at": "2026-03-21 05:54:28",
+      "source": "经济日报",
+      "content": "问：国家统计局发布的数据显示，1月份至2月份，全国网上商品和服务零售额为32546亿元，同比增长9.2%。这是国家统计局首次发布“网上商品和服务零售额”指标，同时停发“网上零售额”指标。为什么要发布这一新指标？我国消费市场呈现出哪些新趋势？答：这一重要调整并非简单的名称更换，而是为了让统计数据能够更全面、准确地反映我国消费发展状况。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679635015.html",
+      "title": "解答好中小微企业员工关切",
+      "published_at": "2026-03-21 05:54:28",
+      "source": "经济日报",
+      "content": "“落实民营经济促进法，完善配套法规政策制度体系，从法律和制度上保障平等使用生产要素、公平参与市场竞争、有效保护合法权益”，是“十五五”规划纲要提出的明确要求。在不同类型民营企业中，中小微企业规模较小，具有一定灵活性，在提供就业岗位、增强经济发展活力等方面发挥着重要作用。更好保障其员工的合法权益，关乎稳就业、稳民生。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679634719.html",
+      "title": "体验经济是一门大生意",
+      "published_at": "2026-03-21 05:54:28",
+      "source": "经济日报",
+      "content": "作为服务经济重要延伸的体验经济，随着市场规模的持续扩大，已不再是消费市场上不起眼的角色，而是逐步成为拉动内需、促进消费提质增效的关键力量。国家统计局日前公布了今年前两个月国民经济运行数据，其中有一个指标特别值得关注——在春节超长假期带动下，我国服务零售额增长5.6%，明显高于社会消费品零售总额2.8%的增速。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679634369.html",
+      "title": "搭上乡村振兴“数智快车”",
+      "published_at": "2026-03-21 05:54:28",
+      "source": "经济日报",
+      "content": "一系列多元场景逐渐兴起，让人工智能与乡村振兴的深度融合由局部试点、技术探索迈向系统推进、全面赋能的新阶段。一段时间以来，山东、辽宁、江苏等省份因地制宜，利用新技术新手段，推进服务业数智化，发展智慧农业。当前，人工智能技术的深度赋能，将通过农业领域智能化的深刻变革，为实现乡村全面振兴提供核心引擎与关键路径。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679635238.html",
+      "title": "找准“养海兴海”动力引擎",
+      "published_at": "2026-03-21 05:54:29",
+      "source": "经济日报",
+      "content": "近年来，我国海洋旅游业发展势头稳健，2025年实现增加值16273亿元，同比增长5.9%。打造海洋特色文化和旅游目的地，做强做优做大海洋产业，既是海洋经济发展的题中之义，也是推动向海图强的重要抓手。但必须认识到，打造海洋文旅目的地绝非简单的景观开发、景点堆砌，而是推动海洋文旅与多产业深度融合，实现从“靠海吃海”向“养海兴海”的高质量转型。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679633968.html",
+      "title": "“无废城市”建设提速",
+      "published_at": "2026-03-21 05:54:29",
+      "source": "经济日报",
+      "content": "“无废城市”是一种将固体废物环境影响降至最低的城市发展模式。近年来，各地区各部门立足资源禀赋和生态环境现状，持续推动固体废物综合利用与生态系统协同治理。自2018年建设试点启动以来，全国已经有113个地级及以上城市和8个地区开展“无废城市”建设。记者从生态环境部了解到，未来还将进一步高标准推进“无废城市”建设，畅通废弃物回收再利用循环渠道，助力绿色消费发展。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679633878.html",
+      "title": "多点发力推进贸易平衡发展 ——做好“开局之年”经济工作⑤",
+      "published_at": "2026-03-21 05:54:29",
+      "source": "经济日报",
+      "content": "今年的《政府工作报告》提出，积极扩大进口，推进贸易平衡发展。在全球经济增速放缓、贸易保护主义抬头的复杂环境下，我国主动谋划贸易平衡发展，既是应对外部经贸摩擦的战略选择，更是推动经济高质量发展的内在要求。专家表示，更好统筹进口和出口，有助于服务国内产业升级和消费升级，推动经济实现质的有效提升和量的合理增长。共享大市场机遇统计数据显示，2025年我国货物进出口顺差为8.5万亿元。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679523442.html",
+      "title": "增强粮食安全保障能力",
+      "published_at": "2026-03-21 05:54:29",
+      "source": "经济日报",
+      "content": "我国是个人口众多的大国，解决好吃饭问题始终是治国理政的头等大事。习近平总书记强调，保障粮食安全是一个永恒的课题，任何时候都不能放松。“十五五”规划纲要提出，“加强粮食等重要农产品供给保障”“增强粮食安全保障能力”。去年底召开的中央经济工作会议强调“毫不放松抓好粮食生产”，今年中央一号文件着眼于守牢国家粮食安全底线，对稳定发展粮油生产作出部署。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679523398.html",
+      "title": "金融法草案向社会公开征求意见",
+      "published_at": "2026-03-21 05:54:29",
+      "source": "经济日报",
+      "content": "新华社北京3月20日电3月20日，司法部、中国人民银行、金融监管总局、中国证监会、国家外汇局在门户网站公布《中华人民共和国金融法（草案）》，向社会公开征求意见。制定金融法，是党中央作出的重要决策部署。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679634216.html",
+      "title": "科学统筹深化税收征管改革",
+      "published_at": "2026-03-21 05:54:30",
+      "source": "经济日报",
+      "content": "今年3月，我国部署实施进一步深化税收征管改革迎来5周年。5年来，在各方通力合作、基层扎实推进和纳税人支持配合下，我国税收征管改革取得积极成效，法治化、精准化、便利化程度增强，藩篱进一步破除，税收成本持续下降。税收法制建设加快，现行18个税种已有14个制定法律，覆盖超80%的税收收入。东北、西南、西北、中南、华北、华东六大区域先后实现税务行政处罚裁量基准统一。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679523595.html",
+      "title": "李强对全国春季农业生产工作作出重要批示强调 高水平保障粮食等重要农产品稳定安全供给 为实现“十五五”良好开局提供有力支撑",
+      "published_at": "2026-03-21 05:54:30",
+      "source": "经济日报",
+      "content": "新华社北京3月20日电全国春季农业生产工作会议3月20日在河南省周口市召开。中共中央政治局常委、国务院总理李强日前对做好春季农业生产工作作出重要批示。批示指出：今年是“十五五”开局之年，做好“三农”工作、确保全年粮食和农业丰收意义重大。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679341695.html",
+      "title": "我国首艘集成式大型压裂船交付",
+      "published_at": "2026-03-21 05:56:32",
+      "source": "人民日报",
+      "content": "本报北京电（记者丁怡婷）我国首艘自主设计建造的集成式大型压裂工程船——“海洋石油696”近日在浙江舟山正式交付，填补了我国海上油气压裂增产技术与工程装备的空白。“海洋石油696”船长99.8米，型宽22米，甲板面积相当于3.5个篮球场大小，船舶尺寸在全球同类型船舶中位列第一。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679341954.html",
+      "title": "我国在超高强度碳纤维生产领域实现重大跨越",
+      "published_at": "2026-03-21 05:56:33",
+      "source": "人民日报",
+      "content": "据新华社北京电中国建材集团近日在北京发布我国自主研发的SYT80（T1200级）超高强度碳纤维。这一研发成果标志着我国在超高强度碳纤维生产领域实现了重大跨越。此次发布的SYT80超高强度碳纤维，工程化拉伸强度突破8000兆帕，是全世界第一款实现量产的T1200级碳纤维产品，达到了行业全球顶尖水平。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679659854.html",
+      "title": "《〈中华人民共和国国民经济和社会发展第十五个五年规划纲要〉辅导读本》出版",
+      "published_at": "2026-03-21 05:56:34",
+      "source": "人民日报",
+      "content": "新华社北京3月20日电由国家发展和改革委员会编写的《〈中华人民共和国国民经济和社会发展第十五个五年规划纲要〉辅导读本》一书，近日由人民出版社出版，在全国新华书店发行。本书紧扣“十五五”规划《纲要》篇章体系，包括45篇辅导文章，既全面阐释《纲要》的战略部署，又分专题解读《纲要》主要篇章的重点内容，是广大党员干部扎实推动《纲要》实施、社会各界系统全面理解《纲要》的权威辅导读物。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679659679.html",
+      "title": "四部门印发指引 规范平台企业开展劳动规则和算法协商",
+      "published_at": "2026-03-21 05:56:34",
+      "source": "人民日报",
+      "content": "本报北京3月20日电（记者易舒冉）记者从中华全国总工会了解到，中华全国总工会、人力资源社会保障部、中国企业联合会/中国企业家协会、中华全国工商业联合会联合印发《平台劳动规则和算法协商指引（试行）》。该指引旨在规范平台企业及其用工合作企业开展劳动规则和算法协商，加强新就业形态劳动者权益保障，推动构建和谐稳定的平台用工关系，促进平台经济持续健康发展。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679659551.html",
+      "title": "河北发布“人工智能+”典型案例",
+      "published_at": "2026-03-21 05:56:34",
+      "source": "人民日报",
+      "content": "本报石家庄3月20日电（记者史自强）河北省发展改革委近日发布《河北省“人工智能+”典型案例（2025年）名单》显示：人工智能技术与河北省智能制造、医药健康、社会治理、农业、商贸物流等领域深度融合，创新应用场景不断拓展。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679659397.html",
+      "title": "司法部法治政府建设年度报告发布 去年查纠涉企行政执法突出问题5.7万件次",
+      "published_at": "2026-03-21 05:56:34",
+      "source": "人民日报",
+      "content": "本报北京3月20日电（记者张璁）3月20日发布的司法部2025年法治政府建设年度报告显示：2025年全国共查纠涉企行政执法突出问题5.7万件次，为企业挽回经济损失289.7亿元，涉企行政检查总量同比下降33%，发现问题比例提升18.5个百分点，行政执法质效全面提升。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679341553.html",
+      "title": "第二艘国产大型邮轮出坞 武汉双柳长江大桥开通（记录中国）",
+      "published_at": "2026-03-21 05:56:34",
+      "source": "人民日报",
+      "content": "本报上海3月20日电3月20日，中国船舶集团上海外高桥造船有限公司码头，第二艘国产大型邮轮“爱达·花城号”顺利出坞，转入码头调试阶段，向年中试航、年底交付目标又近一步，标志着我国邮轮产业从“首艘突破”向“批量建造、体系成型”迈进。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679659232.html",
+      "title": "有奖发票试点城市投放奖金18.5亿元 三类违规情形将被重点查处",
+      "published_at": "2026-03-21 05:56:35",
+      "source": "人民日报",
+      "content": "本报北京3月20日电（记者王观）为进一步释放消费潜力，财政部、商务部、国家税务总局自2026年初起在50个城市开展为期6个月的有奖发票试点活动。截至3月12日，有奖发票试点城市已投放奖金18.5亿元，累计吸引2.3亿人次参与活动，促消费效果初显。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679659020.html",
+      "title": "9部门发布16条政策举措 促进旅行服务出口 扩大入境消费",
+      "published_at": "2026-03-21 05:56:35",
+      "source": "人民日报",
+      "content": "本报北京3月20日电近日，商务部、中央网信办、外交部、教育部、文化和旅游部等9部门印发《关于促进旅行服务出口扩大入境消费的政策措施》，从扩大入境旅游消费、便利入境商务活动、激活入境赛事消费、繁荣入境文娱消费、拓展入境健康消费、发展入境教育培训消费、完善保障措施等7方面提出16条具体政策举措。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679658618.html",
+      "title": "前2月快递业务量同比增长7.1% 拉动快递业务收入同比增长7.9%",
+      "published_at": "2026-03-21 05:56:36",
+      "source": "人民日报",
+      "content": "本报北京3月20日电记者3月20日从国家邮政局获悉：今年前2月，我国邮政行业寄递业务量累计完成331.4亿件，同比增长5.6%。其中，快递业务量累计完成304.9亿件，同比增长7.1%，拉动快递业务收入累计完成2385.4亿元，同比增长7.9%。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679658155.html",
+      "title": "我国森林面积和森林蓄积连续40年实现双增长",
+      "published_at": "2026-03-21 05:56:36",
+      "source": "人民日报",
+      "content": "本报北京3月20日电今年3月21日是第十四个国际森林日，主题为“森林与经济”。记者3月20日从国家林草局获悉：目前，我国森林面积达36.14亿亩，全国森林覆盖率达25.09%，森林蓄积量达209.88亿立方米，森林面积和森林蓄积连续40年实现双增长，成为全球增绿最多最快的国家。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679524163.html",
+      "title": "金融法草案向社会公开征求意见",
+      "published_at": "2026-03-21 05:56:36",
+      "source": "人民日报",
+      "content": "新华社北京3月20日电3月20日，司法部、中国人民银行、金融监管总局、中国证监会、国家外汇局在门户网站公布《中华人民共和国金融法（草案）》，向社会公开征求意见。制定金融法，是党中央作出的重要决策部署。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679524291.html",
+      "title": "李强对全国春季农业生产工作作出重要批示强调 高水平保障粮食等重要农产品稳定安全供给 为实现“十五五”良好开局提供有力支撑",
+      "published_at": "2026-03-21 05:56:37",
+      "source": "人民日报",
+      "content": "新华社北京3月20日电全国春季农业生产工作会议3月20日在河南省周口市召开。中共中央政治局常委、国务院总理李强日前对做好春季农业生产工作作出重要批示。批示指出：今年是“十五五”开局之年，做好“三农”工作、确保全年粮食和农业丰收意义重大。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679657348.html",
+      "title": "原油涨价，将影响我们身边这些商品的价格",
+      "published_at": "2026-03-21 06:09:02",
+      "source": "上观新闻",
+      "content": "石油价格飙升！布伦特原油价格从2月底的70美元/桶快速上涨，3月19日，已经触及111美元/桶，WTI原油也接近100美元/桶。根据美国能源信息署（EIA）报告，未来两个月布伦特原油价格将维持在每桶95美元以上。周末，国内油价将重回“9元时代”的消息传来，但石油价格上涨，恐怕不仅影响油价，还将影响多个终端消费品的价格。化纤工业链作为“化工之母”，石油涨价最先影响的是化纤工业。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679343148.html",
+      "title": "上海商办楼宇改为保租房，出租率飙升！闲置多年，一改就活？",
+      "published_at": "2026-03-21 06:29:02",
+      "source": "上观新闻",
+      "content": "窗外就是苏州河，直线600米到人民广场，楼内健身房、会客厅、咖啡馆、艺术画廊等公共配套齐全，每套租金价格1万元至4万元……位于黄浦区西藏中路728号的“苏河美欣公寓”堪称上海“天花板”级的保障性租赁住房。首批130多套住房最近已基本租罄。“苏河美欣公寓”也是上海市“商改保”政策首批落地项目之一。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679656759.html",
+      "title": "“十五五”如何制胜？上海社科院专家：读懂背后的动力、变化与韧性",
+      "published_at": "2026-03-21 06:30:03",
+      "source": "上观新闻",
+      "content": "当前世界百年变局加速演进，技术革命日新月异，中国怎么发展？如何开放？怎样与世界共赢？这些始终是国际社会十分期待了解的话题。3月19日，在2026年首场中外媒体学术沙龙上，聚焦“十五五”规划纲要，上海社会科学院专家详细解读了未来五年中国发展的新蓝图。上海社会科学院常务副院长干春晖研究员把“十五五”规划纲要的核心逻辑归纳为三个关键词：夯实基础、全面发力、做牢支撑。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679345742.html",
+      "title": "【早报】金融法草案向社会公开征求意见；关于霍尔木兹海峡通行，伊朗表态",
+      "published_at": "2026-03-21 07:00:00",
+      "source": "财联社",
+      "content": "宏观新闻1、李强对全国春季农业生产工作作出重要批示强调，全面落实全国两会精神，毫不放松抓好粮食生产，实施好新一轮千亿斤粮食产能提升行动，高水平保障粮食等重要农产品稳定安全供给，为实现“十五五”良好开局提供有力支撑。2、2026年3月20日，司法部、中国人民银行、金融监管总局、中国证监会、国家外汇局在门户网站公布《中华人民共和国金融法（草案）》，向社会公开征求意见。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679346279.html",
+      "title": "国家发展改革委：加快设立国家级并购基金",
+      "published_at": "2026-03-21 07:21:00",
+      "source": "中国证券报",
+      "content": "【国家发展改革委：加快设立国家级并购基金】3月20日，国家发展改革委主任郑栅洁主持召开民营企业座谈会时表示，将加快设立国家级并购基金，推动解决创业投资“退出难”问题，提高创投资本周转效率。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679345612.html",
+      "title": "北京发布122项未来产业细分任务",
+      "published_at": "2026-03-21 07:22:00",
+      "source": "北京商报",
+      "content": "【北京发布122项未来产业细分任务】3月20日，在北京市未来产业发展重点工作新闻发布会上，北京市经济和信息化局党组成员、副局长李辉介绍，北京在2025年未来产业发展指数中排名全球第二。一年来，北京推出开放众创6G通感算智融合试验装置、工程化液氢重卡等21项全球首创新技术新产品。为加速培育壮大未来产业，北京市围绕关键技术突破、新产品研制等，编制形成了《北京市未来产业2026年工作要点》，在6个方面实施122项细分任务。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679346966.html",
+      "title": "酒店业开始“养虾” 尚美数智酒店集团发布“小美龙虾”用于客房服务",
+      "published_at": "2026-03-21 07:25:04",
+      "source": "界面新闻",
+      "content": "【酒店业开始“养虾” 尚美数智酒店集团发布“小美龙虾”用于客房服务】记者从尚美数智酒店集团获悉，该公司已正式发布智能体硬件“尚小美”，并计划在尚客优、品睿、兰欧国际、雷神电竞等酒店落地应用，预计今年二季度起部分门店将开放体验。住客可通过客房内语音交互，让龙虾完成续住、退订及客房服务等操作，无需依赖前台或手机App。据悉，尚美数智酒店集团此前已与腾讯云在云端多智能体应用方面展开合作。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679522917.html",
+      "title": "朱克力：法治与协同双护航 低空经济行稳致远 | 立方大家谈",
+      "published_at": "2026-03-21 07:25:31",
+      "source": "大河财立方",
+      "content": "朱克力|立方大家谈专栏作者低空经济作为新质生产力的典型代表，是依托低空空域资源，融合航空器制造、电子信息、人工智能、物流运输、文旅服务、应急救援等多领域的复合型新兴产业，正从早期试点、小众应用大步走向规模化、产业化、普惠化发展新阶段，成为驱动经济高质量发展的重要新兴支柱产业。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679427064.html",
+      "title": "2月份民航旅客运输量6830.5万人次，同比增长11%",
+      "published_at": "2026-03-21 07:26:12",
+      "source": "界面新闻",
+      "content": "据民航局消息，2月份，民航旅客运输量6830.5万人次，同比增长11%。数据显示，2月份，民航国内航线旅客运输量6144.2万人次，同比增长10.5%；国际航线旅客运输量686.3万人次，同比增长15.6%。货邮运输方面，2月份，民航货邮运输量达74万吨，同比增长22.3%。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679430765.html",
+      "title": "西班牙出台50亿欧元措施，缓解中东局势对其经济社会影响",
+      "published_at": "2026-03-21 07:29:11",
+      "source": "界面新闻",
+      "content": "西班牙政府3月20日公布总额高达50亿欧元的一揽子措施，以缓解中东局势对西班牙经济社会造成的影响。西班牙首相佩德罗·桑切斯在当天特别部长会议后的新闻发布会上宣布，该方案包含80项措施，重点包括降低能源相关税负，向运输、农业等行业提供补贴，以及加强对弱势群体的社会保障支持等，旨在抑制能源价格上涨带来的连锁反应，稳定经济运行。这些措施将于21日正式生效。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679347645.html",
+      "title": "首提数智化 “十五五” 深入推进数字中国建设",
+      "published_at": "2026-03-21 07:34:00",
+      "source": "上海证券报",
+      "content": "【首提数智化 “十五五” 深入推进数字中国建设】多位专家在接受记者采访时表示，数智化发展，是指在数字化发展的基础上，引入智能化技术。“十五五”规划纲要将其独立成篇，意味着智能化已经成为数字中国建设的重要驱动力——未来五年，资源配置、重大项目布局、评价体系都将向这一方向集中，驱动全要素生产率实现革命性跃升。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679482156.html",
+      "title": "2月份民航旅客运输量6830.5万人次，同比增长11%",
+      "published_at": "2026-03-21 07:36:00",
+      "source": "南方财经网",
+      "content": "南方财经3月21日电，2月份，民航旅客运输量6830.5万人次，同比增长11%。数据显示，2月份，民航国内航线旅客运输量6144.2万人次，同比增长10.5%；国际航线旅客运输量686.3万人次，同比增长15.6%。货邮运输方面，2月份，民航货邮运输量达74万吨，同比增长22.3%。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679505121.html",
+      "title": "中东热钱涌入香港 从单纯避险到产业互补、价值成长 一级市场迎来新变局",
+      "published_at": "2026-03-21 07:57:56",
+      "source": "每日经济新闻",
+      "content": "【中东热钱涌入香港 从单纯避险到产业互补、价值成长 一级市场迎来新变局】当前，以中东资本为先锋的跨境资金，正加速向香港汇聚，港股配置、债券布局与家族办公室设立咨询量显著攀升，部分机构甚至计划将15%～20%的资产重新配置至香港市场。多位一线外币基金合伙人表示，东南亚、欧洲等地LP也在纷纷调整对中国市场的配置策略，形成“中国资产独立配置”的共识。中国一级市场迎来了外资LP从单纯避险到产业互补、价值成长的配置逻辑深层变革。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679601660.html",
+      "title": "找矿新突破！四川发现世界第二大在产轻稀土矿",
+      "published_at": "2026-03-21 07:59:27",
+      "source": "大河财立方",
+      "content": "作为新一轮找矿突破战略行动的一部分，中国稀土集团四川牦牛坪稀土矿深部找矿行动取得大捷：自然资源部评审备案显示，矿区新增稀土氧化物资源量966.6万吨，保有资源量累计达1040.8万吨，另新增伴生资源萤石2713.5万吨、重晶石3722.8万吨，均达到超大型规模。记者梳理发现，牦牛坪稀土矿系全球在产稀土矿山资源储量世界第二，仅次于内蒙古包头白云鄂博矿。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603203679488235.html",
+      "title": "金融法草案公开征求意见 北大田轩：金融法的制定能系统整合金融监管规则 厘清权责边界",
+      "published_at": "2026-03-21 08:01:58",
+      "source": "每日经济新闻",
+      "content": "【金融法草案公开征求意见 北大田轩：金融法的制定能系统整合金融监管规则 厘清权责边界】全国人大代表、北京大学博雅特聘教授田轩指出，制定金融领域基础性法律十分必要。虽然目前金融领域已有诸多法律，但多为单行法，与金融发展新趋势、监管新要求存在脱节，难以覆盖新兴业态与跨业经营风险。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679567515.html",
+      "title": "为加快建设金融强国提供坚实法治保障 金融法草案向社会公开征求意见",
+      "published_at": "2026-03-21 08:02:00",
+      "source": "中国证券报",
+      "content": "3月20日，司法部、中国人民银行、金融监管总局、中国证监会、国家外汇局在门户网站公布《中华人民共和国金融法（草案）》，向社会公开征求意见。制定金融法，是党中央作出的重要决策部署。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679557497.html",
+      "title": "更好满足企业跨境运营资金需要 境外放款余额上限提高",
+      "published_at": "2026-03-21 08:04:00",
+      "source": "中国证券报",
+      "content": "3月20日，中国人民银行、国家外汇管理局联合发布《关于印发〈境内企业境外放款管理办法〉的通知》，进一步支持和规范境内企业开展境外放款业务。其中，将境内企业境外放款宏观审慎调节系数由0.5上调至0.6，整体提高境外放款余额上限，更好满足企业跨境运营资金需要。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679522627.html",
+      "title": "【财经早报】A股第二高价股 提示风险",
+      "published_at": "2026-03-21 08:09:00",
+      "source": "中国证券报",
+      "content": "重要新闻提示《中华人民共和国金融法（草案）》向社会公开征求意见上交所官网显示，宇树科技科创板IPO申请已获受理A股第二高价股源杰科技，提示交易风险今日提示第114届全国糖酒会将于3月21日至25日在成都举行财经新闻1.3月20日，中国人民银行授权全国银行间同业拆借中心公布新一期贷款市场报价利率（LPR），1年期为3.0%，5年期以上为3.5%，已连续十个月保持平稳。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679522282.html",
+      "title": "金融法草案公开征求意见：建立健全金融市场风险快速反应机制 稳妥应对市场异常波动、市场恐慌、流动性枯竭等重大风险",
+      "published_at": "2026-03-21 08:09:30",
+      "source": "每日经济新闻",
+      "content": "3月20日，司法部、中国人民银行、金融监管总局、中国证监会、国家外汇局在门户网站公布《中华人民共和国金融法（草案）》，向社会公开征求意见。意见指出，国家加强金融市场风险监测，建立健全金融市场风险快速反应机制，稳妥应对市场异常波动、市场恐慌、流动性枯竭等重大风险。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679521245.html",
+      "title": "陕西“新质生产力”扎堆融资了",
+      "published_at": "2026-03-21 08:11:21",
+      "source": "每日经济新闻",
+      "content": "【陕西“新质生产力”扎堆融资了】3月份，陕西科技圈掀起了一波融资热潮。不到一个月的时间，四家陕西科创企业共斩获近8亿元融资，且普遍集中在A轮、A+轮及B轮等成长期阶段，资本对陕西“新质生产力”的关注度明显升温。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603203679495139.html",
+      "title": "国家定调！一场区域产业洗牌开始了",
+      "published_at": "2026-03-21 08:16:23",
+      "source": "每日经济新闻",
+      "content": "【国家定调！一场区域产业洗牌开始了】3月20日，“最强地级市”苏州在苏商大会上公布下一阶段要着力打造的十大重点新兴产业和十大重点未来产业，释放集中优势力量开辟新赛道的明确信号。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679531843.html",
+      "title": "国家电投集团与德国巴斯夫集团就进一步深化能源领域合作进行交流",
+      "published_at": "2026-03-21 08:17:00",
+      "source": "人民财讯",
+      "content": "人民财讯3月21日电，3月20日，国家电投集团总经理徐树彪在总部与德国巴斯夫集团全球采购部总裁马蒂亚斯·多恩（MatthiasDohrn）会谈，就进一步深化能源领域合作进行交流。未来，双方将进一步深化在绿色电力交易、绿色氢基能源、生物质燃料等多领域的务实合作。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679654510.html",
+      "title": "全球布局，浦东护航！解码中国企业出海 “新航道”",
+      "published_at": "2026-03-21 08:25:02",
+      "source": "上观新闻",
+      "content": "3月25日-28日，中国国际投资促进会主办的首届海外投资与综合服务展洽会将在上海东方枢纽国际商务合作区举办。作为大会的主题，“深化海外综合服务，促进投资互利共赢”深刻道出政府牵头引导各方力量，为市场提供更高质量“走出去”服务的迫切性——当中国企业全球化进入新阶段，如何破解出海痛点、规避投资风险，成为摆在政府与企业面前的共同课题。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679536714.html",
+      "title": "航司燃油费上涨预期走强 消费者开始提前“囤”机票",
+      "published_at": "2026-03-21 08:36:00",
+      "source": "南方财经网",
+      "content": "南方财经3月21日电，据证券日报，国际原油价格持续高位震荡，航司成本压力正加速向客户端传导。近期，国内多家航司密集上调国际航线燃油附加费，涨幅普遍在50%以上，部分航线甚至翻倍。虽然国内市场仍处于节后传统淡季，但随着燃油费上调预期持续走强，不少消费者开始提前预订两周后甚至一个月后的出行机票，试图锁定当前相对较低的出行成本。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679528529.html",
+      "title": "商务部部长王文涛会见礼来制药董事长兼首席执行官戴文睿",
+      "published_at": "2026-03-21 08:45:26",
+      "source": "人民财讯",
+      "content": "【商务部部长王文涛会见礼来制药董事长兼首席执行官戴文睿】3月20日，商务部部长王文涛会见礼来制药董事长兼首席执行官戴文睿。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679541961.html",
+      "title": "国家电投集团与德国巴斯夫集团就进一步深化能源领域合作进行交流",
+      "published_at": "2026-03-21 08:46:48",
+      "source": "界面新闻",
+      "content": "3月20日，国家电投集团总经理徐树彪在总部与德国巴斯夫集团全球采购部总裁马蒂亚斯·多恩（MatthiasDohrn）会谈，就进一步深化能源领域合作进行交流。未来，双方将进一步深化在绿色电力交易、绿色氢基能源、生物质燃料等多领域的务实合作。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679532577.html",
+      "title": "3月20日上海出口集装箱综合运价指数为1706.95点",
+      "published_at": "2026-03-21 08:49:00",
+      "source": "人民财讯",
+      "content": "人民财讯3月21日电，据上海航运交易所消息，本周，中国出口集装箱运输市场继续面临地缘局势紧张的考验，相关航线运输市场受到较大影响，其余航线受供需基本面的影响，出现分化走势，综合指数小幅下跌。3月20日，上海航运交易所发布的上海出口集装箱综合运价指数为1706.95点，较上期下跌0.2%。"
+    },
+    {
+      "url": "http://biz.eastmoney.com/a/202603213679653661.html",
+      "title": "2026闽商年度盛典在福建福州举办",
+      "published_at": "2026-03-21 09:06:05",
+      "source": "中国新闻网",
+      "content": "中新网福州3月21日电(记者李雪峰)以“新闽商、新价值、新担当”为主题的2026闽商年度盛典20日在福建福耀科技大学举办。福建省头部企业及上市公司负责人、新生代闽商代表、经济学者等400余位嘉宾齐聚一堂，共襄盛举。图为闽商年度盛典现场。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679553790.html",
+      "title": "新能源和智能化优势凸显！2月我国汽车海外销量同比增长52.4％",
+      "published_at": "2026-03-21 09:06:33",
+      "source": "华夏时报网",
+      "content": "中国汽车工业协会最新统计数据显示，2026年1至2月，我国汽车出口延续增长态势，累计出口达135.2万辆，同比增长48.4%。其中2月单月出口67.2万辆，同比增长52.4%。除了销量持续增长，能源结构也出现了变化。前两月新能源汽车出口58.3万辆，同比增长1.1倍，占出口总量的比重提升至43.1%。这意味着，每十辆驶向海外的中国汽车中，就有四辆以上是新能源汽车。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679551544.html",
+      "title": "中国石化建成全国最大车用LNG加注网络",
+      "published_at": "2026-03-21 09:10:00",
+      "source": "上海证券报·中国证券网",
+      "content": "上证报中国证券网讯3月20日，记者获悉，“十四五”以来，中国石化LNG累计加注量突破1700万吨，相较于柴油燃料减少二氧化碳排放1500万吨。截至目前，中国石化在营LNG加气站1150座，建成全国最大车用LNG加注网络。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679544366.html",
+      "title": "21评论丨适度宽松的货币政策有哪些重点？",
+      "published_at": "2026-03-21 09:14:00",
+      "source": "21世纪经济报道",
+      "content": "【21评论丨适度宽松的货币政策有哪些重点？】近日，中国人民银行党委召开扩大会议。会议明确，继续实施好适度宽松的货币政策。综合运用降准、买卖国债等工具保持流动性充裕，引导融资成本低位运行。此外，会议还明确将充分发挥中央银行宏观审慎管理和维护金融稳定功能，坚定维护股票、债券、外汇等金融市场平稳运行。研究建立特定情景下对非银金融机构的流动性支持机制。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679591838.html",
+      "title": "华夏时评：134亿美元重大外资项目的风向标",
+      "published_at": "2026-03-21 09:20:00",
+      "source": "华夏时报",
+      "content": "拉动经济增长，大项目有大使命。在“十五五”开局之年，重大外资项目更背负着双重使命。近日，国家发展改革委推出新一批13个标志性重大外资项目，计划投资额134亿美元。新入选项目主要集中在制造业，包括电子制造、化工、汽车、电气机械等领域，以促进产业集群加速发展。"
+    },
+    {
+      "url": "http://finance.eastmoney.com/a/202603213679557512.html",
+      "title": "金融法要来了！五大部门重磅发布3月20日起向社会公开征求意见",
+      "published_at": "2026-03-21 09:20:00",
+      "source": "21世纪经济报道",
+      "content": "2026年3月20日，司法部、中国人民银行、金融监管总局、中国证监会、国家外汇局在门户网站公布《中华人民共和国金融法（草案）》（以下简称草案），向社会公开征求意见。"
+    }
+  ]
+}

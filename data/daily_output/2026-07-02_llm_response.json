@@ -1,0 +1,1153 @@
+{
+  "decision": {
+    "regime": "risk_on",
+    "regime_reason": "盘后新鲜新闻强烈利好医药、科技、券商板块，且经济日历中美国ISM制造业PMI略低于预期但仍在扩张，整体风险偏好提升。",
+    "econ_drivers": [
+      {
+        "event": "美国6月ISM制造业PMI",
+        "importance": "high",
+        "direction": "-",
+        "impact": "公布值53.3低于预期54.0，但仍在扩张，对A股影响中性偏弱，美元可能小幅走弱，利好新兴市场。"
+      },
+      {
+        "event": "美国6月ADP就业人数变动",
+        "importance": "high",
+        "direction": "-",
+        "impact": "公布值9.8万低于预期11.8万，就业市场降温，美联储加息预期减弱，利好成长股。"
+      },
+      {
+        "event": "欧元区6月调和CPI年率初值",
+        "importance": "high",
+        "direction": "+",
+        "impact": "公布值2.8%低于预期3.0%，通胀放缓，欧央行加息压力减轻，全球流动性预期改善。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "雅本化学与恒瑞医药合作",
+        "etf": "512010",
+        "direction": "+",
+        "weight": 0.9
+      },
+      {
+        "title": "Meta拟出租过剩算力 美光闪迪大跌",
+        "etf": "588000",
+        "direction": "-",
+        "weight": 0.7
+      },
+      {
+        "title": "中信建投看好金刚石材料",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "殷勇会见GSMA CEO",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "翻倍基爆发 卡位科技",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "增量政策力挺AI一人公司",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "A股IPO保荐半年盘点",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "水井坊回复问询函",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "芝商所小麦价格大涨",
+        "etf": "159985",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "韩国股市暴跌 AI忧虑",
+        "etf": "588000",
+        "direction": "-",
+        "weight": 0.7
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.3,
+        "reason": "宽基指数受益于整体风险偏好提升，但盘后新闻利好有限，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": 0.2,
+        "reason": "大盘蓝筹受经济数据影响中性，盘后新闻无直接利好，小幅看好。"
+      },
+      {
+        "code": "510500",
+        "score": 0.4,
+        "reason": "中盘成长受益于科技和券商情绪，5日动量+2.17%，趋势向好。"
+      },
+      {
+        "code": "510330",
+        "score": 0.2,
+        "reason": "类似沪深300，盘后新闻无直接利好，中性偏多。"
+      },
+      {
+        "code": "159338",
+        "score": 0.3,
+        "reason": "中证A500受益于IPO保荐新闻，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": -0.5,
+        "reason": "黄金5日动量-2.87%，趋势走弱，盘后新闻无利好，温和看空。"
+      },
+      {
+        "code": "159985",
+        "score": 0.6,
+        "reason": "豆粕受小麦价格大涨带动，盘后新闻明确利好，温和看好。"
+      },
+      {
+        "code": "510880",
+        "score": -0.3,
+        "reason": "红利ETF5日动量-2.79%，趋势走弱，盘后新闻无利好，温和看空。"
+      },
+      {
+        "code": "512880",
+        "score": 0.7,
+        "reason": "证券ETF盘后新闻利好密集（IPO、液冷、融资），5日动量+5.85%，强烈看好。"
+      },
+      {
+        "code": "512010",
+        "score": 0.8,
+        "reason": "医药ETF盘后新闻强烈利好（雅本化学、和誉医药），5日动量+5.28%，强烈看好。"
+      },
+      {
+        "code": "159915",
+        "score": 0.1,
+        "reason": "创业板盘后新闻无直接利好，5日动量+0.38%，中性。"
+      },
+      {
+        "code": "588000",
+        "score": 0.5,
+        "reason": "科创50盘后新闻多空交织（AI利空但封测、制程利好），5日动量+9.26%，趋势强劲，温和看好。"
+      },
+      {
+        "code": "159949",
+        "score": 0.0,
+        "reason": "创业板50盘后新闻无直接利好，5日动量-0.88%，中性。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.6,
+    "summary_zh": "盘后新鲜新闻强烈利好医药、券商和科技板块，尤其是医药ETF和证券ETF获得多个明确利好信号；经济日历方面，美国ISM制造业PMI和ADP就业数据略低于预期，但整体仍支持风险偏好。今日建议部分仓位操作，重点配置医药、证券和科技ETF，仓位控制在60%左右。"
+  },
+  "prompt_hash": "4d5caa7c8d4129f4b1f62ca721fc6962",
+  "model": "deepseek-chat",
+  "usage": {
+    "prompt_tokens": 5821,
+    "completion_tokens": 1523,
+    "total_tokens": 7344,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 5821
+  },
+  "cache_hit": false,
+  "cached_at": "2026-07-02 09:26:35",
+  "econ_payload_snapshot": {
+    "date": "2026-07-02",
+    "source": "akshare_live",
+    "high_importance_events": [
+      {
+        "date": "2026-07-01",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区6月调和CPI年率-未季调初值(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "2.8",
+        "previous": "3.2"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区6月核心调和CPI年率-未季调初值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "2.2",
+        "previous": "2.3"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月ISM制造业PMI",
+        "importance": 2,
+        "expected": "54.0",
+        "actual": "53.3",
+        "previous": "54.0"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月失业率(%)",
+        "importance": 2,
+        "expected": "6.3",
+        "actual": "",
+        "previous": "6.3"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月耐用品订单月率修正值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-4.5"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国6月失业率(%)",
+        "importance": 2,
+        "expected": "4.3",
+        "actual": "",
+        "previous": "4.3"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国6月私营企业非农就业人数变动(万)",
+        "importance": 2,
+        "expected": "11.0",
+        "actual": "",
+        "previous": "12.0"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国6月非农就业人口变动季调后(万)",
+        "importance": 2,
+        "expected": "11.0",
+        "actual": "",
+        "previous": "17.2"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月工厂订单月率(%)",
+        "importance": 2,
+        "expected": "-1.8",
+        "actual": "",
+        "previous": "4.8"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-07-01",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至6月26日当周API原油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-405.0",
+        "actual": "-607.2",
+        "previous": "-76.5"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至6月26日当周API汽油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-90.6",
+        "actual": "-210.6",
+        "previous": "123.8"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月30日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "464.7",
+        "previous": "465.14"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月30日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "14922.22",
+        "previous": "14902.53"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月29日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "275598.2",
+        "previous": "276768.91"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月30日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1005.08",
+        "previous": "1005.08"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "07:00",
+        "region": "澳大利亚",
+        "event": "澳大利亚6月AIG制造业表现指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "-16.8",
+        "previous": "-22.4"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第二季度央行短观大型非制造业景气展望",
+        "importance": 2,
+        "expected": "30.0",
+        "actual": "28.0",
+        "previous": "29.0"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第二季度央行短观大型制造业景气展望",
+        "importance": 2,
+        "expected": "13.0",
+        "actual": "17.0",
+        "previous": "14.0"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第二季度央行短观大型非制造业指数",
+        "importance": 2,
+        "expected": "35.0",
+        "actual": "37.0",
+        "previous": "36.0"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第二季度央行短观大型制造业资本支出(%)",
+        "importance": 2,
+        "expected": "10.5",
+        "actual": "11.5",
+        "previous": "3.3"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第二季度央行短观大型制造业指数",
+        "importance": 2,
+        "expected": "16.0",
+        "actual": "22.0",
+        "previous": "17.0"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "08:30",
+        "region": "马来西亚",
+        "event": "马来西亚6月制造业PMI",
+        "importance": 2,
+        "expected": "",
+        "actual": "50.7",
+        "previous": "49.9"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月1日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-1048.0",
+        "previous": "1328.0"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月1日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国6月挑战者企业裁员人数(万)",
+        "importance": 2,
+        "expected": "",
+        "actual": "4.58",
+        "previous": "9.7"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "20:15",
+        "region": "美国",
+        "event": "美国6月ADP就业人数变动(万)",
+        "importance": 2,
+        "expected": "11.8",
+        "actual": "9.8",
+        "previous": "12.2"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至6月26日当周EIA原油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-446.6",
+        "actual": "-377.5",
+        "previous": "-608.8"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至6月26日当周EIA俄克拉荷马州-库欣原油库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "70.9",
+        "previous": "-107.7"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至6月26日当周EIA精炼油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-51.3",
+        "actual": "248.3",
+        "previous": "306.4"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至6月26日当周EIA每周原油进口变动(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "37.0",
+        "previous": "9.4"
+      },
+      {
+        "date": "2026-07-01",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至6月26日当周EIA汽油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-102.1",
+        "actual": "-233.3",
+        "previous": "206.4"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国7月1日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "464.35",
+        "previous": "464.7"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国7月1日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "14922.22",
+        "previous": "14922.22"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国7月1日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1005.36",
+        "previous": "1005.08"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月30日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "275598.2",
+        "previous": "275598.2"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚5月出口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "7.2"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚5月商品及服务贸易帐(亿澳元)",
+        "importance": 2,
+        "expected": "22.0",
+        "actual": "",
+        "previous": "17.91"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚5月进口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士6月CPI年率(%)",
+        "importance": 2,
+        "expected": "0.5",
+        "actual": "",
+        "previous": "0.6"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "14:40",
+        "region": "中国",
+        "event": "中国5月全社会用电量-每月(亿千瓦时)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "8205.0"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "14:40",
+        "region": "中国",
+        "event": "中国5月全社会用电量年率-每月(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "6.0"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月2日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月2日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-1048.0"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至7月1日当周燃料总库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "4218.6"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国6月平均每小时工资年率(%)",
+        "importance": 2,
+        "expected": "3.5",
+        "actual": "",
+        "previous": "3.4"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至6月27日当周初请失业金人数(万)",
+        "importance": 2,
+        "expected": "22.0",
+        "actual": "",
+        "previous": "21.5"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国6月制造业就业人口变动季调后(万)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "",
+        "previous": "0.7"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国6月劳动参与率(%)",
+        "importance": 2,
+        "expected": "61.8",
+        "actual": "",
+        "previous": "61.8"
+      },
+      {
+        "date": "2026-07-02",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至6月21日当周续请失业金人数(万)",
+        "importance": 2,
+        "expected": "181.0",
+        "actual": "",
+        "previous": "182.1"
+      }
+    ],
+    "has_high_impact_event": true
+  },
+  "news_summary_snapshot": [
+    {
+      "title": "雅本化学：与恒瑞医药合作覆盖临床前到商业化生产各阶段 在研项目维持在20个左右",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "512010": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "Meta拟出租过剩算力 美光、闪迪大跌超10%",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": -0.357,
+        "516510": -0.42
+      },
+      "negative": true,
+      "risk_flags": []
+    },
+    {
+      "title": "中信建投：金刚石高导热材料替代空间广阔 产业链相关标的具备长期投资价值",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512690": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "殷勇会见全球移动通信系统协会首席执行官",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "“翻倍基”全面爆发 卡位科技投资各显神通",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "增量政策力挺人工智能一人公司",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "A股IPO保荐半年盘点：三大券商领跑 中小投行借北交所突围",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "510300": 0.315,
+        "159338": 0.315,
+        "512880": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "水井坊回复上交所年报问询函：公司收入及利润变动趋势与行业整体保持一致 不存在偏离行业的异常情形",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "512690": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "芝商所小麦价格创5月以来最大涨幅 美国供应或趋紧",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "159985": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "韩国股市暴跌超6% AI忧虑正拖累芯片制造商",
+      "source": "futu_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "英媒： 白宫正加快人工智能模型标准制定计划",
+      "source": "futu_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "588000": 0.357,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "东方财富财经早餐 6月30日周二",
+      "source": "eastmoney_cjzc",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "美股软件股上涨 Guggenheim称AI不会成为软件行业“丧钟”",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.399
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "如何正确理解光伏装机数据大幅下跌？",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "515790": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "鸿擎科技完成超13亿元Pre-B轮融资",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "512880": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "imec预测2038年有望实现0.3纳米制程工艺",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "封测巨头涨价最高超过20% 先进封装行业有望迎新一轮价格上涨",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "588000": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "中信证券：液冷产业进入订单与业绩兑现阶段 建议把握三条主线机会",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "orders_and_delivery",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "512880": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "和誉医药与阿斯利康达成战略合作",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "512010": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    }
+  ],
+  "raw_response": {
+    "regime": "risk_on",
+    "regime_reason": "盘后新鲜新闻强烈利好医药、科技、券商板块，且经济日历中美国ISM制造业PMI略低于预期但仍在扩张，整体风险偏好提升。",
+    "econ_drivers": [
+      {
+        "event": "美国6月ISM制造业PMI",
+        "importance": "high",
+        "direction": "-",
+        "impact": "公布值53.3低于预期54.0，但仍在扩张，对A股影响中性偏弱，美元可能小幅走弱，利好新兴市场。"
+      },
+      {
+        "event": "美国6月ADP就业人数变动",
+        "importance": "high",
+        "direction": "-",
+        "impact": "公布值9.8万低于预期11.8万，就业市场降温，美联储加息预期减弱，利好成长股。"
+      },
+      {
+        "event": "欧元区6月调和CPI年率初值",
+        "importance": "high",
+        "direction": "+",
+        "impact": "公布值2.8%低于预期3.0%，通胀放缓，欧央行加息压力减轻，全球流动性预期改善。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "雅本化学与恒瑞医药合作",
+        "etf": "512010",
+        "direction": "+",
+        "weight": 0.9
+      },
+      {
+        "title": "Meta拟出租过剩算力 美光闪迪大跌",
+        "etf": "588000",
+        "direction": "-",
+        "weight": 0.7
+      },
+      {
+        "title": "中信建投看好金刚石材料",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "殷勇会见GSMA CEO",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "翻倍基爆发 卡位科技",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "增量政策力挺AI一人公司",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "A股IPO保荐半年盘点",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "水井坊回复问询函",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "芝商所小麦价格大涨",
+        "etf": "159985",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "韩国股市暴跌 AI忧虑",
+        "etf": "588000",
+        "direction": "-",
+        "weight": 0.7
+      },
+      {
+        "title": "白宫加快AI模型标准制定",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "美股软件股上涨",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "光伏装机数据下跌解读",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "鸿擎科技完成Pre-B轮融资",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "imec预测0.3纳米制程",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "封测巨头涨价",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "中信证券看好液冷产业",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.6
+      },
+      {
+        "title": "和誉医药与阿斯利康合作",
+        "etf": "512010",
+        "direction": "+",
+        "weight": 0.7
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.3,
+        "reason": "宽基指数受益于整体风险偏好提升，但盘后新闻利好有限，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": 0.2,
+        "reason": "大盘蓝筹受经济数据影响中性，盘后新闻无直接利好，小幅看好。"
+      },
+      {
+        "code": "510500",
+        "score": 0.4,
+        "reason": "中盘成长受益于科技和券商情绪，5日动量+2.17%，趋势向好。"
+      },
+      {
+        "code": "510330",
+        "score": 0.2,
+        "reason": "类似沪深300，盘后新闻无直接利好，中性偏多。"
+      },
+      {
+        "code": "159338",
+        "score": 0.3,
+        "reason": "中证A500受益于IPO保荐新闻，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": -0.5,
+        "reason": "黄金5日动量-2.87%，趋势走弱，盘后新闻无利好，温和看空。"
+      },
+      {
+        "code": "159985",
+        "score": 0.6,
+        "reason": "豆粕受小麦价格大涨带动，盘后新闻明确利好，温和看好。"
+      },
+      {
+        "code": "510880",
+        "score": -0.3,
+        "reason": "红利ETF5日动量-2.79%，趋势走弱，盘后新闻无利好，温和看空。"
+      },
+      {
+        "code": "512880",
+        "score": 0.7,
+        "reason": "证券ETF盘后新闻利好密集（IPO、液冷、融资），5日动量+5.85%，强烈看好。"
+      },
+      {
+        "code": "512010",
+        "score": 0.8,
+        "reason": "医药ETF盘后新闻强烈利好（雅本化学、和誉医药），5日动量+5.28%，强烈看好。"
+      },
+      {
+        "code": "159915",
+        "score": 0.1,
+        "reason": "创业板盘后新闻无直接利好，5日动量+0.38%，中性。"
+      },
+      {
+        "code": "588000",
+        "score": 0.5,
+        "reason": "科创50盘后新闻多空交织（AI利空但封测、制程利好），5日动量+9.26%，趋势强劲，温和看好。"
+      },
+      {
+        "code": "159949",
+        "score": 0.0,
+        "reason": "创业板50盘后新闻无直接利好，5日动量-0.88%，中性。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.6,
+    "summary_zh": "盘后新鲜新闻强烈利好医药、券商和科技板块，尤其是医药ETF和证券ETF获得多个明确利好信号；经济日历方面，美国ISM制造业PMI和ADP就业数据略低于预期，但整体仍支持风险偏好。今日建议部分仓位操作，重点配置医药、证券和科技ETF，仓位控制在60%左右。"
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "date": "2026-06-08",
+  "source": "split_fresh_stale",
+  "cutoff_time": "09:30",
+  "updated_at": "2026-06-08 18:49:22",
+  "fresh_theme_scores": {},
+  "fresh_accepted_count": 3,
+  "fresh_strong_count": 1,
+  "fresh_accepted_articles": [
+    {
+      "accepted": true,
+      "title": "行业速递",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-08/102451893.html?cxapp_link=true",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "解禁"
+        ],
+        "earnings": [
+          "营收"
+        ],
+        "technology_breakthrough": [
+          "首次",
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [
+        "亏损"
+      ],
+      "theme_scores": {
+        "510300": -0.142,
+        "159338": -0.315,
+        "516510": -0.315
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "华尔街原声",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-05/102451241.html?cxapp_link=true",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "重组"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "earnings": [
+          "业绩"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.142,
+        "159338": 0.315
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    }
+  ],
+  "stale_theme_scores": {},
+  "stale_accepted_count": 0,
+  "stale_strong_count": 0,
+  "stale_accepted_articles": [],
+  "theme_scores": {},
+  "scores": {},
+  "accepted_count": 3,
+  "strong_count": 1,
+  "weak_count": 2,
+  "article_count": 19,
+  "rejected_count": 16,
+  "accepted_articles": [
+    {
+      "accepted": true,
+      "title": "行业速递",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-08/102451893.html?cxapp_link=true",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "解禁"
+        ],
+        "earnings": [
+          "营收"
+        ],
+        "technology_breakthrough": [
+          "首次",
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [
+        "亏损"
+      ],
+      "theme_scores": {
+        "510300": -0.142,
+        "159338": -0.315,
+        "516510": -0.315
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "华尔街原声",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-05/102451241.html?cxapp_link=true",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "重组"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "earnings": [
+          "业绩"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.142,
+        "159338": 0.315
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    }
+  ],
+  "raw_articles": [
+    {
+      "title": "东方财富财经早餐 6月8日周一",
+      "content": "【东方财富财经早餐 6月8日周一】1、国常会：研究推进新型工业化有关工作，研究未来产业发展有关工作。2、国办发布关于加强监管防范风险，促进私募投资基金高质量发展的指导意见。3、住建部就《住房公积金管理条例（修订征求意见稿）》公开征求意见。",
+      "source": "eastmoney_cjzc",
+      "published_at": "2026-06-08 06:00:59",
+      "url": "http://finance.eastmoney.com/a/202606073762718177.html"
+    },
+    {
+      "title": "数据图解",
+      "content": "机构认为，全球食糖供需格局正从过剩向紧平衡甚至短缺修正；广西糖或进入去库存阶段，广东糖产量高于预期但销量承压，云南食糖本榨季产量有望创新高",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-08/102452127.html?cxapp_link=true"
+    },
+    {
+      "title": "霍尔木兹周报",
+      "content": "以色列打击伊朗西部和中部的军事目标；伊朗积极启动海峡收费条例起草；上周共5艘中国船只于海峡中通航",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-08/102452021.html?cxapp_link=true"
+    },
+    {
+      "title": "市场动态",
+      "content": "交易员已经重新预期美联储将在12月前加息25个基点，第二次加息的可能性约为16%",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-08/102451983.html?cxapp_link=true"
+    },
+    {
+      "title": "行业速递",
+      "content": "“大模型双雄”竞速A股+港股双上市，两家公司在技术研发侧重点、商业化路径等方面显著分化，但都处于营收高涨、高投入、大额亏损阶段，7月均迎首次大规模限售股解禁",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-08/102451893.html?cxapp_link=true"
+    },
+    {
+      "title": "商圈",
+      "content": "在这场资本与死神的拉锯中，彼得·蒂尔无疑是那个最先下注的玩家。他凭借一己之力，将抗衰老研究带入了生物医药的主流视野",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-07/102451829.html?cxapp_link=true"
+    },
+    {
+      "title": "周刊提前读",
+      "content": "【本文系数据通用户提前专享】资源高效循环利用成为绿色经济的战略核心，挖掘“城市矿山”迎来爆发期",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-06/102451556.html?cxapp_link=true"
+    },
+    {
+      "title": "CCI快报",
+      "content": "供给持续收缩，需求小幅回升，焦煤价格大幅上涨",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-05/102451522.html?cxapp_link=true"
+    },
+    {
+      "title": "光伏观察",
+      "content": "从需求端来看，终端整体仍维持低位运行，行业拐点尚需时间。出口退税优惠政策取消，行业韧性显现",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-05/102451256.html?cxapp_link=true"
+    },
+    {
+      "title": "市场速递",
+      "content": "MLCC概念近期资本市场热度较高",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-05/102451249.html?cxapp_link=true"
+    },
+    {
+      "title": "华尔街原声",
+      "content": "美国劳动力智能分析公司Revelio Labs总经理Evan Sohn认为，AI正对就业市场产生深远影响，但这种影响并非是单纯的破坏，而是正在对其进行结构性重组",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-05/102451241.html?cxapp_link=true"
+    },
+    {
+      "title": "今日热点",
+      "content": "前期热门板块MLCC、煤炭今日盘中调整，光纤概念维持强势，玻璃基板强势走高，大消费板块早间活跃",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-05/102451175.html?cxapp_link=true"
+    },
+    {
+      "title": "霍尔木兹日报",
+      "content": "昨日（6月4日）霍尔木兹海峡驶出两艘液体散货船，悬挂荷属安的列斯和科摩罗船旗，但尚未突破美军封锁",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-05/102451150.html?cxapp_link=true"
+    },
+    {
+      "title": "市场洞察",
+      "content": "摩根大通建议关注人工智能产业链、能源安全和机器人三大方向",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-04/102450749.html?cxapp_link=true"
+    },
+    {
+      "title": "权益周观察",
+      "content": "进入6月，一方面处于业绩真空期，另一方面，市场对于流动性有收缩预期，多家机构认为，6月A股难现此前涨势，大概率维持震荡",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true"
+    },
+    {
+      "title": "量化观察",
+      "content": "5月，高质量因子策略跑输沪深300指数3.86%",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-01/102449794.html?cxapp_link=true"
+    },
+    {
+      "title": "研报精华",
+      "content": "机构认为，受益方向分三层看：第一层是架构和设计，第二层是先进封装和测试，第三层是设备、材料和存储",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-01/102449699.html?cxapp_link=true"
+    },
+    {
+      "title": "风电观察",
+      "content": "2026年4月风电招标数据环比上涨263%，同比上涨154%",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-01/102449688.html?cxapp_link=true"
+    },
+    {
+      "title": "大宗观察",
+      "content": "下半年虽然发生“厄尔尼诺”事件的概率较高，但强弱程度仍有很大分歧，不同强度下，大宗商品价格波动斜率差异较大",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-01/102449681.html?cxapp_link=true"
+    }
+  ],
+  "confidence": 0.28,
+  "market_sentiment": 0.0,
+  "max_abs_theme": 0.0,
+  "hot_keywords": [],
+  "auto_news": {
+    "enabled": true,
+    "article_count": 19,
+    "confidence": 0.28,
+    "market_sentiment": 0.0,
+    "catalyst_hits": 6,
+    "max_abs_theme": 0.0
+  }
+}

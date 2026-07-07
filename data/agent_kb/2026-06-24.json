@@ -1,0 +1,503 @@
+{
+  "date": "2026-06-24",
+  "updated_at": "2026-06-24 12:42:31",
+  "competition_output": [
+    {
+      "symbol": "588000",
+      "symbol_name": "科创50ETF",
+      "volume": 74100
+    },
+    {
+      "symbol": "512880",
+      "symbol_name": "证券ETF",
+      "volume": 132600
+    }
+  ],
+  "is_empty_position": false,
+  "decision_summary_zh": "盘后新鲜新闻以央行逆回购、科技突破、新能源等利好为主，经济日历无高影响事件，市场情绪偏乐观。科创50、证券ETF趋势强劲，强烈看好；黄金、红利ETF趋势走弱，看空。今日建议partial仓位，仓位比例0.6。",
+  "market_context_zh": "市场风险偏好较强(510300:5日+0.47%; 159915:5日+4.08%; 588000:5日+9.71%)，90%仓位进攻",
+  "positions": [
+    {
+      "symbol": "588000",
+      "symbol_name": "科创50ETF",
+      "volume": 74100,
+      "reason": "科创50ETF5日动量+9.71%，趋势极强，盘后新闻有半导体利好，强烈看好。",
+      "related_news": [
+        {
+          "title": "韩国总统助理：三星电子、SK海力士正与韩国政府就下一阶段投资及选址展开磋商",
+          "url": "https://finance.eastmoney.com/a/202606243780594136.html",
+          "quality": "strong",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "title": "长川科技上半年业绩超预期 AI超级周期传导至测试设备环节",
+          "url": "https://finance.eastmoney.com/a/202606233779807451.html",
+          "quality": "weak",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "title": "东方财富财经早餐 6月24日周三",
+          "url": "http://finance.eastmoney.com/a/202606233780062661.html",
+          "quality": "strong",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "title": "华尔街原声",
+          "url": "https://database.caixin.com/2026-06-22/102456238.html?cxapp_link=true",
+          "quality": "strong",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "symbol": "512880",
+      "symbol_name": "证券ETF",
+      "volume": 132600,
+      "reason": "证券ETF5日动量+5.50%，趋势强劲，盘后新闻有券商相关利好，强烈看好。",
+      "related_news": [
+        {
+          "title": "天风证券：券商板块后续重点观察成交量峰值能否有效突破",
+          "url": "https://finance.eastmoney.com/a/202606243780389954.html",
+          "quality": "weak",
+          "direction": "中性",
+          "strength": 0.147
+        },
+        {
+          "title": "中信证券：银行板块有望向“高确定性权益资产”重估",
+          "url": "https://finance.eastmoney.com/a/202606243780387531.html",
+          "quality": "weak",
+          "direction": "中性",
+          "strength": 0.125
+        },
+        {
+          "title": "中信证券港股策略：关注高解禁比例标的及行业龙头解禁对股价的短期扰动",
+          "url": "https://finance.eastmoney.com/a/202606243780387372.html",
+          "quality": "weak",
+          "direction": "中性",
+          "strength": 0.125
+        },
+        {
+          "title": "中信证券：目前快递龙头估值极具吸引力 建议择机布局",
+          "url": "https://finance.eastmoney.com/a/202606243780386014.html",
+          "quality": "weak",
+          "direction": "中性",
+          "strength": 0.125
+        }
+      ]
+    }
+  ],
+  "news_stats": {
+    "article_count": 73,
+    "accepted_count": 4,
+    "strong_count": 0,
+    "confidence": 1.0,
+    "market_sentiment": 0.74,
+    "hot_keywords": [
+      "科创板",
+      "科创50",
+      "光伏",
+      "新能源",
+      "云计算",
+      "AI",
+      "黄金",
+      "金价",
+      "沪深300",
+      "沪指",
+      "白酒",
+      "消费"
+    ]
+  },
+  "news_digest": [
+    {
+      "title": "高盛二季度股票交易业务营收据悉将突破50亿美元 再创行业纪录",
+      "url": "https://finance.eastmoney.com/a/202606243780599161.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    },
+    {
+      "title": "央行今日开展6625亿元7天逆回购操作",
+      "url": "https://finance.eastmoney.com/a/202606243780598861.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "韩国总统助理：三星电子、SK海力士正与韩国政府就下一阶段投资及选址展开磋商",
+      "url": "https://finance.eastmoney.com/a/202606243780594136.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "Omdia：2026年全球智能手机平均售价将达565美元 厂商战略转向价值优先",
+      "url": "https://finance.eastmoney.com/a/202606243780539569.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    },
+    {
+      "title": "德冠新材：已具备批量生产石墨烯转移膜技术能力 锂电池绝缘膜已形成产品交付",
+      "url": "https://finance.eastmoney.com/a/202606243780521282.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "515790",
+          "symbol_name": "515790",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "豆包专业版采用三级阶梯定价方案 最高一年6000元",
+      "url": "https://finance.eastmoney.com/a/202606243780502863.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "宁德时代发布天恒钠电储能系统解决方案 钠电产业化应用机遇凸显",
+      "url": "https://finance.eastmoney.com/a/202606243780347589.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "515790",
+          "symbol_name": "515790",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "天风证券：券商板块后续重点观察成交量峰值能否有效突破",
+      "url": "https://finance.eastmoney.com/a/202606243780389954.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "中性",
+          "strength": 0.147
+        }
+      ]
+    },
+    {
+      "title": "中信证券：银行板块有望向“高确定性权益资产”重估",
+      "url": "https://finance.eastmoney.com/a/202606243780387531.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "510050",
+          "symbol_name": "上证50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "中性",
+          "strength": 0.125
+        }
+      ]
+    },
+    {
+      "title": "中信证券港股策略：关注高解禁比例标的及行业龙头解禁对股价的短期扰动",
+      "url": "https://finance.eastmoney.com/a/202606243780387372.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "510330",
+          "symbol_name": "华夏沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "中性",
+          "strength": 0.125
+        }
+      ]
+    },
+    {
+      "title": "专访国网冀北电力高级专家岳昊：算电协同目标下 电网要怎么干？",
+      "url": "https://finance.eastmoney.com/a/202606233779761533.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "偏多",
+          "strength": 0.42
+        },
+        {
+          "symbol": "515790",
+          "symbol_name": "515790",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "长川科技上半年业绩超预期 AI超级周期传导至测试设备环节",
+      "url": "https://finance.eastmoney.com/a/202606233779807451.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "偏多",
+          "strength": 0.42
+        },
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "510880",
+          "symbol_name": "红利ETF",
+          "direction": "中性",
+          "strength": 0.161
+        },
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    },
+    {
+      "title": "联邦快递2026财年全年营收947亿美元 同比增长7.7%",
+      "url": "https://finance.eastmoney.com/a/202606243780386959.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    },
+    {
+      "title": "中信证券：目前快递龙头估值极具吸引力 建议择机布局",
+      "url": "https://finance.eastmoney.com/a/202606243780386014.html",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "512690",
+          "symbol_name": "512690",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "中性",
+          "strength": 0.125
+        }
+      ]
+    },
+    {
+      "title": "东方财富财经早餐 6月24日周三",
+      "url": "http://finance.eastmoney.com/a/202606233780062661.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "商圈",
+      "url": "https://database.caixin.com/2026-06-23/102456737.html?cxapp_link=true",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "518880",
+          "symbol_name": "黄金ETF",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    },
+    {
+      "title": "华尔街原声",
+      "url": "https://database.caixin.com/2026-06-22/102456238.html?cxapp_link=true",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "研报精华",
+      "url": "https://database.caixin.com/2026-06-18/102455635.html?cxapp_link=true",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512690",
+          "symbol_name": "512690",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    }
+  ],
+  "econ_headlines": [
+    {
+      "time": "06:30",
+      "name": "美国6月22日iShares白银持仓-每日更新(吨)",
+      "importance": 2,
+      "region": "美国"
+    },
+    {
+      "time": "06:30",
+      "name": "美国6月22日SPDR黄金持仓-每日更新(吨)",
+      "importance": 2,
+      "region": "美国"
+    },
+    {
+      "time": "06:30",
+      "name": "美国6月18日COMEX黄金库存-每日更新(百盎司)",
+      "importance": 2,
+      "region": "美国"
+    },
+    {
+      "time": "06:30",
+      "name": "美国6月22日iShares黄金持仓-每日更新(吨)",
+      "importance": 2,
+      "region": "美国"
+    },
+    {
+      "time": "08:30",
+      "name": "澳大利亚截至6月21日当周ANZ消费者信心指数",
+      "importance": 2,
+      "region": "澳大利亚"
+    },
+    {
+      "time": "15:10",
+      "name": "中国6月23日上期所每日仓单变动-原油(桶)",
+      "importance": 2,
+      "region": "中国"
+    },
+    {
+      "time": "15:10",
+      "name": "中国6月23日上期所每日仓单变动-铜(吨)",
+      "importance": 2,
+      "region": "中国"
+    },
+    {
+      "time": "18:00",
+      "name": "英国6月CBI工业订单差值",
+      "importance": 2,
+      "region": "英国"
+    },
+    {
+      "time": "20:15",
+      "name": "美国截至6月6日当周ADP就业周度发布变动(万人)",
+      "importance": 2,
+      "region": "美国"
+    },
+    {
+      "time": "04:30",
+      "name": "美国截至6月19日当周API原油库存变动(万桶)",
+      "importance": 2,
+      "region": "美国"
+    },
+    {
+      "time": "04:30",
+      "name": "美国截至6月19日当周API汽油库存变动(万桶)",
+      "importance": 2,
+      "region": "美国"
+    },
+    {
+      "time": "06:30",
+      "name": "美国6月22日COMEX黄金库存-每日更新(百盎司)",
+      "importance": 2,
+      "region": "美国"
+    }
+  ],
+  "scope_note": "本智能体仅解答 A 股 ETF 日内配置、赛事实盘建议、已筛选新闻与持仓解读；不披露内部评分公式、闸门阈值与程序实现细节。"
+}

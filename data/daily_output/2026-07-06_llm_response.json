@@ -1,0 +1,469 @@
+{
+  "decision": {
+    "regime": "risk_on",
+    "regime_reason": "盘后新鲜新闻全面利好，覆盖宽基、科技、券商等板块，且经济日历中欧元区Sentix信心指数超预期，整体情绪偏多。",
+    "econ_drivers": [
+      {
+        "event": "欧元区5月零售销售年率",
+        "importance": "high",
+        "direction": "0",
+        "impact": "符合预期，对A股影响中性。"
+      },
+      {
+        "event": "欧元区5月零售销售月率",
+        "importance": "high",
+        "direction": "-",
+        "impact": "略低于预期，但前值上修，整体影响有限。"
+      },
+      {
+        "event": "美国6月ISM非制造业PMI",
+        "importance": "high",
+        "direction": "0",
+        "impact": "预期略低于前值，若公布值超预期可能压制A股，但尚未公布，需谨慎。"
+      },
+      {
+        "event": "欧元区7月Sentix投资者信心指数",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "大幅超预期，提振全球风险偏好，利好A股。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "权益周观察",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "权益周观察",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "商圈",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.38
+      },
+      {
+        "title": "东方财富财经早餐 7月6日周一",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "家庭财富",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "家庭财富",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.32
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻利好，财经早餐和家庭财富均指向沪深300，5日动量虽弱但放量，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": 0.3,
+        "reason": "盘后无直接新闻，5日动量小幅正，但量能不足，温和看好。"
+      },
+      {
+        "code": "510500",
+        "score": 0.3,
+        "reason": "盘后无直接新闻，5日动量小幅正，但量能一般，温和看好。"
+      },
+      {
+        "code": "510330",
+        "score": 0.2,
+        "reason": "盘后无直接新闻，5日动量略负，量能极低，中性偏弱。"
+      },
+      {
+        "code": "159338",
+        "score": 0.5,
+        "reason": "盘后新鲜新闻家庭财富利好，5日动量略负但量能正常，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": 0.6,
+        "reason": "盘后无直接新闻，但5日动量+3.36%趋势强劲，避险情绪支撑，温和看好。"
+      },
+      {
+        "code": "159985",
+        "score": 0.5,
+        "reason": "盘后无直接新闻，5日动量+2.89%趋势向好，量能放大，温和看好。"
+      },
+      {
+        "code": "510880",
+        "score": 0.6,
+        "reason": "盘后无直接新闻，5日动量+2.37%趋势向好，防御属性，温和看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻商圈利好，5日动量+4.34%趋势强劲，强烈看好。"
+      },
+      {
+        "code": "512010",
+        "score": 0.5,
+        "reason": "盘后无直接新闻，5日动量+8.36%趋势极强，但RSI 70接近超买，温和看好。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.6,
+    "summary_zh": "盘后新鲜新闻全面利好，覆盖沪深300、科技、券商等板块，且欧元区Sentix信心指数超预期提振情绪。今日高重要度事件美国ISM非制造业PMI尚未公布，适度保守，建议仓位60%。"
+  },
+  "prompt_hash": "333c014f421c8b01ad4b7609a37da6f9",
+  "model": "deepseek-chat",
+  "usage": {
+    "prompt_tokens": 2983,
+    "completion_tokens": 975,
+    "total_tokens": 3958,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 2983
+  },
+  "cache_hit": false,
+  "cached_at": "2026-07-06 18:12:32",
+  "econ_payload_snapshot": {
+    "date": "2026-07-06",
+    "source": "akshare_live",
+    "high_importance_events": [
+      {
+        "date": "2026-07-06",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月零售销售年率(%)",
+        "importance": 2,
+        "expected": "1.6",
+        "actual": "1.6",
+        "previous": "1.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区5月零售销售月率(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "0.2",
+        "previous": "-0.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国6月ISM非制造业PMI",
+        "importance": 2,
+        "expected": "54.0",
+        "actual": "",
+        "previous": "54.5"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球6月ANZ商品价格指数月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-1.0",
+        "previous": "0.7"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球6月ANZ商品价格指数年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "2.7",
+        "previous": "1.3"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:40",
+        "region": "中国",
+        "event": "中国5月全社会用电量年率-每月(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "6.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "14:40",
+        "region": "中国",
+        "event": "中国5月全社会用电量-每月(亿千瓦时)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "8205.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士6月季调后失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.1",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士6月未季调失业率(%)",
+        "importance": 2,
+        "expected": "3.1",
+        "actual": "2.9",
+        "previous": "3.1"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月6日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国7月6日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-4300.0",
+        "previous": "-1607.0"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "16:30",
+        "region": "欧元区",
+        "event": "欧元区6月Sentix投资者信心指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-13.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "16:30",
+        "region": "欧元区",
+        "event": "欧元区7月Sentix投资者信心指数",
+        "importance": 2,
+        "expected": "-10.0",
+        "actual": "-3.1",
+        "previous": "-13.4"
+      },
+      {
+        "date": "2026-07-06",
+        "time": "22:05",
+        "region": "全球",
+        "event": "全球6月供应链压力指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1.77"
+      }
+    ],
+    "has_high_impact_event": true
+  },
+  "news_summary_snapshot": [
+    {
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "588000": 0.357,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "商圈",
+      "source": "caixin_main",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "512880": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "东方财富财经早餐 7月6日周一",
+      "source": "eastmoney_cjzc",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "fund_flow",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "510300": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "家庭财富",
+      "source": "caixin_main",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "510300": 0.315,
+        "159338": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    }
+  ],
+  "raw_response": {
+    "regime": "risk_on",
+    "regime_reason": "盘后新鲜新闻全面利好，覆盖宽基、科技、券商等板块，且经济日历中欧元区Sentix信心指数超预期，整体情绪偏多。",
+    "econ_drivers": [
+      {
+        "event": "欧元区5月零售销售年率",
+        "importance": "high",
+        "direction": "0",
+        "impact": "符合预期，对A股影响中性。"
+      },
+      {
+        "event": "欧元区5月零售销售月率",
+        "importance": "high",
+        "direction": "-",
+        "impact": "略低于预期，但前值上修，整体影响有限。"
+      },
+      {
+        "event": "美国6月ISM非制造业PMI",
+        "importance": "high",
+        "direction": "0",
+        "impact": "预期略低于前值，若公布值超预期可能压制A股，但尚未公布，需谨慎。"
+      },
+      {
+        "event": "欧元区7月Sentix投资者信心指数",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "大幅超预期，提振全球风险偏好，利好A股。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "权益周观察",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "权益周观察",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "商圈",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.38
+      },
+      {
+        "title": "东方财富财经早餐 7月6日周一",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "家庭财富",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "家庭财富",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.32
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻利好，财经早餐和家庭财富均指向沪深300，5日动量虽弱但放量，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": 0.3,
+        "reason": "盘后无直接新闻，5日动量小幅正，但量能不足，温和看好。"
+      },
+      {
+        "code": "510500",
+        "score": 0.3,
+        "reason": "盘后无直接新闻，5日动量小幅正，但量能一般，温和看好。"
+      },
+      {
+        "code": "510330",
+        "score": 0.2,
+        "reason": "盘后无直接新闻，5日动量略负，量能极低，中性偏弱。"
+      },
+      {
+        "code": "159338",
+        "score": 0.5,
+        "reason": "盘后新鲜新闻家庭财富利好，5日动量略负但量能正常，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": 0.6,
+        "reason": "盘后无直接新闻，但5日动量+3.36%趋势强劲，避险情绪支撑，温和看好。"
+      },
+      {
+        "code": "159985",
+        "score": 0.5,
+        "reason": "盘后无直接新闻，5日动量+2.89%趋势向好，量能放大，温和看好。"
+      },
+      {
+        "code": "510880",
+        "score": 0.6,
+        "reason": "盘后无直接新闻，5日动量+2.37%趋势向好，防御属性，温和看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻商圈利好，5日动量+4.34%趋势强劲，强烈看好。"
+      },
+      {
+        "code": "512010",
+        "score": 0.5,
+        "reason": "盘后无直接新闻，5日动量+8.36%趋势极强，但RSI 70接近超买，温和看好。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.6,
+    "summary_zh": "盘后新鲜新闻全面利好，覆盖沪深300、科技、券商等板块，且欧元区Sentix信心指数超预期提振情绪。今日高重要度事件美国ISM非制造业PMI尚未公布，适度保守，建议仓位60%。"
+  }
+}

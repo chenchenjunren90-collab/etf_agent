@@ -1,0 +1,745 @@
+{
+  "decision": {
+    "regime": "risk_on",
+    "regime_reason": "美国ISM非制造业PMI超预期显示经济韧性，但盘后新鲜新闻强烈利好A股权益市场，且经济日历数据已落地，方向一致，市场情绪偏乐观。",
+    "econ_drivers": [
+      {
+        "event": "美国5月ISM非制造业PMI",
+        "importance": "high",
+        "direction": "+",
+        "impact": "美国服务业扩张超预期，提振全球风险偏好，利好A股外资流入。"
+      },
+      {
+        "event": "美国4月工厂订单月率",
+        "importance": "high",
+        "direction": "+",
+        "impact": "工厂订单超预期，显示制造业需求稳健，利好工业相关ETF。"
+      },
+      {
+        "event": "美国5月ADP就业人数变动",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "ADP就业略超预期，强化美国经济软着陆预期，利好A股。"
+      },
+      {
+        "event": "欧元区4月零售销售年率",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "欧元区零售销售超预期，外需改善利好出口导向型行业。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "权益周观察",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "权益周观察",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "东方财富财经早餐 6月3日周三",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.7
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻利好，经济数据超预期，但5日动量偏弱，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": 0.3,
+        "reason": "大盘蓝筹受益于经济数据利好，但5日动量-2.33%偏弱，谨慎看好。"
+      },
+      {
+        "code": "510500",
+        "score": -0.5,
+        "reason": "中盘成长5日动量-4.4%趋势走坏，经济数据利好有限，温和看空。"
+      },
+      {
+        "code": "510330",
+        "score": 0.6,
+        "reason": "与510300类似，盘后新闻利好，经济数据支撑，但动量偏弱。"
+      },
+      {
+        "code": "159338",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻利好，经济数据超预期，但5日动量-2.65%偏弱，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": -0.3,
+        "reason": "经济数据超预期降低避险需求，黄金5日动量-1.38%偏弱，温和看空。"
+      },
+      {
+        "code": "159985",
+        "score": -0.2,
+        "reason": "豆粕5日动量-0.29%横盘，经济数据影响中性，中性偏空。"
+      },
+      {
+        "code": "510880",
+        "score": 0.5,
+        "reason": "红利ETF 5日动量+3.77%趋势强劲，经济数据利好，但高股息防御属性在风险偏好提升时可能承压，温和看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.2,
+        "reason": "证券ETF 5日动量-2.75%偏弱，经济数据利好但券商弹性大，中性。"
+      },
+      {
+        "code": "512010",
+        "score": -0.4,
+        "reason": "医药ETF 5日动量-1.47%偏弱，经济数据利好有限，温和看空。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，美国ISM非制造业PMI和工厂订单超预期，显示经济韧性，利好A股风险偏好。盘后新鲜新闻强烈利好权益市场，与经济数据方向一致。综合判断，今日市场偏乐观，但考虑到高重要度事件较多，建议半仓操作，优先配置宽基ETF。"
+  },
+  "prompt_hash": "99e2ff4f84b9aa5cd1f8c14df626bd23",
+  "model": "deepseek-chat",
+  "usage": {
+    "prompt_tokens": 3262,
+    "completion_tokens": 1033,
+    "total_tokens": 4295,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 3262
+  },
+  "cache_hit": true,
+  "cached_at": "2026-06-04 21:30:22",
+  "econ_payload_snapshot": {
+    "date": "2026-06-04",
+    "source": "akshare_live",
+    "high_importance_events": [
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月工厂订单月率(%)",
+        "importance": 2,
+        "expected": "4.6",
+        "actual": "4.8",
+        "previous": "1.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月ISM非制造业PMI",
+        "importance": 2,
+        "expected": "53.8",
+        "actual": "54.5",
+        "previous": "53.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月耐用品订单月率修正值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "8.0",
+        "previous": "7.9"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售年率(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "1.0",
+        "previous": "1.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售月率(%)",
+        "importance": 2,
+        "expected": "-0.3",
+        "actual": "-0.4",
+        "previous": "-0.1"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API原油库存变动(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-675.7",
+        "previous": "-281.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API汽油库存变动(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "345.4",
+        "previous": "-319.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "283128.33",
+        "previous": "282828.69"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1028.0",
+        "previous": "1028.86"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "478.37",
+        "previous": "478.47"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.17",
+        "previous": "15080.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "07:00",
+        "region": "澳大利亚",
+        "event": "澳大利亚5月AIG制造业表现指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "-22.4",
+        "previous": "-27.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度季调后GDP季率(%)",
+        "importance": 2,
+        "expected": "0.5",
+        "actual": "0.3",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度GDP年率(%)",
+        "importance": 2,
+        "expected": "2.6",
+        "actual": "2.5",
+        "previous": "2.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月3日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-2238.0",
+        "previous": "-914.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月3日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "16:30",
+        "region": "英国",
+        "event": "英国5月政府官方净储备变动(亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-5.37",
+        "previous": "12.63"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "20:15",
+        "region": "加拿大",
+        "event": "加拿大5月储备资产总额(亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1269.29",
+        "previous": "1267.25"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "20:15",
+        "region": "美国",
+        "event": "美国5月ADP就业人数变动(万)",
+        "importance": 2,
+        "expected": "11.7",
+        "actual": "12.2",
+        "previous": "10.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA每周原油进口变动(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-24.9",
+        "previous": "36.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA俄克拉荷马州-库欣原油库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-58.3",
+        "previous": "-279.4"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA原油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-400.7",
+        "actual": "-797.4",
+        "previous": "-332.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA精炼油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-31.9",
+        "actual": "150.2",
+        "previous": "-210.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA汽油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-51.3",
+        "actual": "336.4",
+        "previous": "-257.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.17",
+        "previous": "15036.17"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "477.93",
+        "previous": "478.37"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1026.86",
+        "previous": "1028.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "283281.96",
+        "previous": "283128.33"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月商品及服务贸易帐(亿澳元)",
+        "importance": 2,
+        "expected": "18.0",
+        "actual": "17.91",
+        "previous": "-18.41"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月出口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "7.2",
+        "previous": "-2.7"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月进口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.8",
+        "previous": "14.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1.3",
+        "previous": "2.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.7",
+        "previous": "-0.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士5月CPI年率(%)",
+        "importance": 2,
+        "expected": "0.8",
+        "actual": "0.6",
+        "previous": "0.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月季调后失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.0",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月未季调失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.1",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-536.0",
+        "previous": "-2238.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周燃料总库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "3814.3",
+        "previous": "4428.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国5月挑战者企业裁员人数(万)",
+        "importance": 2,
+        "expected": "",
+        "actual": "9.7",
+        "previous": "8.34"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月30日当周初请失业金人数(万)",
+        "importance": 2,
+        "expected": "21.3",
+        "actual": "22.5",
+        "previous": "21.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月23日当周续请失业金人数(万)",
+        "importance": 2,
+        "expected": "178.0",
+        "actual": "177.7",
+        "previous": "178.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "22:05",
+        "region": "全球",
+        "event": "全球5月供应链压力指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1.82"
+      }
+    ],
+    "has_high_impact_event": true
+  },
+  "news_summary_snapshot": [
+    {
+      "title": "东方财富财经早餐 6月2日周二",
+      "source": "eastmoney_cjzc",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "510300": 0.315,
+        "159338": 0.315,
+        "588000": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "quality": "strong",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "510300": 0.315,
+        "159338": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "东方财富财经早餐 6月3日周三",
+      "source": "eastmoney_cjzc",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    }
+  ],
+  "raw_response": {
+    "regime": "risk_on",
+    "regime_reason": "美国ISM非制造业PMI超预期显示经济韧性，但盘后新鲜新闻强烈利好A股权益市场，且经济日历数据已落地，方向一致，市场情绪偏乐观。",
+    "econ_drivers": [
+      {
+        "event": "美国5月ISM非制造业PMI",
+        "importance": "high",
+        "direction": "+",
+        "impact": "美国服务业扩张超预期，提振全球风险偏好，利好A股外资流入。"
+      },
+      {
+        "event": "美国4月工厂订单月率",
+        "importance": "high",
+        "direction": "+",
+        "impact": "工厂订单超预期，显示制造业需求稳健，利好工业相关ETF。"
+      },
+      {
+        "event": "美国5月ADP就业人数变动",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "ADP就业略超预期，强化美国经济软着陆预期，利好A股。"
+      },
+      {
+        "event": "欧元区4月零售销售年率",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "欧元区零售销售超预期，外需改善利好出口导向型行业。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "权益周观察",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "权益周观察",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "东方财富财经早餐 6月3日周三",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.7
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻利好，经济数据超预期，但5日动量偏弱，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": 0.3,
+        "reason": "大盘蓝筹受益于经济数据利好，但5日动量-2.33%偏弱，谨慎看好。"
+      },
+      {
+        "code": "510500",
+        "score": -0.5,
+        "reason": "中盘成长5日动量-4.4%趋势走坏，经济数据利好有限，温和看空。"
+      },
+      {
+        "code": "510330",
+        "score": 0.6,
+        "reason": "与510300类似，盘后新闻利好，经济数据支撑，但动量偏弱。"
+      },
+      {
+        "code": "159338",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻利好，经济数据超预期，但5日动量-2.65%偏弱，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": -0.3,
+        "reason": "经济数据超预期降低避险需求，黄金5日动量-1.38%偏弱，温和看空。"
+      },
+      {
+        "code": "159985",
+        "score": -0.2,
+        "reason": "豆粕5日动量-0.29%横盘，经济数据影响中性，中性偏空。"
+      },
+      {
+        "code": "510880",
+        "score": 0.5,
+        "reason": "红利ETF 5日动量+3.77%趋势强劲，经济数据利好，但高股息防御属性在风险偏好提升时可能承压，温和看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.2,
+        "reason": "证券ETF 5日动量-2.75%偏弱，经济数据利好但券商弹性大，中性。"
+      },
+      {
+        "code": "512010",
+        "score": -0.4,
+        "reason": "医药ETF 5日动量-1.47%偏弱，经济数据利好有限，温和看空。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，美国ISM非制造业PMI和工厂订单超预期，显示经济韧性，利好A股风险偏好。盘后新鲜新闻强烈利好权益市场，与经济数据方向一致。综合判断，今日市场偏乐观，但考虑到高重要度事件较多，建议半仓操作，优先配置宽基ETF。"
+  }
+}

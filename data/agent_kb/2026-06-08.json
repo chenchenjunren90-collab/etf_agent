@@ -1,0 +1,168 @@
+{
+  "date": "2026-06-08",
+  "updated_at": "2026-06-08 18:49:30",
+  "competition_output": [
+    {
+      "symbol": "510880",
+      "symbol_name": "红利ETF",
+      "volume": 14600
+    }
+  ],
+  "is_empty_position": false,
+  "decision_summary_zh": "经济日历方面，日本GDP终值超预期但影响有限，中国外储超预期利好人民币资产；新闻方面，华尔街原声看好科技投资，但行业速递和权益周观察信号偏弱。ETF池中红利ETF趋势强劲，豆粕和医药趋势偏空，整体建议半仓操作。",
+  "market_context_zh": "宽基短期走弱(510300:5日-1.63%; 159915:5日-1.88%; 588000:5日-4.39%)，仅 15% 试探仓",
+  "positions": [
+    {
+      "symbol": "510880",
+      "symbol_name": "红利ETF",
+      "volume": 14600,
+      "reason": "红利ETF，5日涨幅+3.59%，趋势强劲，防御属性受青睐",
+      "related_news": []
+    }
+  ],
+  "news_stats": {
+    "article_count": 19,
+    "accepted_count": 3,
+    "strong_count": 1,
+    "confidence": 0.28,
+    "market_sentiment": 0.0,
+    "hot_keywords": []
+  },
+  "news_digest": [
+    {
+      "title": "行业速递",
+      "url": "https://database.caixin.com/2026-06-08/102451893.html?cxapp_link=true",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    },
+    {
+      "title": "华尔街原声",
+      "url": "https://database.caixin.com/2026-06-05/102451241.html?cxapp_link=true",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "权益周观察",
+      "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true",
+      "quality": "weak",
+      "screening_note": "弱信号新闻，已降权处理",
+      "linked_etfs": [
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.142
+        }
+      ]
+    }
+  ],
+  "econ_headlines": [
+    {
+      "time": "16:00",
+      "name": "中国5月黄金储备量(万盎司)",
+      "importance": 2,
+      "region": "中国"
+    },
+    {
+      "time": "16:00",
+      "name": "中国5月外汇储备(亿美元)",
+      "importance": 2,
+      "region": "中国"
+    },
+    {
+      "time": "07:50",
+      "name": "日本第一季度季调后名义GDP季率修正值(%)",
+      "importance": 2,
+      "region": "日本"
+    },
+    {
+      "time": "07:50",
+      "name": "日本4月贸易收支-央行基于海关数据季调后(亿日元)",
+      "importance": 2,
+      "region": "日本"
+    },
+    {
+      "time": "07:50",
+      "name": "日本第一季度季调后实际GDP季率终值(%)",
+      "importance": 2,
+      "region": "日本"
+    },
+    {
+      "time": "07:50",
+      "name": "日本第一季度季调后实际GDP年化季率修正值(%)",
+      "importance": 2,
+      "region": "日本"
+    },
+    {
+      "time": "15:00",
+      "name": "瑞士6月消费者信心指数-未季调",
+      "importance": 2,
+      "region": "瑞士"
+    },
+    {
+      "time": "15:10",
+      "name": "中国6月8日上期所每日仓单变动-原油(桶)",
+      "importance": 2,
+      "region": "中国"
+    },
+    {
+      "time": "15:10",
+      "name": "中国6月8日上期所每日仓单变动-铜(吨)",
+      "importance": 2,
+      "region": "中国"
+    },
+    {
+      "time": "16:30",
+      "name": "欧元区6月Sentix投资者信心指数",
+      "importance": 2,
+      "region": "欧元区"
+    },
+    {
+      "time": "18:00",
+      "name": "加拿大5月先行指标月率(%)",
+      "importance": 2,
+      "region": "加拿大"
+    },
+    {
+      "time": "23:00",
+      "name": "美国5月纽约联储1年通胀预期(%)",
+      "importance": 2,
+      "region": "美国"
+    }
+  ],
+  "scope_note": "本智能体仅解答 A 股 ETF 日内配置、赛事实盘建议、已筛选新闻与持仓解读；不披露内部评分公式、闸门阈值与程序实现细节。"
+}

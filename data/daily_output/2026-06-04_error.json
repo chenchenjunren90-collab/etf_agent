@@ -1,0 +1,17 @@
+{
+  "date": "2026-06-04",
+  "error": true,
+  "reason": "数据源质量不达标，终止预测",
+  "generated_at": "2026-06-04 21:29:26",
+  "partial_data": {
+    "news_signal_summary": {
+      "article_count": null,
+      "accepted_count": 3,
+      "source": "split_fresh_stale"
+    },
+    "econ_summary": {
+      "event_count": 173,
+      "source": "akshare_live"
+    }
+  }
+}

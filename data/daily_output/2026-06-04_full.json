@@ -1,0 +1,3147 @@
+{
+  "date": "2026-06-04",
+  "competition_output": [],
+  "news_signal": {
+    "date": "2026-06-04",
+    "source": "split_fresh_stale",
+    "cutoff_time": "09:30",
+    "updated_at": "2026-06-04 21:30:53",
+    "fresh_theme_scores": {
+      "510300": 0.315,
+      "159338": 0.315
+    },
+    "fresh_accepted_count": 1,
+    "fresh_strong_count": 1,
+    "fresh_accepted_articles": [
+      {
+        "accepted": true,
+        "title": "权益周观察",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "业绩"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      }
+    ],
+    "stale_theme_scores": {
+      "510300": 0.315,
+      "159338": 0.315,
+      "588000": 0.378,
+      "516510": 0.315
+    },
+    "stale_accepted_count": 2,
+    "stale_strong_count": 2,
+    "stale_accepted_articles": [
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 6月3日周三",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202606023757876430.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "突破"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 6月2日周二",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202606013756375746.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315,
+          "588000": 0.378
+        },
+        "risk_flags": []
+      }
+    ],
+    "theme_scores": {
+      "510300": 0.315,
+      "159338": 0.315
+    },
+    "scores": {
+      "510300": 0.315,
+      "159338": 0.315
+    },
+    "accepted_count": 3,
+    "strong_count": 3,
+    "weak_count": 0,
+    "article_count": 18,
+    "rejected_count": 15,
+    "accepted_articles": [
+      {
+        "accepted": true,
+        "title": "权益周观察",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "业绩"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 6月3日周三",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202606023757876430.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "突破"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 6月2日周二",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202606013756375746.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315,
+          "588000": 0.378
+        },
+        "risk_flags": []
+      }
+    ],
+    "raw_articles": [
+      {
+        "title": "东方财富财经早餐 6月4日周四",
+        "content": "【东方财富财经早餐 6月4日周四】1、新闻联播：长线外资看好中国，持续加码硬科技。2、特朗普：与伊朗谈判进展“非常顺利”，伊朗已同意不会拥有核武器。3、富时中国A50指数纳入兆易创新、澜起科技等股票。",
+        "source": "eastmoney_cjzc",
+        "published_at": "2026-06-04 06:00:55",
+        "url": "http://finance.eastmoney.com/a/202606033759360884.html"
+      },
+      {
+        "title": "东方财富财经早餐 6月3日周三",
+        "content": "【东方财富财经早餐 6月3日周三】1、国务院印发《加快农业农村现代化“十五五”规划》。2、腾讯云：DeepSeek-V4系列模型降价，最高降幅达97.5%。3、全球首条，正式开通！我国光通信技术实现重要突破。",
+        "source": "eastmoney_cjzc",
+        "published_at": "2026-06-03 06:00:57",
+        "url": "http://finance.eastmoney.com/a/202606023757876430.html"
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "content": "【东方财富财经早餐 6月2日周二】1、宇树科技IPO过会！冲刺A股“人形机器人第一股”。2、特朗普：黎以所有交火行动将立即停止，与伊朗的谈判正“快速推进”。3、智谱：建议A股发行并在科创板上市。",
+        "source": "eastmoney_cjzc",
+        "published_at": "2026-06-02 06:00:23",
+        "url": "http://finance.eastmoney.com/a/202606013756375746.html"
+      },
+      {
+        "title": "市场动态",
+        "content": "美国科技公司在5月份宣布的裁员人数达到近两年来最高水平，而与此同时，这些公司正大幅增加对人工智能(AI)的投入",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-04/102450973.html?cxapp_link=true"
+      },
+      {
+        "title": "华尔街原声",
+        "content": "加皇环球资产管理公司（RBC Global Asset Management）的美国固定收益主管Andrzej Skiba表示，随着AI领域庞大资本支出不断拉动GDP增长，美联储将不得不重新审视经济过热的风险，甚至可能需要考虑加息",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-04/102450929.html?cxapp_link=true"
+      },
+      {
+        "title": "今日热点",
+        "content": "三大指数调整、科创50仍上涨，存储芯片概念连续三日表现强势，煤炭行业整体再领涨，工业气体概念大涨。有色金属、商贸零售、电池等板块跌幅居前",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-04/102450883.html?cxapp_link=true"
+      },
+      {
+        "title": "霍尔木兹日报",
+        "content": "美伊近日出现新一轮军事冲突。特朗普6月3日表态仍积极，称美国同伊朗的谈判进展顺利，协议可能在本周末达成",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-04/102450857.html?cxapp_link=true"
+      },
+      {
+        "title": "商圈",
+        "content": "普尔特是本届特朗普政府中争议最大的人物之一 ，他的任命也再次引发美国政界的反对",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-04/102450760.html?cxapp_link=true"
+      },
+      {
+        "title": "市场洞察",
+        "content": "摩根大通建议关注人工智能产业链、能源安全和机器人三大方向",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-04/102450749.html?cxapp_link=true"
+      },
+      {
+        "title": "数据图解",
+        "content": "今年是AI浪潮下的第二个高考年，舆论更加聚焦在飞速迭代的AI技术对升学、就业所造成的影响，准大学生们面临着比往年更大的变化",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-03/102450596.html?cxapp_link=true"
+      },
+      {
+        "title": "市场速递",
+        "content": "市场交易热度和拥挤度达高位，止盈盘压力增加，资金面减持消息扰动明显。两大存储龙头的上市进程，亦是板块情绪和节奏重要变量",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-02/102450300.html?cxapp_link=true"
+      },
+      {
+        "title": "权益周观察",
+        "content": "进入6月，一方面处于业绩真空期，另一方面，市场对于流动性有收缩预期，多家机构认为，6月A股难现此前涨势，大概率维持震荡",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true"
+      },
+      {
+        "title": "量化观察",
+        "content": "5月，高质量因子策略跑输沪深300指数3.86%",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-01/102449794.html?cxapp_link=true"
+      },
+      {
+        "title": "研报精华",
+        "content": "机构认为，受益方向分三层看：第一层是架构和设计，第二层是先进封装和测试，第三层是设备、材料和存储",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-01/102449699.html?cxapp_link=true"
+      },
+      {
+        "title": "风电观察",
+        "content": "2026年4月风电招标数据环比上涨263%，同比上涨154%",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-01/102449688.html?cxapp_link=true"
+      },
+      {
+        "title": "大宗观察",
+        "content": "下半年虽然发生“厄尔尼诺”事件的概率较高，但强弱程度仍有很大分歧，不同强度下，大宗商品价格波动斜率差异较大",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-06-01/102449681.html?cxapp_link=true"
+      },
+      {
+        "title": "周刊提前读",
+        "content": "【本文系数据通用户提前专享】作为传统汽车工业高地，欧洲的技术变革与市场转型缓慢而必然，中国车企面临的监管与投资环境趋严，如何抓住“出海”窗口期？",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-30/102449349.html?cxapp_link=true"
+      },
+      {
+        "title": "CCI快报",
+        "content": "地缘溢价回吐，需求预期走弱，原油价格大幅下挫",
+        "source": "caixin_main",
+        "published_at": "",
+        "url": "https://database.caixin.com/2026-05-29/102449135.html?cxapp_link=true"
+      }
+    ],
+    "confidence": 0.2,
+    "market_sentiment": 0.315,
+    "max_abs_theme": 0.315,
+    "hot_keywords": [
+      "沪深300",
+      "沪指",
+      "中证A500",
+      "A500"
+    ],
+    "auto_news": {
+      "enabled": true,
+      "article_count": 18,
+      "confidence": 0.2,
+      "market_sentiment": 0.315,
+      "catalyst_hits": 1,
+      "max_abs_theme": 0.315
+    }
+  },
+  "econ_calendar": {
+    "date": "2026-06-04",
+    "lookback_days": 1,
+    "source": "akshare_live",
+    "events": [
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API原油库存变动(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-675.7",
+        "previous": "-281.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API汽油库存变动(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "345.4",
+        "previous": "-319.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "283128.33",
+        "previous": "282828.69"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1028.0",
+        "previous": "1028.86"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "478.37",
+        "previous": "478.47"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.17",
+        "previous": "15080.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "07:00",
+        "region": "澳大利亚",
+        "event": "澳大利亚5月AIG制造业表现指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "-22.4",
+        "previous": "-27.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度季调后GDP季率(%)",
+        "importance": 2,
+        "expected": "0.5",
+        "actual": "0.3",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度GDP年率(%)",
+        "importance": 2,
+        "expected": "2.6",
+        "actual": "2.5",
+        "previous": "2.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月3日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-2238.0",
+        "previous": "-914.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月3日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "16:30",
+        "region": "英国",
+        "event": "英国5月政府官方净储备变动(亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-5.37",
+        "previous": "12.63"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "20:15",
+        "region": "加拿大",
+        "event": "加拿大5月储备资产总额(亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1269.29",
+        "previous": "1267.25"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "20:15",
+        "region": "美国",
+        "event": "美国5月ADP就业人数变动(万)",
+        "importance": 2,
+        "expected": "11.7",
+        "actual": "12.2",
+        "previous": "10.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月工厂订单月率(%)",
+        "importance": 2,
+        "expected": "4.6",
+        "actual": "4.8",
+        "previous": "1.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月ISM非制造业PMI",
+        "importance": 2,
+        "expected": "53.8",
+        "actual": "54.5",
+        "previous": "53.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月耐用品订单月率修正值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "8.0",
+        "previous": "7.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA每周原油进口变动(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-24.9",
+        "previous": "36.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA俄克拉荷马州-库欣原油库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-58.3",
+        "previous": "-279.4"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA原油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-400.7",
+        "actual": "-797.4",
+        "previous": "-332.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA精炼油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-31.9",
+        "actual": "150.2",
+        "previous": "-210.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA汽油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-51.3",
+        "actual": "336.4",
+        "previous": "-257.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.17",
+        "previous": "15036.17"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "477.93",
+        "previous": "478.37"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1026.86",
+        "previous": "1028.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "283281.96",
+        "previous": "283128.33"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月商品及服务贸易帐(亿澳元)",
+        "importance": 2,
+        "expected": "18.0",
+        "actual": "17.91",
+        "previous": "-18.41"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月出口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "7.2",
+        "previous": "-2.7"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月进口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.8",
+        "previous": "14.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1.3",
+        "previous": "2.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.7",
+        "previous": "-0.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士5月CPI年率(%)",
+        "importance": 2,
+        "expected": "0.8",
+        "actual": "0.6",
+        "previous": "0.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月季调后失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.0",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月未季调失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.1",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-536.0",
+        "previous": "-2238.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周燃料总库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "3814.3",
+        "previous": "4428.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售年率(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "1.0",
+        "previous": "1.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售月率(%)",
+        "importance": 2,
+        "expected": "-0.3",
+        "actual": "-0.4",
+        "previous": "-0.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国5月挑战者企业裁员人数(万)",
+        "importance": 2,
+        "expected": "",
+        "actual": "9.7",
+        "previous": "8.34"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月30日当周初请失业金人数(万)",
+        "importance": 2,
+        "expected": "21.3",
+        "actual": "22.5",
+        "previous": "21.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月23日当周续请失业金人数(万)",
+        "importance": 2,
+        "expected": "178.0",
+        "actual": "177.7",
+        "previous": "178.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "22:05",
+        "region": "全球",
+        "event": "全球5月供应链压力指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1.82"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API每周成品油进口(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "33.4",
+        "previous": "-17.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API每周取暖油库存(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "49.8",
+        "previous": "24.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API馏分油库存变动(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-21.4",
+        "previous": "110.3"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API每周投产原油量(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "18.5",
+        "previous": "62.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API每周原油进口(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "54.3",
+        "previous": "-22.3"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API库欣原油库存变动(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-27.9",
+        "previous": "-287.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日COMEX黄金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "299.65",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日NYMEX铂金库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "4526.27",
+        "previous": "4526.76"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日COMEX白银库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3186781.18",
+        "previous": "3172008.18"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日NYMEX钯金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日NYMEX钯金库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "2389.25",
+        "previous": "2389.25"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日iShares黄金持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.1",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日SPDR黄金持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.86",
+        "previous": "-0.28"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日NYMEX铂金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.49",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日iShares白银持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-44.53",
+        "previous": "-37.99"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日COMEX白银库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "14772.99",
+        "previous": "7112.32"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:45",
+        "region": "新西兰",
+        "event": "新西兰第一季度出口量-季调后(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "2.7",
+        "previous": "-3.2"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:45",
+        "region": "新西兰",
+        "event": "新西兰第一季度贸易条件季率-未季调(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-2.0",
+        "previous": "3.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:45",
+        "region": "新西兰",
+        "event": "新西兰4月营建许可月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "10.9",
+        "previous": "-1.3"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:45",
+        "region": "新西兰",
+        "event": "新西兰4月营建许可年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "52.7",
+        "previous": "8.2"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:45",
+        "region": "新西兰",
+        "event": "新西兰第一季度进口价格-季调后(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.7",
+        "previous": "1.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:45",
+        "region": "新西兰",
+        "event": "新西兰第一季度出口价格-季调后(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-2.7",
+        "previous": "5.3"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "07:00",
+        "region": "澳大利亚",
+        "event": "澳大利亚5月AIG工业新订单指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "-34.6",
+        "previous": "-24.8"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "07:00",
+        "region": "澳大利亚",
+        "event": "澳大利亚5月AIG工业指数-所有工业季调后",
+        "importance": 1,
+        "expected": "",
+        "actual": "-26.5",
+        "previous": "-24.4"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "07:00",
+        "region": "澳大利亚",
+        "event": "澳大利亚5月AIG建筑业表现指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "-9.9",
+        "previous": "-19.3"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "08:30",
+        "region": "日本",
+        "event": "日本5月Jibun综合PMI终值",
+        "importance": 1,
+        "expected": "",
+        "actual": "51.1",
+        "previous": "51.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "08:30",
+        "region": "日本",
+        "event": "日本5月Jibun服务业PMI终值",
+        "importance": 1,
+        "expected": "",
+        "actual": "50.0",
+        "previous": "50.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度总固定资本支出季率-季调后(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.0",
+        "previous": "0.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度GDP最终消费支出季率-季调后(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.3",
+        "previous": "0.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度GDP价格指数季率-未季调(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.8",
+        "previous": "1.4"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "10:00",
+        "region": "越南",
+        "event": "越南5月贸易帐(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-52.1",
+        "previous": "-32.8"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "10:00",
+        "region": "越南",
+        "event": "越南5月零售销售额年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "11.8",
+        "previous": "12.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "10:00",
+        "region": "越南",
+        "event": "越南5月CPI年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "5.65",
+        "previous": "5.46"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "10:00",
+        "region": "越南",
+        "event": "越南5月进口年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "33.8",
+        "previous": "32.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "10:00",
+        "region": "越南",
+        "event": "越南5月工业产出年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "8.8",
+        "previous": "9.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "10:00",
+        "region": "越南",
+        "event": "越南5月出口年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "18.0",
+        "previous": "21.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月3日上期所每日仓单变动-白银(千克)",
+        "importance": 1,
+        "expected": "",
+        "actual": "5945.0",
+        "previous": "1965.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月3日上期所每日仓单变动-燃料油(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-5000.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月3日上期所每日仓单变动-黄金(千克)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "15:15",
+        "region": "南非",
+        "event": "南非5月汇丰银行整体经济PMI",
+        "importance": 1,
+        "expected": "",
+        "actual": "49.6",
+        "previous": "51.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "16:30",
+        "region": "英国",
+        "event": "英国5月储备资产总额(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "2256.05",
+        "previous": "2266.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月PPI年率(%)",
+        "importance": 1,
+        "expected": "4.9",
+        "actual": "4.9",
+        "previous": "2.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月PPI月率(%)",
+        "importance": 1,
+        "expected": "0.5",
+        "actual": "0.6",
+        "previous": "3.4"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "17:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯6月外汇干预(亿卢布)",
+        "importance": 1,
+        "expected": "2460.0",
+        "actual": "2082.0",
+        "previous": "1103.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "19:00",
+        "region": "美国",
+        "event": "美国截至5月29日当周MBA抵押贷款申请活动指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "252.8",
+        "previous": "259.4"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "19:00",
+        "region": "美国",
+        "event": "美国截至5月29日当周MBA抵押贷款申请活动指数周环比(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-2.5",
+        "previous": "-8.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "19:00",
+        "region": "美国",
+        "event": "美国截至5月29日当周MBA30年期固定抵押贷款利率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "6.57",
+        "previous": "6.65"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "19:00",
+        "region": "美国",
+        "event": "美国截至5月29日当周MBA抵押贷款购买指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "164.8",
+        "previous": "169.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "19:00",
+        "region": "美国",
+        "event": "美国截至5月29日当周MBA抵押贷款再融资活动指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "736.2",
+        "previous": "753.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "20:00",
+        "region": "巴西",
+        "event": "巴西4月季调后工业产值月率(%)",
+        "importance": 1,
+        "expected": "0.4",
+        "actual": "0.7",
+        "previous": "0.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "20:00",
+        "region": "巴西",
+        "event": "巴西4月未季调工业产值年率(%)",
+        "importance": 1,
+        "expected": "1.7",
+        "actual": "2.7",
+        "previous": "4.3"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大第一季度劳动生产率季率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.5",
+        "previous": "-0.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月扣除运输耐用品订单月率修正值(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1.1",
+        "previous": "1.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月扣除飞机非国防资本品出货月率修正值(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-1.0",
+        "previous": "-1.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月ISM非制造业PMI分项-企业活动指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "57.7",
+        "previous": "55.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月ISM非制造业新订单指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "57.3",
+        "previous": "53.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月扣除国防的工厂订单月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "4.7",
+        "previous": "0.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月扣除飞机非国防资本品订单月率修正值(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-1.0",
+        "previous": "-1.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月扣除运输的工厂订单月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1.3",
+        "previous": "1.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月ISM非制造业投入物价指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "71.3",
+        "previous": "70.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月ISM非制造业就业指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "47.9",
+        "previous": "48.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月扣除国防耐用品订单月率修正值(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "8.1",
+        "previous": "8.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月ISM非制造业库存指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "62.5",
+        "previous": "53.1"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月ISM非制造业供应商交付指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "55.2",
+        "previous": "56.8"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA每周投产原油量变动(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-9.0",
+        "previous": "65.2"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA原油总产量(万桶/日)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1370.7",
+        "previous": "1371.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA精炼厂设备利用率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "94.7",
+        "previous": "94.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周DOE汽油引伸需求(万桶/日)",
+        "importance": 1,
+        "expected": "",
+        "actual": "952.91",
+        "previous": "1005.64"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周DOE燃料乙醇库存(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "2460.6",
+        "previous": "2496.8"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA精炼厂设备利用率变动(%)",
+        "importance": 1,
+        "expected": "0.3",
+        "actual": "0.2",
+        "previous": "2.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA每周取暖油库存(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "25.5",
+        "previous": "30.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周DOE蒸馏油引伸需求(万桶/日)",
+        "importance": 1,
+        "expected": "",
+        "actual": "508.64",
+        "previous": "551.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA每周汽油产量变动(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-51.5",
+        "previous": "60.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA每周新配方汽油库存变动(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.7",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周DOE原油引伸需求(万桶/日)",
+        "importance": 1,
+        "expected": "",
+        "actual": "2124.3",
+        "previous": "1940.2"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA每周馏分油产量变动(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "9.8",
+        "previous": "7.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周DOE燃料乙醇总产量(万桶/日)",
+        "importance": 1,
+        "expected": "",
+        "actual": "110.8",
+        "previous": "108.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA每周成品油进口变动(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "62.6",
+        "previous": "-12.8"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国1周4个月国债竞拍-中标利率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.63",
+        "previous": "3.63"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国1周4个月国债竞拍-投标倍数(倍)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.15",
+        "previous": "3.01"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "00:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯4月实际零售销售年率(%)",
+        "importance": 1,
+        "expected": "2.7",
+        "actual": "6.5",
+        "previous": "6.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "00:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯4月失业率(%)",
+        "importance": 1,
+        "expected": "2.2",
+        "actual": "2.2",
+        "previous": "2.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "00:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯3月实际薪资年率(%)",
+        "importance": 1,
+        "expected": "7.1",
+        "actual": "8.1",
+        "previous": "8.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "00:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯4月GDP年率-每月(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "1.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "01:30",
+        "region": "巴西",
+        "event": "巴西截至5月25日当周外汇流-月初至周期日(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "28.05",
+        "previous": "-36.48"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "02:00",
+        "region": "巴西",
+        "event": "巴西5月贸易差额(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "78.23",
+        "previous": "105.37"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "05:00",
+        "region": "韩国",
+        "event": "韩国5月外汇储备(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "4269.9",
+        "previous": "4278.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日NYMEX钯金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-6.83",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日NYMEX钯金库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "2382.42",
+        "previous": "2389.25"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares黄金持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.44",
+        "previous": "-0.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX黄金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "153.62",
+        "previous": "299.65"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日NYMEX铂金库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "4526.27",
+        "previous": "4526.27"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares白银持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "-44.53"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日NYMEX铂金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "-0.49"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日SPDR黄金持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-1.14",
+        "previous": "-0.86"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX白银库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "6000.56",
+        "previous": "14772.99"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX白银库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3192781.74",
+        "previous": "3186781.18"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "08:30",
+        "region": "日本",
+        "event": "日本5月Jibun服务业PMI终值",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": ""
+      },
+      {
+        "date": "2026-06-04",
+        "time": "08:30",
+        "region": "日本",
+        "event": "日本5月Jibun综合PMI终值",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": ""
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "新西兰",
+        "event": "新西兰5月ANZ商品价格指数-纽元计价",
+        "importance": 1,
+        "expected": "",
+        "actual": "357.1",
+        "previous": "358.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "410.0",
+        "previous": "407.3"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "新西兰",
+        "event": "新西兰5月ANZ商品价格指数月率-纽元计价(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.3",
+        "previous": "-0.7"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "新西兰",
+        "event": "新西兰5月ANZ商品价格指数年率-纽元计价(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1.9",
+        "previous": "2.7"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士5月未季调CPI读数",
+        "importance": 1,
+        "expected": "",
+        "actual": "101.3",
+        "previous": "101.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士5月CPI月率(%)",
+        "importance": 1,
+        "expected": "0.3",
+        "actual": "0.2",
+        "previous": "0.3"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "西班牙",
+        "event": "西班牙4月季调后工业产出年率(%)",
+        "importance": 1,
+        "expected": "2.0",
+        "actual": "2.0",
+        "previous": "1.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-黄金(千克)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-燃料油(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "-5000.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-白银(千克)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "5945.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "英国",
+        "event": "英国5月乘用车新车登记(辆)",
+        "importance": 1,
+        "expected": "",
+        "actual": "160662.0",
+        "previous": "149247.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周中间馏分油燃料库存(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "729.7",
+        "previous": "896.4"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周轻馏分油燃料库存(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1149.6",
+        "previous": "1461.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周残剩油库存(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1935.0",
+        "previous": "2070.3"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国5月挑战者企业裁员年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.4",
+        "previous": "-20.9"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国5月挑战者企业裁员月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "16.0",
+        "previous": "38.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "19:30",
+        "region": "印度",
+        "event": "印度截至5月25日当周M3货币供应(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "12.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:00",
+        "region": "墨西哥",
+        "event": "墨西哥3月固定资产投资总额年率(%)",
+        "importance": 1,
+        "expected": "-3.1",
+        "actual": "-2.6",
+        "previous": "-4.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:00",
+        "region": "墨西哥",
+        "event": "墨西哥3月固定资产投资总额月率(%)",
+        "importance": 1,
+        "expected": "0.1",
+        "actual": "0.4",
+        "previous": "-0.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国第一季度单位劳动力成本季率修正值(%)",
+        "importance": 1,
+        "expected": "2.5",
+        "actual": "1.8",
+        "previous": "2.3"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月30日当周初请失业金人数四周均值(万)",
+        "importance": 1,
+        "expected": "",
+        "actual": "21.48",
+        "previous": "20.9"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国第一季度非农生产率季率修正值(%)",
+        "importance": 1,
+        "expected": "0.5",
+        "actual": "0.3",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "21:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯截至5月29日当周黄金与外汇储备(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "7538.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月25日当周EIA天然气隐含流量(亿立方英尺)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "920.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月25日当周EIA天然气库存变动(亿立方英尺)",
+        "importance": 1,
+        "expected": "1010.0",
+        "actual": "",
+        "previous": "920.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日4星期国债竞拍-高配置百分比(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "41.91"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日4星期国债竞拍-中标利率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.62"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日4星期国债竞拍-投标倍数(倍)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "2.76"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日8周国债竞拍-中标利率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.62"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日8周国债竞拍-投标倍数(倍)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.08"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日4星期国债竞拍-总金额(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "883.35"
+      }
+    ],
+    "high_importance_events": [
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月工厂订单月率(%)",
+        "importance": 2,
+        "expected": "4.6",
+        "actual": "4.8",
+        "previous": "1.5"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月ISM非制造业PMI",
+        "importance": 2,
+        "expected": "53.8",
+        "actual": "54.5",
+        "previous": "53.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月耐用品订单月率修正值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "8.0",
+        "previous": "7.9"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售年率(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "1.0",
+        "previous": "1.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售月率(%)",
+        "importance": 2,
+        "expected": "-0.3",
+        "actual": "-0.4",
+        "previous": "-0.1"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API原油库存变动(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-675.7",
+        "previous": "-281.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周API汽油库存变动(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "345.4",
+        "previous": "-319.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月1日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "283128.33",
+        "previous": "282828.69"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1028.0",
+        "previous": "1028.86"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "478.37",
+        "previous": "478.47"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.17",
+        "previous": "15080.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "07:00",
+        "region": "澳大利亚",
+        "event": "澳大利亚5月AIG制造业表现指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "-22.4",
+        "previous": "-27.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度季调后GDP季率(%)",
+        "importance": 2,
+        "expected": "0.5",
+        "actual": "0.3",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚第一季度GDP年率(%)",
+        "importance": 2,
+        "expected": "2.6",
+        "actual": "2.5",
+        "previous": "2.6"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月3日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-2238.0",
+        "previous": "-914.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月3日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "16:30",
+        "region": "英国",
+        "event": "英国5月政府官方净储备变动(亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-5.37",
+        "previous": "12.63"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "20:15",
+        "region": "加拿大",
+        "event": "加拿大5月储备资产总额(亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1269.29",
+        "previous": "1267.25"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "20:15",
+        "region": "美国",
+        "event": "美国5月ADP就业人数变动(万)",
+        "importance": 2,
+        "expected": "11.7",
+        "actual": "12.2",
+        "previous": "10.9"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA每周原油进口变动(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-24.9",
+        "previous": "36.0"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA俄克拉荷马州-库欣原油库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-58.3",
+        "previous": "-279.4"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA原油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-400.7",
+        "actual": "-797.4",
+        "previous": "-332.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA精炼油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-31.9",
+        "actual": "150.2",
+        "previous": "-210.7"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月29日当周EIA汽油库存变动(万桶)",
+        "importance": 2,
+        "expected": "-51.3",
+        "actual": "336.4",
+        "previous": "-257.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.17",
+        "previous": "15036.17"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "477.93",
+        "previous": "478.37"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1026.86",
+        "previous": "1028.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "283281.96",
+        "previous": "283128.33"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月商品及服务贸易帐(亿澳元)",
+        "importance": 2,
+        "expected": "18.0",
+        "actual": "17.91",
+        "previous": "-18.41"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月出口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "7.2",
+        "previous": "-2.7"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月进口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.8",
+        "previous": "14.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1.3",
+        "previous": "2.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.7",
+        "previous": "-0.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士5月CPI年率(%)",
+        "importance": 2,
+        "expected": "0.8",
+        "actual": "0.6",
+        "previous": "0.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月季调后失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.0",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月未季调失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.1",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-536.0",
+        "previous": "-2238.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周燃料总库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "3814.3",
+        "previous": "4428.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国5月挑战者企业裁员人数(万)",
+        "importance": 2,
+        "expected": "",
+        "actual": "9.7",
+        "previous": "8.34"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月30日当周初请失业金人数(万)",
+        "importance": 2,
+        "expected": "21.3",
+        "actual": "22.5",
+        "previous": "21.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月23日当周续请失业金人数(万)",
+        "importance": 2,
+        "expected": "178.0",
+        "actual": "177.7",
+        "previous": "178.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "22:05",
+        "region": "全球",
+        "event": "全球5月供应链压力指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1.82"
+      }
+    ],
+    "has_high_impact_event": true,
+    "is_data_release_day": true,
+    "event_count": 173,
+    "high_impact_count": 5,
+    "generated_at": "2026-06-04 21:30:54"
+  },
+  "llm_trace": {
+    "regime": "risk_on",
+    "regime_reason": "美国ISM非制造业PMI超预期显示经济韧性，但盘后新鲜新闻强烈利好A股权益市场，且经济日历数据已落地，方向一致，市场情绪偏乐观。",
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，美国ISM非制造业PMI和工厂订单超预期，显示经济韧性，利好A股风险偏好。盘后新鲜新闻强烈利好权益市场，与经济数据方向一致。综合判断，今日市场偏乐观，但考虑到高重要度事件较多，建议半仓操作，优先配置宽基ETF。",
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻利好，经济数据超预期，但5日动量偏弱，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": 0.3,
+        "reason": "大盘蓝筹受益于经济数据利好，但5日动量-2.33%偏弱，谨慎看好。"
+      },
+      {
+        "code": "510500",
+        "score": -0.5,
+        "reason": "中盘成长5日动量-4.4%趋势走坏，经济数据利好有限，温和看空。"
+      },
+      {
+        "code": "510330",
+        "score": 0.6,
+        "reason": "与510300类似，盘后新闻利好，经济数据支撑，但动量偏弱。"
+      },
+      {
+        "code": "159338",
+        "score": 0.7,
+        "reason": "盘后新鲜新闻利好，经济数据超预期，但5日动量-2.65%偏弱，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": -0.3,
+        "reason": "经济数据超预期降低避险需求，黄金5日动量-1.38%偏弱，温和看空。"
+      },
+      {
+        "code": "159985",
+        "score": -0.2,
+        "reason": "豆粕5日动量-0.29%横盘，经济数据影响中性，中性偏空。"
+      },
+      {
+        "code": "510880",
+        "score": 0.5,
+        "reason": "红利ETF 5日动量+3.77%趋势强劲，经济数据利好，但高股息防御属性在风险偏好提升时可能承压，温和看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.2,
+        "reason": "证券ETF 5日动量-2.75%偏弱，经济数据利好但券商弹性大，中性。"
+      },
+      {
+        "code": "512010",
+        "score": -0.4,
+        "reason": "医药ETF 5日动量-1.47%偏弱，经济数据利好有限，温和看空。"
+      }
+    ],
+    "econ_drivers": [
+      {
+        "event": "美国5月ISM非制造业PMI",
+        "importance": "high",
+        "direction": "+",
+        "impact": "美国服务业扩张超预期，提振全球风险偏好，利好A股外资流入。"
+      },
+      {
+        "event": "美国4月工厂订单月率",
+        "importance": "high",
+        "direction": "+",
+        "impact": "工厂订单超预期，显示制造业需求稳健，利好工业相关ETF。"
+      },
+      {
+        "event": "美国5月ADP就业人数变动",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "ADP就业略超预期，强化美国经济软着陆预期，利好A股。"
+      },
+      {
+        "event": "欧元区4月零售销售年率",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "欧元区零售销售超预期，外需改善利好出口导向型行业。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "权益周观察",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "权益周观察",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "东方财富财经早餐 6月2日周二",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.7
+      },
+      {
+        "title": "东方财富财经早餐 6月3日周三",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.7
+      }
+    ],
+    "hard_rules_applied": [],
+    "final_invest_ratio": 0.0,
+    "final_top_score": 58.32,
+    "rotation_tracker": {}
+  },
+  "llm_meta": {
+    "model": "deepseek-chat",
+    "usage": {
+      "prompt_tokens": 3262,
+      "completion_tokens": 1033,
+      "total_tokens": 4295,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 3262
+    },
+    "cache_hit": true,
+    "prompt_hash": "99e2ff4f84b9aa5cd1f8c14df626bd23",
+    "cached_at": "2026-06-04 21:30:22",
+    "prompt_version": "v6a",
+    "prompt_file": "decider_zh_v6a.md"
+  },
+  "strategy_result": {
+    "allocations": {},
+    "summary": {
+      "total_candidates_scored": 10,
+      "stocks_held": 0,
+      "capital_used": 0,
+      "cash_reserve": 500000,
+      "utilization_rate": 0.0,
+      "held_stocks": [],
+      "invest_ratio": 0.0,
+      "mode": "short_race_cash"
+    },
+    "date": "2026-06-04",
+    "ranked": [
+      {
+        "code": "510880",
+        "name": "红利ETF",
+        "category": "高股息防御",
+        "score": 58.32,
+        "historical_score": 57.6,
+        "fresh_theme_score": 75.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.5,
+        "stale_theme_raw": 0.0,
+        "theme_score": 75.0,
+        "theme_raw": 0.5,
+        "theme_reason": "LLM: 红利ETF 5日动量+3.77%趋势强劲，经济数据利好，但高股息防御属性在风险偏好提升时可能承压，温和看好。",
+        "pred_return": null,
+        "latest_price": 3.306,
+        "ret_1d": -0.03,
+        "ret_3d": 4.29,
+        "ret_5d": 3.77,
+        "ret_10d": 2.61,
+        "volume_ratio": 1.5,
+        "rsi": 61.0,
+        "macd_hist": 0.01,
+        "bollinger_position": 0.872,
+        "bollinger_width": 0.0159,
+        "price_position_20d": 0.811,
+        "above_ma": true,
+        "high_break": false,
+        "drawdown_5d": -0.03,
+        "trend_score": 61.44,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "159338",
+        "name": "中证A500ETF",
+        "category": "全市场",
+        "score": 57.38,
+        "historical_score": 54.6,
+        "fresh_theme_score": 85.0,
+        "stale_theme_score": 65.75,
+        "fresh_theme_raw": 0.7,
+        "stale_theme_raw": 0.32,
+        "theme_score": 85.0,
+        "theme_raw": 0.7,
+        "theme_reason": "LLM: 盘后新鲜新闻利好，经济数据超预期，但5日动量-2.65%偏弱，温和看好。",
+        "pred_return": null,
+        "latest_price": 1.287,
+        "ret_1d": 0.63,
+        "ret_3d": -1.61,
+        "ret_5d": -2.65,
+        "ret_10d": -0.92,
+        "volume_ratio": 0.75,
+        "rsi": 35.6,
+        "macd_hist": -0.0053,
+        "bollinger_position": 0.219,
+        "bollinger_width": 0.0118,
+        "price_position_20d": 0.136,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.61,
+        "trend_score": 42.9,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510300",
+        "name": "沪深300ETF",
+        "category": "全市场",
+        "score": 52.87,
+        "historical_score": 55.1,
+        "fresh_theme_score": 71.7,
+        "stale_theme_score": 65.75,
+        "fresh_theme_raw": 0.7,
+        "stale_theme_raw": 0.32,
+        "theme_score": 71.7,
+        "theme_raw": 0.7,
+        "theme_reason": "LLM: 盘后新鲜新闻利好，经济数据超预期，但5日动量偏弱，温和看好。",
+        "pred_return": null,
+        "latest_price": 4.904,
+        "ret_1d": 0.74,
+        "ret_3d": -0.57,
+        "ret_5d": -1.37,
+        "ret_10d": 0.72,
+        "volume_ratio": 0.27,
+        "rsi": 39.7,
+        "macd_hist": -0.0099,
+        "bollinger_position": 0.475,
+        "bollinger_width": 0.0102,
+        "price_position_20d": 0.459,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -0.57,
+        "trend_score": 43.13,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510330",
+        "name": "华夏沪深300ETF",
+        "category": "全市场",
+        "score": 49.84,
+        "historical_score": 55.0,
+        "fresh_theme_score": 68.6,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.6,
+        "stale_theme_raw": 0.0,
+        "theme_score": 68.6,
+        "theme_raw": 0.6,
+        "theme_reason": "LLM: 与510300类似，盘后新闻利好，经济数据支撑，但动量偏弱。",
+        "pred_return": null,
+        "latest_price": 5.106,
+        "ret_1d": 0.61,
+        "ret_3d": -0.56,
+        "ret_5d": -1.45,
+        "ret_10d": 0.81,
+        "volume_ratio": 0.09,
+        "rsi": 39.9,
+        "macd_hist": -0.01,
+        "bollinger_position": 0.48,
+        "bollinger_width": 0.0102,
+        "price_position_20d": 0.452,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -0.56,
+        "trend_score": 41.93,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "512880",
+        "name": "证券ETF",
+        "category": "券商周期",
+        "score": 44.63,
+        "historical_score": 40.0,
+        "fresh_theme_score": 60.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.2,
+        "stale_theme_raw": 0.0,
+        "theme_score": 60.0,
+        "theme_raw": 0.2,
+        "theme_reason": "LLM: 证券ETF 5日动量-2.75%偏弱，经济数据利好但券商弹性大，中性。",
+        "pred_return": null,
+        "latest_price": 1.027,
+        "ret_1d": -0.77,
+        "ret_3d": 0.59,
+        "ret_5d": -2.75,
+        "ret_10d": -2.75,
+        "volume_ratio": 0.47,
+        "rsi": 29.0,
+        "macd_hist": -0.003,
+        "bollinger_position": 0.187,
+        "bollinger_width": 0.0241,
+        "price_position_20d": 0.074,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.53,
+        "trend_score": 42.1,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510050",
+        "name": "上证50ETF",
+        "category": "大盘蓝筹",
+        "score": 44.38,
+        "historical_score": 40.8,
+        "fresh_theme_score": 59.3,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.3,
+        "stale_theme_raw": 0.0,
+        "theme_score": 59.3,
+        "theme_raw": 0.3,
+        "theme_reason": "LLM: 大盘蓝筹受益于经济数据利好，但5日动量-2.33%偏弱，谨慎看好。",
+        "pred_return": null,
+        "latest_price": 2.975,
+        "ret_1d": 0.24,
+        "ret_3d": -0.34,
+        "ret_5d": -2.33,
+        "ret_10d": -1.69,
+        "volume_ratio": 0.26,
+        "rsi": 27.7,
+        "macd_hist": -0.0099,
+        "bollinger_position": 0.179,
+        "bollinger_width": 0.0168,
+        "price_position_20d": 0.045,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.1,
+        "trend_score": 41.68,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "159985",
+        "name": "豆粕ETF",
+        "category": "商品避险",
+        "score": 38.6,
+        "historical_score": 44.4,
+        "fresh_theme_score": 40.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": -0.2,
+        "stale_theme_raw": 0.0,
+        "theme_score": 40.0,
+        "theme_raw": -0.2,
+        "theme_reason": "LLM: 豆粕5日动量-0.29%横盘，经济数据影响中性，中性偏空。",
+        "pred_return": null,
+        "latest_price": 2.054,
+        "ret_1d": -0.92,
+        "ret_3d": -1.44,
+        "ret_5d": -0.29,
+        "ret_10d": -3.2,
+        "volume_ratio": 0.72,
+        "rsi": 26.6,
+        "macd_hist": -0.0048,
+        "bollinger_position": 0.165,
+        "bollinger_width": 0.0182,
+        "price_position_20d": 0.0,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.44,
+        "trend_score": 43.13,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "518880",
+        "name": "黄金ETF",
+        "category": "商品避险",
+        "score": 37.88,
+        "historical_score": 45.8,
+        "fresh_theme_score": 35.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": -0.3,
+        "stale_theme_raw": 0.0,
+        "theme_score": 35.0,
+        "theme_raw": -0.3,
+        "theme_reason": "LLM: 经济数据超预期降低避险需求，黄金5日动量-1.38%偏弱，温和看空。",
+        "pred_return": null,
+        "latest_price": 9.324,
+        "ret_1d": -0.21,
+        "ret_3d": 2.1,
+        "ret_5d": -1.38,
+        "ret_10d": -2.01,
+        "volume_ratio": 0.41,
+        "rsi": 31.6,
+        "macd_hist": -0.0097,
+        "bollinger_position": 0.238,
+        "bollinger_width": 0.0232,
+        "price_position_20d": 0.247,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -0.78,
+        "trend_score": 45.87,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "512010",
+        "name": "医药ETF",
+        "category": "医疗",
+        "score": 37.78,
+        "historical_score": 43.9,
+        "fresh_theme_score": 37.6,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": -0.4,
+        "stale_theme_raw": 0.0,
+        "theme_score": 37.6,
+        "theme_raw": -0.4,
+        "theme_reason": "LLM: 医药ETF 5日动量-1.47%偏弱，经济数据利好有限，温和看空。",
+        "pred_return": null,
+        "latest_price": 0.335,
+        "ret_1d": -1.47,
+        "ret_3d": -0.3,
+        "ret_5d": -1.47,
+        "ret_10d": -4.01,
+        "volume_ratio": 0.87,
+        "rsi": 20.3,
+        "macd_hist": -0.0012,
+        "bollinger_position": 0.16,
+        "bollinger_width": 0.0361,
+        "price_position_20d": 0.0,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -2.62,
+        "trend_score": 43.44,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510500",
+        "name": "中证500ETF",
+        "category": "中盘成长",
+        "score": 31.08,
+        "historical_score": 42.5,
+        "fresh_theme_score": 25.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": -0.5,
+        "stale_theme_raw": 0.0,
+        "theme_score": 25.0,
+        "theme_raw": -0.5,
+        "theme_reason": "LLM: 中盘成长5日动量-4.4%趋势走坏，经济数据利好有限，温和看空。",
+        "pred_return": null,
+        "latest_price": 8.367,
+        "ret_1d": -0.04,
+        "ret_3d": -3.26,
+        "ret_5d": -4.4,
+        "ret_10d": -3.86,
+        "volume_ratio": 0.44,
+        "rsi": 29.3,
+        "macd_hist": -0.0627,
+        "bollinger_position": 0.035,
+        "bollinger_width": 0.0194,
+        "price_position_20d": 0.0,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -3.26,
+        "trend_score": 36.52,
+        "risk_penalty": 0.0
+      }
+    ],
+    "theme_signals": {
+      "source": "split_fresh_stale",
+      "updated_at": "2026-06-04 21:30:53",
+      "market_view": "news_positive",
+      "hot_keywords": [
+        "沪深300",
+        "沪指",
+        "中证A500",
+        "A500"
+      ],
+      "auto_news": {
+        "enabled": true,
+        "confidence": 0.2,
+        "market_sentiment": 0.315,
+        "article_count": 3,
+        "raw_article_count": 18,
+        "catalyst_hits": 0,
+        "max_abs_theme": 0.315,
+        "accepted_count": 3,
+        "rejected_count": 15,
+        "strong_count": 3,
+        "weak_count": 0
+      }
+    },
+    "market_reason": "宽基趋势明显转弱(510300:5日-1.37%; 159915:5日+0.27%; 588000:5日-9.45%)，空仓回避",
+    "reasoning": "Short-race strategy holds cash. Market: 宽基趋势明显转弱(510300:5日-1.37%; 159915:5日+0.27%; 588000:5日-9.45%)，空仓回避",
+    "llm_trace": {
+      "regime": "risk_on",
+      "regime_reason": "美国ISM非制造业PMI超预期显示经济韧性，但盘后新鲜新闻强烈利好A股权益市场，且经济日历数据已落地，方向一致，市场情绪偏乐观。",
+      "cash_decision": "partial",
+      "position_ratio_hint": 0.5,
+      "summary_zh": "经济日历方面，美国ISM非制造业PMI和工厂订单超预期，显示经济韧性，利好A股风险偏好。盘后新鲜新闻强烈利好权益市场，与经济数据方向一致。综合判断，今日市场偏乐观，但考虑到高重要度事件较多，建议半仓操作，优先配置宽基ETF。",
+      "per_etf_view": [
+        {
+          "code": "510300",
+          "score": 0.7,
+          "reason": "盘后新鲜新闻利好，经济数据超预期，但5日动量偏弱，温和看好。"
+        },
+        {
+          "code": "510050",
+          "score": 0.3,
+          "reason": "大盘蓝筹受益于经济数据利好，但5日动量-2.33%偏弱，谨慎看好。"
+        },
+        {
+          "code": "510500",
+          "score": -0.5,
+          "reason": "中盘成长5日动量-4.4%趋势走坏，经济数据利好有限，温和看空。"
+        },
+        {
+          "code": "510330",
+          "score": 0.6,
+          "reason": "与510300类似，盘后新闻利好，经济数据支撑，但动量偏弱。"
+        },
+        {
+          "code": "159338",
+          "score": 0.7,
+          "reason": "盘后新鲜新闻利好，经济数据超预期，但5日动量-2.65%偏弱，温和看好。"
+        },
+        {
+          "code": "518880",
+          "score": -0.3,
+          "reason": "经济数据超预期降低避险需求，黄金5日动量-1.38%偏弱，温和看空。"
+        },
+        {
+          "code": "159985",
+          "score": -0.2,
+          "reason": "豆粕5日动量-0.29%横盘，经济数据影响中性，中性偏空。"
+        },
+        {
+          "code": "510880",
+          "score": 0.5,
+          "reason": "红利ETF 5日动量+3.77%趋势强劲，经济数据利好，但高股息防御属性在风险偏好提升时可能承压，温和看好。"
+        },
+        {
+          "code": "512880",
+          "score": 0.2,
+          "reason": "证券ETF 5日动量-2.75%偏弱，经济数据利好但券商弹性大，中性。"
+        },
+        {
+          "code": "512010",
+          "score": -0.4,
+          "reason": "医药ETF 5日动量-1.47%偏弱，经济数据利好有限，温和看空。"
+        }
+      ],
+      "econ_drivers": [
+        {
+          "event": "美国5月ISM非制造业PMI",
+          "importance": "high",
+          "direction": "+",
+          "impact": "美国服务业扩张超预期，提振全球风险偏好，利好A股外资流入。"
+        },
+        {
+          "event": "美国4月工厂订单月率",
+          "importance": "high",
+          "direction": "+",
+          "impact": "工厂订单超预期，显示制造业需求稳健，利好工业相关ETF。"
+        },
+        {
+          "event": "美国5月ADP就业人数变动",
+          "importance": "medium",
+          "direction": "+",
+          "impact": "ADP就业略超预期，强化美国经济软着陆预期，利好A股。"
+        },
+        {
+          "event": "欧元区4月零售销售年率",
+          "importance": "medium",
+          "direction": "+",
+          "impact": "欧元区零售销售超预期，外需改善利好出口导向型行业。"
+        }
+      ],
+      "news_drivers": [
+        {
+          "title": "权益周观察",
+          "etf": "510300",
+          "direction": "+",
+          "weight": 0.8
+        },
+        {
+          "title": "权益周观察",
+          "etf": "159338",
+          "direction": "+",
+          "weight": 0.8
+        },
+        {
+          "title": "东方财富财经早餐 6月2日周二",
+          "etf": "510300",
+          "direction": "+",
+          "weight": 0.7
+        },
+        {
+          "title": "东方财富财经早餐 6月2日周二",
+          "etf": "159338",
+          "direction": "+",
+          "weight": 0.7
+        },
+        {
+          "title": "东方财富财经早餐 6月2日周二",
+          "etf": "588000",
+          "direction": "+",
+          "weight": 0.7
+        },
+        {
+          "title": "东方财富财经早餐 6月3日周三",
+          "etf": "516510",
+          "direction": "+",
+          "weight": 0.7
+        }
+      ],
+      "hard_rules_applied": [],
+      "final_invest_ratio": 0.0,
+      "final_top_score": 58.32,
+      "rotation_tracker": {}
+    }
+  },
+  "previous_pnl": {
+    "review_date": "2026-06-04",
+    "prediction_date": "2026-06-02",
+    "source_file": "C:\\Users\\32872\\Desktop\\etf智能体\\etf_agent\\data\\daily_output\\2026-06-02_full.json",
+    "total_pnl": -9.2,
+    "positions": [
+      {
+        "symbol": "510880",
+        "symbol_name": "红利ETF",
+        "volume": 4600,
+        "open": 3.307,
+        "close": 3.306,
+        "pnl": -4.6,
+        "return_pct": -0.03
+      },
+      {
+        "symbol": "159338",
+        "symbol_name": "中证A500ETF",
+        "volume": 10500,
+        "open": 1.281,
+        "close": 1.287,
+        "pnl": 63.0,
+        "return_pct": 0.468
+      },
+      {
+        "symbol": "159985",
+        "symbol_name": "豆粕ETF",
+        "volume": 5200,
+        "open": 2.067,
+        "close": 2.054,
+        "pnl": -67.6,
+        "return_pct": -0.629
+      }
+    ]
+  },
+  "data_quality_warnings": [
+    "有效新闻仅3条(阈值5)"
+  ],
+  "confidence": "low"
+}

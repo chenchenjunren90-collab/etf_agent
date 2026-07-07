@@ -1,0 +1,219 @@
+{
+  "date": "2026-07-06",
+  "updated_at": "2026-07-06 18:12:32",
+  "competition_output": [
+    {
+      "symbol": "512880",
+      "symbol_name": "证券ETF",
+      "volume": 35000
+    },
+    {
+      "symbol": "512010",
+      "symbol_name": "医药ETF",
+      "volume": 111500
+    },
+    {
+      "symbol": "518880",
+      "symbol_name": "黄金ETF",
+      "volume": 3800
+    }
+  ],
+  "is_empty_position": false,
+  "decision_summary_zh": "盘后新鲜新闻全面利好，覆盖沪深300、科技、券商等板块，且欧元区Sentix信心指数超预期提振情绪。今日高重要度事件美国ISM非制造业PMI尚未公布，适度保守，建议仓位60%。",
+  "market_context_zh": "宽基极端走弱(510300:5日-0.63%; 159915:5日-4.22%; 588000:5日-1.45%)，15%试探仓(利用反弹概率)",
+  "positions": [
+    {
+      "symbol": "512880",
+      "symbol_name": "证券ETF",
+      "volume": 35000,
+      "reason": "盘后新鲜新闻商圈利好，5日动量+4.34%趋势强劲，强烈看好。",
+      "related_news": [
+        {
+          "title": "商圈",
+          "url": "https://database.caixin.com/2026-07-06/102461252.html?cxapp_link=true",
+          "quality": "strong",
+          "direction": "偏多",
+          "strength": 0.378
+        }
+      ]
+    },
+    {
+      "symbol": "512010",
+      "symbol_name": "医药ETF",
+      "volume": 111500,
+      "reason": "盘后无直接新闻，5日动量+8.36%趋势极强，但RSI 70接近超买，温和看好。",
+      "related_news": []
+    },
+    {
+      "symbol": "518880",
+      "symbol_name": "黄金ETF",
+      "volume": 3800,
+      "reason": "盘后无直接新闻，但5日动量+3.36%趋势强劲，避险情绪支撑，温和看好。",
+      "related_news": []
+    }
+  ],
+  "news_stats": {
+    "article_count": 15,
+    "accepted_count": 4,
+    "strong_count": 4,
+    "confidence": 0.8,
+    "market_sentiment": 0.493,
+    "hot_keywords": [
+      "沪深300",
+      "沪指",
+      "云计算",
+      "AI",
+      "券商",
+      "证券",
+      "科创板",
+      "科创50",
+      "中证A500",
+      "A500"
+    ]
+  },
+  "news_digest": [
+    {
+      "title": "东方财富财经早餐 7月6日周一",
+      "url": "http://finance.eastmoney.com/a/202607053794319895.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "商圈",
+      "url": "https://database.caixin.com/2026-07-06/102461252.html?cxapp_link=true",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "512880",
+          "symbol_name": "证券ETF",
+          "direction": "偏多",
+          "strength": 0.378
+        }
+      ]
+    },
+    {
+      "title": "权益周观察",
+      "url": "https://database.caixin.com/2026-06-29/102458865.html?cxapp_link=true",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "偏多",
+          "strength": 0.42
+        },
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "偏多",
+          "strength": 0.357
+        }
+      ]
+    },
+    {
+      "title": "家庭财富",
+      "url": "https://database.caixin.com/2026-06-29/102458795.html?cxapp_link=true",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    }
+  ],
+  "econ_headlines": [
+    {
+      "time": "09:30",
+      "name": "全球6月ANZ商品价格指数月率(%)",
+      "importance": 2,
+      "region": "全球"
+    },
+    {
+      "time": "09:30",
+      "name": "全球6月ANZ商品价格指数年率(%)",
+      "importance": 2,
+      "region": "全球"
+    },
+    {
+      "time": "14:40",
+      "name": "中国5月全社会用电量年率-每月(%)",
+      "importance": 2,
+      "region": "中国"
+    },
+    {
+      "time": "14:40",
+      "name": "中国5月全社会用电量-每月(亿千瓦时)",
+      "importance": 2,
+      "region": "中国"
+    },
+    {
+      "time": "15:00",
+      "name": "瑞士6月季调后失业率(%)",
+      "importance": 2,
+      "region": "瑞士"
+    },
+    {
+      "time": "15:00",
+      "name": "瑞士6月未季调失业率(%)",
+      "importance": 2,
+      "region": "瑞士"
+    },
+    {
+      "time": "15:10",
+      "name": "中国7月6日上期所每日仓单变动-原油(桶)",
+      "importance": 2,
+      "region": "中国"
+    },
+    {
+      "time": "15:10",
+      "name": "中国7月6日上期所每日仓单变动-铜(吨)",
+      "importance": 2,
+      "region": "中国"
+    },
+    {
+      "time": "16:30",
+      "name": "欧元区6月Sentix投资者信心指数",
+      "importance": 2,
+      "region": "欧元区"
+    },
+    {
+      "time": "16:30",
+      "name": "欧元区7月Sentix投资者信心指数",
+      "importance": 2,
+      "region": "欧元区"
+    },
+    {
+      "time": "17:00",
+      "name": "欧元区5月零售销售年率(%)",
+      "importance": 2,
+      "region": "欧元区"
+    },
+    {
+      "time": "17:00",
+      "name": "欧元区5月零售销售月率(%)",
+      "importance": 2,
+      "region": "欧元区"
+    }
+  ],
+  "scope_note": "本智能体仅解答 A 股 ETF 日内配置、赛事实盘建议、已筛选新闻与持仓解读；不披露内部评分公式、闸门阈值与程序实现细节。"
+}

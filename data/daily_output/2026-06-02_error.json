@@ -1,0 +1,17 @@
+{
+  "date": "2026-06-02",
+  "error": true,
+  "reason": "数据源质量不达标，终止预测",
+  "generated_at": "2026-06-02 11:43:04",
+  "partial_data": {
+    "news_signal_summary": {
+      "article_count": 117,
+      "accepted_count": 6,
+      "source": "llm_semantic_scoring"
+    },
+    "econ_summary": {
+      "event_count": 0,
+      "source": "none"
+    }
+  }
+}

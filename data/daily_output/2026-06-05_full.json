@@ -1,0 +1,6007 @@
+{
+  "date": "2026-06-05",
+  "competition_output": [
+    {
+      "symbol": "510880",
+      "symbol_name": "红利ETF",
+      "volume": 12100
+    },
+    {
+      "symbol": "518880",
+      "symbol_name": "黄金ETF",
+      "volume": 4300
+    },
+    {
+      "symbol": "512880",
+      "symbol_name": "证券ETF",
+      "volume": 33000
+    }
+  ],
+  "news_signal": {
+    "date": "2026-06-05",
+    "source": "split_fresh_stale",
+    "cutoff_time": "09:30",
+    "updated_at": "2026-06-05 09:57:42",
+    "fresh_theme_scores": {
+      "510050": 0.325,
+      "510300": 0.4,
+      "510330": 0.15,
+      "512010": 0.424,
+      "510880": 0.15,
+      "159985": 0.175,
+      "512880": 0.15
+    },
+    "fresh_accepted_count": 21,
+    "fresh_strong_count": 0,
+    "fresh_accepted_articles": [
+      {
+        "accepted": true,
+        "title": "央行公开市场今日进行2150亿元人民币七天期逆回购操作",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761226883.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "fund_flow": [
+            "回购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "比亚迪保险在河北等地区机动车交通事故责任强制保险条款和费率获批",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761203919.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "technology_breakthrough": [
+            "获批"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510050": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "牙博士启动IPO辅导",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761188538.html",
+        "quality": "weak",
+        "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+        "event_hits": {
+          "technology_breakthrough": [
+            "首次",
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.42,
+          "512010": 0.142
+        },
+        "risk_flags": [
+          "good_news_in_downtrend"
+        ]
+      },
+      {
+        "accepted": true,
+        "title": "一财社论：自发回购是一个市场自立信号",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606043760642342.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "实施"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ],
+          "fund_flow": [
+            "回购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "华尔街量化巨头简街计划自建数据中心",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761037091.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "融资"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "中天科技与隆基绿能战略合作签约",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761040686.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "签约"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "515790": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "台积电明确玻璃基板先进封装放量时点 玻璃基板行业投资机遇凸显",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760994186.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "fund_flow": [
+            "放量"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "高端光棒价格涨幅近550% 拥有光棒产能的企业或成本轮行情最大受益方",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760989856.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "利润"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "开源后端平台Supabase融资5亿美元 投后估值105亿美元",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761036494.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "融资"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "英伟达推出全模态物理AI模型 物理AI规模化落地时代加速到来",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761024465.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "落地"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "SpaceX IPO路演火热进行中 知情人士：认购需求爆棚、分析师电话接不停",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761029466.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "首次"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510050": 0.315,
+          "518880": 0.315,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "6月5日投资避雷针：4连板人气股提示风险 光模块透镜固定用胶月营收占比不足1%",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761029552.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "营收"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315,
+          "588000": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "AI算力的尽头竟是“钻石”？培育钻石概念集体暴涨却少有个股研报 杠杆资金快速增长引发警惕",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606043760551297.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315,
+          "512880": 0.378,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "中信建投：AI算力增长持续打开超高导热金刚石材料增长空间",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761030525.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "突破"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "MLCC指数四连涨 “下一个存储”确认否？",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760813745.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "orders_and_delivery": [
+            "供应"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "周星驰投了家苏州短剧新秀",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761024857.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "慧荣：消费端NAND供应紧张持续 2027年情况只会更糟",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761028862.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "orders_and_delivery": [
+            "供应"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512690": 0.315,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "华泰证券：保险业盈利反弹临近 建议重视二季报投资机会",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761027987.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "利润",
+            "同比增长"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [
+          "下滑"
+        ],
+        "theme_scores": {
+          "510050": -0.315,
+          "512880": -0.357
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "开源证券：白酒底部布局 大众品把握三条主线",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761028250.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "orders_and_delivery": [
+            "供应"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.357,
+          "512690": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "抹茶出口暴增的启示",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760788421.html",
+        "quality": "weak",
+        "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+        "event_hits": {
+          "earnings": [
+            "利润",
+            "暴增"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "159985": 0.142
+        },
+        "risk_flags": [
+          "good_news_in_downtrend"
+        ]
+      },
+      {
+        "accepted": true,
+        "title": "数据资产ABS暂停申报 已过会项目暂停封卷",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761012827.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "融资"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "612家A股公司年内发力回购 计划上限1114亿元",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760784495.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ],
+          "fund_flow": [
+            "回购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "SpaceX上市募资规模料创纪录 有望提振商业航天板块",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760784640.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "募资"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315,
+          "512880": 0.357
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "华泰证券：保险业盈利反弹临近 重视二季报投资机会",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760982387.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "利润",
+            "同比增长"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [
+          "下滑"
+        ],
+        "theme_scores": {
+          "510050": -0.315,
+          "512880": -0.357
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "日本实际薪资连续四个月上涨",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760963265.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "同比增长"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "Anthropic联合创始人称高昂的AI模型开发成本推动公司寻求上市",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760943185.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "融资"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "华泰证券：光模块设备或迎量升价增拐点",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760939190.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "fund_flow": [
+            "放量"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.357,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "央行连续缩量续做3个月期买断式逆回购",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760772162.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "orders_and_delivery": [
+            "招标"
+          ],
+          "fund_flow": [
+            "回购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510050": 0.315,
+          "510300": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "警惕并购重组中的非理性溢价",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760772243.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "capital_investment": [
+            "并购",
+            "收购",
+            "重组"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "港股IPO市场活跃 国际长线投资者兴趣高涨",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760772318.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "融资",
+            "募资"
+          ],
+          "earnings": [
+            "同比增长"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.357
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "A股限售股解禁一览：241.97亿元市值限售股今日解禁",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760818590.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "解禁"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "算力租赁市场热度提升 上市公司抢抓机遇",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760769750.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "落地",
+            "方案",
+            "扶持"
+          ],
+          "capital_investment": [
+            "签约"
+          ],
+          "orders_and_delivery": [
+            "订单"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "年内支付机构密集增资提升实力",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760769823.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510050": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "半导体行业景气度攀升 产业链公司受益明显",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760769922.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315,
+          "588000": 0.315,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "平安人寿加仓国寿H股 险资持续增持同业",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760770462.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "fund_flow": [
+            "增持"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510050": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "前5个月私募证券产品备案量同比增长近50% 指数增强策略热度攀升",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760770953.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "同比增长"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.357
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "6G手机预计2030年上市 明后年进入初代样机研发",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760773314.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "不拼网速拼覆盖 6G将带来三大产业机遇",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760774727.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "通知"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "高端制造密集赴港上市 “中国方案”获全球资本青睐",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760773789.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "方案"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "资产划转税务处理口径存争议 业内建议出台可量化细则与指引",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760774262.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布",
+            "细则"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.378
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "交易所强化交易业务单元监管 严禁为个别投资者提供特殊便利 券商启动全面自查整改",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760780190.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "通知"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.378
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "两个月翻倍 这类产品疯狂吸金",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760807169.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "翻倍"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315,
+          "588000": 0.315,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "加拿大推出国家人工智能战略 入股扶持本土优秀AI企业",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760809463.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布",
+            "扶持"
+          ],
+          "orders_and_delivery": [
+            "采购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "工业机器人核心零部件“小巨人”今日上市丨打新早知道",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760807855.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512100": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "美联储6月维持利率不变的概率为96.4%",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760804344.html",
+        "quality": "weak",
+        "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+        "event_hits": {
+          "policy_landing": [
+            "降息"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "518880": 0.315,
+          "512880": 0.315
+        },
+        "risk_flags": [
+          "late_news_after_rally"
+        ]
+      },
+      {
+        "accepted": true,
+        "title": "周五你需要知道的隔夜全球要闻",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760802564.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "营收"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "Lululemon下调全年营收指引",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760782963.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "营收"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "厄尔尼诺带来丰水预期 南方水电公司迎景气行情",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760779078.html",
+        "quality": "weak",
+        "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "159985": 0.142,
+          "512880": 0.378
+        },
+        "risk_flags": [
+          "good_news_in_downtrend"
+        ]
+      },
+      {
+        "accepted": true,
+        "title": "加拿大推出国家人工智能战略：入股扶持本土“AI冠军”",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760782246.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "扶持"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "多地以旧换新政策扩围 持续释放消费动能",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760779674.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布",
+            "落地",
+            "实施",
+            "细则",
+            "通知",
+            "补贴"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512690": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "夏日高温催热“防晒经济” 上市公司多元化掘金细分赛道",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760778836.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "突破",
+            "上市",
+            "装备"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315,
+          "512690": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "抢跑IPO盛宴！Coinbase推出SpaceX上市前永续合约",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760776377.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "落地"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "波士顿联储研究显示石油冲击对美国的影响弱于1970年代",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760773123.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315,
+          "512690": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "博通CEO：AI增长潜力远超并购收益",
+        "source": "futu_global",
+        "url": "https://news.futunn.com/flash/20384549/broadcom-ceo-ai-growth-potential-far-exceeds-benefits-from-m",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "并购",
+            "收购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315,
+          "588000": 0.315,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "大晓机器人推出全屋三维可交互世界模型Kairos-Home World",
+        "source": "futu_global",
+        "url": "https://news.futunn.com/flash/20384488/daxiao-robotics-launches-kairos-home-world-a-full-house-3d",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "technology_breakthrough": [
+            "突破",
+            "首个",
+            "技术突破"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 6月5日周五",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202606043760755463.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "通知"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315,
+          "512880": 0.378,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "权益周观察",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "业绩"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      }
+    ],
+    "stale_theme_scores": {
+      "516510": 0.315
+    },
+    "stale_accepted_count": 1,
+    "stale_strong_count": 1,
+    "stale_accepted_articles": [
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 6月3日周三",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202606023757876430.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "突破"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      }
+    ],
+    "theme_scores": {
+      "510050": 0.325,
+      "510300": 0.4,
+      "510330": 0.15,
+      "512010": 0.424,
+      "510880": 0.15,
+      "159985": 0.175,
+      "512880": 0.15
+    },
+    "scores": {
+      "510050": 0.325,
+      "510300": 0.4,
+      "510330": 0.15,
+      "512010": 0.424,
+      "510880": 0.15,
+      "159985": 0.175,
+      "512880": 0.15
+    },
+    "accepted_count": 22,
+    "strong_count": 1,
+    "weak_count": 21,
+    "article_count": 203,
+    "rejected_count": 181,
+    "accepted_articles": [
+      {
+        "accepted": true,
+        "title": "央行公开市场今日进行2150亿元人民币七天期逆回购操作",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761226883.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "fund_flow": [
+            "回购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "比亚迪保险在河北等地区机动车交通事故责任强制保险条款和费率获批",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761203919.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "technology_breakthrough": [
+            "获批"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510050": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "牙博士启动IPO辅导",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761188538.html",
+        "quality": "weak",
+        "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+        "event_hits": {
+          "technology_breakthrough": [
+            "首次",
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.42,
+          "512010": 0.142
+        },
+        "risk_flags": [
+          "good_news_in_downtrend"
+        ]
+      },
+      {
+        "accepted": true,
+        "title": "一财社论：自发回购是一个市场自立信号",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606043760642342.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "实施"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ],
+          "fund_flow": [
+            "回购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "华尔街量化巨头简街计划自建数据中心",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761037091.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "融资"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "中天科技与隆基绿能战略合作签约",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761040686.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "签约"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "515790": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "台积电明确玻璃基板先进封装放量时点 玻璃基板行业投资机遇凸显",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760994186.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "fund_flow": [
+            "放量"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "高端光棒价格涨幅近550% 拥有光棒产能的企业或成本轮行情最大受益方",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760989856.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "利润"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "开源后端平台Supabase融资5亿美元 投后估值105亿美元",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761036494.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "融资"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "英伟达推出全模态物理AI模型 物理AI规模化落地时代加速到来",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761024465.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "落地"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "SpaceX IPO路演火热进行中 知情人士：认购需求爆棚、分析师电话接不停",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761029466.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "首次"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510050": 0.315,
+          "518880": 0.315,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "6月5日投资避雷针：4连板人气股提示风险 光模块透镜固定用胶月营收占比不足1%",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761029552.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "营收"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315,
+          "588000": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "AI算力的尽头竟是“钻石”？培育钻石概念集体暴涨却少有个股研报 杠杆资金快速增长引发警惕",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606043760551297.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315,
+          "512880": 0.378,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "中信建投：AI算力增长持续打开超高导热金刚石材料增长空间",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761030525.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "突破"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "MLCC指数四连涨 “下一个存储”确认否？",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760813745.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "orders_and_delivery": [
+            "供应"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "周星驰投了家苏州短剧新秀",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761024857.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "慧荣：消费端NAND供应紧张持续 2027年情况只会更糟",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761028862.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "orders_and_delivery": [
+            "供应"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512690": 0.315,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "华泰证券：保险业盈利反弹临近 建议重视二季报投资机会",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761027987.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "利润",
+            "同比增长"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [
+          "下滑"
+        ],
+        "theme_scores": {
+          "510050": -0.315,
+          "512880": -0.357
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "开源证券：白酒底部布局 大众品把握三条主线",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761028250.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "orders_and_delivery": [
+            "供应"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.357,
+          "512690": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "抹茶出口暴增的启示",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760788421.html",
+        "quality": "weak",
+        "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+        "event_hits": {
+          "earnings": [
+            "利润",
+            "暴增"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "159985": 0.142
+        },
+        "risk_flags": [
+          "good_news_in_downtrend"
+        ]
+      },
+      {
+        "accepted": true,
+        "title": "数据资产ABS暂停申报 已过会项目暂停封卷",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053761012827.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "融资"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "612家A股公司年内发力回购 计划上限1114亿元",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760784495.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ],
+          "fund_flow": [
+            "回购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "SpaceX上市募资规模料创纪录 有望提振商业航天板块",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760784640.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "募资"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315,
+          "512880": 0.357
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "华泰证券：保险业盈利反弹临近 重视二季报投资机会",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760982387.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "利润",
+            "同比增长"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [
+          "下滑"
+        ],
+        "theme_scores": {
+          "510050": -0.315,
+          "512880": -0.357
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "日本实际薪资连续四个月上涨",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760963265.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "同比增长"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "Anthropic联合创始人称高昂的AI模型开发成本推动公司寻求上市",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760943185.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "融资"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "华泰证券：光模块设备或迎量升价增拐点",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760939190.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "fund_flow": [
+            "放量"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.357,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "央行连续缩量续做3个月期买断式逆回购",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760772162.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "orders_and_delivery": [
+            "招标"
+          ],
+          "fund_flow": [
+            "回购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510050": 0.315,
+          "510300": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "警惕并购重组中的非理性溢价",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760772243.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "capital_investment": [
+            "并购",
+            "收购",
+            "重组"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "港股IPO市场活跃 国际长线投资者兴趣高涨",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760772318.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "融资",
+            "募资"
+          ],
+          "earnings": [
+            "同比增长"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.357
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "A股限售股解禁一览：241.97亿元市值限售股今日解禁",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760818590.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "解禁"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "算力租赁市场热度提升 上市公司抢抓机遇",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760769750.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "落地",
+            "方案",
+            "扶持"
+          ],
+          "capital_investment": [
+            "签约"
+          ],
+          "orders_and_delivery": [
+            "订单"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "年内支付机构密集增资提升实力",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760769823.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510050": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "半导体行业景气度攀升 产业链公司受益明显",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760769922.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315,
+          "588000": 0.315,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "平安人寿加仓国寿H股 险资持续增持同业",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760770462.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "fund_flow": [
+            "增持"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510050": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "前5个月私募证券产品备案量同比增长近50% 指数增强策略热度攀升",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760770953.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "同比增长"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.357
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "6G手机预计2030年上市 明后年进入初代样机研发",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760773314.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "不拼网速拼覆盖 6G将带来三大产业机遇",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760774727.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "通知"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "高端制造密集赴港上市 “中国方案”获全球资本青睐",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760773789.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "方案"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "资产划转税务处理口径存争议 业内建议出台可量化细则与指引",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760774262.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布",
+            "细则"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.378
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "交易所强化交易业务单元监管 严禁为个别投资者提供特殊便利 券商启动全面自查整改",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760780190.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "通知"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512880": 0.378
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "两个月翻倍 这类产品疯狂吸金",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760807169.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "翻倍"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315,
+          "588000": 0.315,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "加拿大推出国家人工智能战略 入股扶持本土优秀AI企业",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760809463.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布",
+            "扶持"
+          ],
+          "orders_and_delivery": [
+            "采购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "工业机器人核心零部件“小巨人”今日上市丨打新早知道",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760807855.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512100": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "美联储6月维持利率不变的概率为96.4%",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760804344.html",
+        "quality": "weak",
+        "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+        "event_hits": {
+          "policy_landing": [
+            "降息"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "518880": 0.315,
+          "512880": 0.315
+        },
+        "risk_flags": [
+          "late_news_after_rally"
+        ]
+      },
+      {
+        "accepted": true,
+        "title": "周五你需要知道的隔夜全球要闻",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760802564.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "营收"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "Lululemon下调全年营收指引",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760782963.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "营收"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "厄尔尼诺带来丰水预期 南方水电公司迎景气行情",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760779078.html",
+        "quality": "weak",
+        "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "159985": 0.142,
+          "512880": 0.378
+        },
+        "risk_flags": [
+          "good_news_in_downtrend"
+        ]
+      },
+      {
+        "accepted": true,
+        "title": "加拿大推出国家人工智能战略：入股扶持本土“AI冠军”",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760782246.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "扶持"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "多地以旧换新政策扩围 持续释放消费动能",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760779674.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布",
+            "落地",
+            "实施",
+            "细则",
+            "通知",
+            "补贴"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "512690": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "夏日高温催热“防晒经济” 上市公司多元化掘金细分赛道",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760778836.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "突破",
+            "上市",
+            "装备"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315,
+          "512690": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "抢跑IPO盛宴！Coinbase推出SpaceX上市前永续合约",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760776377.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "落地"
+          ],
+          "technology_breakthrough": [
+            "上市"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "波士顿联储研究显示石油冲击对美国的影响弱于1970年代",
+        "source": "eastmoney_global",
+        "url": "https://finance.eastmoney.com/a/202606053760773123.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315,
+          "512690": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "博通CEO：AI增长潜力远超并购收益",
+        "source": "futu_global",
+        "url": "https://news.futunn.com/flash/20384549/broadcom-ceo-ai-growth-potential-far-exceeds-benefits-from-m",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "capital_investment": [
+            "并购",
+            "收购"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "518880": 0.315,
+          "588000": 0.315,
+          "516510": 0.42
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "大晓机器人推出全屋三维可交互世界模型Kairos-Home World",
+        "source": "futu_global",
+        "url": "https://news.futunn.com/flash/20384488/daxiao-robotics-launches-kairos-home-world-a-full-house-3d",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "发布"
+          ],
+          "technology_breakthrough": [
+            "突破",
+            "首个",
+            "技术突破"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 6月5日周五",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202606043760755463.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "policy_landing": [
+            "通知"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "588000": 0.315,
+          "512880": 0.378,
+          "516510": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "权益周观察",
+        "source": "caixin_main",
+        "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "earnings": [
+            "业绩"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "510300": 0.315,
+          "159338": 0.315
+        },
+        "risk_flags": []
+      },
+      {
+        "accepted": true,
+        "title": "东方财富财经早餐 6月3日周三",
+        "source": "eastmoney_cjzc",
+        "url": "http://finance.eastmoney.com/a/202606023757876430.html",
+        "quality": "strong",
+        "reason": "concrete_catalyst_and_clear_sector",
+        "event_hits": {
+          "technology_breakthrough": [
+            "突破"
+          ]
+        },
+        "vague_hits": [],
+        "negative_hits": [],
+        "theme_scores": {
+          "516510": 0.315
+        },
+        "risk_flags": []
+      }
+    ],
+    "raw_articles": [
+      {
+        "title": "润泽科技成立两家科技发展公司",
+        "content": "【润泽科技成立两家科技发展公司】企查查APP显示，近日，河北润弘科技发展有限公司、河北润嘉科技发展有限公司成立，注册资本均为1000万元，经营范围均包含：人工智能行业应用系统集成服务；人工智能基础软件开发；人工智能公共服务平台技术咨询服务等。企查查股权穿透显示，二者皆由润泽科技间接全资持股。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:29:01",
+        "url": "https://finance.eastmoney.com/a/202606053761244138.html"
+      },
+      {
+        "title": "台交所加权股价指数下跌3%",
+        "content": "台交所加权股价指数下跌3%至44,285.70点。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:28:00",
+        "url": "https://finance.eastmoney.com/a/202606053761253060.html"
+      },
+      {
+        "title": "三大指数集体低开",
+        "content": "【三大指数集体低开】沪指低开0.32%，深成指低开0.42%，创业板指低开0.22%，半导体芯片、AIPC等板块指数跌幅居前。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:26:37",
+        "url": "https://finance.eastmoney.com/a/202606053761239016.html"
+      },
+      {
+        "title": "央行公开市场今日进行2150亿元人民币七天期逆回购操作",
+        "content": "央行公开市场今日进行2150亿元人民币七天期逆回购操作，今日逆回购到期1,230亿。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:24:45",
+        "url": "https://finance.eastmoney.com/a/202606053761226883.html"
+      },
+      {
+        "title": "港股AI应用股走强 五一视界涨近6%",
+        "content": "【港股AI应用股走强 五一视界涨近6%】截至发稿，五一视界(06651.HK)涨5.78%，创梦天地(01119.HK)涨4.41%，速腾聚创(02498.HK)涨1.41%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:24:02",
+        "url": "https://finance.eastmoney.com/a/202606053761232141.html"
+      },
+      {
+        "title": "日经225指数向下跌破66000点",
+        "content": "日经225指数向下跌破66000点，最新报65999.75点，日内下跌2.18%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:21:43",
+        "url": "https://finance.eastmoney.com/a/202606053761213950.html"
+      },
+      {
+        "title": "香港恒生指数开盘跌0.27%",
+        "content": "香港恒生指数开盘跌0.27%，恒生科技指数跌0.31%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:21:33",
+        "url": "https://finance.eastmoney.com/a/202606053761221078.html"
+      },
+      {
+        "title": "沪锡期货主力合约跌超4%",
+        "content": "沪锡期货主力合约跌超4%，现报423170元/吨。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:20:09",
+        "url": "https://finance.eastmoney.com/a/202606053761204880.html"
+      },
+      {
+        "title": "比亚迪保险在河北等地区机动车交通事故责任强制保险条款和费率获批",
+        "content": "【比亚迪保险在河北等地区机动车交通事故责任强制保险条款和费率获批】国家金融监督管理总局发布关于深圳比亚迪财产保险有限公司河北等地区机动车交通事故责任强制保险条款和费率的批复，同意公司在河北、江苏、浙江（不含宁波）地区使用全国统一的交强险条款、基础保险费率和相应的费率浮动系数。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:18:00",
+        "url": "https://finance.eastmoney.com/a/202606053761203919.html"
+      },
+      {
+        "title": "台湾加权指数跌逾2%",
+        "content": "台湾加权指数跌逾2%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:17:22",
+        "url": "https://finance.eastmoney.com/a/202606053761203318.html"
+      },
+      {
+        "title": "人民币兑美元中间价报6.8157 上调46点",
+        "content": "人民币兑美元中间价报6.8157，上调46点。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:17:05",
+        "url": "https://finance.eastmoney.com/a/202606053761204371.html"
+      },
+      {
+        "title": "LME伦铜跌幅扩大",
+        "content": "LME伦铜跌幅扩大，现跌1.01%，最新报13791.0美元/吨。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:16:11",
+        "url": "https://finance.eastmoney.com/a/202606053761202947.html"
+      },
+      {
+        "title": "大晓机器人推出全屋三维可交互世界模型Kairos-HomeWorld",
+        "content": "【大晓机器人推出全屋三维可交互世界模型Kairos-HomeWorld】6月5日，大晓机器人联合香港中文大学多媒体实验室、深圳河套学院发布最新世界模型研究成果Kairos-HomeWorld，这是全球首个实现全屋生成、个体物体全交互的世界模型统一框架。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:13:36",
+        "url": "https://finance.eastmoney.com/a/202606053761184067.html"
+      },
+      {
+        "title": "牙博士启动IPO辅导",
+        "content": "【牙博士启动IPO辅导】证监会网站披露，牙博士医疗控股集团股份有限公司（简称“牙博士”）于2026年6月4日在江苏证监局办理辅导备案登记，拟首次公开发行股票并上市，辅导券商为东吴证券。辅导备案报告显示，牙博士共同控股股东为陈国锋、刘明非、游宗明，分别持有公司27.95%、14.46%、14.14%的股份。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:12:23",
+        "url": "https://finance.eastmoney.com/a/202606053761188538.html"
+      },
+      {
+        "title": "日经225指数跌幅扩大至2%",
+        "content": "日经225指数跌幅扩大至2%，现报66120.4点。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:10:23",
+        "url": "https://finance.eastmoney.com/a/202606053761160169.html"
+      },
+      {
+        "title": "台交所加权股价指数下跌1.1%",
+        "content": "台交所加权股价指数下跌1.1%至45,185.64点。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:09:58",
+        "url": "https://finance.eastmoney.com/a/202606053761176891.html"
+      },
+      {
+        "title": "7亿元起拍 明星药企健新原力坠落",
+        "content": "【7亿元起拍 明星药企健新原力坠落】曾累计融资超10亿元、备受资本追捧的CDMO明星药企浙江健新原力制药有限公司（简称“健新原力”）在短短数年后坠落，不得不走向破产清算的结局，公司核心资产也沦为司法拍卖品，以一种令人唏嘘的方式为外界所知。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:08:00",
+        "url": "https://finance.eastmoney.com/a/202606053761119070.html"
+      },
+      {
+        "title": "沪镍期货主力合约日内跌幅达2%",
+        "content": "沪镍期货主力合约日内跌幅达2%，报137790元/吨。沪锡期货主力合约跌超3%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:05:51",
+        "url": "https://finance.eastmoney.com/a/202606053761172017.html"
+      },
+      {
+        "title": "深圳华强：近期海思部分产品价格上涨 公司将做好相关产品推广",
+        "content": "【深圳华强：近期海思部分产品价格上涨 公司将做好相关产品推广】深圳华强6月4日在机构调研时表示，公司是华为海思主要授权分销商。近年来，海思陆续推出新产品，公司持续加大海思产品的应用方案研发与推广力度，促进海思产品的市场拓展，推动该产品线收入持续增长。近期，海思部分产品价格上涨，公司将进一步把握市场机遇，做好相关产品推广。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:02:48",
+        "url": "https://finance.eastmoney.com/a/202606053761109321.html"
+      },
+      {
+        "title": "商务部：1-4月我国服务进出口总额24853.2亿元 同比增长4.9%",
+        "content": "【商务部：1-4月我国服务进出口总额24853.2亿元 同比增长4.9%】据商务部网站，2026年1-4月，我国服务进出口总额24853.2亿元（人民币，下同），同比增长4.9%。其中，出口9850亿元，增长15%；进口15003.2亿元，下降0.8%。服务贸易逆差5153.2亿元，比上年同期缩小1397.4亿元。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:02:46",
+        "url": "https://finance.eastmoney.com/a/202606053761146544.html"
+      },
+      {
+        "title": "富时中国A50指数期货开盘涨0.06%",
+        "content": "富时中国A50指数期货在上一交易日夜盘收涨0.16%的基础上低开，现涨0.06%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:00:41",
+        "url": "https://finance.eastmoney.com/a/202606053761094182.html"
+      },
+      {
+        "title": "国内商品期货早盘开盘 主力合约大面积飘绿",
+        "content": "国内商品期货早盘开盘，主力合约大面积飘绿。跌幅方面，沪锡、原油、棕榈油、低硫燃油、LPG等跌超2%，燃油、多晶硅跌近2%，豆二、鸡蛋、沪镍、碳酸锂、纯苯等跌超1%；涨幅方面，焦煤涨超1%，焦炭、淀粉、玉米、国际铜、沪铜等小幅上涨。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 09:00:05",
+        "url": "https://finance.eastmoney.com/a/202606053761088973.html"
+      },
+      {
+        "title": "银河航天注册资本增至3.6亿元",
+        "content": "【银河航天注册资本增至3.6亿元】近日，银河航天（北京）科技集团股份有限公司发生工商变更，注册资本由5182万元增至3.6亿元。企查查信息显示，该公司成立于2019年，经营范围包含：人工智能应用软件开发；人工智能行业应用系统集成服务；人工智能理论与算法软件开发等。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:57:41",
+        "url": "https://finance.eastmoney.com/a/202606053761081420.html"
+      },
+      {
+        "title": "云霄直流破冰跨区输电权交易 全国统一电力市场再进一步",
+        "content": "【云霄直流破冰跨区输电权交易 全国统一电力市场再进一步】在全国电力市场建设逐步深入背景下，国家电网（简称“国网”）与南方电网（简称“南网”）之间的跨区输电通道开始告别传统“一线一议”“一事一议”纯电能量交易模式，探索以更高效且公平的机制挖潜输电通道容量。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:56:13",
+        "url": "https://finance.eastmoney.com/a/202606043760671126.html"
+      },
+      {
+        "title": "韩元兑美元汇率跌至2009年3月以来最低水平报1541.4",
+        "content": "韩元兑美元汇率跌至2009年3月以来最低水平报1541.4。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:55:56",
+        "url": "https://finance.eastmoney.com/a/202606053761082667.html"
+      },
+      {
+        "title": "深圳华强：目前电子元器件产业景气度高企 大部分元器件价格在上涨",
+        "content": "【深圳华强：目前电子元器件产业景气度高企 大部分元器件价格在上涨】深圳华强(000062)6月4日在机构调研时表示，目前电子元器件产业景气度高企，是处于通胀期的产业之一，产业各环节（包括原材料、设计、晶圆代工和封测等）的价格都在上涨，大部分元器件的价格也在上涨。公司作为本土电子元器件分销龙头企业，位于产业不可或缺的中间环节，将从产业整体通胀中受益。公司将充分把握产业景气度高企的机遇，推动业务持续高质量发展。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:54:08",
+        "url": "https://finance.eastmoney.com/a/202606053761050418.html"
+      },
+      {
+        "title": "药明生物：新加坡CRDMO中心模块化生物制剂生产厂主体结构封顶",
+        "content": "【药明生物：新加坡CRDMO中心模块化生物制剂生产厂主体结构封顶】药明生物宣布已完成新加坡CRDMO中心模块化生物制剂生产厂的主体结构封顶。该制剂厂按照国际市场最新、最严格标准设计建造，建成后将成为公司核心制剂生产基地，预计每年可生产约1亿支预充针和西林瓶。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:53:32",
+        "url": "https://finance.eastmoney.com/a/202606053761045476.html"
+      },
+      {
+        "title": "一财社论：自发回购是一个市场自立信号",
+        "content": "【一财社论：自发回购是一个市场自立信号】回购正在从管理层倡议走向市场自觉。最新数据显示，截至6月3日，A股市场年内共有545家上市公司实施回购，合计回购金额达557.01亿元，另有超230家上市公司抛出回购预案，拟回购资金上限合计逾1000亿元。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:50:32",
+        "url": "https://finance.eastmoney.com/a/202606043760642342.html"
+      },
+      {
+        "title": "两市融资余额增加65.66亿元",
+        "content": "【两市融资余额增加65.66亿元】截至6月4日，上交所融资余额报14767.43亿元，较前一交易日增加24.99亿元；深交所融资余额报14141.48亿元，较前一交易日增加40.67亿元；两市合计28908.91亿元，较前一交易日增加65.66亿元。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:47:16",
+        "url": "https://finance.eastmoney.com/a/202606053761037476.html"
+      },
+      {
+        "title": "华尔街量化巨头简街计划自建数据中心",
+        "content": "【华尔街量化巨头简街计划自建数据中心】据报道，华尔街量化巨头简街计划自建数据中心并进行融资，正与科技、加密货币和金融领域企业洽谈。知情人士表示，洽谈尚处于早期阶段，数据中心的具体容量和选址尚未确定。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:47:08",
+        "url": "https://finance.eastmoney.com/a/202606053761037091.html"
+      },
+      {
+        "title": "中天科技与隆基绿能战略合作签约",
+        "content": "【中天科技与隆基绿能战略合作签约】记者获悉，6月3日，SNEC展会现场，中天科技与隆基绿能举行战略合作签约仪式。根据协议，双方将推动储能板块集成业务及光伏板块封装胶膜产品领域的双向赋能，携手开拓新能源产业融合共赢的新路径。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:47:00",
+        "url": "https://finance.eastmoney.com/a/202606053761040686.html"
+      },
+      {
+        "title": "台积电明确玻璃基板先进封装放量时点 玻璃基板行业投资机遇凸显",
+        "content": "【台积电明确玻璃基板先进封装放量时点 玻璃基板行业投资机遇凸显】在6月4日的股东会上，台积电董事长兼总裁魏哲家透露，台积电目前已建设CoPoS试产线，预计2-3年产量才能达到相当大的规模。台积电的CoPoS技术与关注度高涨的玻璃基板紧密相关。其采用方形面板设计，以玻璃基板取代部分传统材料，意在支持更大尺寸AI与HPC芯片封装需求。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:46:35",
+        "url": "https://finance.eastmoney.com/a/202606053760994186.html"
+      },
+      {
+        "title": "高端光棒价格涨幅近550% 拥有光棒产能的企业或成本轮行情最大受益方",
+        "content": "【高端光棒价格涨幅近550% 拥有光棒产能的企业或成本轮行情最大受益方】光纤预制棒也称“光棒”，是控制光纤性能的原始棒体材料。业内人士表示，光纤预制棒作为光缆产品的上游材料，占行业利润分配的70%。目前最抢手的光棒产品是“A2类光纤预制棒”，这类光棒拉出来的光纤抗弯曲能力强，在AI算力基建与入户通信场景中广泛应用。数据显示，A2类预制棒报价由2025年初的22元至30元/等效芯公里涨至2026年的160元/等效芯公里，涨幅近550%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:46:18",
+        "url": "https://finance.eastmoney.com/a/202606053760989856.html"
+      },
+      {
+        "title": "开源后端平台Supabase融资5亿美元 投后估值105亿美元",
+        "content": "【开源后端平台Supabase融资5亿美元 投后估值105亿美元】当地时间6月4日，开源后端平台（BaaS）Supabase宣布完成5亿美元F轮融资，投后估值达105亿美元。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:45:08",
+        "url": "https://finance.eastmoney.com/a/202606053761036494.html"
+      },
+      {
+        "title": "英伟达推出全模态物理AI模型 物理AI规模化落地时代加速到来",
+        "content": "【英伟达推出全模态物理AI模型 物理AI规模化落地时代加速到来】在2026中国台北GTC大会上，英伟达正式官宣重磅产品——NVIDIACosmos3，这款面向物理AI的开放世界基础模型，凭借全新混合Transformer架构，打通视觉推理、世界生成、动作预测三大核心能力，成为全球首款完全开放的全模态物理AI模型。与此同时，英伟达牵头成立全球开发者协作联盟，正式拉起物理AI生态阵营，宣告物理AI规模化落地时代加速到来。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:44:24",
+        "url": "https://finance.eastmoney.com/a/202606053761024465.html"
+      },
+      {
+        "title": "中信证券：建议以“AI+能化”的新杠铃结构作为兼顾降波与收益的战略解",
+        "content": "【中信证券：建议以“AI+能化”的新杠铃结构作为兼顾降波与收益的战略解】中信证券研报表示，当前A股资金缩圈与虹吸、个股收益率分化均已触及历史极值，头部资产与长尾资产的收益率相关系数正逼近0.5的背离临界点。复盘历史，极致缩圈见顶并不决定大盘方向，但相关性背离往往预示着前期抱团的主线步入休整，资金行为与市场情绪面临结构性切换。展望后市，市场能否从极致分化走向系统性收敛，取决于宏观基本面增长与全球流动性能否实现顺畅接力。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:43:17",
+        "url": "https://finance.eastmoney.com/a/202606053761034015.html"
+      },
+      {
+        "title": "德祥地产：全资附属子公司与中国联通香港订立合作备忘录",
+        "content": "【德祥地产：全资附属子公司与中国联通香港订立合作备忘录】德祥地产6月5日在港交所公告，集团在推动“传统产业资产+AI算力基础设施”的战略布局及优化资产组合方面取得重要进展。于6月2日，公司的全资附属子公司ITCSTRATEGICMANAGEMENTLIMITED（ITC附属子公司）与中国联通香港订立一份合作备忘录，旨在推动双方在香港地区AI算力基础设施及相关业务领域之全面合作。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:43:08",
+        "url": "https://finance.eastmoney.com/a/202606053761034141.html"
+      },
+      {
+        "title": "SpaceX IPO路演火热进行中 知情人士：认购需求爆棚、分析师电话接不停",
+        "content": "【SpaceX IPO路演火热进行中 知情人士：认购需求爆棚、分析师电话接不停】本周四（6月4日），马斯克旗下火箭制造与人工智能公司SpaceX正式启动首次公开募股（IPO）路演。此前一天，该公司敲定了135美元每股的IPO发行价。据知情人士向媒体透露，SpaceX已经告知各大承销银行，不会调整每股135美元的IPO发行价。这表明该公司对其路演过程中的投资者需求感到满意。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:43:06",
+        "url": "https://finance.eastmoney.com/a/202606053761029466.html"
+      },
+      {
+        "title": "日本5月外汇储备降幅为2000年数据开始公布以来最大",
+        "content": "日本财务省官员表示，5月外汇储备降幅为2000年数据开始公布以来最大。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:40:30",
+        "url": "https://finance.eastmoney.com/a/202606053761033822.html"
+      },
+      {
+        "title": "6月5日投资避雷针：4连板人气股提示风险 光模块透镜固定用胶月营收占比不足1%",
+        "content": "【6月5日投资避雷针：4连板人气股提示风险 光模块透镜固定用胶月营收占比不足1%】近日A股及海外市场潜在风险事件如下。国内经济信息方面包括：1）去库不及预期叠加仓单压力，碳酸锂一度跌破16万元；2）小红书启动金融专业号治理专项行动，处置非法诱导跨境投资等违规内容；公司方面重点关注包括：1）深交所向唯特偶下发关注函，要求说明公司目前主营产品分别应用在光模块生产三大环节的具体情况；2）4连板天洋新材公告，在电子胶产品中涉及半导体业务的光模块透镜固定用胶为新开发产品，目前该产品月营收占集团月营收不足1%等。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:40:22",
+        "url": "https://finance.eastmoney.com/a/202606053761029552.html"
+      },
+      {
+        "title": "AI算力的尽头竟是“钻石”？培育钻石概念集体暴涨却少有个股研报 杠杆资金快速增长引发警惕",
+        "content": "【AI算力的尽头竟是“钻石”？培育钻石概念集体暴涨却少有个股研报 杠杆资金快速增长引发警惕】凭借芯片散热等热门题材加持，包括四方达、惠丰钻石、黄河旋风、力量钻石在内的多只培育钻石概念股年内的涨幅都为三位数。其中，惠丰钻石最近在短短两周内暴涨160%。不过，记者注意到，在行情如火如荼之际，近一年却没有券商发布相关概念个股的研报。业内人士认为，这反映出分析师群体对这些公司基本面的谨慎态度。与此同时，杠杆资金的加速涌入也值得投资者警惕。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:38:23",
+        "url": "https://finance.eastmoney.com/a/202606043760551297.html"
+      },
+      {
+        "title": "罗永浩卸任锤子软件核心岗位！知情人士：既定人事安排 他已还债近10亿元",
+        "content": "【罗永浩卸任锤子软件核心岗位！知情人士：既定人事安排 他已还债近10亿元】天眼查显示，近日，锤子科技创始人罗永浩工商职务发生变动，在锤子软件（北京）有限公司的职务由“执行董事”变更为“董事”，这是罗永浩近年来又一次退出锤子系企业核心管理岗位。6月4日，锤子科技内部知情人士透露，此次职务调整为企业常规工商变更，属于公司既定人事安排，无特殊变动原因。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:37:01",
+        "url": "https://finance.eastmoney.com/a/202606043760594967.html"
+      },
+      {
+        "title": "谷歌将在美国得州新建数据中心和能源设施",
+        "content": "【谷歌将在美国得州新建数据中心和能源设施】当地时间6月4日，谷歌和Intersect宣布将在美国得州建设Meitner能源中心，该中心将包括一座新的数据中心以及配套的能源发电设施。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:35:08",
+        "url": "https://finance.eastmoney.com/a/202606053761031255.html"
+      },
+      {
+        "title": "重仓泡泡玛特 段永平看懂了什么？",
+        "content": "【重仓泡泡玛特 段永平看懂了什么？】一个靠制造业起家、以巴菲特为偶像的中国企业家，把筹码从煤炭搬到了潮玩。比投资对错更值得思考的，是这笔交易背后所折射的产业命题：以情绪价值为核心逻辑的消费形态，已经不仅是周期性的潮流脉冲，更是结构性的需求迁移。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:33:00",
+        "url": "https://finance.eastmoney.com/a/202606053760812987.html"
+      },
+      {
+        "title": "中信建投：AI算力增长持续打开超高导热金刚石材料增长空间",
+        "content": "【中信建投：AI算力增长持续打开超高导热金刚石材料增长空间】中信建投研报表示，算力产业持续扩容带动芯片集成度与功率密度大幅提升，高热流密度下传统铜基散热材料已达瓶颈。金刚石热导率可达2000W/m·K，远超铜、银、硅、碳化硅等材料，是突破高端芯片散热瓶颈的关键方向。目前金刚石散热材料包括金刚石基复合材料、单晶金刚石、多晶金刚石三大路线，技术路线尚未完全定型，其中金刚石铜复合材料兼顾性能与成本，产业化节奏领先。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:32:44",
+        "url": "https://finance.eastmoney.com/a/202606053761030525.html"
+      },
+      {
+        "title": "资金抱团科技龙头：是高景气共识 还是拥挤的赌注",
+        "content": "【资金抱团科技龙头：是高景气共识 还是拥挤的赌注】5月的中国股市，一边是142家公司股价创下历史新高，另一边是近4000家公司月线收跌——其中更有近1000家公司，股价已经跌回了2025年4月7日沪指3096.58点（2025年以来最低收盘价）时的水平之下。一边是“小登”科技股的狂欢派对，一边是大多数“老登”股的冷冷清清。今年来巨量资金死死抱团AI产业链。数据显示，6月3日，A股成交额排名前5%的个股（约276只）合计成交额占全市场比重已达51.65%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:32:00",
+        "url": "https://finance.eastmoney.com/a/202606053760814437.html"
+      },
+      {
+        "title": "MLCC指数四连涨 “下一个存储”确认否？",
+        "content": "【MLCC指数四连涨 “下一个存储”确认否？】专家表示，MLCC此轮涨价潮，主要受原材料成本激增与AI需求强劲的双重刺激。在成本构成上，MLCC内部的电极有一半成本来自于银，贵金属价格的上涨直接构成了硬性成本压力。与此同时，AI服务器带来的高端需求异常火爆，迫使厂商调整产能结构，优先保障高端生产。这种产能转移导致中低端产品供应收紧，进而带动了整体价格的上涨传导。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:30:00",
+        "url": "https://finance.eastmoney.com/a/202606053760813745.html"
+      },
+      {
+        "title": "870亿雪王卖咖啡 均价6.9元",
+        "content": "【870亿雪王卖咖啡 均价6.9元】870亿元市值的“雪王”，正在给子品牌“幸运咖”升咖。6月3日，蜜雪集团旗下的咖啡品牌幸运咖透露，已加快全国门店的鲜奶、鲜豆等核心原料的切换升级。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:28:00",
+        "url": "https://finance.eastmoney.com/a/202606053760998933.html"
+      },
+      {
+        "title": "波士顿联储研究：石油冲击对美国的影响弱于1970年代",
+        "content": "【波士顿联储研究：石油冲击对美国的影响弱于1970年代】据报道，波士顿联储的最新研究显示，自20世纪70年代以来，美国国内石油生产已显著减轻能源价格冲击对美国通胀和就业的影响。研究称，类似当前伊朗战事引发的油价冲击，将在随后一年内推动美国个人消费支出价格指数（PCE）上升1.5个百分点，而在20世纪70年代会推高该指数2.2个百分点。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:27:29",
+        "url": "https://finance.eastmoney.com/a/202606053761029075.html"
+      },
+      {
+        "title": "周星驰投了家苏州短剧新秀",
+        "content": "【周星驰投了家苏州短剧新秀】被动画《凡人修仙传》圈粉后，63岁的周星驰决定押注背后团队。6月上旬，周星驰携手旗下港股上市公司比高集团，战略入股互动之星。互动之星主攻AI剧集与互动影游赛道，拥有《凡人修仙传》《绍宋》《悟空传》等多个知名IP。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:26:00",
+        "url": "https://finance.eastmoney.com/a/202606053761024857.html"
+      },
+      {
+        "title": "慧荣：消费端NAND供应紧张持续 2027年情况只会更糟",
+        "content": "【慧荣：消费端NAND供应紧张持续 2027年情况只会更糟】慧荣科技客户端业务部门资深副总Nelson Duann表示，对于今年下半年，预计NAND闪存情况基本保持不变，消费端供应仍将非常紧张，2027年将成为NAND供应方面最糟糕的一年。NAND制造商们称，由于云服务提供商和数据中心运营商持续增加需求，只能将供货重点放在数据中心市场。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:25:35",
+        "url": "https://finance.eastmoney.com/a/202606053761028862.html"
+      },
+      {
+        "title": "美股纳斯达克100指数期货跌超1%",
+        "content": "美股纳斯达克100指数期货跌超1%，标普500指数期货跌0.5%，道琼斯指数期货跌0.1%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:25:08",
+        "url": "https://finance.eastmoney.com/a/202606053761028548.html"
+      },
+      {
+        "title": "华泰证券：保险业盈利反弹临近 建议重视二季报投资机会",
+        "content": "【华泰证券：保险业盈利反弹临近 建议重视二季报投资机会】华泰证券研报表示，如果6月市场表现稳定，二季度或成为保险行业今年盈利表现最亮眼的一个季度。估计上市各保险公司2026年二季度的税前利润（中位数）有望同比增长23%—171%，相较于2026年一季度30%—50%的下滑明显反弹。今年以来，保险板块受一季度市场波动和盈利下滑，以及二季度以来较为极致的结构性市场行情影响，股价普遍下行10%—30%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:23:29",
+        "url": "https://finance.eastmoney.com/a/202606053761027987.html"
+      },
+      {
+        "title": "开源证券：白酒底部布局 大众品把握三条主线",
+        "content": "【开源证券：白酒底部布局 大众品把握三条主线】开源证券发布食品饮料板块2026年中期投资策略称，白酒板块已接近周期底部，全年复苏节奏应是前低后高。建议布局强品牌、稳动销、渠道健康的高端及次高端龙头。大众品板块估值处于合理区间，叠加基本面持续改善，具备较高配置价值，建议围绕三条主线布局优质标的：一是寻找短期收入修复弹性明确的机会，二是寻找产业周期有望触底反转的机会，三是餐饮行业持续修复，带动餐饮供应链需求提升。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:23:07",
+        "url": "https://finance.eastmoney.com/a/202606053761028250.html"
+      },
+      {
+        "title": "韩国综合指数下跌超6%",
+        "content": "韩国综合指数下跌超6%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:22:31",
+        "url": "https://finance.eastmoney.com/a/202606053761027014.html"
+      },
+      {
+        "title": "抹茶出口暴增的启示",
+        "content": "【抹茶出口暴增的启示】茶叶是我国传统优势农业品类，但过去很长一段时间，我国茶叶出口以原料茶为主，产业链条短、附加值低、利润空间小。抹茶等特色农产品的出海之路越走越宽，最大的意义不在于某个品类的成功，而在于提供了一条可借鉴可复制的路径。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:19:01",
+        "url": "https://finance.eastmoney.com/a/202606053760788421.html"
+      },
+      {
+        "title": "谋篇布局点亮“人造太阳”",
+        "content": "【谋篇布局点亮“人造太阳”】“十五五”规划纲要明确将发展核聚变能列为新的经济增长点，提出要突破氚燃料制备循环、材料辐照考验、高性能激光、超导磁体制造等核聚变关键技术，开展聚变氘氚燃烧等离子体运行实验和多技术路径可行性验证，推进核聚变研发工程化进程，为“十五五”时期我国核聚变技术发展提出了明确方向，核聚变将加速从科学实验全面转向工程化、产业化。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:18:02",
+        "url": "https://finance.eastmoney.com/a/202606053760788724.html"
+      },
+      {
+        "title": "“东北超”超出东北",
+        "content": "【“东北超”超出东北】近日，由辽宁、吉林、黑龙江、内蒙古三省一区联手打造的“东北超”正式开赛。作为全国首个跨省区城市足球超级联赛，“东北超”凭借覆盖超1亿人口的影响力，点燃了足球热情，带火了文体旅商。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:16:02",
+        "url": "https://finance.eastmoney.com/a/202606053760790093.html"
+      },
+      {
+        "title": "航行警告 南海海域有火箭发射",
+        "content": "【航行警告 南海海域有火箭发射】据中国海事局网站消息，清澜海事局发布航行警告，6月5日至6月6日，每日13时30分至15时30分，南海部分海域进行火箭发射，禁止驶入。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:15:41",
+        "url": "https://finance.eastmoney.com/a/202606053761025328.html"
+      },
+      {
+        "title": "韩国综合指数下跌超5%",
+        "content": "韩国综合指数下跌超5%，SK海力士跌超8%，三星跌6.5%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:14:54",
+        "url": "https://finance.eastmoney.com/a/202606053761024774.html"
+      },
+      {
+        "title": "经济日报金观平：锻造实体经济的坚实底盘",
+        "content": "【经济日报金观平：锻造实体经济的坚实底盘】当前，我国正处于全面建设社会主义现代化国家的关键时期，面临着国内经济转型升级、全球产业体系深刻调整的双重挑战。越是形势复杂，越要站稳脚跟。“实体经济是我国发展的本钱，是构筑未来发展战略优势的重要支撑”“要深刻把握发展的阶段性新特征新要求，坚持把做实做强做优实体经济作为主攻方向”……习近平总书记的一系列重要论述，指明的正是最需要综合发力、重点突破、协同推动的关键任务。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:12:04",
+        "url": "https://finance.eastmoney.com/a/202606053760792342.html"
+      },
+      {
+        "title": "伊朗：结束中东战火的谈判没有实质性进展",
+        "content": "【伊朗：结束中东战火的谈判没有实质性进展】据美国哥伦比亚广播公司(CBS)报道，当地时间4日，伊朗外交部长阿拉格奇表示，结束中东战事的谈判“没有取得实质性进展”。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:11:49",
+        "url": "https://finance.eastmoney.com/a/202606053761019529.html"
+      },
+      {
+        "title": "韩国交易所因KOSPI 200期货下跌5%而启动KOSPI的熔断机制",
+        "content": "韩国交易所因KOSPI 200期货下跌5%而启动KOSPI的熔断机制，程序化交易暂停5分钟。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:10:00",
+        "url": "https://finance.eastmoney.com/a/202606053761009536.html"
+      },
+      {
+        "title": "澳大利亚标普/澳证200指数下跌0.2%",
+        "content": "澳大利亚标普/澳证200指数下跌0.2%，报8670.10点。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:09:09",
+        "url": "https://finance.eastmoney.com/a/202606053761024581.html"
+      },
+      {
+        "title": "数据资产ABS暂停申报 已过会项目暂停封卷",
+        "content": "【数据资产ABS暂停申报 已过会项目暂停封卷】多位市场人士及接近监管的人士表示，数据资产ABS日前已被暂时叫停。两位投行人士均称，6月3日收到来自交易所的窗口指导，暂停申报数据资产ABS，如果自行申报会被劝退\"。另有一位资深债市人士称，不只是申报暂停，已过会的项目也已暂停封卷领取批文，而已拿到批文的项目则可能需要暂缓备案发行。据了解，交易所早在4月便曾发出相关窗口指导，希望控制数据资产ABS申报规模，但依然难挡城投平台的融资冲动。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:08:43",
+        "url": "https://finance.eastmoney.com/a/202606053761012827.html"
+      },
+      {
+        "title": "612家A股公司年内发力回购 计划上限1114亿元",
+        "content": "【612家A股公司年内发力回购 计划上限1114亿元】上市公司回购潮再起。6月3日，约40家A股上市公司发布回购预案或进展公告。以各行业头部企业为代表的白马股，大幅从二级市场真金白银回购股份，对于提振市场信心、夯实长期价值起到积极作用。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:08:40",
+        "url": "https://finance.eastmoney.com/a/202606053760784495.html"
+      },
+      {
+        "title": "美国小企业招聘计划降至2020年5月以来最低",
+        "content": "【美国小企业招聘计划降至2020年5月以来最低】美国独立企业联合会（NFIB）当地时间6月4日发布报告显示，美国小企业中，表示计划新增招聘和表示难以填补职位空缺的企业占比5月双双降至六年低点。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:07:00",
+        "url": "https://finance.eastmoney.com/a/202606053760994058.html"
+      },
+      {
+        "title": "SpaceX上市募资规模料创纪录 有望提振商业航天板块",
+        "content": "【SpaceX上市募资规模料创纪录 有望提振商业航天板块】近日，埃隆·马斯克旗下SpaceX向美国证券交易委员会（SEC）最新提交的招股书显示，SpaceX将IPO发行规模定为5.556亿股，预计发行价为135美元/股。预计净募资额在基础发行后约750亿美元，超额配售后有望超过850亿美元。SpaceX计划于6月12日在纳斯达克交易平台正式挂牌上市。市场机构预测，SpaceX此次的IPO规模将打破沙特阿美于2019年创下的290亿美元纪录。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:05:44",
+        "url": "https://finance.eastmoney.com/a/202606053760784640.html"
+      },
+      {
+        "title": "潮玩行业分化加剧 IP资产成估值新锚点",
+        "content": "【潮玩行业分化加剧 IP资产成估值新锚点】从一线城市商圈的潮玩自动贩卖机前排起长队，到社交媒体上“晒娃”“改娃”话题频上榜单，潮玩消费已然成为Z世代的“社交货币”。近日，知名投资人段永平斥资重仓举牌泡泡玛特一石激起千层浪。尽管资本大手笔加码头部标的，但拨开喧嚣的市场表象，潮玩行业早已告别“开店即盈利”的粗放增长时代，深度分化成为主旋律，IP资产则取代渠道规模，成为企业估值的新锚点。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:04:53",
+        "url": "https://finance.eastmoney.com/a/202606053760784587.html"
+      },
+      {
+        "title": "华泰证券：保险业盈利反弹临近 重视二季报投资机会",
+        "content": "【华泰证券：保险业盈利反弹临近 重视二季报投资机会】华泰证券研报表示，如果6月市场表现稳定，二季度或成为保险行业今年盈利表现最亮眼的一个季度。估计上市各保险公司2Q26的税前利润（中位数）有望同比增长23%-171%，相较于1Q26 30%-50%的下滑明显反弹。今年以来，保险板块受一季度市场波动和盈利下滑，以及二季度以来较为极致的结构性市场行情影响，股价普遍下行10%-30%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:03:52",
+        "url": "https://finance.eastmoney.com/a/202606053760982387.html"
+      },
+      {
+        "title": "韩国综合指数下跌超4% 三星电子跌超5%",
+        "content": "韩国综合指数下跌超4%，三星电子跌超5%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:03:11",
+        "url": "https://finance.eastmoney.com/a/202606053760973851.html"
+      },
+      {
+        "title": "日本实际薪资连续四个月上涨",
+        "content": "【日本实际薪资连续四个月上涨】日本厚生劳动省6月5日公布数据显示，日本4月经通胀调整后的薪资同比增长1.9%，较前一个月经修正后的1.4%涨幅提高，也高于经济学家此前预期的1.7%。这是日本实际薪资连续第四个月上涨，创下自2021年底以来最长连续增长纪录。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:01:23",
+        "url": "https://finance.eastmoney.com/a/202606053760963265.html"
+      },
+      {
+        "title": "日韩股市开盘集体下跌",
+        "content": "【日韩股市开盘集体下跌】日经225指数开盘跌0.53%，韩国综合指数开盘下跌3.7%。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 08:01:13",
+        "url": "https://finance.eastmoney.com/a/202606053760968411.html"
+      },
+      {
+        "title": "溜溜梅寻求通过香港上市募资约5亿港元",
+        "content": "【溜溜梅寻求通过香港上市募资约5亿港元】根据提交给香港交易所的公告，溜溜梅拟以每股43.58港元的价格发行约1150万股股票，计划募资约5亿港元，股票预计6月15日挂牌交易。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 07:59:23",
+        "url": "https://finance.eastmoney.com/a/202606053760950425.html"
+      },
+      {
+        "title": "高盛预计SpaceX到2030年将“烧掉”3500亿美元现金",
+        "content": "高盛预计SpaceX到2030年将“烧掉”3500亿美元现金，资本支出的80%将用于人工智能。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 07:59:13",
+        "url": "https://finance.eastmoney.com/a/202606053760960488.html"
+      },
+      {
+        "title": "Anthropic联合创始人称高昂的AI模型开发成本推动公司寻求上市",
+        "content": "【Anthropic联合创始人称高昂的AI模型开发成本推动公司寻求上市】据报道，Anthropic联合创始人兼总裁丹妮拉·阿莫迪（DanielaAmodei）表示，开发人工智能模型的高昂成本正迫使像Anthropic这样的公司寻求上市融资。几天前，这家人工智能工具Claude的制造商保密提交了IPO注册文件草案。“训练人工智能模型是一项高度资本密集型的业务，”她补充说，公开市场“非常适合这种情况”。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 07:57:23",
+        "url": "https://finance.eastmoney.com/a/202606053760943185.html"
+      },
+      {
+        "title": "振华科技：公司目前整体钽电容产能10亿只",
+        "content": "【振华科技：公司目前整体钽电容产能10亿只】振华科技在互动平台表示，公司目前整体钽电容产能10亿只，公司持续紧跟市场需求与技术发展，对现有产线进行智能化升级改造与效能提升，以稳步释放潜在产能。公司民用钽电容主要应用在服务器领域、低压电路保护领域、民用爆破领域和智能三表领域；薄膜电容、超级电容、铝电容及MLCC主要应用于轨道交通领域和超算领域，整体民用业务占比不大。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 07:56:36",
+        "url": "https://finance.eastmoney.com/a/202606053760947885.html"
+      },
+      {
+        "title": "SpaceX据悉告知投行其IPO发行价定为每股135美元 不会变动",
+        "content": "【SpaceX据悉告知投行其IPO发行价定为每股135美元 不会变动】据报道，SpaceX已告知投行其IPO发行价定为每股135美元，不会变动。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 07:55:23",
+        "url": "https://finance.eastmoney.com/a/202606053760939272.html"
+      },
+      {
+        "title": "华泰证券：光模块设备或迎量升价增拐点",
+        "content": "【华泰证券：光模块设备或迎量升价增拐点】华泰证券研报表示，AI算力需求持续增长驱动高速光模块加速放量，同时1.6T/3.2T高速率升级及CPO等技术迭代推动光模块封装复杂度与性能要求持续提升，带动上游设备行业进入“量增+价升”共振阶段。光模块设备市场迎增长加速拐点，看好产业链相关企业发展。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 07:55:13",
+        "url": "https://finance.eastmoney.com/a/202606053760939190.html"
+      },
+      {
+        "title": "上海国投先导总经理温治：投资认知重构 在三大产业中有效落子",
+        "content": "【上海国投先导总经理温治：投资认知重构 在三大产业中有效落子】“硬科技投资正经历不可逆的范式重构，不再是周期波动，而是生产力要素的根本性变革。”温治认为，在这一过程中，资本、技术、组织正在“三相变”，而上海国投先导致力于成为“用资本背书降低信任成本，用产业图谱降低搜寻成本，让异质资源能够快速互溶”的“液态组织”。",
+        "source": "eastmoney_global",
+        "published_at": "2026-06-05 07:51:53",
+        "url": "https://finance.eastmoney.com/a/202606053760809882.html"
+      }
+    ],
+    "confidence": 1.0,
+    "market_sentiment": 0.85,
+    "max_abs_theme": 0.424,
+    "hot_keywords": [
+      "上证50",
+      "大蓝筹",
+      "沪深300",
+      "沪指",
+      "中证A500",
+      "A500",
+      "黄金",
+      "金价",
+      "科创板",
+      "科创50",
+      "券商",
+      "证券"
+    ],
+    "auto_news": {
+      "enabled": true,
+      "article_count": 203,
+      "confidence": 1.0,
+      "market_sentiment": 0.85,
+      "catalyst_hits": 103,
+      "max_abs_theme": 0.424
+    }
+  },
+  "econ_calendar": {
+    "date": "2026-06-05",
+    "lookback_days": 1,
+    "source": "akshare_live",
+    "events": [
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.17",
+        "previous": "15036.17"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "477.93",
+        "previous": "478.37"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1026.86",
+        "previous": "1028.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "283281.96",
+        "previous": "283128.33"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月商品及服务贸易帐(亿澳元)",
+        "importance": 2,
+        "expected": "18.0",
+        "actual": "17.91",
+        "previous": "-18.41"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月出口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "7.2",
+        "previous": "-2.7"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月进口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.8",
+        "previous": "14.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1.3",
+        "previous": "2.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.7",
+        "previous": "-0.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士5月CPI年率(%)",
+        "importance": 2,
+        "expected": "0.8",
+        "actual": "0.6",
+        "previous": "0.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月季调后失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.0",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月未季调失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.1",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-536.0",
+        "previous": "-2238.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周燃料总库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "3814.3",
+        "previous": "4428.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售年率(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "1.0",
+        "previous": "1.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售月率(%)",
+        "importance": 2,
+        "expected": "-0.3",
+        "actual": "-0.4",
+        "previous": "-0.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国5月挑战者企业裁员人数(万)",
+        "importance": 2,
+        "expected": "",
+        "actual": "9.7",
+        "previous": "8.34"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月30日当周初请失业金人数(万)",
+        "importance": 2,
+        "expected": "21.3",
+        "actual": "22.5",
+        "previous": "21.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月23日当周续请失业金人数(万)",
+        "importance": 2,
+        "expected": "178.0",
+        "actual": "177.7",
+        "previous": "178.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "22:05",
+        "region": "全球",
+        "event": "全球5月供应链压力指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "1.77",
+        "previous": "1.82"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至6月3日美联储资产负债表(万亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "6.71",
+        "previous": "6.7"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1025.14",
+        "previous": "1026.86"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "477.52",
+        "previous": "477.93"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "282288.11",
+        "previous": "283281.96"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.15",
+        "previous": "15036.17"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月贸易帐(亿欧元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-68.64"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月5日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月5日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-536.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区第一季度季调后GDP季率终值(%)",
+        "importance": 2,
+        "expected": "0.1",
+        "actual": "",
+        "previous": "0.1"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区第一季度季调后GDP年率终值(%)",
+        "importance": 2,
+        "expected": "0.8",
+        "actual": "",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月私营企业非农就业人数变动(万)",
+        "importance": 2,
+        "expected": "8.5",
+        "actual": "",
+        "previous": "12.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大5月失业率(%)",
+        "importance": 2,
+        "expected": "6.9",
+        "actual": "",
+        "previous": "6.9"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月非农就业人口变动季调后(万)",
+        "importance": 2,
+        "expected": "8.5",
+        "actual": "",
+        "previous": "11.5"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月失业率(%)",
+        "importance": 2,
+        "expected": "4.3",
+        "actual": "",
+        "previous": "4.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月制造业就业人口变动季调后(万)",
+        "importance": 2,
+        "expected": "0.2",
+        "actual": "",
+        "previous": "-0.2"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月劳动参与率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "61.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大5月就业人数变动(万)",
+        "importance": 2,
+        "expected": "1.0",
+        "actual": "",
+        "previous": "-1.77"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月平均每小时工资年率(%)",
+        "importance": 2,
+        "expected": "3.4",
+        "actual": "",
+        "previous": "3.6"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "22:00",
+        "region": "加拿大",
+        "event": "加拿大5月IVEY季调后PMI",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "57.7"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "22:00",
+        "region": "加拿大",
+        "event": "加拿大5月IVEY未季调PMI",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "61.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "00:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯4月实际零售销售年率(%)",
+        "importance": 1,
+        "expected": "2.7",
+        "actual": "6.5",
+        "previous": "6.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "00:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯4月失业率(%)",
+        "importance": 1,
+        "expected": "2.2",
+        "actual": "2.2",
+        "previous": "2.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "00:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯3月实际薪资年率(%)",
+        "importance": 1,
+        "expected": "7.1",
+        "actual": "8.1",
+        "previous": "8.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "01:30",
+        "region": "巴西",
+        "event": "巴西截至5月25日当周外汇流-月初至周期日(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "28.05",
+        "previous": "-36.48"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "02:00",
+        "region": "巴西",
+        "event": "巴西5月贸易差额(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "78.23",
+        "previous": "105.37"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "05:00",
+        "region": "韩国",
+        "event": "韩国5月外汇储备(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "4269.9",
+        "previous": "4278.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日NYMEX钯金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-6.83",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日NYMEX钯金库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "2382.42",
+        "previous": "2389.25"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares黄金持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.44",
+        "previous": "-0.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX黄金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "153.62",
+        "previous": "299.65"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日NYMEX铂金库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "4526.27",
+        "previous": "4526.27"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares白银持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "-44.53"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日NYMEX铂金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "-0.49"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日SPDR黄金持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-1.14",
+        "previous": "-0.86"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX白银库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "6000.56",
+        "previous": "14772.99"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX白银库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3192781.74",
+        "previous": "3186781.18"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "新西兰",
+        "event": "新西兰5月ANZ商品价格指数-纽元计价",
+        "importance": 1,
+        "expected": "",
+        "actual": "357.1",
+        "previous": "358.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数",
+        "importance": 1,
+        "expected": "",
+        "actual": "410.0",
+        "previous": "407.3"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "新西兰",
+        "event": "新西兰5月ANZ商品价格指数月率-纽元计价(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.3",
+        "previous": "-0.7"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "新西兰",
+        "event": "新西兰5月ANZ商品价格指数年率-纽元计价(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1.9",
+        "previous": "2.7"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士5月未季调CPI读数",
+        "importance": 1,
+        "expected": "",
+        "actual": "101.3",
+        "previous": "101.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士5月CPI月率(%)",
+        "importance": 1,
+        "expected": "0.3",
+        "actual": "0.2",
+        "previous": "0.3"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "西班牙",
+        "event": "西班牙4月季调后工业产出年率(%)",
+        "importance": 1,
+        "expected": "2.0",
+        "actual": "2.0",
+        "previous": "1.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-黄金(千克)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-燃料油(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "-5000.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-白银(千克)",
+        "importance": 1,
+        "expected": "",
+        "actual": "8473.0",
+        "previous": "5945.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "英国",
+        "event": "英国5月乘用车新车登记(辆)",
+        "importance": 1,
+        "expected": "",
+        "actual": "160662.0",
+        "previous": "149247.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周中间馏分油燃料库存(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "729.7",
+        "previous": "896.4"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周轻馏分油燃料库存(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1149.6",
+        "previous": "1461.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周残剩油库存(万桶)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1935.0",
+        "previous": "2070.3"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国5月挑战者企业裁员年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.4",
+        "previous": "-20.9"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国5月挑战者企业裁员月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "16.0",
+        "previous": "38.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:00",
+        "region": "墨西哥",
+        "event": "墨西哥3月固定资产投资总额年率(%)",
+        "importance": 1,
+        "expected": "-3.1",
+        "actual": "-2.6",
+        "previous": "-4.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:00",
+        "region": "墨西哥",
+        "event": "墨西哥3月固定资产投资总额月率(%)",
+        "importance": 1,
+        "expected": "0.1",
+        "actual": "0.4",
+        "previous": "-0.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国第一季度单位劳动力成本季率修正值(%)",
+        "importance": 1,
+        "expected": "2.5",
+        "actual": "1.8",
+        "previous": "2.3"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月30日当周初请失业金人数四周均值(万)",
+        "importance": 1,
+        "expected": "",
+        "actual": "21.48",
+        "previous": "20.9"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国第一季度非农生产率季率修正值(%)",
+        "importance": 1,
+        "expected": "0.5",
+        "actual": "0.3",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "21:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯截至5月29日当周黄金与外汇储备(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "7487.0",
+        "previous": "7538.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月25日当周EIA天然气隐含流量(亿立方英尺)",
+        "importance": 1,
+        "expected": "",
+        "actual": "950.0",
+        "previous": "920.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "22:30",
+        "region": "美国",
+        "event": "美国截至5月25日当周EIA天然气库存变动(亿立方英尺)",
+        "importance": 1,
+        "expected": "1010.0",
+        "actual": "950.0",
+        "previous": "920.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日4星期国债竞拍-高配置百分比(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "27.64",
+        "previous": "41.91"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日4星期国债竞拍-中标利率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.62",
+        "previous": "3.62"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日4星期国债竞拍-投标倍数(倍)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.07",
+        "previous": "2.76"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日8周国债竞拍-中标利率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.61",
+        "previous": "3.62"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日8周国债竞拍-投标倍数(倍)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.2",
+        "previous": "3.08"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "23:30",
+        "region": "美国",
+        "event": "美国6月4日4星期国债竞拍-总金额(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "790.29",
+        "previous": "883.35"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "00:00",
+        "region": "俄罗斯",
+        "event": "俄罗斯4月GDP年率-每月(%)",
+        "importance": 1,
+        "expected": "1.3",
+        "actual": "1.3",
+        "previous": "1.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至5月30日当周外国央行持有美国国债(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-326.86",
+        "previous": "128.29"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日NYMEX钯金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-33.81",
+        "previous": "-6.83"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日NYMEX铂金库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "4526.27",
+        "previous": "4526.27"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日NYMEX铂金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日iShares黄金持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.41",
+        "previous": "-0.44"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日COMEX白银库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-603.82",
+        "previous": "6000.56"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日SPDR黄金持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-1.72",
+        "previous": "-1.14"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日COMEX白银库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3192177.92",
+        "previous": "3192781.74"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日NYMEX钯金库存-每日更新(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "2348.61",
+        "previous": "2382.42"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日COMEX黄金库存变动-每日(百盎司)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-993.85",
+        "previous": "153.62"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日iShares白银持仓变动-每日(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "-0.02",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "07:00",
+        "region": "韩国",
+        "event": "韩国4月经常帐(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "282.9",
+        "previous": "373.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "07:30",
+        "region": "日本",
+        "event": "日本4月劳动现金收入年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "3.5",
+        "previous": "2.7"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "07:30",
+        "region": "日本",
+        "event": "日本4月实际薪资收入年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1.9",
+        "previous": "1.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "07:30",
+        "region": "日本",
+        "event": "日本4月加班工资年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "4.2",
+        "previous": "1.9"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "07:30",
+        "region": "日本",
+        "event": "日本4月所有家庭支出月率(%)",
+        "importance": 1,
+        "expected": "0.8",
+        "actual": "1.6",
+        "previous": "-1.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "07:30",
+        "region": "日本",
+        "event": "日本4月所有家庭支出年率(%)",
+        "importance": 1,
+        "expected": "-1.5",
+        "actual": "-0.5",
+        "previous": "-2.9"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本5月外汇储备(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "13059.0",
+        "previous": "13830.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "12:30",
+        "region": "印度",
+        "event": "印度6月5日常设存款工具利率(%)",
+        "importance": 1,
+        "expected": "5.0",
+        "actual": "",
+        "previous": "5.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "12:30",
+        "region": "印度",
+        "event": "印度6月5日央行存款准备金率(%)",
+        "importance": 1,
+        "expected": "3.0",
+        "actual": "",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "12:30",
+        "region": "印度",
+        "event": "印度6月5日边际贷款工具利率(%)",
+        "importance": 1,
+        "expected": "5.5",
+        "actual": "",
+        "previous": "5.5"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "12:30",
+        "region": "印度",
+        "event": "印度6月5日央行逆回购利率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.35"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "12:30",
+        "region": "印度",
+        "event": "印度6月5日央行回购利率(%)",
+        "importance": 1,
+        "expected": "5.25",
+        "actual": "",
+        "previous": "5.25"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "13:00",
+        "region": "新加坡",
+        "event": "新加坡4月季调后核心零售销售月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "13:00",
+        "region": "新加坡",
+        "event": "新加坡4月零售销售年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "4.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "13:00",
+        "region": "日本",
+        "event": "日本4月领先指标初值",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "114.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "13:00",
+        "region": "日本",
+        "event": "日本4月同步指标读数变动初值",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "0.2"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "13:00",
+        "region": "日本",
+        "event": "日本4月同步指标初值",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "116.4"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "13:00",
+        "region": "新加坡",
+        "event": "新加坡4月季调后零售销售月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.7"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "13:00",
+        "region": "日本",
+        "event": "日本4月领先指标读数变动初值",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "13:00",
+        "region": "新加坡",
+        "event": "新加坡4月核心零售销售年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:00",
+        "region": "南非",
+        "event": "南非5月黄金与外汇储备净额(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "737.57"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:00",
+        "region": "英国",
+        "event": "英国5月Halifax季调后房价指数年率(%)",
+        "importance": 1,
+        "expected": "1.0",
+        "actual": "",
+        "previous": "0.4"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:00",
+        "region": "南非",
+        "event": "南非5月黄金与外汇储备总额(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "770.89"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:00",
+        "region": "英国",
+        "event": "英国5月Halifax季调后房价指数月率(%)",
+        "importance": 1,
+        "expected": "0.1",
+        "actual": "",
+        "previous": "-0.1"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月工业产出年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "0.9"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月进口(亿欧元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "593.23"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月经常帐未季调(亿欧元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "-28.7"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月制造业产出月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "1.2"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月经常帐-季调后(亿欧元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "-82.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月工业产出月率(%)",
+        "importance": 1,
+        "expected": "-0.2",
+        "actual": "",
+        "previous": "1.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国5月储备资产合计(亿欧元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3868.98"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月制造业产出年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "1.6"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月出口(亿欧元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "524.59"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月外汇储备(亿瑞郎)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "7157.34"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月5日上期所每日仓单变动-燃料油(吨)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月5日上期所每日仓单变动-白银(千克)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "8473.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月5日上期所每日仓单变动-黄金(千克)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:30",
+        "region": "泰国",
+        "event": "泰国截至5月31日外汇储备-含黄金与可兑换外汇(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "2856.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "16:00",
+        "region": "中国台湾",
+        "event": "中国台湾5月未季调CPI读数",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "111.23"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "16:00",
+        "region": "中国台湾",
+        "event": "中国台湾5月季调后CPI月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "0.47"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "16:00",
+        "region": "中国台湾",
+        "event": "中国台湾5月CPI年率(%)",
+        "importance": 1,
+        "expected": "2.1",
+        "actual": "",
+        "previous": "1.74"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "16:00",
+        "region": "中国台湾",
+        "event": "中国台湾5月未季调CPI月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "0.79"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "16:20",
+        "region": "中国台湾",
+        "event": "中国台湾5月外汇存底(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "6024.88"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "16:30",
+        "region": "中国香港",
+        "event": "中国香港5月外汇储备(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "4421.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "希腊",
+        "event": "希腊第一季度单季失业率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "8.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "意大利",
+        "event": "意大利4月季调后零售销售月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "意大利",
+        "event": "意大利4月零售销售年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.7"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "希腊",
+        "event": "希腊第一季度GDP普遍预估年率-季调后(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "2.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区第一季度季调后就业人数年率终值(%)",
+        "importance": 1,
+        "expected": "0.5",
+        "actual": "",
+        "previous": "0.5"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区第一季度季调后就业人数季率终值(%)",
+        "importance": 1,
+        "expected": "0.1",
+        "actual": "",
+        "previous": "0.1"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "希腊",
+        "event": "希腊第一季度实际GDP季率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "0.6"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区第一季度就业人口总数-日历调整及季调后终值(万人)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "17276.08"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "18:00",
+        "region": "巴西",
+        "event": "巴西5月汽车销售额月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "-7.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "18:00",
+        "region": "巴西",
+        "event": "巴西5月汽车产量月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "-9.5"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "18:30",
+        "region": "印度",
+        "event": "印度第一季度GDP年率(%)",
+        "importance": 1,
+        "expected": "7.2",
+        "actual": "",
+        "previous": "7.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "19:30",
+        "region": "印度",
+        "event": "印度截至5月25日当周两周银行贷款增长年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "16.2"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "19:30",
+        "region": "印度",
+        "event": "印度截至5月25日当周两周存款增长年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "12.2"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:00",
+        "region": "墨西哥",
+        "event": "墨西哥5月消费者信心指数-未季调",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "44.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:00",
+        "region": "墨西哥",
+        "event": "墨西哥5月消费者信心指数-季调后",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "44.4"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月U6失业率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "8.2"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大5月兼职就业人数变动(万)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "2.9"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月政府部门岗位变动(万人)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "-0.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月平均每周工时(小时)",
+        "importance": 1,
+        "expected": "34.3",
+        "actual": "",
+        "previous": "34.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大5月平均时薪-永久雇员年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "4.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大5月就业参与率(%)",
+        "importance": 1,
+        "expected": "65.1",
+        "actual": "",
+        "previous": "65.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月平均每小时工资月率(%)",
+        "importance": 1,
+        "expected": "0.3",
+        "actual": "",
+        "previous": "0.2"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大5月全职就业人数变动(万)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "-4.67"
+      }
+    ],
+    "high_importance_events": [
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售年率(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "1.0",
+        "previous": "1.2"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区4月零售销售月率(%)",
+        "importance": 2,
+        "expected": "-0.3",
+        "actual": "-0.4",
+        "previous": "-0.1"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:45",
+        "region": "法国",
+        "event": "法国4月贸易帐(亿欧元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-68.64"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区第一季度季调后GDP季率终值(%)",
+        "importance": 2,
+        "expected": "0.1",
+        "actual": "",
+        "previous": "0.1"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "17:00",
+        "region": "欧元区",
+        "event": "欧元区第一季度季调后GDP年率终值(%)",
+        "importance": 2,
+        "expected": "0.8",
+        "actual": "",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月私营企业非农就业人数变动(万)",
+        "importance": 2,
+        "expected": "8.5",
+        "actual": "",
+        "previous": "12.3"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月非农就业人口变动季调后(万)",
+        "importance": 2,
+        "expected": "8.5",
+        "actual": "",
+        "previous": "11.5"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月失业率(%)",
+        "importance": 2,
+        "expected": "4.3",
+        "actual": "",
+        "previous": "4.3"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.17",
+        "previous": "15036.17"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "477.93",
+        "previous": "478.37"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1026.86",
+        "previous": "1028.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月2日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "283281.96",
+        "previous": "283128.33"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月商品及服务贸易帐(亿澳元)",
+        "importance": 2,
+        "expected": "18.0",
+        "actual": "17.91",
+        "previous": "-18.41"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月出口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "7.2",
+        "previous": "-2.7"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月进口月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.8",
+        "previous": "14.1"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1.3",
+        "previous": "2.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "09:30",
+        "region": "全球",
+        "event": "全球5月ANZ商品价格指数月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.7",
+        "previous": "-0.8"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "region": "瑞士",
+        "event": "瑞士5月CPI年率(%)",
+        "importance": 2,
+        "expected": "0.8",
+        "actual": "0.6",
+        "previous": "0.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月季调后失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.0",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士5月未季调失业率(%)",
+        "importance": 2,
+        "expected": "3.0",
+        "actual": "3.1",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-536.0",
+        "previous": "-2238.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月4日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "16:00",
+        "region": "新加坡",
+        "event": "新加坡截至6月3日当周燃料总库存(万桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "3814.3",
+        "previous": "4428.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "17:30",
+        "region": "美国",
+        "event": "美国5月挑战者企业裁员人数(万)",
+        "importance": 2,
+        "expected": "",
+        "actual": "9.7",
+        "previous": "8.34"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月30日当周初请失业金人数(万)",
+        "importance": 2,
+        "expected": "21.3",
+        "actual": "22.5",
+        "previous": "21.5"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国截至5月23日当周续请失业金人数(万)",
+        "importance": 2,
+        "expected": "178.0",
+        "actual": "177.7",
+        "previous": "178.6"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "22:05",
+        "region": "全球",
+        "event": "全球5月供应链压力指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "1.77",
+        "previous": "1.82"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "04:30",
+        "region": "美国",
+        "event": "美国截至6月3日美联储资产负债表(万亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "6.71",
+        "previous": "6.7"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1025.14",
+        "previous": "1026.86"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "477.52",
+        "previous": "477.93"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月3日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "282288.11",
+        "previous": "283281.96"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月4日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15036.15",
+        "previous": "15036.17"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月5日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月5日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-536.0"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大5月失业率(%)",
+        "importance": 2,
+        "expected": "6.9",
+        "actual": "",
+        "previous": "6.9"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月制造业就业人口变动季调后(万)",
+        "importance": 2,
+        "expected": "0.2",
+        "actual": "",
+        "previous": "-0.2"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月劳动参与率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "61.8"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大5月就业人数变动(万)",
+        "importance": 2,
+        "expected": "1.0",
+        "actual": "",
+        "previous": "-1.77"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国5月平均每小时工资年率(%)",
+        "importance": 2,
+        "expected": "3.4",
+        "actual": "",
+        "previous": "3.6"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "22:00",
+        "region": "加拿大",
+        "event": "加拿大5月IVEY季调后PMI",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "57.7"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "22:00",
+        "region": "加拿大",
+        "event": "加拿大5月IVEY未季调PMI",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "61.5"
+      }
+    ],
+    "has_high_impact_event": true,
+    "is_data_release_day": true,
+    "event_count": 166,
+    "high_impact_count": 8,
+    "generated_at": "2026-06-05 09:57:43"
+  },
+  "llm_trace": {
+    "regime": "risk_on",
+    "regime_reason": "盘后大量AI/半导体/算力利好新闻集中爆发，且经济日历中欧元区零售数据略不及预期但影响有限，美国非农数据未公布但预期偏弱，整体市场情绪偏积极。",
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，欧元区零售数据略好于预期但影响有限，美国非农数据未公布但预期偏弱，整体影响中性。盘后AI、半导体、算力等板块利好新闻密集，市场情绪积极，但考虑到非农数据未公布，建议半仓操作，重点配置红利ETF和黄金ETF，回避医药和豆粕。",
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.4,
+        "reason": "盘后利好新闻较多，但宽基指数动量中性，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": -0.3,
+        "reason": "保险业利空新闻，且动量偏弱，温和看空。"
+      },
+      {
+        "code": "510500",
+        "score": -0.5,
+        "reason": "5日跌幅-2.32%，趋势走弱，温和看空。"
+      },
+      {
+        "code": "510330",
+        "score": 0.2,
+        "reason": "与510300类似但成交量低，中性偏多。"
+      },
+      {
+        "code": "159338",
+        "score": 0.3,
+        "reason": "动量中性，成交量正常，温和看好。"
+      },
+      {
+        "code": "518880",
+        "score": 0.6,
+        "reason": "黄金ETF受益于AI/航天新闻及避险情绪，趋势向上，温和看好。"
+      },
+      {
+        "code": "159985",
+        "score": -0.6,
+        "reason": "5日跌幅-2.64%，趋势走弱，温和看空。"
+      },
+      {
+        "code": "510880",
+        "score": 0.7,
+        "reason": "5日涨幅+4.95%，趋势强劲，强烈看好。"
+      },
+      {
+        "code": "512880",
+        "score": 0.5,
+        "reason": "盘后多条利好券商新闻，但动量中性，温和看好。"
+      },
+      {
+        "code": "512010",
+        "score": -0.7,
+        "reason": "5日跌幅-3.27%，趋势走弱，强烈看空。"
+      }
+    ],
+    "econ_drivers": [
+      {
+        "event": "欧元区4月零售销售年率",
+        "importance": "high",
+        "direction": "+",
+        "impact": "公布值1.0高于预期0.3，利好欧元区经济，间接利好A股出口相关板块。"
+      },
+      {
+        "event": "欧元区4月零售销售月率",
+        "importance": "high",
+        "direction": "-",
+        "impact": "公布值-0.4低于预期-0.3，小幅利空，但影响有限。"
+      },
+      {
+        "event": "美国5月非农就业人口变动",
+        "importance": "high",
+        "direction": "0",
+        "impact": "未公布，预期8.5万低于前值11.5万，若不及预期可能利空美元，利好A股。"
+      },
+      {
+        "event": "美国5月失业率",
+        "importance": "high",
+        "direction": "0",
+        "impact": "未公布，预期4.3与前值持平，影响中性。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "高端光棒价格涨幅近550% 拥有光棒产能的企业或成本轮行情最大受益方",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "AI算力的尽头竟是“钻石”？培育钻石概念集体暴涨",
+        "etf": "588000",
+        "direction": "+",
+        "weight": 0.32
+      },
+      {
+        "title": "中信建投：AI算力增长持续打开超高导热金刚石材料增长空间",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "MLCC指数四连涨 “下一个存储”确认否？",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "开源证券：白酒底部布局 大众品把握三条主线",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "华泰证券：光模块设备或迎量升价增拐点",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "算力租赁市场热度提升 上市公司抢抓机遇",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "半导体行业景气度攀升 产业链公司受益明显",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "加拿大推出国家人工智能战略 入股扶持本土优秀AI企业",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "抢跑IPO盛宴！Coinbase推出SpaceX上市前永续合约",
+        "etf": "518880",
+        "direction": "+",
+        "weight": 0.42
+      }
+    ],
+    "hard_rules_applied": [],
+    "final_invest_ratio": 0.23,
+    "final_top_score": 59.86,
+    "rotation_tracker": {
+      "510880": 1,
+      "512880": 1,
+      "518880": 1
+    }
+  },
+  "llm_meta": {
+    "model": "deepseek-chat",
+    "usage": {
+      "prompt_tokens": 5150,
+      "completion_tokens": 1256,
+      "total_tokens": 6406,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 5150
+    },
+    "cache_hit": false,
+    "prompt_hash": "489073882248abe18d3b29ae38b664bf",
+    "cached_at": "2026-06-05 09:57:53",
+    "prompt_version": "v6a",
+    "prompt_file": "decider_zh_v6a.md"
+  },
+  "strategy_result": {
+    "allocations": {
+      "510880": 40500,
+      "518880": 40500,
+      "512880": 33800
+    },
+    "summary": {
+      "total_candidates_scored": 10,
+      "stocks_held": 3,
+      "capital_used": 114800,
+      "cash_reserve": 385200,
+      "utilization_rate": 23.0,
+      "held_stocks": [
+        {
+          "code": "510880",
+          "name": "红利ETF",
+          "amount": 40500,
+          "weight": 8.1,
+          "target_weight": 8.1,
+          "type": "short_race",
+          "score": 59.86,
+          "historical_score": 51.2,
+          "trend_score": 58.11,
+          "fresh_theme_score": 85.0,
+          "stale_theme_score": 50.0,
+          "theme_score": 85.0,
+          "theme_raw": 0.7,
+          "pred_return": null,
+          "latest_price": 3.327,
+          "ret_1d": 0.09,
+          "ret_3d": 0.6,
+          "ret_5d": 4.95,
+          "volume_ratio": 0.91,
+          "risk_penalty": 0.0,
+          "reason": "LLM: 5日涨幅+4.95%，趋势强劲，强烈看好。"
+        },
+        {
+          "code": "518880",
+          "name": "黄金ETF",
+          "amount": 40500,
+          "weight": 8.1,
+          "target_weight": 8.1,
+          "type": "short_race",
+          "score": 54.53,
+          "historical_score": 47.6,
+          "trend_score": 47.97,
+          "fresh_theme_score": 80.0,
+          "stale_theme_score": 50.0,
+          "theme_score": 80.0,
+          "theme_raw": 0.6,
+          "pred_return": null,
+          "latest_price": 9.29,
+          "ret_1d": 0.1,
+          "ret_3d": -0.58,
+          "ret_5d": 1.73,
+          "volume_ratio": 0.78,
+          "risk_penalty": 0.0,
+          "reason": "LLM: 黄金ETF受益于AI/航天新闻及避险情绪，趋势向上，温和看好。"
+        },
+        {
+          "code": "512880",
+          "name": "证券ETF",
+          "amount": 33800,
+          "weight": 6.8,
+          "target_weight": 6.8,
+          "type": "short_race",
+          "score": 52.3,
+          "historical_score": 51.9,
+          "trend_score": 44.22,
+          "fresh_theme_score": 75.0,
+          "stale_theme_score": 50.0,
+          "theme_score": 75.0,
+          "theme_raw": 0.5,
+          "pred_return": null,
+          "latest_price": 1.022,
+          "ret_1d": -1.26,
+          "ret_3d": -1.26,
+          "ret_5d": 0.1,
+          "volume_ratio": 0.9,
+          "risk_penalty": 0.0,
+          "reason": "LLM: 盘后多条利好券商新闻，但动量中性，温和看好。"
+        }
+      ],
+      "invest_ratio": 0.22999999999999998,
+      "mode": "short_race_theme_rotation"
+    },
+    "date": "2026-06-05",
+    "ranked": [
+      {
+        "code": "510880",
+        "name": "红利ETF",
+        "category": "高股息防御",
+        "score": 59.86,
+        "historical_score": 51.2,
+        "fresh_theme_score": 85.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.7,
+        "stale_theme_raw": 0.0,
+        "theme_score": 85.0,
+        "theme_raw": 0.7,
+        "theme_reason": "LLM: 5日涨幅+4.95%，趋势强劲，强烈看好。",
+        "pred_return": null,
+        "latest_price": 3.327,
+        "ret_1d": 0.09,
+        "ret_3d": 0.6,
+        "ret_5d": 4.95,
+        "ret_10d": 4.89,
+        "volume_ratio": 0.91,
+        "rsi": 68.6,
+        "macd_hist": 0.0165,
+        "bollinger_position": 0.945,
+        "bollinger_width": 0.0165,
+        "price_position_20d": 1.0,
+        "above_ma": true,
+        "high_break": true,
+        "drawdown_5d": 0.0,
+        "trend_score": 58.11,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "518880",
+        "name": "黄金ETF",
+        "category": "商品避险",
+        "score": 54.53,
+        "historical_score": 47.6,
+        "fresh_theme_score": 80.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.6,
+        "stale_theme_raw": 0.0,
+        "theme_score": 80.0,
+        "theme_raw": 0.6,
+        "theme_reason": "LLM: 黄金ETF受益于AI/航天新闻及避险情绪，趋势向上，温和看好。",
+        "pred_return": null,
+        "latest_price": 9.29,
+        "ret_1d": 0.1,
+        "ret_3d": -0.58,
+        "ret_5d": 1.73,
+        "ret_10d": -1.69,
+        "volume_ratio": 0.78,
+        "rsi": 39.3,
+        "macd_hist": -0.0027,
+        "bollinger_position": 0.241,
+        "bollinger_width": 0.0218,
+        "price_position_20d": 0.211,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.28,
+        "trend_score": 47.97,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "512880",
+        "name": "证券ETF",
+        "category": "券商周期",
+        "score": 52.3,
+        "historical_score": 51.9,
+        "fresh_theme_score": 75.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.5,
+        "stale_theme_raw": 0.0,
+        "theme_score": 75.0,
+        "theme_raw": 0.5,
+        "theme_reason": "LLM: 盘后多条利好券商新闻，但动量中性，温和看好。",
+        "pred_return": null,
+        "latest_price": 1.022,
+        "ret_1d": -1.26,
+        "ret_3d": -1.26,
+        "ret_5d": 0.1,
+        "ret_10d": -3.04,
+        "volume_ratio": 0.9,
+        "rsi": 39.5,
+        "macd_hist": -0.0021,
+        "bollinger_position": 0.176,
+        "bollinger_width": 0.0228,
+        "price_position_20d": 0.012,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.45,
+        "trend_score": 44.22,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "159338",
+        "name": "中证A500ETF",
+        "category": "全市场",
+        "score": 51.02,
+        "historical_score": 59.6,
+        "fresh_theme_score": 65.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.3,
+        "stale_theme_raw": 0.0,
+        "theme_score": 65.0,
+        "theme_raw": 0.3,
+        "theme_reason": "LLM: 动量中性，成交量正常，温和看好。",
+        "pred_return": null,
+        "latest_price": 1.296,
+        "ret_1d": -0.69,
+        "ret_3d": 1.33,
+        "ret_5d": -0.92,
+        "ret_10d": 1.17,
+        "volume_ratio": 1.0,
+        "rsi": 50.3,
+        "macd_hist": -0.0038,
+        "bollinger_position": 0.36,
+        "bollinger_width": 0.0115,
+        "price_position_20d": 0.288,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -0.69,
+        "trend_score": 47.77,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510300",
+        "name": "沪深300ETF",
+        "category": "全市场",
+        "score": 49.46,
+        "historical_score": 58.7,
+        "fresh_theme_score": 62.4,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.4,
+        "stale_theme_raw": 0.0,
+        "theme_score": 62.4,
+        "theme_raw": 0.4,
+        "theme_reason": "LLM: 盘后利好新闻较多，但宽基指数动量中性，温和看好。",
+        "pred_return": null,
+        "latest_price": 4.926,
+        "ret_1d": -0.79,
+        "ret_3d": 1.19,
+        "ret_5d": -0.12,
+        "ret_10d": 2.45,
+        "volume_ratio": 0.58,
+        "rsi": 54.7,
+        "macd_hist": -0.0057,
+        "bollinger_position": 0.553,
+        "bollinger_width": 0.0104,
+        "price_position_20d": 0.565,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -0.79,
+        "trend_score": 46.05,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510330",
+        "name": "华夏沪深300ETF",
+        "category": "全市场",
+        "score": 47.13,
+        "historical_score": 57.8,
+        "fresh_theme_score": 57.8,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": 0.2,
+        "stale_theme_raw": 0.0,
+        "theme_score": 57.8,
+        "theme_raw": 0.2,
+        "theme_reason": "LLM: 与510300类似但成交量低，中性偏多。",
+        "pred_return": null,
+        "latest_price": 5.13,
+        "ret_1d": -0.81,
+        "ret_3d": 1.08,
+        "ret_5d": -0.1,
+        "ret_10d": 2.46,
+        "volume_ratio": 0.23,
+        "rsi": 54.6,
+        "macd_hist": -0.0055,
+        "bollinger_position": 0.559,
+        "bollinger_width": 0.0105,
+        "price_position_20d": 0.562,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -0.81,
+        "trend_score": 44.1,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510050",
+        "name": "上证50ETF",
+        "category": "大盘蓝筹",
+        "score": 39.88,
+        "historical_score": 50.9,
+        "fresh_theme_score": 40.7,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": -0.3,
+        "stale_theme_raw": 0.0,
+        "theme_score": 40.7,
+        "theme_raw": -0.3,
+        "theme_reason": "LLM: 保险业利空新闻，且动量偏弱，温和看空。",
+        "pred_return": null,
+        "latest_price": 2.964,
+        "ret_1d": -1.07,
+        "ret_3d": -0.13,
+        "ret_5d": -0.7,
+        "ret_10d": -1.0,
+        "volume_ratio": 0.56,
+        "rsi": 38.0,
+        "macd_hist": -0.008,
+        "bollinger_position": 0.166,
+        "bollinger_width": 0.0162,
+        "price_position_20d": 0.0,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -1.1,
+        "trend_score": 43.32,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "510500",
+        "name": "中证500ETF",
+        "category": "中盘成长",
+        "score": 35.12,
+        "historical_score": 54.5,
+        "fresh_theme_score": 25.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": -0.5,
+        "stale_theme_raw": 0.0,
+        "theme_score": 25.0,
+        "theme_raw": -0.5,
+        "theme_reason": "LLM: 5日跌幅-2.32%，趋势走弱，温和看空。",
+        "pred_return": null,
+        "latest_price": 8.448,
+        "ret_1d": -0.08,
+        "ret_3d": 0.93,
+        "ret_5d": -2.32,
+        "ret_10d": -0.65,
+        "volume_ratio": 0.48,
+        "rsi": 43.4,
+        "macd_hist": -0.0528,
+        "bollinger_position": 0.208,
+        "bollinger_width": 0.0205,
+        "price_position_20d": 0.122,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -0.08,
+        "trend_score": 44.0,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "512010",
+        "name": "医药ETF",
+        "category": "医疗",
+        "score": 31.64,
+        "historical_score": 38.9,
+        "fresh_theme_score": 28.3,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": -0.7,
+        "stale_theme_raw": 0.0,
+        "theme_score": 28.3,
+        "theme_raw": -0.7,
+        "theme_reason": "LLM: 5日跌幅-3.27%，趋势走弱，强烈看空。",
+        "pred_return": null,
+        "latest_price": 0.325,
+        "ret_1d": -1.52,
+        "ret_3d": -4.41,
+        "ret_5d": -3.27,
+        "ret_10d": -6.88,
+        "volume_ratio": 0.85,
+        "rsi": 21.8,
+        "macd_hist": -0.0017,
+        "bollinger_position": 0.069,
+        "bollinger_width": 0.0388,
+        "price_position_20d": 0.0,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -5.52,
+        "trend_score": 36.32,
+        "risk_penalty": 0.0
+      },
+      {
+        "code": "159985",
+        "name": "豆粕ETF",
+        "category": "商品避险",
+        "score": 31.23,
+        "historical_score": 49.7,
+        "fresh_theme_score": 20.0,
+        "stale_theme_score": 50.0,
+        "fresh_theme_raw": -0.6,
+        "stale_theme_raw": 0.0,
+        "theme_score": 20.0,
+        "theme_raw": -0.6,
+        "theme_reason": "LLM: 5日跌幅-2.64%，趋势走弱，温和看空。",
+        "pred_return": null,
+        "latest_price": 2.029,
+        "ret_1d": -1.22,
+        "ret_3d": -2.12,
+        "ret_5d": -2.64,
+        "ret_10d": -2.73,
+        "volume_ratio": 0.67,
+        "rsi": 34.8,
+        "macd_hist": -0.0059,
+        "bollinger_position": 0.097,
+        "bollinger_width": 0.0194,
+        "price_position_20d": 0.0,
+        "above_ma": false,
+        "high_break": false,
+        "drawdown_5d": -2.31,
+        "trend_score": 39.25,
+        "risk_penalty": 0.0
+      }
+    ],
+    "theme_signals": {
+      "source": "split_fresh_stale",
+      "updated_at": "2026-06-05 09:57:42",
+      "market_view": "news_positive",
+      "hot_keywords": [
+        "上证50",
+        "大蓝筹",
+        "沪深300",
+        "沪指",
+        "中证A500",
+        "A500",
+        "黄金",
+        "金价",
+        "科创板",
+        "科创50",
+        "券商",
+        "证券"
+      ],
+      "auto_news": {
+        "enabled": true,
+        "confidence": 1.0,
+        "market_sentiment": 0.85,
+        "article_count": 22,
+        "raw_article_count": 203,
+        "catalyst_hits": 0,
+        "max_abs_theme": 0.424,
+        "accepted_count": 22,
+        "rejected_count": 181,
+        "strong_count": 1,
+        "weak_count": 21
+      }
+    },
+    "market_reason": "宽基短期走弱(510300:5日-0.12%; 159915:5日+0.27%; 588000:5日-9.45%)，仅 15% 试探仓；高可信新闻情绪偏积极(sentiment=+0.85, confidence=1.00)，仓位调整至23%",
+    "reasoning": "Short-race ETF rotation: price-only historical model plus real-time theme overlay. Market regime: 宽基短期走弱(510300:5日-0.12%; 159915:5日+0.27%; 588000:5日-9.45%)，仅 15% 试探仓；高可信新闻情绪偏积极(sentiment=+0.85, confidence=1.00)，仓位调整至23%. Theme source: split_fresh_stale, view=news_positive. 510880(红利ETF): score=59.86, trend=58.11, fresh_theme=85.0, stale_theme=50.0, 1d=+0.09%, 3d=+0.60%, 5d=+4.95%, volume=0.91x; LLM: 5日涨幅+4.95%，趋势强劲，强烈看好。 518880(黄金ETF): score=54.53, trend=47.97, fresh_theme=80.0, stale_theme=50.0, 1d=+0.10%, 3d=-0.58%, 5d=+1.73%, volume=0.78x; LLM: 黄金ETF受益于AI/航天新闻及避险情绪，趋势向上，温和看好。 512880(证券ETF): score=52.3, trend=44.22, fresh_theme=75.0, stale_theme=50.0, 1d=-1.26%, 3d=-1.26%, 5d=+0.10%, volume=0.9x; LLM: 盘后多条利好券商新闻，但动量中性，温和看好。 Capital used 114,800 CNY (23.0%), cash reserve 385,200 CNY.",
+    "llm_trace": {
+      "regime": "risk_on",
+      "regime_reason": "盘后大量AI/半导体/算力利好新闻集中爆发，且经济日历中欧元区零售数据略不及预期但影响有限，美国非农数据未公布但预期偏弱，整体市场情绪偏积极。",
+      "cash_decision": "partial",
+      "position_ratio_hint": 0.5,
+      "summary_zh": "经济日历方面，欧元区零售数据略好于预期但影响有限，美国非农数据未公布但预期偏弱，整体影响中性。盘后AI、半导体、算力等板块利好新闻密集，市场情绪积极，但考虑到非农数据未公布，建议半仓操作，重点配置红利ETF和黄金ETF，回避医药和豆粕。",
+      "per_etf_view": [
+        {
+          "code": "510300",
+          "score": 0.4,
+          "reason": "盘后利好新闻较多，但宽基指数动量中性，温和看好。"
+        },
+        {
+          "code": "510050",
+          "score": -0.3,
+          "reason": "保险业利空新闻，且动量偏弱，温和看空。"
+        },
+        {
+          "code": "510500",
+          "score": -0.5,
+          "reason": "5日跌幅-2.32%，趋势走弱，温和看空。"
+        },
+        {
+          "code": "510330",
+          "score": 0.2,
+          "reason": "与510300类似但成交量低，中性偏多。"
+        },
+        {
+          "code": "159338",
+          "score": 0.3,
+          "reason": "动量中性，成交量正常，温和看好。"
+        },
+        {
+          "code": "518880",
+          "score": 0.6,
+          "reason": "黄金ETF受益于AI/航天新闻及避险情绪，趋势向上，温和看好。"
+        },
+        {
+          "code": "159985",
+          "score": -0.6,
+          "reason": "5日跌幅-2.64%，趋势走弱，温和看空。"
+        },
+        {
+          "code": "510880",
+          "score": 0.7,
+          "reason": "5日涨幅+4.95%，趋势强劲，强烈看好。"
+        },
+        {
+          "code": "512880",
+          "score": 0.5,
+          "reason": "盘后多条利好券商新闻，但动量中性，温和看好。"
+        },
+        {
+          "code": "512010",
+          "score": -0.7,
+          "reason": "5日跌幅-3.27%，趋势走弱，强烈看空。"
+        }
+      ],
+      "econ_drivers": [
+        {
+          "event": "欧元区4月零售销售年率",
+          "importance": "high",
+          "direction": "+",
+          "impact": "公布值1.0高于预期0.3，利好欧元区经济，间接利好A股出口相关板块。"
+        },
+        {
+          "event": "欧元区4月零售销售月率",
+          "importance": "high",
+          "direction": "-",
+          "impact": "公布值-0.4低于预期-0.3，小幅利空，但影响有限。"
+        },
+        {
+          "event": "美国5月非农就业人口变动",
+          "importance": "high",
+          "direction": "0",
+          "impact": "未公布，预期8.5万低于前值11.5万，若不及预期可能利空美元，利好A股。"
+        },
+        {
+          "event": "美国5月失业率",
+          "importance": "high",
+          "direction": "0",
+          "impact": "未公布，预期4.3与前值持平，影响中性。"
+        }
+      ],
+      "news_drivers": [
+        {
+          "title": "高端光棒价格涨幅近550% 拥有光棒产能的企业或成本轮行情最大受益方",
+          "etf": "516510",
+          "direction": "+",
+          "weight": 0.42
+        },
+        {
+          "title": "AI算力的尽头竟是“钻石”？培育钻石概念集体暴涨",
+          "etf": "588000",
+          "direction": "+",
+          "weight": 0.32
+        },
+        {
+          "title": "中信建投：AI算力增长持续打开超高导热金刚石材料增长空间",
+          "etf": "516510",
+          "direction": "+",
+          "weight": 0.42
+        },
+        {
+          "title": "MLCC指数四连涨 “下一个存储”确认否？",
+          "etf": "516510",
+          "direction": "+",
+          "weight": 0.42
+        },
+        {
+          "title": "开源证券：白酒底部布局 大众品把握三条主线",
+          "etf": "512880",
+          "direction": "+",
+          "weight": 0.36
+        },
+        {
+          "title": "华泰证券：光模块设备或迎量升价增拐点",
+          "etf": "512880",
+          "direction": "+",
+          "weight": 0.36
+        },
+        {
+          "title": "算力租赁市场热度提升 上市公司抢抓机遇",
+          "etf": "516510",
+          "direction": "+",
+          "weight": 0.42
+        },
+        {
+          "title": "半导体行业景气度攀升 产业链公司受益明显",
+          "etf": "516510",
+          "direction": "+",
+          "weight": 0.42
+        },
+        {
+          "title": "加拿大推出国家人工智能战略 入股扶持本土优秀AI企业",
+          "etf": "516510",
+          "direction": "+",
+          "weight": 0.42
+        },
+        {
+          "title": "抢跑IPO盛宴！Coinbase推出SpaceX上市前永续合约",
+          "etf": "518880",
+          "direction": "+",
+          "weight": 0.42
+        }
+      ],
+      "hard_rules_applied": [],
+      "final_invest_ratio": 0.23,
+      "final_top_score": 59.86,
+      "rotation_tracker": {
+        "510880": 1,
+        "512880": 1,
+        "518880": 1
+      }
+    }
+  },
+  "previous_pnl": {
+    "review_date": "2026-06-05",
+    "prediction_date": "2026-06-04",
+    "source_file": "C:\\Users\\32872\\Desktop\\etf智能体\\etf_agent\\data\\daily_output\\2026-06-04_full.json",
+    "total_pnl": 0.0,
+    "positions": []
+  }
+}

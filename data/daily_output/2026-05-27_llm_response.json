@@ -1,0 +1,728 @@
+{
+  "decision": {
+    "regime": "neutral",
+    "regime_reason": "经济日历中美国谘商会消费者信心指数略超预期，但澳大利亚CPI数据未公布，整体影响中性；新闻情绪偏正面，但无重大冲突。",
+    "econ_drivers": [
+      {
+        "event": "美国5月谘商会消费者信心指数",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "略超预期，利好美股及风险偏好，但传导至A股有限。"
+      },
+      {
+        "event": "澳大利亚4月统计局CPI年率-季调后",
+        "importance": "high",
+        "direction": "0",
+        "impact": "数据未公布，等待结果。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "AIDC供电架构变革 超级电容有望成为结构性必需品",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "中信证券：从独享到共享 绿电直连迈入新阶段",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "华泰证券：券商板块经营已进入良性发展阶段",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "AI与能源“双向奔赴” 首批51个高价值场景发布",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "两项光伏行业强制性国标发布",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.38
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.3,
+        "reason": "5日动量+2.11%趋势成型，但成交量偏低，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": -0.2,
+        "reason": "5日动量仅+0.13%，RSI 38.8偏弱，中性偏空。"
+      },
+      {
+        "code": "510500",
+        "score": 0.1,
+        "reason": "5日动量+0.34%，信号弱，中性。"
+      },
+      {
+        "code": "510330",
+        "score": 0.5,
+        "reason": "5日动量+2.29%，放量，趋势向好，温和看好。"
+      },
+      {
+        "code": "159338",
+        "score": 0.2,
+        "reason": "5日动量+1.61%，成交量低，中性偏多。"
+      },
+      {
+        "code": "518880",
+        "score": -0.5,
+        "reason": "5日动量+0.35%但RSI 20.6超卖，黄金持仓持平，温和看空。"
+      },
+      {
+        "code": "159985",
+        "score": -0.6,
+        "reason": "5日动量-2.00%趋势走弱，RSI 34.1，温和看空。"
+      },
+      {
+        "code": "510880",
+        "score": -0.5,
+        "reason": "5日动量-1.68%，RSI 20.0超卖，红利防御性减弱，温和看空。"
+      },
+      {
+        "code": "512880",
+        "score": 0.6,
+        "reason": "新闻利好券商，5日动量+0.29%但趋势有望改善，温和看好。"
+      },
+      {
+        "code": "512010",
+        "score": -0.5,
+        "reason": "5日动量-2.58%趋势走弱，RSI 18.2超卖，温和看空。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，美国消费者信心指数略超预期，但澳大利亚CPI未公布，整体影响中性。新闻情绪偏正面，主要利好科技、券商和光伏ETF。候选池中510330、512880等趋势向好，但黄金、豆粕、红利等偏弱。建议半仓操作，重点配置510330和512880。"
+  },
+  "prompt_hash": "a77d4415081a983688b2f8952984fbb8",
+  "model": "deepseek-chat",
+  "usage": {
+    "prompt_tokens": 3824,
+    "completion_tokens": 890,
+    "total_tokens": 4714,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 3824
+  },
+  "cache_hit": false,
+  "cached_at": "2026-05-27 09:59:46",
+  "econ_payload_snapshot": {
+    "date": "2026-05-27",
+    "source": "akshare_live",
+    "high_importance_events": [
+      {
+        "date": "2026-05-27",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月统计局CPI年率-季调后(%)",
+        "importance": 2,
+        "expected": "4.6",
+        "actual": "",
+        "previous": "4.6"
+      },
+      {
+        "date": "2026-05-26",
+        "time": "15:00",
+        "region": "西班牙",
+        "event": "西班牙4月PPI年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "8.3",
+        "previous": "3.4"
+      },
+      {
+        "date": "2026-05-26",
+        "time": "15:00",
+        "region": "西班牙",
+        "event": "西班牙4月PPI月率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "1.7",
+        "previous": "6.5"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "01:00",
+        "region": "美国",
+        "event": "美国4月季调后货币供应M2金额(亿美元)",
+        "importance": 1,
+        "expected": "",
+        "actual": "228045.0",
+        "previous": "226860.0"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月统计局CPI月率-季调后(%)",
+        "importance": 1,
+        "expected": "0.6",
+        "actual": "",
+        "previous": "1.1"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月统计局加权CPI年率(%)",
+        "importance": 1,
+        "expected": "",
+        "actual": "",
+        "previous": "3.5"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "09:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚4月统计局CPI年化截尾均值年率(%)",
+        "importance": 1,
+        "expected": "3.4",
+        "actual": "",
+        "previous": "3.3"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-05-26",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国5月26日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-3077.0",
+        "previous": "-399.0"
+      },
+      {
+        "date": "2026-05-26",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国5月26日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-05-26",
+        "time": "18:00",
+        "region": "英国",
+        "event": "英国5月CBI零售销售差值",
+        "importance": 2,
+        "expected": "",
+        "actual": "-46.0",
+        "previous": "-68.0"
+      },
+      {
+        "date": "2026-05-26",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月谘商会消费者信心指数",
+        "importance": 2,
+        "expected": "92.0",
+        "actual": "93.1",
+        "previous": "92.8"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国5月26日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "478.7",
+        "previous": "478.7"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国5月26日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "1034.85",
+        "previous": "1034.85"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国5月22日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "283908.5",
+        "previous": "286708.96"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国5月26日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15177.78",
+        "previous": "15214.37"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "08:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚截至5月24日当周ANZ消费者信心指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "66.1",
+        "previous": "66.4"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "09:30",
+        "region": "中国",
+        "event": "中国4月规模以上工业企业利润年率-单月(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "15.8"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "10:00",
+        "region": "新西兰",
+        "event": "新西兰5月27日官方现金利率决定(%)",
+        "importance": 2,
+        "expected": "2.25",
+        "actual": "",
+        "previous": "2.25"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国5月27日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-3077.0"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国5月27日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "16:00",
+        "region": "瑞士",
+        "event": "瑞士5月瑞信/CFA经济预期指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-30.3"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "20:15",
+        "region": "美国",
+        "event": "美国截至5月9日当周ADP就业周度发布变动(万人)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "4.22"
+      }
+    ],
+    "has_high_impact_event": true
+  },
+  "news_summary_snapshot": [
+    {
+      "title": "AIDC供电架构变革 超级电容有望成为结构性必需品",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "fund_flow",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "谁在兜售DeepSeek天价份额？",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "518880": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "中信证券：从独享到共享 绿电直连迈入新阶段",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512880": 0.357,
+        "515790": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "华泰证券：券商板块经营已进入良性发展阶段 业绩增长具备可持续性",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "fund_flow"
+      ],
+      "etf_scores": {
+        "512880": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "AI与能源“双向奔赴” 首批51个高价值场景发布",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "英特尔欲打造全球首座玻璃基板量产基地 玻璃基板有望崭露头角",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "智能眼镜加速迈向“大众普及”",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "东方财富财经早餐 5月26日周二",
+      "source": "eastmoney_cjzc",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "588000": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "郑州“十五五”规划纲要：建设量子产业成果转化和产业化的聚集示范基地 打造量子科技应用示范城市",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.399
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "“黄金频谱”落地 6G商用有望2030年启动",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "518880": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "隆基绿能成立源储未来新能源公司",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "515790": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "高杠杆博高收益 内地资金绕道香港豪赌场外期权",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "512880": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "京东否认竞购英国电商平台The Very Group",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "588000": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "两项光伏行业强制性国标发布 助力光伏产业从“规模领先”向“价值领先”转变",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "515790": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "精细化工领域小巨人今日申购 另有2只新股上市丨打新早知道",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "工信部发布两项光伏组件强制性国标 加快推动光伏产业转型升级发展",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "515790": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "首批AI训练推理芯片通过国家安全可靠测评",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.357,
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "环旭电子将于PCIM Europe 2026展示先进碳化硅芯片预埋封装技术",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "SpaceX上市万众瞩目！富时罗素：有望快速纳入美国和全球指数",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "512880": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "中信证券：钢铁行业“反内卷”主线得到进一步强化 估值修复空间有望逐步释放",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "512880": 0.357
+      },
+      "negative": false,
+      "risk_flags": []
+    }
+  ],
+  "raw_response": {
+    "regime": "neutral",
+    "regime_reason": "经济日历中美国谘商会消费者信心指数略超预期，但澳大利亚CPI数据未公布，整体影响中性；新闻情绪偏正面，但无重大冲突。",
+    "econ_drivers": [
+      {
+        "event": "美国5月谘商会消费者信心指数",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "略超预期，利好美股及风险偏好，但传导至A股有限。"
+      },
+      {
+        "event": "澳大利亚4月统计局CPI年率-季调后",
+        "importance": "high",
+        "direction": "0",
+        "impact": "数据未公布，等待结果。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "AIDC供电架构变革 超级电容有望成为结构性必需品",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "中信证券：从独享到共享 绿电直连迈入新阶段",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.36
+      },
+      {
+        "title": "华泰证券：券商板块经营已进入良性发展阶段",
+        "etf": "512880",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "AI与能源“双向奔赴” 首批51个高价值场景发布",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "两项光伏行业强制性国标发布",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.38
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.3,
+        "reason": "5日动量+2.11%趋势成型，但成交量偏低，温和看好。"
+      },
+      {
+        "code": "510050",
+        "score": -0.2,
+        "reason": "5日动量仅+0.13%，RSI 38.8偏弱，中性偏空。"
+      },
+      {
+        "code": "510500",
+        "score": 0.1,
+        "reason": "5日动量+0.34%，信号弱，中性。"
+      },
+      {
+        "code": "510330",
+        "score": 0.5,
+        "reason": "5日动量+2.29%，放量，趋势向好，温和看好。"
+      },
+      {
+        "code": "159338",
+        "score": 0.2,
+        "reason": "5日动量+1.61%，成交量低，中性偏多。"
+      },
+      {
+        "code": "518880",
+        "score": -0.5,
+        "reason": "5日动量+0.35%但RSI 20.6超卖，黄金持仓持平，温和看空。"
+      },
+      {
+        "code": "159985",
+        "score": -0.6,
+        "reason": "5日动量-2.00%趋势走弱，RSI 34.1，温和看空。"
+      },
+      {
+        "code": "510880",
+        "score": -0.5,
+        "reason": "5日动量-1.68%，RSI 20.0超卖，红利防御性减弱，温和看空。"
+      },
+      {
+        "code": "512880",
+        "score": 0.6,
+        "reason": "新闻利好券商，5日动量+0.29%但趋势有望改善，温和看好。"
+      },
+      {
+        "code": "512010",
+        "score": -0.5,
+        "reason": "5日动量-2.58%趋势走弱，RSI 18.2超卖，温和看空。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，美国消费者信心指数略超预期，但澳大利亚CPI未公布，整体影响中性。新闻情绪偏正面，主要利好科技、券商和光伏ETF。候选池中510330、512880等趋势向好，但黄金、豆粕、红利等偏弱。建议半仓操作，重点配置510330和512880。"
+  }
+}

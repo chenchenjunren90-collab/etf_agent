@@ -1,0 +1,86 @@
+{
+  "date": "2026-06-04",
+  "updated_at": "2026-06-04 21:30:55",
+  "competition_output": [],
+  "is_empty_position": true,
+  "decision_summary_zh": "经济日历方面，美国ISM非制造业PMI和工厂订单超预期，显示经济韧性，利好A股风险偏好。盘后新鲜新闻强烈利好权益市场，与经济数据方向一致。综合判断，今日市场偏乐观，但考虑到高重要度事件较多，建议半仓操作，优先配置宽基ETF。",
+  "market_context_zh": "宽基趋势明显转弱(510300:5日-1.37%; 159915:5日+0.27%; 588000:5日-9.45%)，空仓回避",
+  "positions": [],
+  "news_stats": {
+    "article_count": 18,
+    "accepted_count": 3,
+    "strong_count": 3,
+    "confidence": 0.2,
+    "market_sentiment": 0.315,
+    "hot_keywords": [
+      "沪深300",
+      "沪指",
+      "中证A500",
+      "A500"
+    ]
+  },
+  "news_digest": [
+    {
+      "title": "权益周观察",
+      "url": "https://database.caixin.com/2026-06-02/102450216.html?cxapp_link=true",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "东方财富财经早餐 6月3日周三",
+      "url": "http://finance.eastmoney.com/a/202606023757876430.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "516510",
+          "symbol_name": "516510",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    },
+    {
+      "title": "东方财富财经早餐 6月2日周二",
+      "url": "http://finance.eastmoney.com/a/202606013756375746.html",
+      "quality": "strong",
+      "screening_note": "已通过筛选：含具体事件且能对应 ETF 板块",
+      "linked_etfs": [
+        {
+          "symbol": "588000",
+          "symbol_name": "科创50ETF",
+          "direction": "偏多",
+          "strength": 0.378
+        },
+        {
+          "symbol": "510300",
+          "symbol_name": "沪深300ETF",
+          "direction": "中性",
+          "strength": 0.315
+        },
+        {
+          "symbol": "159338",
+          "symbol_name": "中证A500ETF",
+          "direction": "中性",
+          "strength": 0.315
+        }
+      ]
+    }
+  ],
+  "econ_headlines": [],
+  "scope_note": "本智能体仅解答 A 股 ETF 日内配置、赛事实盘建议、已筛选新闻与持仓解读；不披露内部评分公式、闸门阈值与程序实现细节。"
+}

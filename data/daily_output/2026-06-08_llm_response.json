@@ -1,0 +1,437 @@
+{
+  "decision": {
+    "regime": "neutral",
+    "regime_reason": "经济日历方面，日本GDP终值超预期但影响有限，中国外汇储备超预期利好人民币资产；新闻方面，华尔街原声看好科技投资，但行业速递和权益周观察信号偏弱且存在风险提示；ETF池中红利ETF趋势强劲但其他宽基普遍下跌，整体多空交织。",
+    "econ_drivers": [
+      {
+        "event": "日本第一季度季调后实际GDP季率终值(%)",
+        "importance": "high",
+        "direction": "+",
+        "impact": "日本GDP超预期，利好全球风险偏好，间接支撑A股"
+      },
+      {
+        "event": "中国5月外汇储备(亿美元)",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "外储超预期，增强人民币信心，利好A股外资流入"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "华尔街原声",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "行业速递",
+        "etf": "510300",
+        "direction": "-",
+        "weight": 0.3
+      },
+      {
+        "title": "行业速递",
+        "etf": "159338",
+        "direction": "-",
+        "weight": 0.3
+      },
+      {
+        "title": "行业速递",
+        "etf": "516510",
+        "direction": "-",
+        "weight": 0.3
+      },
+      {
+        "title": "权益周观察",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.4
+      },
+      {
+        "title": "权益周观察",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.4
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": -0.3,
+        "reason": "新闻多空交织，经济日历中性，趋势偏弱"
+      },
+      {
+        "code": "510050",
+        "score": -0.2,
+        "reason": "大盘蓝筹，趋势偏弱，无明确利好"
+      },
+      {
+        "code": "510500",
+        "score": -0.2,
+        "reason": "中盘成长，趋势偏弱，无明确利好"
+      },
+      {
+        "code": "510330",
+        "score": -0.3,
+        "reason": "与510300类似，趋势偏弱"
+      },
+      {
+        "code": "159338",
+        "score": -0.2,
+        "reason": "新闻多空交织，趋势中性"
+      },
+      {
+        "code": "518880",
+        "score": 0.0,
+        "reason": "黄金ETF，经济日历无直接利好，趋势中性"
+      },
+      {
+        "code": "159985",
+        "score": -0.5,
+        "reason": "豆粕ETF，5日跌幅-3.27%，趋势明显偏空"
+      },
+      {
+        "code": "510880",
+        "score": 0.7,
+        "reason": "红利ETF，5日涨幅+3.59%，趋势强劲，防御属性受青睐"
+      },
+      {
+        "code": "512880",
+        "score": -0.3,
+        "reason": "证券ETF，趋势偏弱，无利好驱动"
+      },
+      {
+        "code": "512010",
+        "score": -0.6,
+        "reason": "医药ETF，5日跌幅-4.94%，趋势明显偏空"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，日本GDP终值超预期但影响有限，中国外储超预期利好人民币资产；新闻方面，华尔街原声看好科技投资，但行业速递和权益周观察信号偏弱。ETF池中红利ETF趋势强劲，豆粕和医药趋势偏空，整体建议半仓操作。"
+  },
+  "prompt_hash": "8e02dc521352252d46a67c188f32d14c",
+  "model": "deepseek-chat",
+  "usage": {
+    "prompt_tokens": 2986,
+    "completion_tokens": 816,
+    "total_tokens": 3802,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 2986
+  },
+  "cache_hit": false,
+  "cached_at": "2026-06-08 18:49:30",
+  "econ_payload_snapshot": {
+    "date": "2026-06-08",
+    "source": "akshare_live",
+    "high_importance_events": [
+      {
+        "date": "2026-06-08",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第一季度季调后名义GDP季率修正值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第一季度季调后实际GDP季率终值(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "0.5",
+        "previous": "0.5"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第一季度季调后实际GDP年化季率修正值(%)",
+        "importance": 2,
+        "expected": "1.3",
+        "actual": "1.8",
+        "previous": "2.1"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-06-07",
+        "time": "16:00",
+        "region": "中国",
+        "event": "中国5月黄金储备量(万盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "7496.0",
+        "previous": "7464.0"
+      },
+      {
+        "date": "2026-06-07",
+        "time": "16:00",
+        "region": "中国",
+        "event": "中国5月外汇储备(亿美元)",
+        "importance": 2,
+        "expected": "34110.0",
+        "actual": "34422.4",
+        "previous": "34105.47"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本4月贸易收支-央行基于海关数据季调后(亿日元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "46.96",
+        "previous": "41.78"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "15:00",
+        "region": "瑞士",
+        "event": "瑞士6月消费者信心指数-未季调",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-40.0"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月8日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "-550000.0"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月8日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-48.0",
+        "previous": "-763.0"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "16:30",
+        "region": "欧元区",
+        "event": "欧元区6月Sentix投资者信心指数",
+        "importance": 2,
+        "expected": "-14.6",
+        "actual": "-13.4",
+        "previous": "-16.4"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "18:00",
+        "region": "加拿大",
+        "event": "加拿大5月先行指标月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.11",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "23:00",
+        "region": "美国",
+        "event": "美国5月纽约联储1年通胀预期(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "3.6"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "23:00",
+        "region": "美国",
+        "event": "美国5月纽约联储3年通胀预期(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "3.1"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "23:00",
+        "region": "美国",
+        "event": "美国5月纽约联储1年黄金涨幅预期(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "5.8"
+      }
+    ],
+    "has_high_impact_event": true
+  },
+  "news_summary_snapshot": [
+    {
+      "title": "华尔街原声",
+      "source": "caixin_main",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "行业速递",
+      "source": "caixin_main",
+      "quality": "weak",
+      "event_tags": [
+        "earnings",
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "510300": -0.142,
+        "159338": -0.315,
+        "516510": -0.315
+      },
+      "negative": true,
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "quality": "weak",
+      "event_tags": [
+        "earnings"
+      ],
+      "etf_scores": {
+        "510300": 0.142,
+        "159338": 0.315
+      },
+      "negative": false,
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    }
+  ],
+  "raw_response": {
+    "regime": "neutral",
+    "regime_reason": "经济日历方面，日本GDP终值超预期但影响有限，中国外汇储备超预期利好人民币资产；新闻方面，华尔街原声看好科技投资，但行业速递和权益周观察信号偏弱且存在风险提示；ETF池中红利ETF趋势强劲但其他宽基普遍下跌，整体多空交织。",
+    "econ_drivers": [
+      {
+        "event": "日本第一季度季调后实际GDP季率终值(%)",
+        "importance": "high",
+        "direction": "+",
+        "impact": "日本GDP超预期，利好全球风险偏好，间接支撑A股"
+      },
+      {
+        "event": "中国5月外汇储备(亿美元)",
+        "importance": "medium",
+        "direction": "+",
+        "impact": "外储超预期，增强人民币信心，利好A股外资流入"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "华尔街原声",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.8
+      },
+      {
+        "title": "行业速递",
+        "etf": "510300",
+        "direction": "-",
+        "weight": 0.3
+      },
+      {
+        "title": "行业速递",
+        "etf": "159338",
+        "direction": "-",
+        "weight": 0.3
+      },
+      {
+        "title": "行业速递",
+        "etf": "516510",
+        "direction": "-",
+        "weight": 0.3
+      },
+      {
+        "title": "权益周观察",
+        "etf": "510300",
+        "direction": "+",
+        "weight": 0.4
+      },
+      {
+        "title": "权益周观察",
+        "etf": "159338",
+        "direction": "+",
+        "weight": 0.4
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": -0.3,
+        "reason": "新闻多空交织，经济日历中性，趋势偏弱"
+      },
+      {
+        "code": "510050",
+        "score": -0.2,
+        "reason": "大盘蓝筹，趋势偏弱，无明确利好"
+      },
+      {
+        "code": "510500",
+        "score": -0.2,
+        "reason": "中盘成长，趋势偏弱，无明确利好"
+      },
+      {
+        "code": "510330",
+        "score": -0.3,
+        "reason": "与510300类似，趋势偏弱"
+      },
+      {
+        "code": "159338",
+        "score": -0.2,
+        "reason": "新闻多空交织，趋势中性"
+      },
+      {
+        "code": "518880",
+        "score": 0.0,
+        "reason": "黄金ETF，经济日历无直接利好，趋势中性"
+      },
+      {
+        "code": "159985",
+        "score": -0.5,
+        "reason": "豆粕ETF，5日跌幅-3.27%，趋势明显偏空"
+      },
+      {
+        "code": "510880",
+        "score": 0.7,
+        "reason": "红利ETF，5日涨幅+3.59%，趋势强劲，防御属性受青睐"
+      },
+      {
+        "code": "512880",
+        "score": -0.3,
+        "reason": "证券ETF，趋势偏弱，无利好驱动"
+      },
+      {
+        "code": "512010",
+        "score": -0.6,
+        "reason": "医药ETF，5日跌幅-4.94%，趋势明显偏空"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "经济日历方面，日本GDP终值超预期但影响有限，中国外储超预期利好人民币资产；新闻方面，华尔街原声看好科技投资，但行业速递和权益周观察信号偏弱。ETF池中红利ETF趋势强劲，豆粕和医药趋势偏空，整体建议半仓操作。"
+  }
+}

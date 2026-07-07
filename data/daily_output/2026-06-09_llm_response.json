@@ -1,0 +1,871 @@
+{
+  "decision": {
+    "regime": "risk_on",
+    "regime_reason": "盘后AI/科技利好新闻密集，且经济日历中日本GDP数据超预期，全球风险偏好回升，但今日中国贸易帐数据待公布，适度谨慎。",
+    "econ_drivers": [
+      {
+        "event": "日本第一季度季调后实际GDP季率终值(%)",
+        "importance": "high",
+        "direction": "+",
+        "impact": "日本经济超预期，全球风险偏好提升，利好A股科技板块。"
+      },
+      {
+        "event": "中国5月贸易帐-美元计价(亿美元)",
+        "importance": "high",
+        "direction": "0",
+        "impact": "数据待公布，若超预期利好出口导向型行业。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "新型晶体管能同时执行多重电路功能",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "AMD苏姿丰：AI行业仍处于非常早期阶段 计划增加20亿英镑对英投资",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "国家层面首次对数据赋能AI发展作出部署 数据要素价值有望迎来释放",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "海外订单接到手软 中企储能出海如何避开光伏剧本？",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "光伏企业海外订单排产饱满 分析师预计产业链有望实现年度扭亏",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.38
+      },
+      {
+        "title": "今日起上海市汽车以旧换新补贴调整为即时摇号",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.32
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.2,
+        "reason": "宽基受科技带动有限，但整体情绪回暖，中性偏多。"
+      },
+      {
+        "code": "510050",
+        "score": 0.1,
+        "reason": "大盘蓝筹缺乏直接利好，动量偏弱，中性。"
+      },
+      {
+        "code": "510500",
+        "score": 0.3,
+        "reason": "中盘成长受益科技情绪，但趋势仍弱，温和看多。"
+      },
+      {
+        "code": "510330",
+        "score": 0.2,
+        "reason": "类似510300，中性偏多。"
+      },
+      {
+        "code": "159338",
+        "score": 0.2,
+        "reason": "类似510300，中性偏多。"
+      },
+      {
+        "code": "518880",
+        "score": -0.5,
+        "reason": "黄金近期下跌，风险偏好回升压制避险需求，温和看空。"
+      },
+      {
+        "code": "159985",
+        "score": -0.3,
+        "reason": "豆粕趋势偏弱，无直接利好，温和看空。"
+      },
+      {
+        "code": "510880",
+        "score": 0.1,
+        "reason": "红利防御属性，无明确信号，中性。"
+      },
+      {
+        "code": "512880",
+        "score": 0.5,
+        "reason": "证券受益市场情绪回暖，盘后利好，温和看多。"
+      },
+      {
+        "code": "512010",
+        "score": 0.3,
+        "reason": "医药无直接利好，但超跌后或有反弹，温和看多。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "今日日本GDP超预期提振全球风险偏好，盘后AI/科技利好新闻密集，市场情绪偏多。但中国贸易帐数据待公布，且宽基指数趋势偏弱，建议半仓参与，重点配置科技ETF（516510）和证券ETF（512880）。"
+  },
+  "prompt_hash": "840d25d5989e52733d59765771dfdf40",
+  "model": "deepseek-chat",
+  "usage": {
+    "prompt_tokens": 5328,
+    "completion_tokens": 866,
+    "total_tokens": 6194,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 5328
+  },
+  "cache_hit": true,
+  "cached_at": "2026-06-09 10:01:58",
+  "econ_payload_snapshot": {
+    "date": "2026-06-09",
+    "source": "akshare_live",
+    "high_importance_events": [
+      {
+        "date": "2026-06-08",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第一季度季调后名义GDP季率修正值(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.6",
+        "previous": "0.8"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第一季度季调后实际GDP季率终值(%)",
+        "importance": 2,
+        "expected": "0.3",
+        "actual": "0.5",
+        "previous": "0.5"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本第一季度季调后实际GDP年化季率修正值(%)",
+        "importance": 2,
+        "expected": "1.3",
+        "actual": "1.8",
+        "previous": "2.1"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "10:30",
+        "region": "中国",
+        "event": "中国5月贸易帐-美元计价(亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "848.2"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "10:30",
+        "region": "中国",
+        "event": "中国5月贸易帐-人民币计价(亿元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "5856.9"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "14:00",
+        "region": "德国",
+        "event": "德国4月季调后工业产出月率(%)",
+        "importance": 2,
+        "expected": "0.5",
+        "actual": "",
+        "previous": "-0.7"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "14:00",
+        "region": "德国",
+        "event": "德国4月工作日调整后工业产出年率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-2.8"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "20:30",
+        "region": "美国",
+        "event": "美国4月贸易帐(亿美元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-603.0"
+      }
+    ],
+    "medium_importance_events": [
+      {
+        "date": "2026-06-08",
+        "time": "07:50",
+        "region": "日本",
+        "event": "日本4月贸易收支-央行基于海关数据季调后(亿日元)",
+        "importance": 2,
+        "expected": "",
+        "actual": "46.96",
+        "previous": "41.78"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月8日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.0",
+        "previous": "-550000.0"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月8日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "-48.0",
+        "previous": "-763.0"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "16:30",
+        "region": "欧元区",
+        "event": "欧元区6月Sentix投资者信心指数",
+        "importance": 2,
+        "expected": "-14.6",
+        "actual": "-13.4",
+        "previous": "-16.4"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "18:00",
+        "region": "加拿大",
+        "event": "加拿大5月先行指标月率(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "0.11",
+        "previous": "3.0"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "23:00",
+        "region": "美国",
+        "event": "美国5月纽约联储1年通胀预期(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "3.5",
+        "previous": "3.6"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "23:00",
+        "region": "美国",
+        "event": "美国5月纽约联储3年通胀预期(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "3.1",
+        "previous": "3.1"
+      },
+      {
+        "date": "2026-06-08",
+        "time": "23:00",
+        "region": "美国",
+        "event": "美国5月纽约联储1年黄金涨幅预期(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "5.7",
+        "previous": "5.8"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月5日COMEX黄金库存-每日更新(百盎司)",
+        "importance": 2,
+        "expected": "",
+        "actual": "282144.0",
+        "previous": "282288.11"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月8日iShares白银持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "15061.48",
+        "previous": "15019.27"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月8日iShares黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "478.8",
+        "previous": "478.8"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "06:30",
+        "region": "美国",
+        "event": "美国6月8日SPDR黄金持仓-每日更新(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "1019.92"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "08:30",
+        "region": "澳大利亚",
+        "event": "澳大利亚截至6月7日当周ANZ消费者信心指数",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "68.8"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "10:30",
+        "region": "中国",
+        "event": "中国5月出口年率-人民币计价(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "20.6"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "10:30",
+        "region": "中国",
+        "event": "中国5月出口年率-美元计价(%)",
+        "importance": 2,
+        "expected": "15.0",
+        "actual": "",
+        "previous": "14.1"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "10:30",
+        "region": "中国",
+        "event": "中国5月进口年率-人民币计价(%)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "9.8"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "10:30",
+        "region": "中国",
+        "event": "中国5月进口年率-美元计价(%)",
+        "importance": 2,
+        "expected": "25.0",
+        "actual": "",
+        "previous": "25.3"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "11:00",
+        "region": "中国",
+        "event": "中国5月成品油进口量-精炼石油产品-能源(万吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "180.9"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "11:00",
+        "region": "中国",
+        "event": "中国5月原油进口量-能源(万吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "3847.1"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "11:00",
+        "region": "中国",
+        "event": "中国5月管道天然气进口量-能源(万吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "487.0"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "14:00",
+        "region": "德国",
+        "event": "德国4月季调后出口月率(%)",
+        "importance": 2,
+        "expected": "0.5",
+        "actual": "",
+        "previous": "0.5"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月9日上期所每日仓单变动-原油(桶)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "0.0"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "15:10",
+        "region": "中国",
+        "event": "中国6月9日上期所每日仓单变动-铜(吨)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "-48.0"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "20:15",
+        "region": "美国",
+        "event": "美国截至5月23日当周ADP就业周度发布变动(万人)",
+        "importance": 2,
+        "expected": "",
+        "actual": "",
+        "previous": "3.58"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "20:30",
+        "region": "加拿大",
+        "event": "加拿大4月贸易帐(亿加元)",
+        "importance": 2,
+        "expected": "25.7",
+        "actual": "",
+        "previous": "17.8"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国5月成屋销售年化总数(万户)",
+        "importance": 2,
+        "expected": "407.0",
+        "actual": "",
+        "previous": "402.0"
+      },
+      {
+        "date": "2026-06-09",
+        "time": "22:00",
+        "region": "美国",
+        "event": "美国4月批发库存月率终值(%)",
+        "importance": 2,
+        "expected": "0.5",
+        "actual": "",
+        "previous": "0.5"
+      }
+    ],
+    "has_high_impact_event": true
+  },
+  "news_summary_snapshot": [
+    {
+      "title": "新型晶体管能同时执行多重电路功能",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "AMD苏姿丰：AI行业仍处于“非常早期阶段” 计划增加20亿英镑对英投资",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "国家层面首次对数据赋能AI发展作出部署 数据要素价值有望迎来释放",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "长电科技推出新一代电源模组封测解决方案",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "中信建投：当前全球AI算力基建的订单能见度仍比较高 依旧看好AI产业链",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "海外订单接到“手软” 中企储能出海如何避开光伏剧本？",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery"
+      ],
+      "etf_scores": {
+        "515790": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "国产Token调优工厂的浙江实践",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "燧原科技、粤芯股份IPO定于6月15日上会",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "588000": 0.357,
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "从“单点战”到“整体战” 阿里AI架构重组",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "capital_investment",
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "英伟达扩容算力应用“朋友圈” 联手一众韩企加速物理AI落地",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.42
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "苹果发布新一代AI平台及升级版Siri",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.399
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "苹果发布新一代AI平台及升级版Siri 投资者反应平平",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512690": 0.315,
+        "516510": 0.399
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "光伏企业海外订单排产饱满 分析师预计产业链有望实现年度扭亏",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "orders_and_delivery",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "515790": 0.378
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "中金2026下半年展望：新能源车中游上行周期趋势不改 基本面与新技术共振",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "earnings",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "515790": 0.336
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "曹操出行计划组建独立AI事业部 拟全面转型为AI原生公司",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "韩国三大电池制造商下半年将全面扩大储能用磷酸铁锂电池产能",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "orders_and_delivery",
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "515790": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "今日起上海市汽车以旧换新补贴调整为即时摇号",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512690": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "让国人等了10年！苹果终于有节假日闹钟了 但中国大陆暂不提供最新Siri AI",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "512690": 0.315,
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "库克最后一届WWDC大会：苹果发布AI版Siri 但国内用户还不能用",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "policy_landing"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    },
+    {
+      "title": "SpaceX“世纪IPO”质疑声不断！电影《大空头》原型炮轰：全压AI上了？",
+      "source": "eastmoney_global",
+      "quality": "strong",
+      "event_tags": [
+        "technology_breakthrough"
+      ],
+      "etf_scores": {
+        "516510": 0.315
+      },
+      "negative": false,
+      "risk_flags": []
+    }
+  ],
+  "raw_response": {
+    "regime": "risk_on",
+    "regime_reason": "盘后AI/科技利好新闻密集，且经济日历中日本GDP数据超预期，全球风险偏好回升，但今日中国贸易帐数据待公布，适度谨慎。",
+    "econ_drivers": [
+      {
+        "event": "日本第一季度季调后实际GDP季率终值(%)",
+        "importance": "high",
+        "direction": "+",
+        "impact": "日本经济超预期，全球风险偏好提升，利好A股科技板块。"
+      },
+      {
+        "event": "中国5月贸易帐-美元计价(亿美元)",
+        "importance": "high",
+        "direction": "0",
+        "impact": "数据待公布，若超预期利好出口导向型行业。"
+      }
+    ],
+    "news_drivers": [
+      {
+        "title": "新型晶体管能同时执行多重电路功能",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "AMD苏姿丰：AI行业仍处于非常早期阶段 计划增加20亿英镑对英投资",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "国家层面首次对数据赋能AI发展作出部署 数据要素价值有望迎来释放",
+        "etf": "516510",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "海外订单接到手软 中企储能出海如何避开光伏剧本？",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.42
+      },
+      {
+        "title": "光伏企业海外订单排产饱满 分析师预计产业链有望实现年度扭亏",
+        "etf": "515790",
+        "direction": "+",
+        "weight": 0.38
+      },
+      {
+        "title": "今日起上海市汽车以旧换新补贴调整为即时摇号",
+        "etf": "512690",
+        "direction": "+",
+        "weight": 0.32
+      }
+    ],
+    "per_etf_view": [
+      {
+        "code": "510300",
+        "score": 0.2,
+        "reason": "宽基受科技带动有限，但整体情绪回暖，中性偏多。"
+      },
+      {
+        "code": "510050",
+        "score": 0.1,
+        "reason": "大盘蓝筹缺乏直接利好，动量偏弱，中性。"
+      },
+      {
+        "code": "510500",
+        "score": 0.3,
+        "reason": "中盘成长受益科技情绪，但趋势仍弱，温和看多。"
+      },
+      {
+        "code": "510330",
+        "score": 0.2,
+        "reason": "类似510300，中性偏多。"
+      },
+      {
+        "code": "159338",
+        "score": 0.2,
+        "reason": "类似510300，中性偏多。"
+      },
+      {
+        "code": "518880",
+        "score": -0.5,
+        "reason": "黄金近期下跌，风险偏好回升压制避险需求，温和看空。"
+      },
+      {
+        "code": "159985",
+        "score": -0.3,
+        "reason": "豆粕趋势偏弱，无直接利好，温和看空。"
+      },
+      {
+        "code": "510880",
+        "score": 0.1,
+        "reason": "红利防御属性，无明确信号，中性。"
+      },
+      {
+        "code": "512880",
+        "score": 0.5,
+        "reason": "证券受益市场情绪回暖，盘后利好，温和看多。"
+      },
+      {
+        "code": "512010",
+        "score": 0.3,
+        "reason": "医药无直接利好，但超跌后或有反弹，温和看多。"
+      }
+    ],
+    "cash_decision": "partial",
+    "position_ratio_hint": 0.5,
+    "summary_zh": "今日日本GDP超预期提振全球风险偏好，盘后AI/科技利好新闻密集，市场情绪偏多。但中国贸易帐数据待公布，且宽基指数趋势偏弱，建议半仓参与，重点配置科技ETF（516510）和证券ETF（512880）。"
+  }
+}
