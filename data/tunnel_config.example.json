@@ -1,0 +1,8 @@
+{
+  "_说明": "复制本文件为 tunnel_config.json（同目录），配置好后 start_auto.bat 会在每天生成预测后自动启动内网穿透，把仪表盘暴露成公网可访问的网址。tunnel_config.json 已加入 .gitignore，不会被提交到 GitHub。",
+  "enabled": false,
+  "_enabled说明": "先保持 false；注册好穿透工具（如 cpolar）并测试命令能跑通后，改成 true 即可自动挂载。",
+  "command": "cpolar http 8765",
+  "_command说明": "填你实际会手动敲的那条隧道启动命令。cpolar 需先执行一次 `cpolar authtoken 你的token` 完成登录后，这条命令才能用。也可以换成 natapp / ngrok 等其他工具的命令。",
+  "note": "免费版隧道地址通常每次重启会变化；如需固定网址，请查看所选工具的付费/保留域名功能。"
+}

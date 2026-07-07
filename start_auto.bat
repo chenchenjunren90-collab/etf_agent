@@ -35,5 +35,6 @@ if %ERR% neq 0 (
     start "" /min py -3 dashboard_server.py --no-browser
     timeout /t 2 >nul
     start "" "http://127.0.0.1:8765/?screenshot=1"
+    py -3 launch_tunnel_if_configured.py
 )
 exit /b %ERR%
