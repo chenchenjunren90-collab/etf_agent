@@ -54,8 +54,6 @@ def log(message: str) -> None:
 # 才会真正抛错终止（详见该函数注释）。
 # ═══════════════════════════════════════════════════
 MIN_NEWS_ARTICLES = 5          # 有效新闻至少 5 条，否则标记低置信度
-MIN_NEWS_FOR_STRONG = 1         # 至少 1 条强信号新闻
-MIN_ECON_EVENTS = 1            # 经济日历至少 1 条事件（否则可能是网络故障）
 DATA_QUALITY_WARN_FLAGS: list[str] = []   # 低置信度标记，写入输出文件
 
 
