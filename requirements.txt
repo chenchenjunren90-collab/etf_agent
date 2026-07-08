@@ -4,6 +4,12 @@ pandas>=2.0
 numpy>=1.24
 requests>=2.31
 
+# Fallback market data sources (market_data.py tries akshare -> tushare ->
+# baostock -> yfinance in order). Without these installed, any AkShare/
+# Eastmoney outage has zero redundancy and daily_job.py hard-fails.
+tushare>=1.2
+baostock>=0.8
+
 # Loads DEEPSEEK_API_KEY from .env at startup (llm_client.py).
 python-dotenv>=1.0
 
