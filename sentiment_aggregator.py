@@ -56,7 +56,9 @@ def fetch_index_components(use_cache: bool = True) -> dict[str, dict[str, float]
         return json.loads(INDEX_WEIGHTS_CACHE.read_text(encoding="utf-8"))
 
     import tushare as ts
-    token = os.environ.get("TUSHARE_TOKEN", "51a6abcf6ea12364b1a78f5c782c1058ba4e9839f6cb43853e8ca1da")
+    token = os.environ.get("TUSHARE_TOKEN", "").strip()
+    if not token:
+        raise RuntimeError("TUSHARE_TOKEN 未设置，无法拉取指数权重（不再使用硬编码密钥）。")
     pro = ts.pro_api(token)
 
     # Use 2023-12-29 as reference date (latest available for CSDN data range)

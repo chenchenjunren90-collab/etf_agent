@@ -41,29 +41,38 @@ def log(message: str) -> None:
     print(f"[{datetime.now():%H:%M:%S}] {message}", flush=True)
 
 # ═══════════════════════════════════════════════════
-# 严格错误处理：关键数据源质量不达标时终止预测
+# 数据质量分级：新闻/经济日历数据源退化时降级仓位，而非中断预测
+#
+# 【2026-07 变更】此前新闻/经济日历数据源全失效会直接终止预测（不写
+# submit.json）。实测 AkShare/东方财富当天多次抽风（07:50、12:44 两次
+# 中断），若三次 crontab 重试都撞上故障窗口，会导致当天完全没有提交——
+# 在比赛规则下「错过提交」的代价（含罚款条款）远高于「用更保守仓位
+# 决策」。因此改为：数据源全失效只降级仓位上限（新闻死+日历死时降到
+# 30%，单项死时按原逻辑降到 50%），不再返回 False 中断整个流程。
+# 行情数据（价格）的可用性检查仍在 market_data.ensure_pool_fresh 里，
+# 那里已改为"实时抓取失败→退化用本地缓存"，只有本地缓存也严重缺失时
+# 才会真正抛错终止（详见该函数注释）。
 # ═══════════════════════════════════════════════════
-MIN_NEWS_ARTICLES = 5          # 有效新闻至少 5 条，否则视为数据源故障
+MIN_NEWS_ARTICLES = 5          # 有效新闻至少 5 条，否则标记低置信度
 MIN_NEWS_FOR_STRONG = 1         # 至少 1 条强信号新闻
 MIN_ECON_EVENTS = 1            # 经济日历至少 1 条事件（否则可能是网络故障）
 DATA_QUALITY_WARN_FLAGS: list[str] = []   # 低置信度标记，写入输出文件
+
 
 def _check_critical_data_quality(
     news_signal: dict[str, Any],
     econ_payload: dict[str, Any],
 ) -> bool:
-    """检查关键数据源质量，不达标时返回 False（应终止预测）。
+    """评估新闻/经济日历数据质量，按情况收紧仓位；恒返回 True（不再中断预测）。
 
     分级策略：
-    - 致命：行情更新失败（由 update_local_etfs 内部处理）
-    - 致命：有效新闻为 0 且无任何新闻抓到
-    - 致命：经济日历完全为空且 akshare_live 也未尝试
-    - 警告：有效新闻不足但 > 0 → 标记低置信度，继续
-    - 警告：经济日历为空但新闻足够 → 降低仓位上限，继续
+    - 新闻源完全失效（0 条或全被拒） → 降级为纯量价决策 + 标记低置信度
+    - 新闻不足但 > 0 → 仅标记低置信度，继续
+    - 经济日历完全为空（所有数据源失败） → 仓位上限降至 50%
+    - 新闻 + 日历同时完全失效（双重失灵） → 仓位上限进一步收紧至 30%
     """
     global DATA_QUALITY_WARN_FLAGS
     DATA_QUALITY_WARN_FLAGS = []
-    fatal = False
 
     # --- 新闻质量检查 ---
     article_count = news_signal.get("article_count", 0)
@@ -71,16 +80,17 @@ def _check_critical_data_quality(
     strong_count = news_signal.get("strong_count", 0)
     max_abs = news_signal.get("max_abs_theme", 0.0)
 
+    news_dead = False
     if article_count == 0:
-        log("[CRITICAL] 未抓取到任何新闻（所有数据源失败），终止预测。")
-        return False
-
-    if accepted_count == 0:
-        log(f"[CRITICAL] 抓到 {article_count} 条新闻但全部被筛选拒绝，"
-            f"无法生成有效信号，终止预测。")
-        return False
-
-    if accepted_count < MIN_NEWS_ARTICLES:
+        news_dead = True
+        DATA_QUALITY_WARN_FLAGS.append("未抓取到任何新闻（数据源可能故障），降级为纯量价决策")
+        log("[WARN] 未抓取到任何新闻（所有数据源失败），降级为纯量价决策，不中断预测。")
+    elif accepted_count == 0:
+        news_dead = True
+        DATA_QUALITY_WARN_FLAGS.append(f"抓到{article_count}条新闻但全部被筛选拒绝，降级为纯量价决策")
+        log(f"[WARN] 抓到 {article_count} 条新闻但全部被筛选拒绝，"
+            f"降级为纯量价决策，不中断预测。")
+    elif accepted_count < MIN_NEWS_ARTICLES:
         DATA_QUALITY_WARN_FLAGS.append(f"有效新闻仅{accepted_count}条(阈值{MIN_NEWS_ARTICLES})")
         log(f"[WARN] 有效新闻仅 {accepted_count} 条（阈值 {MIN_NEWS_ARTICLES}），"
             f"标记为低置信度但继续运行。")
@@ -93,14 +103,20 @@ def _check_critical_data_quality(
     econ_source = econ_payload.get("source", "none")
     econ_events = econ_payload.get("event_count", 0)
 
-    if econ_events == 0 and econ_source == "none":
-        # akshare_live 和 sqlite_summary 都没有数据
-        log("[CRITICAL] 经济日历完全为空（所有数据源失败），终止预测。")
-        return False
-
-    if econ_events == 0:
+    econ_dead = econ_events == 0 and econ_source == "none"
+    if econ_dead:
+        DATA_QUALITY_WARN_FLAGS.append("经济日历完全为空（数据源故障），仓位上限降级")
+        log("[WARN] 经济日历完全为空（所有数据源失败），仓位上限降级，不中断预测。")
+    elif econ_events == 0:
         DATA_QUALITY_WARN_FLAGS.append("经济日历为空，仓位上限降至50%")
         log("[WARN] 经济日历为空（可能是单日确实无事件），仓位上限降至 50%。")
+
+    # --- 双重失灵：新闻与经济日历同时完全失效，进一步收紧 ---
+    if news_dead and econ_dead:
+        os.environ["FORCE_POSITION_CAP"] = "0.30"
+        DATA_QUALITY_WARN_FLAGS.append("新闻与经济日历同时失效，仓位上限强制收紧至30%")
+        log("[CRITICAL-DEGRADED] 新闻与经济日历同时完全失效，仓位上限强制收紧至 30%，"
+            "但仍继续生成预测（不中断，避免错过当日提交）。")
 
     return True
 
@@ -403,6 +419,48 @@ def main() -> int:
     os.environ.setdefault("ETF_AGENT_ALLOW_NETWORK", "1")
     os.environ.setdefault("ETF_AGENT_STRICT_DATA", "1")
 
+    try:
+        return _run_pipeline(args, target_date)
+    except Exception as exc:
+        return _write_fatal_fallback(args.date, exc)
+
+
+def _write_fatal_fallback(date_str: str, exc: Exception) -> int:
+    """兜底：流程内出现未预期异常时，仍写出合规空仓 JSON，避免当天无任何提交。
+
+    比赛按日提交，一天完全没有输出（含罚款条款）的代价远高于"保守空仓"。
+    这里只在 ``_run_pipeline`` 抛出未被内部处理的异常时触发（正常的数据
+    降级已在 market_data/ _check_critical_data_quality 里处理，不会走到
+    这里）。
+    """
+    import traceback
+
+    tb = traceback.format_exc()
+    log(f"[FATAL] 预测流程发生未捕获异常: {exc}，写入兜底空仓提交，避免当日无任何输出。")
+    error_path = _save_error_report(
+        date_str,
+        reason=f"未捕获异常: {exc}",
+        partial_data={"traceback": tb},
+    )
+    log(f"错误报告已保存: {error_path}")
+
+    submit_path = OUTPUT_DIR / f"{date_str}_submit.json"
+    try:
+        if not submit_path.exists():
+            OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+            submit_path.write_text("[]", encoding="utf-8")
+            log(f"[FATAL] 已写入兜底空仓提交(合规JSON，空仓): {submit_path}")
+        else:
+            log(f"[FATAL] {submit_path} 已存在（此前已成功产出），保留不覆盖。")
+    except Exception as inner_exc:
+        log(f"[FATAL] 兜底空仓提交写入也失败: {inner_exc}")
+
+    print(f"\n=== 预测流程异常，已兜底 ===\n原因: {exc}\n详情: {error_path}")
+    return 1
+
+
+def _run_pipeline(args: argparse.Namespace, target_date) -> int:
+    """完整的每日决策流程（会被 main() 的兜底 try/except 包裹）。"""
     # 必须先更新行情再复盘，否则上一日 open/close 可能是旧数据（显示 0 元）。
     if not args.skip_price_update:
         log("更新 ETF 行情 CSV...")
@@ -436,30 +494,21 @@ def main() -> int:
     )
 
     # ═══ 严格数据质量检查 ═══
-    if not _check_critical_data_quality(news_signal, econ_payload):
-        error_path = _save_error_report(
-            args.date,
-            reason="数据源质量不达标，终止预测",
-            partial_data={
-                "news_signal_summary": {
-                    "article_count": news_signal.get("article_count"),
-                    "accepted_count": news_signal.get("accepted_count"),
-                    "source": news_signal.get("source"),
-                },
-                "econ_summary": {
-                    "event_count": econ_payload.get("event_count"),
-                    "source": econ_payload.get("source"),
-                },
-            },
-        )
-        log(f"错误报告已保存: {error_path}")
-        print(f"\n=== 预测终止 ===\n原因: 数据源质量不达标\n详情: {error_path}")
-        return 1
+    # 评估新闻/经济日历数据质量：全失效时只降级仓位，不再中断预测
+    # （见函数注释——错过当日提交的代价高于用保守仓位继续决策）。
+    _check_critical_data_quality(news_signal, econ_payload)
 
-    # 经济日历为空时降低仓位上限
+    # 经济日历为空时降低仓位上限；若数据质量检查已因"新闻+日历双重失效"
+    # 设了更保守的 30%，这里不再放宽回 50%（取更小值）。
     if econ_payload.get("event_count", 0) == 0:
-        os.environ["FORCE_POSITION_CAP"] = "0.50"
-        log("[QUALITY] 经济日历为空，已设置 FORCE_POSITION_CAP=0.50")
+        existing_cap = os.environ.get("FORCE_POSITION_CAP", "").strip()
+        try:
+            existing_cap_val = float(existing_cap) if existing_cap else 1.0
+        except ValueError:
+            existing_cap_val = 1.0
+        new_cap = min(0.50, existing_cap_val)
+        os.environ["FORCE_POSITION_CAP"] = str(new_cap)
+        log(f"[QUALITY] 经济日历为空，已设置 FORCE_POSITION_CAP={new_cap}")
 
     llm_payload = build_llm_decision(args.date, args.capital, news_signal, econ_payload)
     llm_decision = (llm_payload or {}).get("decision")
