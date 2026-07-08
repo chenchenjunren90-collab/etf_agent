@@ -44,8 +44,6 @@ def log(message: str) -> None:
 # 严格错误处理：关键数据源质量不达标时终止预测
 # ═══════════════════════════════════════════════════
 MIN_NEWS_ARTICLES = 5          # 有效新闻至少 5 条，否则视为数据源故障
-MIN_NEWS_FOR_STRONG = 1         # 至少 1 条强信号新闻
-MIN_ECON_EVENTS = 1            # 经济日历至少 1 条事件（否则可能是网络故障）
 DATA_QUALITY_WARN_FLAGS: list[str] = []   # 低置信度标记，写入输出文件
 
 def _check_critical_data_quality(
