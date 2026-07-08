@@ -1,14 +1,14 @@
 # Core data + market access.
+#
+# 仅用 AkShare；若 AkShare/东方财富临时不可用，daily_job.py 会直接报错退出
+# （不降级到 Tushare/Baostock/yfinance——那几个源与 AkShare 复权口径不一致，
+# 见 market_data.py 的 QFQ_CONSISTENT_SOURCES 说明）。配合 crontab 三次定时
+# 重试(07:50/08:10/08:25)与仪表盘手动重跑兜底。若需要多源兜底，参见
+# experiment/multi-source-fallback 分支的 requirements.txt（含 tushare/baostock）。
 akshare>=1.13.0
 pandas>=2.0
 numpy>=1.24
 requests>=2.31
-
-# Fallback market data sources (market_data.py tries akshare -> tushare ->
-# baostock -> yfinance in order). Without these installed, any AkShare/
-# Eastmoney outage has zero redundancy and daily_job.py hard-fails.
-tushare>=1.2
-baostock>=0.8
 
 # Loads DEEPSEEK_API_KEY from .env at startup (llm_client.py).
 python-dotenv>=1.0

@@ -363,8 +363,13 @@ def _fetch_tushare(code: str, start: str, end: str) -> pd.DataFrame | None:
 
 def fetch_etf_hist(code: str, *, days: int = 800) -> tuple[pd.DataFrame | None, str]:
     """
-    按顺序尝试：AkShare → Tushare → Baostock → yfinance。
-    返回 (df, source_name)。
+    仅使用 AkShare（含内部重试）。失败直接返回 None，不降级到 Tushare/
+    Baostock/yfinance——这几个备用源与 AkShare 的复权口径不一致（见
+    save_etf_csv 的 QFQ_CONSISTENT_SOURCES 说明），一旦启用兜底就要接受
+    "偶发覆盖成不复权历史"的风险。当前策略是宁可当天硬失败、由
+    ensure_pool_fresh 抛错终止（配合 crontab 07:50/08:10/08:25 三次重试
+    与仪表盘手动重跑兜底），也不接受历史行情口径被污染。
+    如需重新启用多源兜底，参见 experiment/multi-source-fallback 分支。
     """
     end = datetime.now().strftime("%Y%m%d")
     start = (datetime.now() - timedelta(days=days)).strftime("%Y%m%d")
@@ -373,18 +378,6 @@ def fetch_etf_hist(code: str, *, days: int = 800) -> tuple[pd.DataFrame | None, 
     df = _fetch_akshare(code, start, end)
     if df is not None:
         return df, "akshare"
-
-    df = _fetch_tushare(code, start, end)
-    if df is not None:
-        return df, "tushare"
-
-    df = _fetch_baostock(code, start, end)
-    if df is not None:
-        return df, "baostock"
-
-    df = _fetch_yfinance(code, days=days)
-    if df is not None:
-        return df, "yfinance"
 
     return None, "none"
 
