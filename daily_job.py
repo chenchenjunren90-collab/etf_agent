@@ -18,6 +18,7 @@ import llm_decider
 from news_fetcher import fetch_news_articles
 from news_signal import build_news_signal, summarize_for_llm
 from news_llm_scorer import score_news_with_llm, merge_llm_into_news_signal
+from stability_risk import build_recent_risk_context, summarize_risk_context
 from strategy import (
     OFFENSIVE_POOL,
     OFFENSIVE_ON_THRESHOLD,
@@ -411,6 +412,8 @@ def main() -> int:
     pnl_report = review_previous_prediction(args.date)
     pnl_path = write_pnl_report(pnl_report)
     log(f"复盘报告: {pnl_path}")
+    recent_risk = build_recent_risk_context(args.date, capital=args.capital)
+    log(f"十天稳健风控: {summarize_risk_context(recent_risk)}")
 
     # A 股周六周日休市：不生成预测，只保留上一日复盘。
     if target_date.weekday() >= 5:
@@ -467,6 +470,7 @@ def main() -> int:
         args.capital,
         llm_decision=llm_decision,
         econ_payload=econ_payload,
+        recent_risk=recent_risk,
     )
     competition_output = to_competition_output(result)
     submit_path, full_path = save_outputs(
