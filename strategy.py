@@ -68,6 +68,7 @@ from position import (
     evaluate_market_regime,
     short_race_max_positions,
     adjust_invest_ratio_by_news,
+    apply_stability_overlay,
     allocate_short_race,
 )
 
@@ -175,6 +176,7 @@ def run_decision(
     *,
     llm_decision: dict[str, Any] | None = None,
     econ_payload: dict[str, Any] | None = None,
+    recent_risk: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """每日投资决策主函数（大模型融合模式）。
 
@@ -325,10 +327,25 @@ def run_decision(
         market_reason = f"{market_reason}；最高分 {top_score:.1f} < {effective_gate} 闸门，强制空仓{gate_note}"
         if llm_trace:
             llm_trace["hard_rules_applied"].append("score_gate")
+
+    stability_audit = None
+    stability_max_positions = None
+    if invest_ratio > 0:
+        invest_ratio, market_reason, stability_max_positions, stability_audit = apply_stability_overlay(
+            invest_ratio,
+            market_reason,
+            ranked,
+            theme_signals,
+            recent_risk=recent_risk,
+        )
+        if llm_trace and stability_audit and stability_audit["final_invest_ratio"] < stability_audit["original_invest_ratio"]:
+            llm_trace["hard_rules_applied"].append("stability_overlay")
     print(f"  Invest ratio: {invest_ratio:.0%} ({market_reason})")
 
     print("[Step 3/4] Allocating concentrated race portfolio...")
     dyn_max = short_race_max_positions(theme_signals)
+    if stability_max_positions is not None:
+        dyn_max = min(dyn_max, stability_max_positions)
     result = allocate_short_race(ranked, total_capital, invest_ratio, max_positions=dyn_max)
     result["date"] = date_str
     result["ranked"] = ranked[:10]
@@ -341,6 +358,7 @@ def run_decision(
     }
     result["market_reason"] = market_reason
     result["reasoning"] = build_short_race_reasoning(ranked, result, market_reason, theme_signals)
+    result["stability_overlay"] = stability_audit
     # 更新轮动追踪
     top_codes = [item["code"] for item in (result.get("summary", {}).get("held_stocks", []) or [])]
     _update_rotation_tracker(top_codes)
