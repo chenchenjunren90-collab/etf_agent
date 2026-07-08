@@ -276,15 +276,22 @@ def allocate_short_race(ranked, total_capital, invest_ratio, max_positions=None)
     weights = weights / weights.sum()
 
     # 分数差很明显时进一步偏向第一名。
-    # 【2026-07 复核】2 仓时 RACE_BASE_WEIGHTS[:2] 归一化后是 [0.6, 0.4]，
-    # 两者都已超过 MAX_SINGLE_WEIGHT(30%)；若像 3 仓那样 clip 后再统一
-    # renormalize，会把两者都拉回恰好 30%/30%，tilt 前后结果完全相同
-    # （此前实测验证过：加或不加这次 tilt，2 仓的最终权重分毫不差），
-    # 等于"分数差很大也强制平均分配"，白白丢了"score_gap 越大集中度
-    # 应该越高"这个设计意图。现在只对触发了 tilt 的日子跳过 renormalize，
-    # 把 #2 让出的仓位份额留作现金而不是硬塞回 #2（top 已经顶到 30% 硬
-    # 顶，加不上去），86天回测该项单独验证 +0.22pp、Sharpe 略升、风险
-    # 指标不变。未触发 tilt 的日子行为完全不变（仍是均衡 renormalize）。
+    # 【2026-07 复核，含一次纠偏】2 仓时 RACE_BASE_WEIGHTS[:2] 归一化后是
+    # [0.6, 0.4]，两者都已超过 MAX_SINGLE_WEIGHT(30%)；若像原来那样 clip
+    # 后再统一 renormalize 补满到 100%，会把两者都拉回恰好 30%/30%，加不
+    # 加这次 tilt 最终权重分毫不差（已验证 np.allclose 为 True）。
+    # 现在只对触发 tilt 的日子跳过 renormalize：
+    #   - 2 仓场景：0.08 的 tilt 幅度仍不足以让 #2 跌破 30% 硬顶，所以
+    #     #1/#2 实际权重依旧相等(各30%)，真正的效果是"不再强行补满到
+    #     100%投资比例"——总仓位降到约 60%，多出的部分变成现金，而不是
+    #     "top 分到更多"（曾在 commit message 里描述为"tilt 让 top 分到
+    #     更多"，实测后订正：2 仓下 tilt 从未真正让权重分化，起作用的是
+    #     "大分差日子不再强行凑满仓位"这一附带效果）。
+    #   - 3 仓场景：tilt 幅度足够让 #2/#3 都跌破 30%，此时才会出现真正的
+    #     权重分化（如 0.30/0.26/0.21）。但 3 仓在稳健模式下几乎不会触发
+    #     （见 apply_stability_overlay 的 max_positions_cap 恒 ≤2）。
+    # 86天回测该项单独验证：+0.22pp、Sharpe 2.20→2.28、最大回撤/近10日
+    # 不变。未触发 tilt 的日子行为完全不变（仍是均衡 renormalize）。
     tilted = len(selected) >= 2 and selected[0]["score"] - selected[1]["score"] >= 8
     if tilted:
         weights[0] += 0.08
