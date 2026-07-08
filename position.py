@@ -24,6 +24,29 @@ STABLE_WEAK_SIGNAL_CAP = 0.35
 STABLE_LOSS_CAP = 0.35
 STABLE_DRAWDOWN_CAP = 0.25
 
+# 【2026-07 复核】elite 门槛(top_score>=58 & confidence>=0.26 & max_abs>=0.17
+# & articles>=5)在 86 天回测里只有约 20% 的交易日能达到，其余约 80% 的日子
+# 只能持 1 只 ETF。而 allocate_short_race 的单 ETF 硬顶 MAX_SINGLE_WEIGHT=30%
+# 与仓位比例是两套独立限制、按 min() 生效——只持 1 只时，无论 invest_ratio
+# 定多高（哪怕 98%），实际能用的资金也被硬顶死在 30%。也就是说 STABLE_
+# DEFAULT_CAP(55%)/STABLE_WEAK_SIGNAL_CAP(35%) 这两个"仓位比例"上限在只
+# 持 1 只时其实从未真正生效过，真正卡住收益的是"只给 1 个仓位名额"本身。
+# 实测（stable_backtest.py，2026-03-02~2026-07-06，86天）：把"解锁 2 仓"
+# 的门槛从 elite 降到中等信号(MODERATE_*)，2 只 ETF 各 30% 硬顶叠加后上限
+# 变为 60%：
+#   总收益 +4.89%→+7.51%，Sharpe 1.61→2.20，
+#   最大回撤 -3.27%→-3.61%（仍远小于完全不设稳健层的 -6.24%），
+#   近10日收益 -0.38%→+0.05%，胜率 40.7%→43.0%。
+# 多个邻近阈值组合(top_score 54~56/confidence 0.18~0.24/max_abs 0.10~0.15/
+# articles 2~4)结果一致(+7.3%~+7.5%，Sharpe 2.0~2.2)，非偶然拟合单一数字。
+# 近况亏损/连续亏损触发的收仓到 1 只（STABLE_LOSS_CAP/STABLE_DRAWDOWN_CAP
+# 对应的场景）不受此项影响，仍然强制收紧到 1 只——这项改动只解决"信号
+# 还不错但没到 elite 门槛"时被误伤锁死在 1 仓的问题。
+MODERATE_SCORE = 55.0
+MODERATE_CONFIDENCE = 0.22
+MODERATE_MAX_ABS = 0.14
+MODERATE_ARTICLES = 4
+
 
 
 def evaluate_market_regime(date_str=None):
@@ -163,9 +186,21 @@ def apply_stability_overlay(
         and max_abs >= 0.17
         and articles >= 5
     )
+    # 中等信号也解锁 2 仓位（见模块顶部注释）：只要求比 elite 门槛低一档，
+    # 不改变仓位比例上限(cap 仍是 STABLE_DEFAULT_CAP)，只是不再把新闻
+    # 信号"还不错但没到 elite"的日子锁死在 1 只 ETF（进而被 MAX_SINGLE_
+    # WEIGHT=30% 硬顶死），让 2 只 ETF 各 30% 硬顶叠加后能用到 60% 上限。
+    moderate_setup = (
+        top_score >= MODERATE_SCORE
+        and confidence >= MODERATE_CONFIDENCE
+        and max_abs >= MODERATE_MAX_ABS
+        and articles >= MODERATE_ARTICLES
+    )
     cap = STABLE_STRONG_CAP if strong_setup else STABLE_DEFAULT_CAP
-    max_positions_cap = 2 if strong_setup else 1
+    max_positions_cap = 2 if (strong_setup or moderate_setup) else 1
     notes = [f"稳健模式基础上限{cap:.0%}"]
+    if moderate_setup and not strong_setup:
+        notes.append("中等信号解锁2仓")
 
     weak_signal = top_score < 54.0 or confidence < 0.20 or max_abs < 0.10
     if weak_signal:
@@ -203,6 +238,7 @@ def apply_stability_overlay(
         "cap": round(float(cap), 4),
         "max_positions_cap": max_positions_cap,
         "strong_setup": strong_setup,
+        "moderate_setup": moderate_setup,
         "weak_signal": weak_signal,
         "top_score": round(top_score, 2),
         "score_gap": round(score_gap, 2),
