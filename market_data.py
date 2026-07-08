@@ -335,7 +335,15 @@ def _fetch_yfinance(code: str, days: int = 900) -> pd.DataFrame | None:
 
 
 def _fetch_tushare(code: str, start: str, end: str) -> pd.DataFrame | None:
-    """Tushare fund_daily fallback — reliable when AKShare is blocked by campus network."""
+    """Tushare fund_daily fallback — reliable when AKShare is blocked by campus network.
+
+    Token 必须来自环境变量 TUSHARE_TOKEN，未设置时直接跳过（不再硬编码密钥，
+    避免随代码库/GitHub 泄露）。当前主链路 fetch_etf_hist 默认不调用此函数，
+    仅 experiment/multi-source-fallback 分支及手动脚本会用到。
+    """
+    token = os.environ.get("TUSHARE_TOKEN", "").strip()
+    if not token:
+        return None
     try:
         import tushare as ts
     except ImportError:
@@ -345,7 +353,7 @@ def _fetch_tushare(code: str, start: str, end: str) -> pd.DataFrame | None:
     ts_code = f"{c}.SH" if c.startswith(("5", "6")) else f"{c}.SZ"
 
     try:
-        pro = ts.pro_api("51a6abcf6ea12364b1a78f5c782c1058ba4e9839f6cb43853e8ca1da")
+        pro = ts.pro_api(token)
         s = pd.to_datetime(start).strftime("%Y%m%d")
         e = pd.to_datetime(end).strftime("%Y%m%d")
         df = pro.fund_daily(ts_code=ts_code, start_date=s, end_date=e,
@@ -420,8 +428,23 @@ def save_etf_csv(code: str, df: pd.DataFrame, *, source: str = "akshare") -> Pat
     return path
 
 
-def update_one_etf(code: str, name: str = "", *, max_attempts: int = 3) -> dict[str, Any]:
-    """拉取并落盘；必须新鲜才返回 success=True。"""
+def update_one_etf(
+    code: str,
+    name: str = "",
+    *,
+    max_attempts: int = 3,
+    stale_tolerance_days: int = 6,
+) -> dict[str, Any]:
+    """拉取并落盘；实时抓取新鲜即为完全成功。
+
+    若实时抓取全部失败，退化为检查本地已有 CSV 是否仍在容忍窗口内
+    （``stale_tolerance_days``，默认 6 天，覆盖「跨长假 + 数据源多日故障」的
+    极端情况）——退化命中时仍返回 ``ok=True``，但标记 ``degraded=True``。
+
+    设计动机：比赛按日提交，错过当天提交（无任何合规 JSON 输出）的代价
+    远高于用稍旧数据做一次决策；本地数据来自上一次成功抓取，天然是
+    「上一交易日或更早」的真实前复权行情，不存在准确性问题，只是不够新。
+    """
     target = latest_completed_trade_date()
     last_err = ""
     for attempt in range(max_attempts):
@@ -441,14 +464,29 @@ def update_one_etf(code: str, name: str = "", *, max_attempts: int = 3) -> dict[
             "ok": True,
             "source": src,
             "last_date": str(df_last_date(df)),
+            "degraded": False,
         }
+
+    existing_last = csv_last_date(code)
+    if existing_last is not None and (target - existing_last).days <= stale_tolerance_days:
+        return {
+            "code": code,
+            "name": name,
+            "ok": True,
+            "source": "cached_stale",
+            "last_date": str(existing_last),
+            "error": last_err,
+            "degraded": True,
+        }
+
     return {
         "code": code,
         "name": name,
         "ok": False,
         "source": "none",
-        "last_date": str(csv_last_date(code) or ""),
+        "last_date": str(existing_last or ""),
         "error": last_err,
+        "degraded": True,
     }
 
 
@@ -458,10 +496,15 @@ def ensure_pool_fresh(
     *,
     log_fn=None,
     min_ok_ratio: float = 0.87,
+    min_usable_ratio: float = 0.25,
 ) -> tuple[list[dict], list[dict]]:
-    """
-    更新交易池行情；至少 min_ok_ratio 比例必须新鲜。
-    返回 (成功列表, 失败列表)。失败过多时抛 RuntimeError。
+    """更新交易池行情。
+
+    完全新鲜（当天实时抓取成功）比例低于 ``min_ok_ratio`` 只记警告，不中断；
+    只有当「完全新鲜 + 缓存降级」合计可用比例低于 ``min_usable_ratio``
+    （默认 25%，即数据源与本地缓存同时大范围失效，环境本身可能有问题）
+    时才抛 RuntimeError 终止——这种情况下降级决策已无意义。
+    返回 (成功列表[含降级], 失败列表)。
     """
     names = names or {}
     ok_list: list[dict] = []
@@ -479,19 +522,29 @@ def ensure_pool_fresh(
         r = update_one_etf(code, names.get(code, ""), max_attempts=4)
         if r["ok"]:
             ok_list.append(r)
-            _log(f"  [{i+1}/{len(codes)}] {code} OK  {r['source']}  last={r['last_date']}")
+            tag = "OK(缓存降级)" if r.get("degraded") else "OK"
+            _log(f"  [{i+1}/{len(codes)}] {code} {tag}  {r['source']}  last={r['last_date']}")
         else:
             fail_list.append(r)
             _log(f"  [{i+1}/{len(codes)}] {code} FAIL last={r['last_date']} ({r.get('error')})")
         pytime.sleep(1.2)
 
-    ratio = len(ok_list) / max(1, len(codes))
-    _log(f"  行情更新: 成功 {len(ok_list)}/{len(codes)} ({ratio:.0%})")
+    usable_ratio = len(ok_list) / max(1, len(codes))
+    fresh_ratio = sum(1 for r in ok_list if not r.get("degraded")) / max(1, len(codes))
+    _log(
+        f"  行情更新: 可用 {len(ok_list)}/{len(codes)} ({usable_ratio:.0%})，"
+        f"其中完全新鲜 {fresh_ratio:.0%}"
+    )
 
-    if ratio < min_ok_ratio:
+    if usable_ratio < min_usable_ratio:
         raise RuntimeError(
-            f"行情数据不足：仅 {len(ok_list)}/{len(codes)} 只更新到 {target}，"
-            f"所有数据源均失败 (akshare/tushare/baostock/yfinance)。"
+            f"行情数据严重不足：仅 {len(ok_list)}/{len(codes)} 只有可用数据"
+            f"（含缓存降级），AkShare 与本地缓存同时大范围失效，无法生成预测。"
+        )
+    if fresh_ratio < min_ok_ratio:
+        _log(
+            f"  [WARN] 完全新鲜比例 {fresh_ratio:.0%} 低于目标 {min_ok_ratio:.0%}，"
+            f"部分 ETF 使用缓存历史数据决策，预测仍会正常生成但置信度降低。"
         )
     return ok_list, fail_list
 
