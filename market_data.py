@@ -389,11 +389,36 @@ def fetch_etf_hist(code: str, *, days: int = 800) -> tuple[pd.DataFrame | None, 
     return None, "none"
 
 
-def save_etf_csv(code: str, df: pd.DataFrame) -> Path:
+# 仅 AkShare/Baostock 使用前复权(qfq)；Tushare fund_daily 返回不复权原始价，
+# 与本地历史 CSV 的复权口径不一致。若整份覆盖，会把已经正确前复权的历史
+# 行情全部替换成不复权数据，导致跨越除息日的多日动量/趋势特征失真——
+# 510880(红利ETF)这类高股息标的尤其敏感。故非 qfq 一致来源只做增量补天，
+# 不触碰已有历史行。
+QFQ_CONSISTENT_SOURCES = {"akshare", "baostock", "yfinance"}
+
+
+def save_etf_csv(code: str, df: pd.DataFrame, *, source: str = "akshare") -> Path:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     path = DATA_DIR / f"{str(code).zfill(6)}.csv"
+
     out = df.copy()
     out["date"] = pd.to_datetime(out["date"])
+
+    if source not in QFQ_CONSISTENT_SOURCES and path.exists():
+        try:
+            existing = pd.read_csv(path)
+            col = "日期" if "日期" in existing.columns else "date"
+            existing = existing.rename(columns={
+                col: "date", "开盘": "open", "最高": "high",
+                "最低": "low", "收盘": "close", "成交量": "volume",
+            })
+            existing["date"] = pd.to_datetime(existing["date"])
+            new_dates_only = out[~out["date"].isin(existing["date"])]
+            out = pd.concat([existing, new_dates_only], ignore_index=True)
+            out = out.sort_values("date").reset_index(drop=True)
+        except Exception:
+            pass  # 本地文件损坏时退化为整份覆盖，保底可用
+
     out = out.rename(columns={
         "date": "日期", "open": "开盘", "high": "最高",
         "low": "最低", "close": "收盘", "volume": "成交量",
@@ -416,7 +441,7 @@ def update_one_etf(code: str, name: str = "", *, max_attempts: int = 3) -> dict[
             last_err = f"stale_last={df_last_date(df)} need>={target}"
             pytime.sleep(1.5)
             continue
-        save_etf_csv(code, df)
+        save_etf_csv(code, df, source=src)
         return {
             "code": code,
             "name": name,
