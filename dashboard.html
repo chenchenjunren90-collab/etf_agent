@@ -232,6 +232,69 @@
       padding: 10px 14px;
       box-shadow: 0 4px 14px rgba(0,0,0,.15);
     }
+    #runToast {
+      display: none;
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      max-width: min(92vw, 640px);
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      box-shadow: 0 6px 24px rgba(0,0,0,.18);
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+    }
+    #runToast.show { display: block; }
+    #runToast.info { border-color: var(--banner-info-border); background: var(--banner-info-bg); color: var(--banner-info-text); }
+    #runToast.ok { border-color: #86efac; background: #f0fdf4; color: #166534; }
+    #runToast.warn { border-color: var(--banner-warn-border); background: var(--banner-warn-bg); color: var(--banner-warn-text); }
+    #runToast.err { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+    button.running { opacity: 0.65; cursor: wait; }
+    #runTerminalPanel {
+      display: none;
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 95;
+      max-height: min(46vh, 420px);
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: 0 10px 30px rgba(0,0,0,.22);
+      overflow: hidden;
+    }
+    #runTerminalPanel.open { display: flex; flex-direction: column; }
+    .run-terminal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      background: rgba(0,0,0,.03);
+    }
+    #runTerminalStatus { color: var(--muted); font-size: 12px; }
+    #runTerminal {
+      margin: 0;
+      padding: 12px 14px;
+      overflow: auto;
+      flex: 1;
+      min-height: 180px;
+      background: #0f172a;
+      color: #e2e8f0;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
   </style>
 </head>
 <body data-theme="light">
@@ -253,6 +316,14 @@
     </div>
   </header>
 
+  <div id="runToast" role="status" aria-live="polite"></div>
+  <div id="runTerminalPanel" aria-live="polite">
+    <div class="run-terminal-head">
+      <strong id="runTerminalTitle">运行日志</strong>
+      <span id="runTerminalStatus">准备中...</span>
+    </div>
+    <pre id="runTerminal"></pre>
+  </div>
   <main>
     <div id="submitPreviewCard">
       <div class="sp-head">
@@ -368,6 +439,9 @@
 
     const themeToggle = document.getElementById('themeToggle');
     const THEME_KEY = 'etf-dashboard-theme';
+    var lastRunFeedback = null;
+    var runToastTimer = null;
+    var runButtons = ["btnQuick", "btnFull", "btnForce"];
 
     function storageGet(key) {
       try { return localStorage.getItem(key); } catch (e) { return null; }
@@ -400,9 +474,95 @@
       return "";
     }
 
+    function systemLogText(data) {
+      return [
+        "ETF 智能体",
+        "最新文件: " + (data.full_path || "暂无"),
+        "提交文件: " + (data.submit_path || "暂无"),
+        "新闻文件: " + (data.news_path || "暂无")
+      ].join("\n");
+    }
+
+    function showRunToast(message, level, persist) {
+      var el = document.getElementById("runToast");
+      if (!el) return;
+      if (runToastTimer) {
+        clearTimeout(runToastTimer);
+        runToastTimer = null;
+      }
+      el.textContent = message;
+      el.className = "show " + (level || "info");
+      if (!persist) {
+        runToastTimer = setTimeout(function() {
+          el.className = "";
+          el.textContent = "";
+        }, level === "warn" ? 12000 : 6000);
+      }
+    }
+
+    function setRunButtonsBusy(busy, activeId) {
+      for (var i = 0; i < runButtons.length; i++) {
+        var btn = document.getElementById(runButtons[i]);
+        if (!btn) continue;
+        btn.disabled = busy || (new Date().getDay() === 0 || new Date().getDay() === 6);
+        btn.classList.toggle("running", busy && btn.id === activeId);
+      }
+    }
+
+    function openRunTerminal(title) {
+      document.getElementById("runTerminalTitle").textContent = title || "运行日志";
+      document.getElementById("runTerminalStatus").textContent = "运行中...";
+      document.getElementById("runTerminal").textContent = "";
+      document.getElementById("runTerminalPanel").classList.add("open");
+    }
+
+    function appendRunTerminal(text) {
+      var el = document.getElementById("runTerminal");
+      if (!text) return;
+      el.textContent += (el.textContent ? "\n" : "") + text;
+      el.scrollTop = el.scrollHeight;
+    }
+
+    function closeRunTerminal(statusText) {
+      document.getElementById("runTerminalStatus").textContent = statusText || "已完成";
+    }
+
+    async function consumeRunStream(response) {
+      if (!response.body || !response.body.getReader) {
+        var data = await response.json();
+        if (data.output) appendRunTerminal(data.output);
+        return data;
+      }
+      var reader = response.body.getReader();
+      var decoder = new TextDecoder("utf-8");
+      var buffer = "";
+      var donePayload = null;
+      while (true) {
+        var chunk = await reader.read();
+        if (chunk.done) break;
+        buffer += decoder.decode(chunk.value, { stream: true });
+        var parts = buffer.split("\n");
+        buffer = parts.pop() || "";
+        for (var i = 0; i < parts.length; i++) {
+          var line = parts[i].trim();
+          if (!line) continue;
+          var evt = JSON.parse(line);
+          if (evt.type === "log" && evt.text) appendRunTerminal(evt.text);
+          if (evt.type === "done") donePayload = evt;
+        }
+      }
+      if (buffer.trim()) {
+        var tail = JSON.parse(buffer.trim());
+        if (tail.type === "done") donePayload = tail;
+      }
+      return donePayload || { status: "error", output: "未收到完成信号" };
+    }
+
     async function loadStatus() {
       var date = document.getElementById("viewDate").value;
-      var url = date ? "/api/status?date=" + encodeURIComponent(date) : "/api/status";
+      // 相对路径（不带开头 /），这样部署在子路径（如 /etf-agent/）下时
+      // 请求会跟着解析到同一子路径，不会被反向代理路由到别的应用。
+      var url = date ? "api/status?date=" + encodeURIComponent(date) : "api/status";
       try {
         var res = await fetch(url);
         var data = await res.json();
@@ -540,12 +700,10 @@
       }
 
       document.getElementById("submitJson").textContent = JSON.stringify(submit, null, 2);
-      document.getElementById("log").textContent = [
-        "ETF 智能体",
-        "最新文件: " + (data.full_path || "暂无"),
-        "提交文件: " + (data.submit_path || "暂无"),
-        "新闻文件: " + (data.news_path || "暂无")
-      ].join("\n");
+      var logText = systemLogText(data);
+      document.getElementById("log").textContent = lastRunFeedback
+        ? (lastRunFeedback + "\n\n" + logText)
+        : logText;
 
       renderSubmitPreview(data, submit);
     }
@@ -614,25 +772,81 @@
       document.getElementById("screenshotHint").style.display = on ? "block" : "none";
     }
 
-    async function runDaily(skipPriceUpdate, force) {
+    async function runDaily(skipPriceUpdate, force, activeBtnId) {
       var todayDow = new Date().getDay();
       if (todayDow === 0 || todayDow === 6) {
-        document.getElementById("log").textContent = "今天是" + (todayDow === 6 ? "周六" : "周日") + "，A 股休市。";
+        var weekendMsg = "今天是" + (todayDow === 6 ? "周六" : "周日") + "，A 股休市。";
+        document.getElementById("log").textContent = weekendMsg;
+        showRunToast(weekendMsg, "warn", true);
         return;
       }
       if (force && !confirm("将覆盖今日已有预测，原档案会备份到 archive。确定强制重跑？")) return;
-      document.getElementById("log").textContent = force ? "正在强制重跑 daily_job.py，请等待..." : "正在运行 daily_job.py，请等待...";
+
+      var title = force
+        ? "强制重跑（完整预测）"
+        : (skipPriceUpdate ? "快速预测（跳过行情）" : "完整预测（含行情）");
+      var waitMsg = force
+        ? "正在强制重跑完整预测，日志会实时显示在下方终端..."
+        : (skipPriceUpdate
+          ? "正在快速运行预测，日志会实时显示在下方终端..."
+          : "正在完整运行预测，日志会实时显示在下方终端...");
+      lastRunFeedback = waitMsg;
+      openRunTerminal(title);
+      appendRunTerminal(">>> " + waitMsg);
+      document.getElementById("log").textContent = waitMsg;
+      showRunToast(waitMsg, "info", true);
+      setRunButtonsBusy(true, activeBtnId);
+
       try {
-        var res = await fetch("/api/run", {
+        var res = await fetch("api/run", {
           method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({skip_price_update: skipPriceUpdate, force: !!force})
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/x-ndjson"
+          },
+          body: JSON.stringify({
+            skip_price_update: skipPriceUpdate,
+            force: !!force,
+            stream: true
+          })
         });
-        var data = await res.json();
-        document.getElementById("log").textContent = data.output || data.error || "运行结束";
-        await loadStatus();
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        var data = await consumeRunStream(res);
+        var msg = data.output || data.error || "运行结束";
+        if (data.status === "ok") {
+          lastRunFeedback = "预测运行成功。\n" + msg;
+          closeRunTerminal("运行成功，正在刷新页面...");
+          showRunToast("预测完成，页面已自动更新。", "ok", false);
+          document.getElementById("viewDate").value = "";
+          await loadStatus();
+          document.getElementById("submitPreviewCard").scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          if (data.status === "skipped") {
+            msg = msg + "\n如需重新生成，请点击右上角「强制重跑（完整）」。";
+            lastRunFeedback = msg;
+            closeRunTerminal("已跳过（今日已有预测）");
+            showRunToast("今日预测已存在。如需重跑请点「强制重跑」。", "warn", true);
+          } else if (data.status === "busy") {
+            lastRunFeedback = msg;
+            closeRunTerminal("已有任务在运行");
+            showRunToast(msg, "warn", true);
+          } else {
+            lastRunFeedback = "预测运行失败。\n" + msg;
+            closeRunTerminal("运行失败");
+            showRunToast("预测运行失败，请查看下方终端日志。", "err", true);
+          }
+          await loadStatus();
+        }
+        document.getElementById("log").textContent = lastRunFeedback;
       } catch(e) {
-        document.getElementById("log").textContent = "运行失败: " + e.message;
+        lastRunFeedback = "运行失败: " + e.message;
+        appendRunTerminal("[错误] " + e.message);
+        closeRunTerminal("运行失败");
+        document.getElementById("log").textContent = lastRunFeedback;
+        showRunToast(lastRunFeedback, "err", true);
+      } finally {
+        setRunButtonsBusy(false);
+        applyWeekendUi();
       }
     }
 
@@ -651,9 +865,9 @@
     document.getElementById("viewDate").addEventListener("change", loadStatus);
     if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
     document.getElementById("btnRefresh").addEventListener("click", loadStatus);
-    document.getElementById("btnQuick").addEventListener("click", function() { runDaily(true, false); });
-    document.getElementById("btnFull").addEventListener("click", function() { runDaily(false, false); });
-    document.getElementById("btnForce").addEventListener("click", function() { runDaily(false, true); });
+    document.getElementById("btnQuick").addEventListener("click", function() { runDaily(true, false, "btnQuick"); });
+    document.getElementById("btnFull").addEventListener("click", function() { runDaily(false, false, "btnFull"); });
+    document.getElementById("btnForce").addEventListener("click", function() { runDaily(false, true, "btnForce"); });
 
     document.getElementById("btnCopyJson").addEventListener("click", function() {
       var text = document.getElementById("spJson").textContent;

@@ -37,6 +37,7 @@ PORT = 8765
 INDEX_HTML_PATH = BASE_DIR / "dashboard.html"
 TEAM_CONFIG_PATH = BASE_DIR / "data" / "team_config.json"
 TEAM_CONFIG_EXAMPLE_PATH = BASE_DIR / "data" / "team_config.example.json"
+_RUN_LOCK = threading.Lock()
 
 
 def _load_html() -> str:
@@ -186,28 +187,17 @@ def _json_response(handler: BaseHTTPRequestHandler, payload: Any, status: int = 
     handler.wfile.write(body)
 
 
-def _run_daily_job(options: dict[str, Any]) -> dict[str, Any]:
-    cmd = [sys.executable, str(BASE_DIR / "daily_job.py")]
+def _build_daily_job_cmd(options: dict[str, Any]) -> tuple[list[str], dict[str, str], str]:
+    """组装 daily_job 命令行；返回 (cmd, env, today_str)。"""
+    cmd = [sys.executable, "-u", str(BASE_DIR / "daily_job.py")]
     today = datetime.now().date()
+    today_str = today.strftime("%Y-%m-%d")
     if today.weekday() < 5:
-        cmd.append("--date")
-        cmd.append(today.strftime("%Y-%m-%d"))
+        cmd.extend(["--date", today_str])
     if options.get("skip_price_update"):
         cmd.append("--skip-price-update")
-    force = bool(options.get("force"))
-    if force:
+    if options.get("force"):
         cmd.append("--force")
-
-    try:
-        from etf_agent_chat import _backup_today_outputs
-        _backup_today_outputs()
-    except Exception:
-        pass
-
-    import daily_run_guard
-    today_str = today.strftime("%Y-%m-%d")
-    if not force and today.weekday() < 5 and daily_run_guard.has_daily_run(today_str):
-        return {"output": "今日预测已存在，跳过重复运行（请用「强制重跑」覆盖）。", "status": "skipped"}
 
     load_submit = options.get("load_submit")
     if load_submit:
@@ -217,16 +207,142 @@ def _run_daily_job(options: dict[str, Any]) -> dict[str, Any]:
 
     env = dict(os.environ)
     env.setdefault("ETF_AGENT_STRICT_DATA", "1")
+    env["PYTHONUNBUFFERED"] = "1"
+    return cmd, env, today_str
+
+
+def _prepare_daily_job(options: dict[str, Any]) -> tuple[list[str], dict[str, str]] | dict[str, Any]:
+    """若可运行则返回 (cmd, env)；否则返回 skipped/busy 状态 dict。"""
+    if not _RUN_LOCK.acquire(blocking=False):
+        return {"output": "已有预测任务在运行，请等待当前任务结束。", "status": "busy"}
 
     try:
-        r = subprocess.run(cmd, cwd=str(BASE_DIR), capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=360)
+        force = bool(options.get("force"))
+        if force:
+            try:
+                from etf_agent_chat import _backup_today_outputs
+                _backup_today_outputs()
+            except Exception:
+                pass
+
+        import daily_run_guard
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        if not force and datetime.now().weekday() < 5 and daily_run_guard.has_daily_run(today_str):
+            _RUN_LOCK.release()
+            return {
+                "output": "今日预测已存在，跳过重复运行（请用「强制重跑」覆盖）。",
+                "status": "skipped",
+            }
+
+        cmd, env, _ = _build_daily_job_cmd(options)
+        return cmd, env
+    except Exception:
+        _RUN_LOCK.release()
+        raise
+
+
+def _run_daily_job(options: dict[str, Any]) -> dict[str, Any]:
+    prepared = _prepare_daily_job(options)
+    if isinstance(prepared, dict):
+        return prepared
+    cmd, env = prepared
+    try:
+        r = subprocess.run(
+            cmd,
+            cwd=str(BASE_DIR),
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=360,
+            env=env,
+        )
         output = r.stdout + r.stderr
-        return {"output": output[-3000:], "status": "ok" if r.returncode == 0 else "error", "returncode": r.returncode}
+        return {
+            "output": output[-3000:],
+            "status": "ok" if r.returncode == 0 else "error",
+            "returncode": r.returncode,
+        }
     except subprocess.TimeoutExpired as e:
         output = (e.stdout or b"").decode("utf-8", errors="replace") + (e.stderr or b"").decode("utf-8", errors="replace")
         return {"output": output[-3000:] + "\n[超时]", "status": "timeout"}
     except Exception as e:
         return {"output": str(e), "status": "error"}
+    finally:
+        if _RUN_LOCK.locked():
+            _RUN_LOCK.release()
+
+
+def _write_ndjson_line(handler: BaseHTTPRequestHandler, payload: dict[str, Any]) -> None:
+    line = json.dumps(payload, ensure_ascii=False) + "\n"
+    handler.wfile.write(line.encode("utf-8"))
+    handler.wfile.flush()
+
+
+def _stream_daily_job(handler: BaseHTTPRequestHandler, options: dict[str, Any]) -> None:
+    handler.send_response(200)
+    handler.send_header("Content-Type", "application/x-ndjson; charset=utf-8")
+    handler.send_header("Cache-Control", "no-cache")
+    handler.send_header("X-Accel-Buffering", "no")
+    handler.end_headers()
+
+    prepared = _prepare_daily_job(options)
+    if isinstance(prepared, dict):
+        msg = prepared.get("output", "")
+        if msg:
+            _write_ndjson_line(handler, {"type": "log", "text": msg})
+        _write_ndjson_line(handler, {"type": "done", **prepared})
+        return
+
+    cmd, env = prepared
+    output_lines: list[str] = []
+    try:
+        proc = subprocess.Popen(
+            cmd,
+            cwd=str(BASE_DIR),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            bufsize=1,
+            env=env,
+        )
+        assert proc.stdout is not None
+        start = time.time()
+        while True:
+            line = proc.stdout.readline()
+            if line:
+                text = line.rstrip("\r\n")
+                output_lines.append(text)
+                _write_ndjson_line(handler, {"type": "log", "text": text})
+                continue
+            if proc.poll() is not None:
+                break
+            if time.time() - start > 360:
+                proc.kill()
+                _write_ndjson_line(handler, {"type": "log", "text": "[超时] 预测运行超过 6 分钟，已终止。"})
+                _write_ndjson_line(handler, {"type": "done", "status": "timeout", "output": "\n".join(output_lines[-3000:])})
+                return
+            time.sleep(0.05)
+
+        tail = "\n".join(output_lines)
+        status = "ok" if proc.returncode == 0 else "error"
+        _write_ndjson_line(
+            handler,
+            {
+                "type": "done",
+                "status": status,
+                "returncode": proc.returncode,
+                "output": tail[-3000:],
+            },
+        )
+    except Exception as exc:
+        _write_ndjson_line(handler, {"type": "log", "text": f"[错误] {exc}"})
+        _write_ndjson_line(handler, {"type": "done", "status": "error", "output": str(exc)})
+    finally:
+        if _RUN_LOCK.locked():
+            _RUN_LOCK.release()
 
 
 def _today_advice(view_date: str | None) -> list[dict[str, Any]]:
@@ -280,8 +396,11 @@ class DashboardHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/run":
             length = int(self.headers.get("Content-Length", 0))
             body = json.loads(self.rfile.read(length)) if length else {}
-            result = _run_daily_job(body)
-            self._json_response(result)
+            if body.get("stream", True):
+                _stream_daily_job(self, body)
+            else:
+                result = _run_daily_job(body)
+                self._json_response(result)
         else:
             self.send_error(404)
 
