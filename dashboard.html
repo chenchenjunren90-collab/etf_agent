@@ -558,6 +558,23 @@
       return donePayload || { status: "error", output: "未收到完成信号" };
     }
 
+    var pnlPollTimer = null;
+
+    function schedulePnlAutoRefresh(data, pnl) {
+      if (pnlPollTimer) {
+        clearInterval(pnlPollTimer);
+        pnlPollTimer = null;
+      }
+      var sys = data.system_info || {};
+      var viewDate = data.view_date || sys.today;
+      var isToday = viewDate === sys.today;
+      var afterClose = !sys.today_is_weekend;
+      if (!isToday || !afterClose || !pnl || !pnl.pending) return;
+      pnlPollTimer = setInterval(function() {
+        loadStatus();
+      }, 180000);
+    }
+
     async function loadStatus() {
       var date = document.getElementById("viewDate").value;
       // 相对路径（不带开头 /），这样部署在子路径（如 /etf-agent/）下时
@@ -615,13 +632,21 @@
 
       var pnlEl = document.getElementById("pnl");
       var pnlVal = pnl ? Number(pnl.total_pnl || 0) : 0;
-      if (pnl) {
+      if (pnl && pnl.pending) {
+        pnlEl.textContent = "待结算";
+        pnlEl.title = "收盘行情同步中，约 16:30 后自动更新";
+        pnlEl.className = "value";
+      } else if (pnl) {
         var sign = pnlVal >= 0 ? "+" : "";
         pnlEl.textContent = sign + fmt.format(pnlVal) + " 元";
+        pnlEl.title = "";
+        pnlEl.className = "value " + clsForNumber(pnlVal);
       } else {
         pnlEl.textContent = "--";
+        pnlEl.title = "";
+        pnlEl.className = "value";
       }
-      pnlEl.className = "value " + clsForNumber(pnlVal);
+      schedulePnlAutoRefresh(data, pnl);
 
       var submitHtml = "";
       for (var i = 0; i < submit.length; i++) {
@@ -772,6 +797,18 @@
       document.getElementById("screenshotHint").style.display = on ? "block" : "none";
     }
 
+    var RUN_TOKEN_KEY = "etf-dashboard-run-token";
+
+    function getRunToken(force) {
+      if (!force) return "";
+      var saved = sessionStorage.getItem(RUN_TOKEN_KEY) || "";
+      if (saved) return saved;
+      var token = prompt("强制重跑需要管理员口令（run_token）：");
+      if (!token) return "";
+      sessionStorage.setItem(RUN_TOKEN_KEY, token);
+      return token;
+    }
+
     async function runDaily(skipPriceUpdate, force, activeBtnId) {
       var todayDow = new Date().getDay();
       if (todayDow === 0 || todayDow === 6) {
@@ -781,6 +818,11 @@
         return;
       }
       if (force && !confirm("将覆盖今日已有预测，原档案会备份到 archive。确定强制重跑？")) return;
+      var runToken = getRunToken(force);
+      if (force && !runToken) {
+        showRunToast("未输入管理员口令，已取消强制重跑。", "warn", true);
+        return;
+      }
 
       var title = force
         ? "强制重跑（完整预测）"
@@ -802,16 +844,18 @@
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Accept": "application/x-ndjson"
+            "Accept": "application/x-ndjson",
+            "X-ETF-Run-Token": runToken || ""
           },
           body: JSON.stringify({
             skip_price_update: skipPriceUpdate,
             force: !!force,
-            stream: true
+            stream: true,
+            run_token: runToken || ""
           })
         });
-        if (!res.ok) throw new Error("HTTP " + res.status);
         var data = await consumeRunStream(res);
+        if (!res.ok && !data.status) throw new Error("HTTP " + res.status);
         var msg = data.output || data.error || "运行结束";
         if (data.status === "ok") {
           lastRunFeedback = "预测运行成功。\n" + msg;
@@ -829,6 +873,10 @@
           } else if (data.status === "busy") {
             lastRunFeedback = msg;
             closeRunTerminal("已有任务在运行");
+            showRunToast(msg, "warn", true);
+          } else if (data.status === "rate_limited" || data.status === "forbidden") {
+            lastRunFeedback = msg;
+            closeRunTerminal(data.status === "rate_limited" ? "触发频率限制" : "权限不足");
             showRunToast(msg, "warn", true);
           } else {
             lastRunFeedback = "预测运行失败。\n" + msg;

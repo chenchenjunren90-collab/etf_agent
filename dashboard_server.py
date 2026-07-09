@@ -26,6 +26,7 @@ import daily_pnl
 from daily_pnl import _load_bar
 import llm_client
 import llm_decider
+import security_guard
 
 __file__ = Path(__file__).resolve()
 BASE_DIR = __file__.parent
@@ -120,7 +121,15 @@ def _settle_prediction(full_path: Path) -> dict[str, Any] | None:
         pnl = round(volume * (close - prev_close), 2)
         total_pnl += pnl
         pnl_rows.append(dict(code=code, name=name, volume=volume, open=prev_close, close=close, pnl=pnl))
-    return dict(prediction_date=date_str, total_pnl=round(total_pnl, 2), rows=pnl_rows)
+    pending = bool(comp) and len(pnl_rows) < len(comp)
+    return dict(
+        prediction_date=date_str,
+        total_pnl=round(total_pnl, 2),
+        rows=pnl_rows,
+        pending=pending,
+        holdings_count=len(comp),
+        settled_count=len(pnl_rows),
+    )
 
 
 def _system_info() -> dict[str, Any]:
@@ -396,6 +405,20 @@ class DashboardHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/run":
             length = int(self.headers.get("Content-Length", 0))
             body = json.loads(self.rfile.read(length)) if length else {}
+            blocked = security_guard.check_api_run(self, body)
+            if blocked:
+                status_code = 429 if blocked.get("status") == "rate_limited" else 403
+                if body.get("stream", True):
+                    handler = self
+                    handler.send_response(status_code)
+                    handler.send_header("Content-Type", "application/x-ndjson; charset=utf-8")
+                    handler.end_headers()
+                    msg = blocked.get("output", "请求被拒绝")
+                    _write_ndjson_line(handler, {"type": "log", "text": msg})
+                    _write_ndjson_line(handler, {"type": "done", **blocked})
+                else:
+                    self._json_response(blocked, status=status_code)
+                return
             if body.get("stream", True):
                 _stream_daily_job(self, body)
             else:

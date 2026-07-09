@@ -347,22 +347,45 @@ def save_outputs(
     *,
     econ_payload: dict[str, Any] | None = None,
     llm_payload: dict[str, Any] | None = None,
+    capital: float | None = None,
 ) -> tuple[Path, Path]:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
-    submit_path = OUTPUT_DIR / f"{date_str}_submit.json"
-    full_path = OUTPUT_DIR / f"{date_str}_full.json"
+    from competition_guard import (
+        COMPETITION_CAPITAL,
+        personal_output_paths,
+        should_write_competition_artifacts,
+    )
+
+    # Non-competition capital must NEVER overwrite official daily_output.
+    write_official = should_write_competition_artifacts(
+        COMPETITION_CAPITAL if capital is None else float(capital)
+    )
+    if write_official:
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
+        submit_path = OUTPUT_DIR / f"{date_str}_submit.json"
+        full_path = OUTPUT_DIR / f"{date_str}_full.json"
+    else:
+        paths = personal_output_paths(date_str)
+        submit_path = paths["submit"]
+        full_path = paths["full"]
+        log(
+            f"资金非比赛本金 {COMPETITION_CAPITAL:.0f}，"
+            f"输出写入个人目录（不覆盖比赛文件）: {submit_path.parent}"
+        )
 
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    for path in (submit_path, full_path):
-        if path.exists():
-            backup = ARCHIVE_DIR / f"{path.stem}_{stamp}{path.suffix}"
-            backup.write_text(path.read_text(encoding="utf-8"), encoding="utf-8")
+    if write_official:
+        for path in (submit_path, full_path):
+            if path.exists():
+                backup = ARCHIVE_DIR / f"{path.stem}_{stamp}{path.suffix}"
+                backup.write_text(path.read_text(encoding="utf-8"), encoding="utf-8")
 
     submit_path.write_text(json.dumps(competition_output, ensure_ascii=False, indent=2), encoding="utf-8")
     full_payload = {
         "date": date_str,
         "competition_output": competition_output,
+        "mode": "competition" if write_official else "personal_sandbox",
+        "capital": float(capital) if capital is not None else COMPETITION_CAPITAL,
         "news_signal": news_signal,
         "econ_calendar": econ_payload,
         "llm_trace": full_result.get("llm_trace"),
@@ -528,7 +551,13 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
         pnl_report,
         econ_payload=econ_payload,
         llm_payload=llm_payload,
+        capital=float(args.capital),
     )
+
+    # Only rebuild official agent_kb for competition-capital runs.
+    from competition_guard import is_competition_capital as _is_comp_cap
+
+    _official_run = _is_comp_cap(float(args.capital))
 
     # 将数据质量警告写入 full.json
     if DATA_QUALITY_WARN_FLAGS:
@@ -545,13 +574,16 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
     log(f"比赛格式输出: {submit_path}")
     log(f"完整记录输出: {full_path}")
 
-    try:
-        from agent_kb import rebuild_knowledge_base
+    if _official_run:
+        try:
+            from agent_kb import rebuild_knowledge_base
 
-        kb_path = rebuild_knowledge_base(args.date)
-        log(f"智能体知识库已更新: {kb_path}")
-    except Exception as exc:
-        log(f"智能体知识库更新失败（不影响预测）: {exc}")
+            kb_path = rebuild_knowledge_base(args.date)
+            log(f"智能体知识库已更新: {kb_path}")
+        except Exception as exc:
+            log(f"智能体知识库更新失败（不影响预测）: {exc}")
+    else:
+        log("非比赛本金运行：已跳过官方 agent_kb 更新，比赛预测不受影响。")
 
     print("\n=== COMPETITION OUTPUT ===")
     print(json.dumps(competition_output, ensure_ascii=False, indent=2))

@@ -1,0 +1,15 @@
+[Unit]
+Description=ETF Agent Dashboard
+After=network.target
+
+[Service]
+Type=simple
+User=ciyuan
+WorkingDirectory=/home/ciyuan/chenjunren/etf_agent
+Environment=PYTHONUTF8=1
+ExecStart=/home/ciyuan/chenjunren/etf_agent/.venv/bin/python dashboard_server.py --host 127.0.0.1 --port 8765 --no-browser
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -33,3 +33,6 @@ data/econ_calendar_cache/
 *.bak
 *.bak2
 *.docx
+
+# Personal sandbox outputs (per-user capital runs)
+data/personal_output/

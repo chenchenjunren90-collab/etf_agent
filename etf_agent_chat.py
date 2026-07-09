@@ -399,7 +399,15 @@ def _sync_knowledge_base(date_str: str) -> tuple[dict[str, Any] | None, str | No
 
 
 def _run_today_prediction(skip_price_update: bool = False, *, force: bool = False) -> dict[str, Any]:
-    """Run daily_job.py as a subprocess; return result + reloaded KB."""
+    """Run daily_job.py as a subprocess; return result + reloaded KB.
+
+    Competition isolation:
+    - Always uses official COMPETITION_CAPITAL (500000).
+    - Public chat cannot --force overwrite an existing same-day run unless
+      ETF_CHAT_ALLOW_FORCE_RERUN=1 is set by an operator.
+    - If today's run already exists and force is blocked, returns cached KB.
+    """
+    from competition_guard import COMPETITION_CAPITAL, guard_chat_prediction_run
     from daily_run_guard import has_daily_run
 
     today = datetime.now().date()
@@ -410,7 +418,24 @@ def _run_today_prediction(skip_price_update: bool = False, *, force: bool = Fals
             "error": "今日 A 股休市（周末），不会生成新预测。",
         }
 
-    if not force and has_daily_run(today_str):
+    allowed, block_reason = guard_chat_prediction_run(force=force)
+    if not allowed:
+        if block_reason:
+            # Explicitly blocked (e.g. force overwrite denied)
+            kb = load_knowledge_base(today_str)
+            if kb is None:
+                kb, _ = _sync_knowledge_base(today_str)
+            return {
+                "ok": True,
+                "skipped": True,
+                "protected": True,
+                "date": today_str,
+                "kb": kb,
+                "kb_saved": kb is not None,
+                "error": block_reason,
+                "message": block_reason,
+            }
+        # Already exists — use cache
         kb = load_knowledge_base(today_str)
         if kb is None:
             kb, _ = _sync_knowledge_base(today_str)
@@ -422,18 +447,25 @@ def _run_today_prediction(skip_price_update: bool = False, *, force: bool = Fals
             "kb_saved": kb is not None,
         }
 
-    cmd = [sys.executable, str(BASE_DIR / "daily_job.py"),
-           "--date", today_str,
-           "--capital", str(int(float(os.environ.get("CAPITAL", "500000"))))]
+    # First-run or admin-allowed force: always competition capital
+    cmd = [
+        sys.executable,
+        str(BASE_DIR / "daily_job.py"),
+        "--date", today_str,
+        "--capital", str(int(COMPETITION_CAPITAL)),
+    ]
     if skip_price_update:
         cmd.append("--skip-price-update")
-    if force:
+    if force and allowed:
+        # Only pass --force when guard already approved it
         cmd.append("--force")
 
     env = os.environ.copy()
     env.setdefault("PYTHONUTF8", "1")
     env.setdefault("ETF_AGENT_ALLOW_NETWORK", "1")
     env.setdefault("ETF_AGENT_STRICT_DATA", "1")
+    # Pin capital for child process too
+    env["CAPITAL"] = str(int(COMPETITION_CAPITAL))
 
     try:
         proc = subprocess.run(
@@ -473,8 +505,14 @@ def _format_run_result(run_result: dict[str, Any], kb: dict[str, Any] | None) ->
         return "今日预测未完成：" + str(run_result.get("error", "未知错误"))
 
     prefix = ""
-    if run_result.get("skipped"):
-        prefix = "今日已跑过预测，直接展示已有结果。\n\n"
+    if run_result.get("protected"):
+        prefix = (
+            "今日比赛预测已受保护，对话端不会覆盖官方结果。\n"
+            + str(run_result.get("message") or "")
+            + "\n\n以下为已有比赛持仓：\n\n"
+        )
+    elif run_result.get("skipped"):
+        prefix = "今日已跑过预测，直接展示已有结果（未重跑，比赛文件未改动）。\n\n"
 
     lines = [prefix + _format_holdings(kb), "", "**上一交易日收益**", "", _format_yesterday_pnl()]
     return "\n".join(lines)
@@ -886,6 +924,7 @@ def handle_message(message: str, date_str: str | None = None) -> dict[str, Any]:
     if wants_run:
         today_str = datetime.now().strftime("%Y-%m-%d")
         force = any(h in message for h in FORCE_RERUN_HINTS)
+        from competition_guard import chat_force_allowed
         from daily_run_guard import has_daily_run
 
         today_kb = load_knowledge_base(today_str)
@@ -904,8 +943,32 @@ def handle_message(message: str, date_str: str | None = None) -> dict[str, Any]:
                 "via": "rule",
             }
 
+        # Force overwrite is blocked for public chat unless admin env is set.
+        if force and has_daily_run(today_str) and not chat_force_allowed():
+            if today_kb is None:
+                today_kb, _ = _sync_knowledge_base(today_str)
+            reply = _format_run_result(
+                {
+                    "ok": True,
+                    "skipped": True,
+                    "protected": True,
+                    "message": (
+                        "今日比赛预测已受保护，对话端禁止覆盖官方结果。"
+                        "请使用定时任务或仪表盘重跑。"
+                    ),
+                },
+                today_kb,
+            )
+            return {
+                "reply": reply,
+                "intent": "run_today_protected",
+                "kb_date": today_str,
+                "kb_saved": True,
+                "via": "rule",
+            }
+
         today_submit = BASE_DIR / "data" / "daily_output" / f"{today_str}_submit.json"
-        if force and today_submit.exists():
+        if force and chat_force_allowed() and today_submit.exists():
             _backup_today_outputs(today_str)
 
         run_result = _run_today_prediction(skip_price_update=False, force=force)
@@ -915,9 +978,10 @@ def handle_message(message: str, date_str: str | None = None) -> dict[str, Any]:
             if kb_err:
                 run_result["kb_error"] = kb_err
         reply = _format_run_result(run_result, new_kb)
+        intent = "run_today_protected" if run_result.get("protected") else "run_today_job"
         return {
             "reply": reply,
-            "intent": "run_today_job",
+            "intent": intent,
             "kb_date": (new_kb or {}).get("date"),
             "kb_saved": bool(run_result.get("kb_saved") or new_kb),
             "kb_updated_at": (new_kb or {}).get("updated_at"),
