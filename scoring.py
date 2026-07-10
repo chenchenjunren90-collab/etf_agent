@@ -32,7 +32,7 @@ ECON_TIER2_CAP = 0.75   # 3-5条高影响
 ECON_TIER3_CAP = 0.65   # 6+条高影响
 
 # 评分闸门动态模式：环境变量 SCORE_GATE_MODE=dynamic 时，
-# LLM 强信号(max|score|>=0.5)可将闸门降至 55
+# LLM 强信号(max|score|>=0.5)可将闸门降至 SCORE_GATE_DYNAMIC_FLOOR(42)
 SCORE_GATE_DYNAMIC_FLOOR = 42.0
 
 # 轮动惩罚参数
@@ -235,7 +235,7 @@ def _inject_llm_views_into_signals(theme_signals, llm_decision):
     """将大模型态度分注入到主题信号中（三条使用路径）。
 
     路径 1: 覆盖主题分 — LLM 对某 ETF 的态度分直接替换该 ETF 的主题信号
-    路径 2: 降低评分闸门 — max|score| >= 0.5 时闸门从 65 降至 55
+    路径 2: 降低评分闸门 — max|score| >= 0.5 时闸门从 SCORE_GATE(50) 降至 SCORE_GATE_DYNAMIC_FLOOR(42)
     路径 3: 仓位比例提示 — 取 min(LLM 建议比例, 规则计算比例)
     """
     if not llm_decision or not isinstance(llm_decision, dict):
@@ -283,8 +283,11 @@ def _inject_llm_views_into_signals(theme_signals, llm_decision):
 
 
 def market_avg_score(date_str=None) -> float | None:
-    """返回宽基 ETF 的"5日涨+3日涨×0.5"均值，供进攻池开关与仓位评估共用。"""
-    refs = ["510300", "159915", "588000"]
+    """返回宽基 ETF 的"5日涨+3日涨×0.5"均值，供进攻池开关与仓位评估共用。
+
+    仅用稳健池内宽基，避免依赖尚未入池/可能未更新的进攻池标的。
+    """
+    refs = ["510300", "510050", "510500"]
     scores = []
     for code in refs:
         df = _get_price_for_decision(code, date_str)

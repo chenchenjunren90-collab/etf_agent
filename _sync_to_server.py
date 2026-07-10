@@ -12,27 +12,48 @@ from server_env import HOST, PASSWORD, REMOTE, USER
 LOCAL = Path(__file__).resolve().parent
 
 APP_FILES = [
-    "agent_server.py",
-    "agent_orchestrator.py",
-    "competition_guard.py",
-    "daily_job.py",
-    "decision_integrity.py",
-    "strategy.py",
-    "position.py",
+    # Core decision pipeline
+    "pool.py",
+    "indicators.py",
+    "features.py",
     "scoring.py",
+    "position.py",
+    "strategy.py",
+    "decision_integrity.py",
+    "stability_risk.py",
+    "daily_job.py",
+    "daily_pnl.py",
+    "daily_run_guard.py",
+    "settlement_prices.py",
     "market_data.py",
     "update_local_csv.py",
-    "features.py",
+    "post_close_sync.py",
+    # News / econ / LLM
+    "theme_signal.py",
+    "news_signal.py",
+    "news_fetcher.py",
+    "news_llm_scorer.py",
+    "news_time_split.py",
+    "news_store.py",
+    "econ_calendar.py",
+    "llm_client.py",
+    "llm_decider.py",
+    "prompts/decider_zh.md",
+    # Agent / dashboard / isolation
+    "agent_server.py",
+    "agent_orchestrator.py",
+    "agent_kb.py",
+    "competition_guard.py",
     "dashboard_server.py",
     "dashboard.html",
     "etf_agent_chat.py",
     "info_collector.py",
     "live_personal_runner.py",
     "personalized_advisor.py",
-    "post_close_sync.py",
     "security_guard.py",
     "session_store.py",
     "server_env.py",
+    # Deploy units
     "etf-dashboard.service",
     "etf-agent-chat.service",
     "nginx_etf_agent_chat.conf",
@@ -58,6 +79,7 @@ HELPER_FILES = [
     "_deploy_post_close.py",
     "_deploy_security.py",
     "_diagnose_same_stock.py",
+    "_force_rerun_dates.py",
     "_force_rerun_today.py",
     "_fix_api_base.py",
     "_fix_chat_service.py",
@@ -106,8 +128,9 @@ def main() -> None:
             print("SKIP missing", name)
             continue
         dst = f"{REMOTE}/{name}"
-        if name.startswith("scripts/"):
-            run(ssh, f"mkdir -p {REMOTE}/scripts")
+        if name.startswith("scripts/") or name.startswith("prompts/"):
+            parent = name.rsplit("/", 1)[0]
+            run(ssh, f"mkdir -p {REMOTE}/{parent}")
         sftp.put(str(src), dst)
         uploaded.append(name)
         print("UP", name)
@@ -115,18 +138,26 @@ def main() -> None:
     print("--- compile ---")
     compile_targets = " ".join(
         p for p in (
+            "pool.py",
             "security_guard.py",
             "dashboard_server.py",
             "agent_server.py",
             "agent_orchestrator.py",
             "competition_guard.py",
             "daily_job.py",
+            "decision_integrity.py",
+            "strategy.py",
+            "scoring.py",
+            "position.py",
+            "update_local_csv.py",
+            "post_close_sync.py",
+            "llm_decider.py",
+            "llm_client.py",
             "etf_agent_chat.py",
             "live_personal_runner.py",
             "personalized_advisor.py",
             "info_collector.py",
             "session_store.py",
-            "post_close_sync.py",
         )
         if (LOCAL / p).exists()
     )

@@ -55,6 +55,9 @@ OFFENSIVE_POOL: list[dict] = [
 OFFENSIVE_ON_THRESHOLD: float = 3.0   # 宽基复合趋势分 ≥ +3% 加进攻池
 OFFENSIVE_OFF_THRESHOLD: float = 1.0  # 预留退出滞回阈值（每日独立评估，当前未参与判断）
 
+# 日常行情更新 / 收盘校验覆盖：稳健池 + 进攻池（避免进攻池 CSV 陈旧）
+ALL_POOL: list[dict] = list(TRADING_POOL) + list(OFFENSIVE_POOL)
+
 
 # ================================================
 # 缓存层 (Memory Cache)

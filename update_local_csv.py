@@ -8,15 +8,16 @@ from typing import Any
 
 sys.path.insert(0, os.path.dirname(__file__))
 from market_data import ensure_pool_fresh, latest_completed_trade_date
-from strategy import TRADING_POOL
+from pool import ALL_POOL
 
 
 def update_local_etfs(
     *,
     log_fn: Callable[[str], Any] | None = None,
 ) -> dict[str, Any]:
-    codes = [item["code"] for item in TRADING_POOL]
-    names = {item["code"]: item["name"] for item in TRADING_POOL}
+    # 稳健池 + 进攻池一并刷新，避免宽基强势启用进攻池时用到陈旧 K 线。
+    codes = [item["code"] for item in ALL_POOL]
+    names = {item["code"]: item["name"] for item in ALL_POOL}
     ok_list, fail_list = ensure_pool_fresh(codes, names, log_fn=log_fn)
     degraded = sum(1 for r in ok_list if r.get("degraded"))
     fresh = sum(1 for r in ok_list if r.get("ok") and not r.get("degraded"))
@@ -32,6 +33,6 @@ def update_local_etfs(
 
 if __name__ == "__main__":
     print("=" * 50)
-    print(f"  更新 {len(TRADING_POOL)} 只 ETF（目标已完成交易日 {latest_completed_trade_date()}）")
+    print(f"  更新 {len(ALL_POOL)} 只 ETF（目标已完成交易日 {latest_completed_trade_date()}）")
     print("=" * 50)
     update_local_etfs()

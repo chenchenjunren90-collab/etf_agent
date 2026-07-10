@@ -17,7 +17,7 @@ os.environ.setdefault("ETF_AGENT_ALLOW_NETWORK", "1")
 
 from daily_pnl import review_previous_prediction, write_pnl_report
 from market_data import csv_last_date, latest_completed_trade_date
-from strategy import TRADING_POOL
+from pool import ALL_POOL
 from update_local_csv import update_local_etfs
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -40,7 +40,7 @@ def log(msg: str) -> None:
 def _verify_pool_csv(target) -> tuple[int, int]:
     ok = fail = 0
     missing: list[str] = []
-    for item in TRADING_POOL:
+    for item in ALL_POOL:
         code = str(item["code"]).zfill(6)
         last = csv_last_date(code)
         if last is not None and last >= target:

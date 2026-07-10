@@ -382,6 +382,15 @@ def run_decision(
                     for s in ranked[:3]
                 )
                 print(f"  TOP3 (after tilt): {top3}")
+            # 倾斜后重检闸门，避免次级因素把第一名换掉后仍按旧分入场/漏检空仓。
+            top_score = float(ranked[0]["score"]) if ranked else 0.0
+            if invest_ratio > 0 and top_score < effective_gate:
+                invest_ratio = 0.0
+                market_reason = (
+                    f"{market_reason}；倾斜后最高分 {top_score:.1f} < {effective_gate} 闸门，强制空仓"
+                )
+                if llm_trace:
+                    llm_trace["hard_rules_applied"].append("score_gate_after_tilt")
 
     result = allocate_short_race(ranked, total_capital, invest_ratio, max_positions=dyn_max)
     result["date"] = date_str
