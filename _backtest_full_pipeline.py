@@ -20,7 +20,7 @@ from typing import Any
 import pandas as pd
 
 from daily_job import build_llm_decision, to_competition_output
-from decision_integrity import compute_sole_symbol_streak
+from decision_integrity import compute_holding_streaks, compute_sole_symbol_streak
 from econ_calendar import load_econ_payload
 from settlement_prices import get_close_to_close
 from strategy import reset_rotation_tracker, run_decision
@@ -89,6 +89,7 @@ def _integrity_from_history(rows: list[dict[str, Any]], trade_date: str) -> dict
         "block_llm_rescore": False,
         "recent_submit_history": history[-6:],
         "sole_symbol_streak": streak,
+        "holding_streaks": compute_holding_streaks(history),
     }
 
 

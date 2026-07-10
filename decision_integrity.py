@@ -1,9 +1,18 @@
-"""Decision integrity: price freshness + profit-oriented concentration risk.
+"""Decision integrity: price freshness + soft repeat-holding tilt.
 
-Goals:
-1. Stale K-lines must not freeze rankings / LLM rubber-stamping.
-2. Consecutive single-name concentration is a drawdown risk — diversify
-   (keep #1, add #2) rather than ban repeating the same ETF.
+Factor priority (high → low). Secondary factors must not overturn a clear
+primary signal:
+
+1. Data integrity — stale K-lines block LLM rescoring / ratio hints (hard).
+2. Primary alpha — composite score (trend + theme + hist − risk).
+3. Risk budget — stability overlay / econ caps / score gate (position size).
+4. Repeat-holding tilt — consecutive days holding a name soft-lowers its
+   preference; never bans; cannot flip a clear score leader.
+5. LLM hints — only when prices are fresh; may lower ratio / theme, not raise
+   risk budget past hard caps.
+
+Concentration used to force 2-names; that over-weighted a secondary concern.
+Now it only tilts tendency and optionally trims size slightly.
 """
 
 from __future__ import annotations
@@ -23,11 +32,13 @@ OUTPUT_DIR = BASE_DIR / "data" / "daily_output"
 
 ANCHOR_CODES = ("510300", "510880", "512880")
 
-# After N consecutive sole-name days of the same ETF, force diversification.
-SOLE_STREAK_FORCE_2_DAYS = 2
-SOLE_STREAK_HARD_CAP_DAYS = 3
-SOLE_STREAK_RATIO_CAP_2 = 0.35   # day 2+: tighten invest ratio
-SOLE_STREAK_RATIO_CAP_3 = 0.25   # day 3+: tighter still
+# Soft score tilt for consecutive prior holding days (never a ban).
+# days=1 → entering 2nd consecutive day of holding that name.
+REPEAT_TILT_BY_DAYS = {1: 1.5, 2: 3.0, 3: 4.0}
+REPEAT_TILT_MAX = 4.0
+SOLE_STREAK_EXTRA = 0.5  # slight extra if prior days were sole-name
+# Only tilt when the race is close; clear leaders are left alone (primary alpha wins).
+CLEAR_LEAD_GAP = 4.0
 
 
 def expected_decision_bar_date(decision_date_str: str) -> date:
@@ -154,6 +165,37 @@ def compute_sole_symbol_streak(history: list[dict[str, Any]]) -> dict[str, Any] 
     return None
 
 
+def compute_holding_streaks(history: list[dict[str, Any]]) -> dict[str, int]:
+    """Consecutive prior days each symbol appeared in the portfolio (any size)."""
+    if not history:
+        return {}
+    streaks: dict[str, int] = {}
+    newest = history[-1].get("symbols") or []
+    for sym in newest:
+        code = str(sym).zfill(6)
+        days = 0
+        for row in reversed(history):
+            held = {str(s).zfill(6) for s in (row.get("symbols") or [])}
+            if code in held:
+                days += 1
+            else:
+                break
+        if days > 0:
+            streaks[code] = days
+    return streaks
+
+
+def _tilt_points(hold_days: int, *, sole_extra: bool) -> float:
+    if hold_days <= 0:
+        return 0.0
+    base = REPEAT_TILT_BY_DAYS.get(hold_days, REPEAT_TILT_MAX)
+    if hold_days > 3:
+        base = REPEAT_TILT_MAX
+    if sole_extra:
+        base = min(REPEAT_TILT_MAX + SOLE_STREAK_EXTRA, base + SOLE_STREAK_EXTRA)
+    return float(base)
+
+
 def build_integrity_context(
     decision_date_str: str,
     *,
@@ -165,12 +207,14 @@ def build_integrity_context(
     )
     history = load_recent_submit_history(decision_date_str)
     streak = compute_sole_symbol_streak(history)
+    holding = compute_holding_streaks(history)
     return {
         "price_audit": price_audit,
         "price_stale": price_audit["price_stale"],
         "block_llm_rescore": price_audit["price_stale"],
         "recent_submit_history": history,
         "sole_symbol_streak": streak,
+        "holding_streaks": holding,
     }
 
 
@@ -179,72 +223,113 @@ def apply_concentration_risk(
     invest_ratio: float,
     max_positions: int,
     integrity_ctx: dict[str, Any] | None,
-) -> tuple[float, int, dict[str, Any]]:
-    """Profit guard against multi-day single-name concentration.
+) -> tuple[list[dict[str, Any]], float, int, dict[str, Any]]:
+    """Soft repeat-holding tilt when the race is close.
 
-    Does NOT ban the top ETF. If the same sole name was held for N prior days
-    and would be sole again, force at least 2 names (keep #1, add #2) and
-    tighten invest_ratio — concentration is what blows up drawdowns.
+    Default OFF: 89-day backtest (2026-03→07) showed stable-only beat
+    soft-tilt on total return / Sharpe with similar MDD. Enable with
+    ``ETF_REPEAT_TILT=1`` for near-tie preference only.
+
+    - Lowers preference for names held on consecutive prior days.
+    - Does NOT ban; does NOT force a second position; does NOT trim size.
+    - If #1 leads by ≥ CLEAR_LEAD_GAP, skip entirely (primary alpha wins).
     """
+    import os
+
     audit: dict[str, Any] = {
         "applied": False,
+        "mode": "soft_tilt_near_tie",
         "notes": [],
+        "tilts": [],
         "original_ratio": round(float(invest_ratio), 4),
         "original_max_positions": int(max_positions),
     }
     if not ranked or not integrity_ctx or invest_ratio <= 0:
-        return invest_ratio, max_positions, audit
+        return ranked, invest_ratio, max_positions, audit
 
-    streak = integrity_ctx.get("sole_symbol_streak")
-    if not streak:
-        return invest_ratio, max_positions, audit
+    enabled = os.environ.get("ETF_REPEAT_TILT", "").strip().lower() in {"1", "true", "yes", "on"}
+    if not enabled:
+        audit["mode"] = "disabled"
+        audit["notes"] = ["连持倾斜默认关闭（回测显示稳健层更利于稳中盈利；设 ETF_REPEAT_TILT=1 开启）"]
+        return ranked, invest_ratio, max_positions, audit
 
-    sym = str(streak.get("symbol") or "").zfill(6)
-    days = int(streak.get("days") or 0)
-    top = str(ranked[0].get("code") or "").zfill(6)
-    price_stale = bool(integrity_ctx.get("price_stale"))
+    holding = dict(integrity_ctx.get("holding_streaks") or {})
+    sole = integrity_ctx.get("sole_symbol_streak") or {}
+    sole_sym = str(sole.get("symbol") or "").zfill(6) if sole else ""
+    sole_days = int(sole.get("days") or 0) if sole else 0
 
-    # Only act when we are about to concentrate again on the same sole name.
-    if days < SOLE_STREAK_FORCE_2_DAYS or top != sym:
-        return invest_ratio, max_positions, audit
+    if not holding and sole_days <= 0:
+        return ranked, invest_ratio, max_positions, audit
 
-    new_ratio = float(invest_ratio)
-    new_max = int(max_positions)
-    notes: list[str] = []
+    pre = [(str(x.get("code") or "").zfill(6), float(x.get("score") or 0.0)) for x in ranked]
+    lead_code, lead_score = pre[0]
+    second_score = pre[1][1] if len(pre) > 1 else lead_score - 99.0
+    clear_gap = lead_score - second_score
 
-    # Day 2+ of same sole name → require 2 positions if a second candidate exists.
-    if days >= SOLE_STREAK_FORCE_2_DAYS and len(ranked) >= 2:
-        if new_max < 2:
-            new_max = 2
-            notes.append(
-                f"连续{days}日单仓{sym}，强制分散至2仓（保留第一名，加入第二名）"
-            )
-        new_ratio = min(new_ratio, SOLE_STREAK_RATIO_CAP_2)
-        notes.append(f"集中度风控仓位上限{SOLE_STREAK_RATIO_CAP_2:.0%}")
+    # Clear primary lead → do not let a secondary factor touch ranking or size.
+    if clear_gap >= CLEAR_LEAD_GAP:
+        audit["notes"] = [
+            f"第一名领先{clear_gap:.1f}分≥{CLEAR_LEAD_GAP:.0f}，主信号优先，跳过连持倾斜"
+        ]
+        audit["clear_gap_before"] = round(clear_gap, 2)
+        audit["skipped_clear_lead"] = True
+        return ranked, invest_ratio, max_positions, audit
 
-    # Day 3+ → tighter ratio; still keep #1 but must diversify.
-    if days >= SOLE_STREAK_HARD_CAP_DAYS and len(ranked) >= 2:
-        new_max = max(new_max, 2)
-        new_ratio = min(new_ratio, SOLE_STREAK_RATIO_CAP_3)
+    notes: list[str] = [
+        f"分差仅{clear_gap:.1f}<{CLEAR_LEAD_GAP:.0f}，近并列时软性下调连持标的倾向"
+    ]
+    tilts: list[dict[str, Any]] = []
+    any_tilt = False
+
+    for item in ranked:
+        code = str(item.get("code") or "").zfill(6)
+        hold_days = int(holding.get(code) or 0)
+        if hold_days <= 0 and not (sole_sym == code and sole_days > 0):
+            continue
+        if hold_days <= 0:
+            hold_days = sole_days
+        sole_extra = bool(sole_sym == code and sole_days >= 1)
+        pen = _tilt_points(hold_days, sole_extra=sole_extra)
+        if pen <= 0:
+            continue
+
+        old = float(item.get("score") or 0.0)
+        new = round(old - pen, 2)
+        item["score"] = new
+        item["repeat_hold_days"] = hold_days
+        item["repeat_tilt"] = round(-pen, 2)
+        any_tilt = True
+        tilts.append({
+            "code": code,
+            "hold_days": hold_days,
+            "sole_extra": sole_extra,
+            "penalty": round(pen, 2),
+            "score_before": old,
+            "score_after": new,
+        })
         notes.append(
-            f"连续{days}日单仓{sym}已达硬顶，仓位上限{SOLE_STREAK_RATIO_CAP_3:.0%}且至少2仓"
+            f"{code}连续持有{hold_days}日，倾向-{pen:.1f}分"
+            + ("（单仓连击加权）" if sole_extra else "")
         )
 
-    # Stale prices + concentration → even more dangerous (same fake ranking).
-    if price_stale and days >= SOLE_STREAK_FORCE_2_DAYS and len(ranked) >= 2:
-        new_max = max(new_max, 2)
-        new_ratio = min(new_ratio, SOLE_STREAK_RATIO_CAP_3)
-        notes.append("行情陈旧叠加连续单仓，强制2仓并收紧至25%")
+    if not any_tilt:
+        return ranked, invest_ratio, max_positions, audit
 
-    if new_ratio < invest_ratio or new_max != max_positions:
-        audit["applied"] = True
-        audit["notes"] = notes
-        audit["sole_symbol"] = sym
-        audit["sole_days"] = days
-        audit["final_ratio"] = round(new_ratio, 4)
-        audit["final_max_positions"] = new_max
+    ranked = sorted(ranked, key=lambda x: float(x.get("score") or 0.0), reverse=True)
+    notes.append("已按综合分重排（连持为次级；不禁买、不强制分散、不单独砍仓）")
 
-    return new_ratio, new_max, audit
+    audit["applied"] = True
+    audit["notes"] = notes
+    audit["tilts"] = tilts
+    audit["sole_symbol"] = sole_sym or None
+    audit["sole_days"] = sole_days
+    audit["holding_streaks"] = holding
+    audit["clear_gap_before"] = round(clear_gap, 2)
+    audit["final_ratio"] = round(float(invest_ratio), 4)
+    audit["final_max_positions"] = int(max_positions)
+    audit["final_top"] = str(ranked[0].get("code") or "").zfill(6)
+
+    return ranked, invest_ratio, max_positions, audit
 
 
 def summarize_integrity_warnings(integrity_ctx: dict[str, Any]) -> list[str]:
@@ -258,11 +343,19 @@ def summarize_integrity_warnings(integrity_ctx: dict[str, Any]) -> list[str]:
             f"陈旧比例{pa.get('stale_ratio', 0):.0%}），"
             f"已禁用LLM主题重排并收紧仓位上限"
         )
-    streak = integrity_ctx.get("sole_symbol_streak")
-    if streak and int(streak.get("days") or 0) >= SOLE_STREAK_FORCE_2_DAYS:
+    holding = integrity_ctx.get("holding_streaks") or {}
+    sole = integrity_ctx.get("sole_symbol_streak")
+    if holding:
+        top_hold = max(holding.items(), key=lambda kv: kv[1])
+        if top_hold[1] >= 1:
+            warnings.append(
+                f"近{top_hold[1]}日连续持有{top_hold[0]}，"
+                f"将软性降低其投资倾向（不禁止买入；明显领先时不翻盘）"
+            )
+    elif sole and int(sole.get("days") or 0) >= 1:
         warnings.append(
-            f"近{streak['days']}个交易日连续单仓{streak['symbol']}，"
-            f"将启用集中度风控（强制分散/降仓，不禁止持有该ETF）"
+            f"近{sole['days']}日连续单仓{sole['symbol']}，"
+            f"将软性降低其投资倾向（不禁止、不强制分散）"
         )
     return warnings
 

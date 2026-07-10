@@ -420,6 +420,15 @@ def main() -> int:
         action="store_true",
         help="Overwrite existing prediction for --date (default: skip if already run).",
     )
+    parser.add_argument(
+        "--allow-historical",
+        action="store_true",
+        help=(
+            "Allow --force rerun for past dates with the current code path. "
+            "Prices still truncate to date < --date (no same-day close leak). "
+            "Requires --force. Overwrites that day's submit/full outputs."
+        ),
+    )
     args = parser.parse_args()
 
     from daily_run_guard import has_daily_run, load_submit
@@ -435,11 +444,18 @@ def main() -> int:
     today = datetime.now().date()
     if target_date > today:
         raise SystemExit(f"不能生成未来日期预测: {args.date}")
-    # 历史日期会覆盖已有预测且会用到当日 K 线，相当于回溯作弊；统一拒绝。
+    # 默认拒绝历史日期，避免误覆盖已提交结果；显式 --force --allow-historical 才放开。
+    # 行情加载仍截断为 date < --date，不会偷看当日收盘。
     if target_date < today:
-        raise SystemExit(
-            f"不能为历史日期重新生成预测: {args.date}。"
-            "如需研究历史表现，请使用 run_news_backtest.py。"
+        if not (args.force and args.allow_historical):
+            raise SystemExit(
+                f"不能为历史日期重新生成预测: {args.date}。"
+                "如需用当前版本重跑某日，请加: --force --allow-historical。"
+                "纯研究回测请用 _backtest_full_pipeline.py。"
+            )
+        log(
+            f"[HISTORICAL] 使用当前代码强制重跑历史日 {args.date} "
+            f"（将覆盖 submit/full；K线截断 date < {args.date}）"
         )
 
     os.environ.setdefault("ETF_AGENT_ALLOW_NETWORK", "1")

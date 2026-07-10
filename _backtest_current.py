@@ -18,7 +18,7 @@ import pandas as pd
 
 from daily_job import to_competition_output
 from decision_integrity import (
-    apply_concentration_risk,
+    compute_holding_streaks,
     compute_sole_symbol_streak,
 )
 from settlement_prices import get_close_to_close
@@ -88,6 +88,7 @@ def _integrity_from_history(rows: list[dict[str, Any]], trade_date: str) -> dict
         "block_llm_rescore": False,
         "recent_submit_history": history[-6:],
         "sole_symbol_streak": streak,
+        "holding_streaks": compute_holding_streaks(history),
     }
 
 
@@ -184,14 +185,18 @@ def main() -> int:
     print(f"Backtest {args.start} → {args.end} ({len(dates)} trade days)\n")
 
     variants = [
-        ("A_no_stable_no_conc", False, False),
-        ("B_stable_only", True, False),
-        ("C_stable_plus_concentration", True, True),
+        ("A_no_stable_no_conc", False, False, False),
+        ("B_stable_only", True, False, False),
+        ("C_stable_plus_soft_tilt", True, True, True),
     ]
     all_rows: dict[str, list[dict[str, Any]]] = {}
     stats = []
-    for label, stable, conc in variants:
+    for label, stable, conc, tilt_on in variants:
         print(f"Running {label} ...")
+        if tilt_on:
+            os.environ["ETF_REPEAT_TILT"] = "1"
+        else:
+            os.environ.pop("ETF_REPEAT_TILT", None)
         rows = run_variant(dates, stable=stable, concentration=conc)
         all_rows[label] = rows
         s = _stats(rows, label)
@@ -206,8 +211,8 @@ def main() -> int:
     print("\n=== SUMMARY ===")
     print(json.dumps(stats, ensure_ascii=False, indent=2))
 
-    print("\n=== LAST 15 DAYS (C_stable_plus_concentration) ===")
-    for row in all_rows["C_stable_plus_concentration"][-15:]:
+    print("\n=== LAST 15 DAYS (B_stable_only = production default) ===")
+    for row in all_rows["B_stable_only"][-15:]:
         flag = " [CONC]" if row.get("concentration_applied") else ""
         print(
             f"{row['date']} n={row['n']} pnl={row['pnl']:+8.1f} "

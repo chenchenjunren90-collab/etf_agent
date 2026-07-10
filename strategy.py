@@ -181,12 +181,13 @@ def run_decision(
 ) -> dict[str, Any]:
     """每日投资决策主函数（大模型融合模式）。
 
-    规则层（量价 + 趋势 + 池切换 + 闸门 + 空仓）为骨架；
-    在此之上接入 LLM 决策：
-      1) cash_decision == stay_cash 直接空仓；
-      2) per_etf_view 覆盖 theme scores；
-      3) position_ratio_hint 与规则评估结果取 min；
-      4) 经济日历高重要度公布日按分级硬顶限仓（不可被 LLM 抬高）。
+    因素主次（高→低，次级不得压过清晰主信号）：
+      1) 数据完整性：行情陈旧则禁用 LLM 重排/仓位提示；
+      2) 主信号：综合分（趋势+主题+历史−风险）；
+      3) 风险预算：稳健层/经济日历/评分闸门（管仓位大小）；
+      4) 连持倾向：连续持有同名仅软性降分，不禁买、不强制分散，
+         明显领先时不因连持翻盘；
+      5) LLM：仅行情新鲜时可用，只可下调仓位/主题，不可突破硬顶。
 
     传入 ``llm_decision=None`` 即退化为纯规则路径。
     """
@@ -364,17 +365,23 @@ def run_decision(
 
     concentration_audit: dict[str, Any] | None = None
     if integrity_ctx:
-        invest_ratio, dyn_max, concentration_audit = apply_concentration_risk(
+        ranked, invest_ratio, dyn_max, concentration_audit = apply_concentration_risk(
             ranked, invest_ratio, dyn_max, integrity_ctx
         )
         if concentration_audit.get("applied"):
             market_reason = (
-                f"{market_reason}；集中度风控"
+                f"{market_reason}；连持倾向"
                 f"（{'；'.join(concentration_audit.get('notes') or [])}）"
             )
-            print(f"  [Concentration] {'; '.join(concentration_audit.get('notes') or [])}")
+            print(f"  [RepeatTilt] {'；'.join(concentration_audit.get('notes') or [])}")
             if llm_trace:
-                llm_trace["hard_rules_applied"].append("concentration_risk")
+                llm_trace["hard_rules_applied"].append("repeat_holding_tilt")
+            if ranked:
+                top3 = " / ".join(
+                    f"{s['code']}({s['name']}) score={s['score']}"
+                    for s in ranked[:3]
+                )
+                print(f"  TOP3 (after tilt): {top3}")
 
     result = allocate_short_race(ranked, total_capital, invest_ratio, max_positions=dyn_max)
     result["date"] = date_str
@@ -398,6 +405,7 @@ def run_decision(
             "expected_bar_date": (integrity_ctx.get("price_audit") or {}).get("expected_bar_date"),
             "stale_ratio": (integrity_ctx.get("price_audit") or {}).get("stale_ratio"),
             "sole_symbol_streak": integrity_ctx.get("sole_symbol_streak"),
+            "holding_streaks": integrity_ctx.get("holding_streaks"),
         }
     # 更新轮动追踪
     top_codes = [item["code"] for item in (result.get("summary", {}).get("held_stocks", []) or [])]
