@@ -1,0 +1,52 @@
+{
+  "scores": {
+    "510300": 0.63,
+    "159338": 0.315,
+    "588000": 0.357,
+    "512880": 0.378,
+    "516510": 0.42
+  },
+  "fresh_theme_scores": {
+    "510300": 0.63,
+    "159338": 0.315,
+    "588000": 0.357,
+    "512880": 0.378,
+    "516510": 0.42
+  },
+  "stale_theme_scores": {},
+  "reasons": {
+    "588000": "strong: 权益周观察 (concrete_catalyst_and_clear_sector)",
+    "159338": "strong: 家庭财富 (concrete_catalyst_and_clear_sector)",
+    "516510": "strong: 权益周观察 (concrete_catalyst_and_clear_sector)",
+    "510300": "strong: 东方财富财经早餐 7月6日周一 (concrete_catalyst_and_clear_sector)",
+    "512880": "strong: 商圈 (concrete_catalyst_and_clear_sector)"
+  },
+  "source": "split_fresh_stale",
+  "updated_at": "2026-07-06 18:11:54",
+  "market_view": "news_positive",
+  "hot_keywords": [
+    "沪深300",
+    "沪指",
+    "云计算",
+    "AI",
+    "券商",
+    "证券",
+    "科创板",
+    "科创50",
+    "中证A500",
+    "A500"
+  ],
+  "auto_news": {
+    "enabled": true,
+    "confidence": 0.8,
+    "market_sentiment": 0.493,
+    "article_count": 4,
+    "raw_article_count": 15,
+    "catalyst_hits": 0,
+    "max_abs_theme": 0.63,
+    "accepted_count": 4,
+    "rejected_count": 11,
+    "strong_count": 4,
+    "weak_count": 0
+  }
+}

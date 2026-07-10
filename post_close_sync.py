@@ -66,7 +66,9 @@ def main() -> int:
     last_ok = last_fail = 0
     for attempt in range(1, MAX_ATTEMPTS + 1):
         log(f"第 {attempt}/{MAX_ATTEMPTS} 次拉取行情…")
-        ok_n, fail_n = update_local_etfs(log_fn=log)
+        stats = update_local_etfs(log_fn=log)
+        ok_n = int(stats.get("ok", 0))
+        fail_n = int(stats.get("fail", 0))
         log(f"  拉取结果: 成功 {ok_n}，失败 {fail_n}")
         csv_ok, csv_fail = _verify_pool_csv(target)
         last_ok, last_fail = csv_ok, csv_fail

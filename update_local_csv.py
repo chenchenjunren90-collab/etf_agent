@@ -14,11 +14,20 @@ from strategy import TRADING_POOL
 def update_local_etfs(
     *,
     log_fn: Callable[[str], Any] | None = None,
-) -> tuple[int, int]:
+) -> dict[str, Any]:
     codes = [item["code"] for item in TRADING_POOL]
     names = {item["code"]: item["name"] for item in TRADING_POOL}
     ok_list, fail_list = ensure_pool_fresh(codes, names, log_fn=log_fn)
-    return len(ok_list), len(fail_list)
+    degraded = sum(1 for r in ok_list if r.get("degraded"))
+    fresh = sum(1 for r in ok_list if r.get("ok") and not r.get("degraded"))
+    return {
+        "ok": len(ok_list),
+        "fail": len(fail_list),
+        "fresh": fresh,
+        "degraded": degraded,
+        "details": ok_list,
+        "fail_details": fail_list,
+    }
 
 
 if __name__ == "__main__":

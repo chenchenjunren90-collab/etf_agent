@@ -198,29 +198,48 @@ def apply_stability_overlay(
     )
     cap = STABLE_STRONG_CAP if strong_setup else STABLE_DEFAULT_CAP
     max_positions_cap = 2 if (strong_setup or moderate_setup) else 1
-    notes = [f"稳健模式基础上限{cap:.0%}"]
-    if moderate_setup and not strong_setup:
-        notes.append("中等信号解锁2仓")
+    notes: list[str] = [f"稳健模式基础上限{cap:.0%}"]
 
     weak_signal = top_score < 54.0 or confidence < 0.20 or max_abs < 0.10
-    if weak_signal:
-        cap = min(cap, STABLE_WEAK_SIGNAL_CAP)
+    # 中等信号与弱信号互斥：分数已达中等门槛时不应再标弱信号并锁 1 仓。
+    if moderate_setup and top_score >= MODERATE_SCORE:
+        weak_signal = False
+
+    if moderate_setup and not strong_setup:
+        notes.append("中等信号解锁2仓")
+    elif weak_signal:
         max_positions_cap = 1
+        cap = min(cap, STABLE_WEAK_SIGNAL_CAP)
         notes.append("弱信号/低置信，仅保留小仓试探")
 
     last_pnl = float(recent_risk.get("last_pnl") or 0.0)
     last5_pnl = float(recent_risk.get("last5_pnl") or 0.0)
     consecutive_losses = int(recent_risk.get("consecutive_losses") or 0)
+
     if last_pnl < 0:
         cap = min(cap, STABLE_LOSS_CAP)
-        max_positions_cap = 1
+        if weak_signal:
+            max_positions_cap = 1
         notes.append(f"上一日亏损{last_pnl:+.0f}元，降至防守")
-    if consecutive_losses >= 2 or last5_pnl < -5000:
+
+    # 近况回撤：优先压仓位比例；仅在连续亏损或弱信号时才强制单仓。
+    if consecutive_losses >= 2:
         cap = min(cap, STABLE_DRAWDOWN_CAP)
         max_positions_cap = 1
         notes.append(
-            f"近况熔断(连续亏损{consecutive_losses}，近5次{last5_pnl:+.0f}元)"
+            f"连续亏损{consecutive_losses}次，降至{STABLE_DRAWDOWN_CAP:.0%}且仅1仓"
         )
+    elif last5_pnl < -5000:
+        cap = min(cap, STABLE_DRAWDOWN_CAP)
+        if weak_signal:
+            max_positions_cap = 1
+            notes.append(
+                f"近5次合计{last5_pnl:+.0f}元且信号偏弱，降至{STABLE_DRAWDOWN_CAP:.0%}且仅1仓"
+            )
+        else:
+            notes.append(
+                f"近5次合计{last5_pnl:+.0f}元，降至{STABLE_DRAWDOWN_CAP:.0%}（保留多仓资格）"
+            )
 
     new_ratio = float(min(invest_ratio, cap))
     if new_ratio < invest_ratio:

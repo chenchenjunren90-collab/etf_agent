@@ -40,7 +40,11 @@ def _normalize_df(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def _load_local_price(code, date_str=None, limit=120):
-    """从本地 CSV 加载 K 线数据。"""
+    """从本地 CSV 加载 K 线数据。
+
+    若传入 ``date_str``，严格截断为 ``date < date_str``，避免盘中半截 K 线
+    或回测偷看当日收盘。
+    """
     import glob
     path = DATA_DIR / f"{str(code).zfill(6)}.csv"
     if not path.exists():
@@ -60,7 +64,11 @@ def _load_local_price(code, date_str=None, limit=120):
         for col in ["open", "close", "high", "low", "volume"]:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors="coerce")
-        return df.tail(limit)
+        if date_str:
+            cutoff = pd.to_datetime(date_str, errors="coerce")
+            if pd.notna(cutoff):
+                df = df[df["date"] < cutoff].reset_index(drop=True)
+        return df.tail(limit) if len(df) else None
     except Exception:
         return None
 

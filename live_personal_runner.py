@@ -30,6 +30,7 @@ from personalized_advisor import (
     risk_position_note,
 )
 from stability_risk import build_recent_risk_context
+from decision_integrity import build_integrity_context
 from strategy import run_decision
 from theme_signal import signal_path
 
@@ -165,6 +166,7 @@ def run_live_personal_advice(
     news_signal = _load_news_base(date_str, allow_fetch=allow_news_fetch)
     econ_payload = load_econ_payload(date_str, allow_live=True, refresh=False)
     recent_risk = build_recent_risk_context(date_str, capital=capital)
+    integrity_ctx = build_integrity_context(date_str)
 
     prev_cap = _apply_risk_env(risk)
     llm_payload = None
@@ -181,6 +183,7 @@ def run_live_personal_advice(
             llm_decision=llm_decision,
             econ_payload=econ_payload,
             recent_risk=recent_risk,
+            integrity_ctx=integrity_ctx,
         )
     except Exception as exc:
         _restore_risk_env(prev_cap)

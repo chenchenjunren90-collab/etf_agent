@@ -71,7 +71,7 @@ from position import (
     apply_stability_overlay,
     allocate_short_race,
 )
-
+from decision_integrity import apply_concentration_risk
 # 也兼容旧版引用
 
 
@@ -177,6 +177,7 @@ def run_decision(
     llm_decision: dict[str, Any] | None = None,
     econ_payload: dict[str, Any] | None = None,
     recent_risk: dict[str, Any] | None = None,
+    integrity_ctx: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """每日投资决策主函数（大模型融合模式）。
 
@@ -214,6 +215,10 @@ def run_decision(
     ranked, theme_signals = rank_etfs_short_race(pool, date_str=date_str)
     print(f"  Scored: {len(ranked)}")
 
+    # 行情陈旧时禁用 LLM 重排/仓位提示（避免用过时K线+幻觉叙事把排序钉死），
+    # 但不禁止同一只 ETF 连续入选——市场真排第一就该选它。
+    block_llm = bool(integrity_ctx and integrity_ctx.get("block_llm_rescore"))
+
     if ranked:
         top3 = " / ".join(
             f"{s['code']}({s['name']}) score={s['score']}"
@@ -248,8 +253,10 @@ def run_decision(
         return _empty_cash_result(date_str, total_capital, ranked, theme_signals, reason,
                                   llm_trace=llm_trace)
 
-    # LLM per_etf_view 覆盖 theme scores 并重新排序
-    if llm_decision and llm_decision.get("per_etf_view"):
+    # LLM per_etf_view 覆盖 theme scores 并重新排序（行情陈旧时跳过）
+    if block_llm and llm_trace:
+        llm_trace["hard_rules_applied"].append("llm_rescore_blocked_stale_prices")
+    if llm_decision and llm_decision.get("per_etf_view") and not block_llm:
         theme_signals = _inject_llm_views_into_signals(theme_signals, llm_decision)
         ranked = _re_rank_with_signals(pool, theme_signals, date_str)
         if ranked:
@@ -265,8 +272,8 @@ def run_decision(
         invest_ratio, market_reason, theme_signals
     )
 
-    # 与 LLM 的 position_ratio_hint 取 min（只往低调，不抬高）
-    if llm_decision and "position_ratio_hint" in llm_decision:
+    # 与 LLM 的 position_ratio_hint 取 min（行情陈旧时忽略 LLM 仓位提示）
+    if llm_decision and "position_ratio_hint" in llm_decision and not block_llm:
         hint = float(llm_decision.get("position_ratio_hint") or 0.0)
         hint = max(0.0, min(1.0, hint))
         if hint < invest_ratio:
@@ -275,6 +282,8 @@ def run_decision(
             market_reason = f"{market_reason}；LLM 建议 {hint:.0%} (规则 {old_ratio:.0%})，取较低值"
             if llm_trace:
                 llm_trace["hard_rules_applied"].append("llm_lower_ratio")
+    elif block_llm and llm_decision and "position_ratio_hint" in llm_decision and llm_trace:
+        llm_trace["hard_rules_applied"].append("llm_ratio_hint_ignored_stale_prices")
 
     force_cap = os.environ.get("FORCE_POSITION_CAP", "").strip()
     if force_cap:
@@ -308,12 +317,16 @@ def run_decision(
             if llm_trace:
                 llm_trace["hard_rules_applied"].append(f"econ_tier_cap_{econ_cap:.0%}")
 
-    # 评分闸门
+    # 评分闸门（行情陈旧时禁用 LLM 动态降闸，避免用过时叙事放宽入场）
     top_score = float(ranked[0]["score"]) if ranked else 0.0
     override = theme_signals.get("score_gate_override")
     effective_gate = float(override) if override is not None else SCORE_GATE
     gate_note = ""
-    if os.environ.get("SCORE_GATE_MODE", "").strip().lower() == "dynamic" and llm_decision:
+    if (
+        not block_llm
+        and os.environ.get("SCORE_GATE_MODE", "").strip().lower() == "dynamic"
+        and llm_decision
+    ):
         per_view = llm_decision.get("per_etf_view") or []
         if per_view:
             max_abs = max((abs(float(e.get("score") or 0.0)) for e in per_view), default=0.0)
@@ -322,6 +335,8 @@ def run_decision(
                 gate_note = f"（LLM 强信号 max|score|={max_abs:.2f} → 闸门 {SCORE_GATE}→{effective_gate}）"
                 if llm_trace:
                     llm_trace["hard_rules_applied"].append("score_gate_lowered_by_llm")
+    elif block_llm and llm_trace and os.environ.get("SCORE_GATE_MODE", "").strip().lower() == "dynamic":
+        llm_trace["hard_rules_applied"].append("score_gate_dynamic_blocked_stale_prices")
     if invest_ratio > 0 and top_score < effective_gate:
         invest_ratio = 0.0
         market_reason = f"{market_reason}；最高分 {top_score:.1f} < {effective_gate} 闸门，强制空仓{gate_note}"
@@ -346,6 +361,21 @@ def run_decision(
     dyn_max = short_race_max_positions(theme_signals)
     if stability_max_positions is not None:
         dyn_max = min(dyn_max, stability_max_positions)
+
+    concentration_audit: dict[str, Any] | None = None
+    if integrity_ctx:
+        invest_ratio, dyn_max, concentration_audit = apply_concentration_risk(
+            ranked, invest_ratio, dyn_max, integrity_ctx
+        )
+        if concentration_audit.get("applied"):
+            market_reason = (
+                f"{market_reason}；集中度风控"
+                f"（{'；'.join(concentration_audit.get('notes') or [])}）"
+            )
+            print(f"  [Concentration] {'; '.join(concentration_audit.get('notes') or [])}")
+            if llm_trace:
+                llm_trace["hard_rules_applied"].append("concentration_risk")
+
     result = allocate_short_race(ranked, total_capital, invest_ratio, max_positions=dyn_max)
     result["date"] = date_str
     result["ranked"] = ranked[:10]
@@ -359,6 +389,16 @@ def run_decision(
     result["market_reason"] = market_reason
     result["reasoning"] = build_short_race_reasoning(ranked, result, market_reason, theme_signals)
     result["stability_overlay"] = stability_audit
+    if concentration_audit:
+        result["concentration_risk"] = concentration_audit
+    if integrity_ctx:
+        result["integrity_context"] = {
+            "price_stale": integrity_ctx.get("price_stale"),
+            "block_llm_rescore": block_llm,
+            "expected_bar_date": (integrity_ctx.get("price_audit") or {}).get("expected_bar_date"),
+            "stale_ratio": (integrity_ctx.get("price_audit") or {}).get("stale_ratio"),
+            "sole_symbol_streak": integrity_ctx.get("sole_symbol_streak"),
+        }
     # 更新轮动追踪
     top_codes = [item["code"] for item in (result.get("summary", {}).get("held_stocks", []) or [])]
     _update_rotation_tracker(top_codes)

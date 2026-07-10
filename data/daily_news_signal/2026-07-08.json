@@ -1,0 +1,1021 @@
+{
+  "date": "2026-07-08",
+  "source": "split_fresh_stale",
+  "cutoff_time": "09:30",
+  "updated_at": "2026-07-08 13:01:15",
+  "fresh_theme_scores": {
+    "510300": 0.248,
+    "159338": 0.213,
+    "588000": 0.551,
+    "515790": 0.473,
+    "516510": 0.735
+  },
+  "fresh_accepted_count": 13,
+  "fresh_strong_count": 10,
+  "fresh_accepted_articles": [
+    {
+      "accepted": true,
+      "title": "全球最赚钱公司股价大跌？或许是业绩“好得不够让人意外”",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797630485.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "earnings": [
+          "业绩",
+          "利润"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "欧菲光创始人蔡荣军企业新菲光满产扩产 计划三年左右实现年产值400亿元",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797629819.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "扩产"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "AI服务器概念活跃 浪潮信息一字涨停",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797624024.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "earnings": [
+          "业绩",
+          "利润",
+          "净利润",
+          "同比增长"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "港股基本半导体上市首日开盘涨近8%",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797631431.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行今日开展150亿元7天逆回购操作",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797621592.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "fund_flow": [
+          "回购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "FF与多个阿联酋及GCC区域生态伙伴签署战略合作MOU 加速推进EAI机器人战略在中东落地",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797603828.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "禾迈股份与TAMCO签署合作协议 深化马来西亚大型储能业务布局",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797573568.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "方案"
+        ],
+        "capital_investment": [
+          "签约"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "华自科技：子公司部分液态锂电装备已实现欧洲订单落地",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797646568.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ],
+        "orders_and_delivery": [
+          "订单"
+        ],
+        "technology_breakthrough": [
+          "装备"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "AI学会烧结法氧化铝生产“绝活”",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797534913.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "AI拟人化互动服务不得踩红线",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797528115.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "通知"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "大普微：公司目前主要从事数据中心企业级PCIe SSD等存储产品及网络互联产品的研发与销售",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797621714.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "采购",
+          "供应"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-07-07/102461737.html?cxapp_link=true",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "earnings": [
+          "业绩"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.142,
+        "159338": 0.142,
+        "588000": 0.315,
+        "516510": 0.315
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "家庭财富",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-29/102458795.html?cxapp_link=true",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.142,
+        "159338": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    }
+  ],
+  "stale_theme_scores": {
+    "510300": 0.142
+  },
+  "stale_accepted_count": 1,
+  "stale_strong_count": 0,
+  "stale_accepted_articles": [
+    {
+      "accepted": true,
+      "title": "东方财富财经早餐 7月6日周一",
+      "source": "eastmoney_cjzc",
+      "url": "http://finance.eastmoney.com/a/202607053794319895.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ],
+        "fund_flow": [
+          "回购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    }
+  ],
+  "theme_scores": {
+    "510300": 0.248,
+    "159338": 0.213,
+    "588000": 0.551,
+    "515790": 0.473,
+    "516510": 0.735
+  },
+  "scores": {
+    "510300": 0.248,
+    "159338": 0.213,
+    "588000": 0.551,
+    "515790": 0.473,
+    "516510": 0.735
+  },
+  "accepted_count": 14,
+  "strong_count": 10,
+  "weak_count": 4,
+  "article_count": 49,
+  "rejected_count": 35,
+  "accepted_articles": [
+    {
+      "accepted": true,
+      "title": "全球最赚钱公司股价大跌？或许是业绩“好得不够让人意外”",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797630485.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "earnings": [
+          "业绩",
+          "利润"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.315,
+        "516510": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "欧菲光创始人蔡荣军企业新菲光满产扩产 计划三年左右实现年产值400亿元",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797629819.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "capital_investment": [
+          "扩产"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "AI服务器概念活跃 浪潮信息一字涨停",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797624024.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "earnings": [
+          "业绩",
+          "利润",
+          "净利润",
+          "同比增长"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "港股基本半导体上市首日开盘涨近8%",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797631431.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "technology_breakthrough": [
+          "上市"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "588000": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "央行今日开展150亿元7天逆回购操作",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797621592.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "fund_flow": [
+          "回购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "FF与多个阿联酋及GCC区域生态伙伴签署战略合作MOU 加速推进EAI机器人战略在中东落地",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797603828.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "禾迈股份与TAMCO签署合作协议 深化马来西亚大型储能业务布局",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797573568.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "方案"
+        ],
+        "capital_investment": [
+          "签约"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "华自科技：子公司部分液态锂电装备已实现欧洲订单落地",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797646568.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ],
+        "orders_and_delivery": [
+          "订单"
+        ],
+        "technology_breakthrough": [
+          "装备"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "515790": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "AI学会烧结法氧化铝生产“绝活”",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797534913.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.315
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "AI拟人化互动服务不得踩红线",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797528115.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "policy_landing": [
+          "发布",
+          "通知"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "大普微：公司目前主要从事数据中心企业级PCIe SSD等存储产品及网络互联产品的研发与销售",
+      "source": "eastmoney_global",
+      "url": "https://finance.eastmoney.com/a/202607083797621714.html",
+      "quality": "strong",
+      "reason": "concrete_catalyst_and_clear_sector",
+      "event_hits": {
+        "orders_and_delivery": [
+          "采购",
+          "供应"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "516510": 0.42
+      },
+      "risk_flags": []
+    },
+    {
+      "accepted": true,
+      "title": "权益周观察",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-07-07/102461737.html?cxapp_link=true",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "earnings": [
+          "业绩"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.142,
+        "159338": 0.142,
+        "588000": 0.315,
+        "516510": 0.315
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "家庭财富",
+      "source": "caixin_main",
+      "url": "https://database.caixin.com/2026-06-29/102458795.html?cxapp_link=true",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "落地"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.142,
+        "159338": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    },
+    {
+      "accepted": true,
+      "title": "东方财富财经早餐 7月6日周一",
+      "source": "eastmoney_cjzc",
+      "url": "http://finance.eastmoney.com/a/202607053794319895.html",
+      "quality": "weak",
+      "reason": "concrete_catalyst_and_clear_sector_but_price_risk",
+      "event_hits": {
+        "policy_landing": [
+          "发布"
+        ],
+        "capital_investment": [
+          "融资",
+          "定增"
+        ],
+        "fund_flow": [
+          "回购"
+        ]
+      },
+      "vague_hits": [],
+      "negative_hits": [],
+      "theme_scores": {
+        "510300": 0.142
+      },
+      "risk_flags": [
+        "good_news_in_downtrend"
+      ]
+    }
+  ],
+  "raw_articles": [
+    {
+      "title": "广西广东局地需警惕叠加降雨致灾 中东部高温发展闷热升级",
+      "content": "【广西广东局地需警惕叠加降雨致灾 中东部高温发展闷热升级】今明天（7月8日至9日），我国强降雨范围将缩减，但广西、广东部分地区仍有明显降雨，近期上述地区累计雨量大，土壤处于饱和状态，需警惕降雨叠加致灾风险。同时，中东部闷热升级，华北、黄淮等地高温天气发展增多，且湿度较大，公众需做好防暑降温措施。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:28:52",
+      "url": "https://finance.eastmoney.com/a/202607083797633058.html"
+    },
+    {
+      "title": "旅游酒店板块高开 岭南控股一字涨停",
+      "content": "旅游酒店板块高开，岭南控股一字涨停，西藏旅游、天府文旅、西域旅游、陕西旅游跟涨。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:27:52",
+      "url": "https://finance.eastmoney.com/a/202607083797630781.html"
+    },
+    {
+      "title": "全球最赚钱公司股价大跌？或许是业绩“好得不够让人意外”",
+      "content": "【全球最赚钱公司股价大跌？或许是业绩“好得不够让人意外”】“三星的强劲盈利早已在市场的广泛预期之中，并在此前股价连续大涨中得到了充分体现。”Petra Capital Management执行合伙人Albert Yong一语道破玄机。在过去的半年多时间里，随着AI算力需求爆发，存储芯片价格经历了史无前例的暴涨。市场早已通过各种渠道预知了这一结果，甚至将未来两年的利润预期都提前打进了股价里。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:27:36",
+      "url": "https://finance.eastmoney.com/a/202607083797630485.html"
+    },
+    {
+      "title": "欧菲光创始人蔡荣军企业新菲光满产扩产 计划三年左右实现年产值400亿元",
+      "content": "【欧菲光创始人蔡荣军企业新菲光满产扩产 计划三年左右实现年产值400亿元】7月7日，界面新闻《硬科技头条》记者独家获悉，深圳新菲光的光模块工厂目前处于满产运行状态。其中，光明工厂800G产品的月产能约10万只，1.6T月产能在4万只左右，北美工厂1.6T月产能在1万只左右。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:27:18",
+      "url": "https://finance.eastmoney.com/a/202607083797629819.html"
+    },
+    {
+      "title": "AI服务器概念活跃 浪潮信息一字涨停",
+      "content": "AI服务器概念活跃，浪潮信息一字涨停，紫光股份7天3板，华勤技术、中科曙光、神州数码涨幅靠前。消息面上，浪潮信息发布业绩预告，预计2026年上半年归母净利润26亿元至31亿元，同比增长226%-288%；扣非净利润预计20.55亿元至25.55亿元，同比增长206%-280%。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:25:58",
+      "url": "https://finance.eastmoney.com/a/202607083797624024.html"
+    },
+    {
+      "title": "A股开盘：三大指数集体高开",
+      "content": "【A股开盘：三大指数集体高开】A股开盘，上证指数高开0.16%，深证成指高开0.29%，创业板指高开0.52%。油气开采及服务、旅游及酒店、计算机设备板块高开。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:25:35",
+      "url": "https://finance.eastmoney.com/a/202607083797622343.html"
+    },
+    {
+      "title": "德方纳米：参股公司云南汉兴德方主营业务不涉及六氟化钨电子特气材料的生产",
+      "content": "【德方纳米：参股公司云南汉兴德方主营业务不涉及六氟化钨电子特气材料的生产】德方纳米7月8日在互动平台表示，公司参股公司云南汉兴德方主营业务不涉及六氟化钨电子特气材料的生产，公司持股比例为30%。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:24:44",
+      "url": "https://finance.eastmoney.com/a/202607083797630930.html"
+    },
+    {
+      "title": "金石资源营收占比近7成控股子公司临时停产",
+      "content": "【金石资源营收占比近7成控股子公司临时停产】7月8日早间，金石资源发布公告称，根据安全生产工作需要，公司持股51%的控股子公司内蒙古金鄂博氟化工有限责任公司正在开展隐患排查与检查整改工作，目前已采取临时停产措施。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:23:58",
+      "url": "https://finance.eastmoney.com/a/202607083797621887.html"
+    },
+    {
+      "title": "港股基本半导体上市首日开盘涨近8%",
+      "content": "【港股基本半导体上市首日开盘涨近8%】7月8日，港股基本半导体上市首日开盘涨7.91%，现报34.12元，该股发行价为31.62元。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:23:05",
+      "url": "https://finance.eastmoney.com/a/202607083797631431.html"
+    },
+    {
+      "title": "央行今日开展150亿元7天逆回购操作",
+      "content": "央行今日开展150亿元7天逆回购操作，操作利率为1.40%，与此前持平。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:22:53",
+      "url": "https://finance.eastmoney.com/a/202607083797621592.html"
+    },
+    {
+      "title": "港股开盘：恒生指数高开0.19% 恒生科技指数高开0.42%",
+      "content": "港股开盘，恒生指数高开0.19%，恒生科技指数高开0.42%。算力硬件股反弹，建滔积层板高开4%，长飞光纤光缆高开2.59%，剑桥科技高开1.89%。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:22:03",
+      "url": "https://finance.eastmoney.com/a/202607083797621212.html"
+    },
+    {
+      "title": "比亚迪捐赠1000万元驰援广西灾区",
+      "content": "【比亚迪捐赠1000万元驰援广西灾区】据比亚迪官方微博7月8日消息，比亚迪捐赠1000万元驰援广西灾区。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:19:29",
+      "url": "https://finance.eastmoney.com/a/202607083797621988.html"
+    },
+    {
+      "title": "光智科技新设子公司 含核子及核辐射测量仪器业务",
+      "content": "【光智科技新设子公司 含核子及核辐射测量仪器业务】企查查APP显示，近日，武汉光智全谱科技有限公司成立，经营范围包含：集成电路芯片及产品制造；集成电路芯片及产品销售；核子及核辐射测量仪器制造；太赫兹检测技术研发；工业自动控制系统装置制造等。企查查股权穿透显示，该公司由光智科技全资持股。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:17:37",
+      "url": "https://finance.eastmoney.com/a/202607083797594636.html"
+    },
+    {
+      "title": "人民币兑美元中间价调贬23个基点",
+      "content": "【人民币兑美元中间价调贬23个基点】人民币兑美元中间价报6.8077，调贬23个基点。前一交易日中间价报6.8054，在岸人民币16:30收盘价报6.7956，夜盘收报6.7942。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:17:27",
+      "url": "https://finance.eastmoney.com/a/202607083797601422.html"
+    },
+    {
+      "title": "FF与多个阿联酋及GCC区域生态伙伴签署战略合作MOU 加速推进EAI机器人战略在中东落地",
+      "content": "【FF与多个阿联酋及GCC区域生态伙伴签署战略合作MOU 加速推进EAI机器人战略在中东落地】7月8日，FF宣布，公司在中东EAI机器人商业化战略上持续取得进展，正在通过战略合作及覆盖阿联酋、GCC，及未来更广泛的中东和北非（MENA）地区的区域生态合作加速推进战略落地。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:16:43",
+      "url": "https://finance.eastmoney.com/a/202607083797603828.html"
+    },
+    {
+      "title": "超图软件成立新公司 含卫星遥感应用相关业务",
+      "content": "【超图软件成立新公司 含卫星遥感应用相关业务】企查查APP显示，近日，巴中市超图软件技术有限公司成立，经营范围包含：地理遥感信息服务；卫星遥感应用系统集成；信息系统集成服务；信息技术咨询服务等。企查查股权穿透显示，该公司由超图软件全资持股。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:15:39",
+      "url": "https://finance.eastmoney.com/a/202607083797580374.html"
+    },
+    {
+      "title": "德方纳米：公司开发了补钠剂 目前尚处于技术储备阶段",
+      "content": "【德方纳米：公司开发了补钠剂 目前尚处于技术储备阶段】德方纳米7月8日在互动平台表示，公司开发了补钠剂，目前尚处于技术储备阶段，尚未有实质性订单销售。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:15:14",
+      "url": "https://finance.eastmoney.com/a/202607083797577255.html"
+    },
+    {
+      "title": "禾迈股份与TAMCO签署合作协议 深化马来西亚大型储能业务布局",
+      "content": "【禾迈股份与TAMCO签署合作协议 深化马来西亚大型储能业务布局】据禾迈股份消息，近日，禾迈股份与TAMCO在马来西亚顺利举行战略签约仪式。双方将围绕大型储能系统在马来西亚市场的本地化协同、系统集成、测试调试及长期服务保障展开深入合作。作为马来西亚具有代表性的开关设备与配电解决方案提供商，TAMCO深耕电力基础设施领域六十余年，累计服务超过2300座变电站。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:14:35",
+      "url": "https://finance.eastmoney.com/a/202607083797573568.html"
+    },
+    {
+      "title": "贝特瑞在内蒙古成立新材料公司 含电子专用材料制造等业务",
+      "content": "【贝特瑞在内蒙古成立新材料公司 含电子专用材料制造等业务】企查查显示，近日，内蒙古贝能新材料有限公司成立，经营范围包含：石墨及碳素制品制造；石墨及碳素制品销售；电池制造；电池销售；电子专用材料制造等。企查查股权穿透显示，该公司由贝特瑞全资持股。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:14:07",
+      "url": "https://finance.eastmoney.com/a/202607083797661396.html"
+    },
+    {
+      "title": "《菲律宾南海领土主张的历史法理批判》报告发布",
+      "content": "【《菲律宾南海领土主张的历史法理批判》报告发布】7月8日上午，自然资源部海洋发展战略研究所发布了《菲律宾南海领土主张的历史法理批判》报告。《报告》回顾梳理菲律宾领土边界的形成过程，分析其历次扩张领土范围的意图与做法。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:12:42",
+      "url": "https://finance.eastmoney.com/a/202607083797568938.html"
+    },
+    {
+      "title": "华自科技：子公司部分液态锂电装备已实现欧洲订单落地",
+      "content": "【华自科技：子公司部分液态锂电装备已实现欧洲订单落地】华自科技8日在互动平台表示，海外为公司核心拓展赛道，子公司相关设备持续对接欧洲海外客户开展验证，目前，部分液态锂电装备已实现欧洲订单落地。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:11:10",
+      "url": "https://finance.eastmoney.com/a/202607083797646568.html"
+    },
+    {
+      "title": "科技日报：谁才是全球AI领域的“超级反派”？",
+      "content": "【科技日报：谁才是全球AI领域的“超级反派”？】近日，美国众议院外交事务委员会主席布莱恩·马斯特在参加一场讨论“美国AI优势与出口管制政策”的智库活动上说，在全球AI领域，美国是“超级英雄”，而中国是“超级反派”。就在此次活动前两天，美国财政部长斯科特·贝森特也公开表示，美国在AI领域面临的“最大风险”是中国领先，而非安全和失业等问题。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:10:09",
+      "url": "https://finance.eastmoney.com/a/202607083797541311.html"
+    },
+    {
+      "title": "国旅联合：完成润田实业100%股份过户",
+      "content": "【国旅联合：完成润田实业100%股份过户】国旅联合（600358）7月8日公告，公司拟通过发行股份及支付现金购买江西润田实业股份有限公司100%股份并募集配套资金。截至公告日，标的公司100%股份已登记至公司名下，过户手续已办理完毕，公司已合法持有标的公司100%股份。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:09:45",
+      "url": "https://finance.eastmoney.com/a/202607083797591274.html"
+    },
+    {
+      "title": "甘肃宕昌滑坡现场搜救工作结束 21人遇难",
+      "content": "【甘肃宕昌滑坡现场搜救工作结束 21人遇难】记者从甘肃省陇南市政府新闻办8日上午举行的新闻发布会上获悉，宕昌山体滑坡现场搜救工作结束，此次滑坡共造成21人遇难。7日6时56分许，甘肃省陇南市宕昌县南河镇任藏村发生山体滑坡，造成33人被困。灾害发生后，当地应急、消防、公安等多个部门组织救援力量，迅速开展救援。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:09:27",
+      "url": "https://finance.eastmoney.com/a/202607083797546016.html"
+    },
+    {
+      "title": "AI学会烧结法氧化铝生产“绝活”",
+      "content": "【AI学会烧结法氧化铝生产“绝活”】记者7日从中铝集团获悉，该集团所属中铝中州铝业有限公司与合作伙伴联合研发的“熟料质量智能识别管控系统”日前顺利通过验收。该系统在中铝集团烧结法氧化铝企业中率先落地，成功将资深专家的经验转化为AI模型，破解了行业长期以来的智能化转型瓶颈。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:09:23",
+      "url": "https://finance.eastmoney.com/a/202607083797534913.html"
+    },
+    {
+      "title": "AI拟人化互动服务不得踩红线",
+      "content": "【AI拟人化互动服务不得踩红线】近日，两大平台宣布“叫停”智能体功能：豆包发布通知，由于产品功能调整，智能体功能将于7月15日下线；千问也向用户推送提醒，千问智能体功能与服务将于7月15日停止。值得注意的是，7月15日恰为《人工智能拟人化互动服务管理暂行办法》正式施行之日。在监管趋严背景下，两大平台的同步调整，引发强烈关注。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:08:11",
+      "url": "https://finance.eastmoney.com/a/202607083797528115.html"
+    },
+    {
+      "title": "大普微：公司目前主要从事数据中心企业级PCIe SSD等存储产品及网络互联产品的研发与销售",
+      "content": "【大普微：公司目前主要从事数据中心企业级PCIe SSD等存储产品及网络互联产品的研发与销售】大普微8日在互动平台表示，SK海力士是公司NANDFlash和DRAM供应商之一，公司通过其授权代理商采购相关原材料。公司目前主要从事数据中心企业级PCIeSSD等存储产品及网络互联产品的研发与销售，主要服务于云计算、AI、互联网等数据中心应用场景。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:05:34",
+      "url": "https://finance.eastmoney.com/a/202607083797621714.html"
+    },
+    {
+      "title": "EIA大幅下调油价预期 预计美国今明两年用电需求创新高",
+      "content": "【EIA大幅下调油价预期 预计美国今明两年用电需求创新高】美东时间周二，美国能源信息署（EIA）发布《短期能源展望》（STEO）报告。EIA在报告中上调了全球石油产量预测，下调了油价预期，理由是6月18日美国和伊朗达成协议重新开放霍尔木兹海峡这一战略水道后，通过该海峡的航运正逐步恢复。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:03:07",
+      "url": "https://finance.eastmoney.com/a/202607083797496912.html"
+    },
+    {
+      "title": "台交所加权股价指数高开0.1%",
+      "content": "台交所加权股价指数高开0.1%报45,524.69点。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:00:51",
+      "url": "https://finance.eastmoney.com/a/202607083797509396.html"
+    },
+    {
+      "title": "富时中国A50指数期货开盘上涨0.03%",
+      "content": "富时中国A50指数期货开盘上涨0.03%。",
+      "source": "eastmoney_global",
+      "published_at": "2026-07-08 09:00:16",
+      "url": "https://finance.eastmoney.com/a/202607083797473831.html"
+    },
+    {
+      "title": "东方财富财经早餐 7月8日周三",
+      "content": "【东方财富财经早餐 7月8日周三】1、证监会对安某编造传播涉中公教育虚假信息立案调查。2、国务院批复《旅游强国建设“十五五”规划》。3、国投证券前首席经济学家高善文去世，享年55岁。",
+      "source": "eastmoney_cjzc",
+      "published_at": "2026-07-08 06:00:11",
+      "url": "http://finance.eastmoney.com/a/202607073797110832.html"
+    },
+    {
+      "title": "东方财富财经早餐 7月7日周二",
+      "content": "【东方财富财经早餐 7月7日周二】1、英伟达回应AI服务器架构延后的报道：公司路线图保持不变。2、内存硬盘涨价凶猛，1TB固态硬盘从500涨至1000元。3、深交所：对中公教育相关投资者采取暂停交易等监管措施。",
+      "source": "eastmoney_cjzc",
+      "published_at": "2026-07-07 06:00:42",
+      "url": "http://finance.eastmoney.com/a/202607063795501436.html"
+    },
+    {
+      "title": "东方财富财经早餐 7月6日周一",
+      "content": "【东方财富财经早餐 7月6日周一】1、证监会修改再融资规则，定增、小额融资全面松绑。2、华为何庭波发布V2版“韬定律”论文补充工程细节和实测数据。3、央行今日开展10000亿买断式逆回购操作。",
+      "source": "eastmoney_cjzc",
+      "published_at": "2026-07-06 06:00:40",
+      "url": "http://finance.eastmoney.com/a/202607053794319895.html"
+    },
+    {
+      "title": "市场动态",
+      "content": "由全球变暖引发的破纪录高温、洪灾、飓风和山火正不断出现，对被投企业的盈利能力、资产估值以及最终退出回报构成新的挑战",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-08/102461898.html?cxapp_link=true"
+    },
+    {
+      "title": "商圈",
+      "content": "自带神秘光环，迎娶国民女星攀上巅峰",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-08/102461868.html?cxapp_link=true"
+    },
+    {
+      "title": "大宗观察",
+      "content": "多数机构认为是此次金价反弹是阶段性筑底修复，尚未构成中长期趋势反转，市场仍保留年内再度加息的预期",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-08/102461847.html?cxapp_link=true"
+    },
+    {
+      "title": "权益周观察",
+      "content": "市场呈现典型的存量资金高低切换震荡行情，此前迭创新高的AI硬件、存储芯片等概念板块集体杀跌。外围流动性预期边际改善，A股迎中报业绩窗口期",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-07/102461737.html?cxapp_link=true"
+    },
+    {
+      "title": "数据图解",
+      "content": "2026年6月，武汉、广州两市新经济指数分别增长11.0和10.9个百分点，排名上升14和16位。",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-07/102461637.html?cxapp_link=true"
+    },
+    {
+      "title": "基金观察",
+      "content": "沪深300 ETF净赎回最为集中。科技成长赛道的ETF则逆势大幅吸金。业内预计下半年宽基ETF卖压有望缓解",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-06/102461448.html?cxapp_link=true"
+    },
+    {
+      "title": "霍尔木兹周报",
+      "content": "上周美伊多哈会谈并未就海峡问题取得实际进展，霍尔木兹海峡全域威胁等级评定为“较高”",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-06/102461222.html?cxapp_link=true"
+    },
+    {
+      "title": "CCI快报",
+      "content": "供给回升处于高位，需求疲软，原油价格震荡下跌",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-04/102460691.html?cxapp_link=true"
+    },
+    {
+      "title": "周刊提前读",
+      "content": "【本文系数据通用户提前专享】如何在日益扩大的人民币需求与汇率波动中，拓展金融衍生工具，增加市场深度",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-04/102460762.html?cxapp_link=true"
+    },
+    {
+      "title": "市场洞察",
+      "content": "考虑到通胀数据好于预期且劳动力市场稳定，该行对未来半年通胀下行持谨慎乐观态度",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-04/102460725.html?cxapp_link=true"
+    },
+    {
+      "title": "风电观察",
+      "content": "2026年5月风电招标数据环比下降73%，同比下降50%",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-03/102460148.html?cxapp_link=true"
+    },
+    {
+      "title": "市场速递",
+      "content": "目前诸多指标表明韩股依然有较大的脆弱性",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-02/102459865.html?cxapp_link=true"
+    },
+    {
+      "title": "量化观察",
+      "content": "6月，高质量因子策略跑输沪深300指数3.09%",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-07-01/102459687.html?cxapp_link=true"
+    },
+    {
+      "title": "交易簿",
+      "content": "当二级市场给你一个昂贵的估值时，这种估值能不能被当成真正的支付手段使用？",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-30/102459001.html?cxapp_link=true"
+    },
+    {
+      "title": "家庭财富",
+      "content": "黄仁勋30年财富布局的优势与短板，结合苏姿丰的稳健配置思路，对当下国内A股、港股科创实控人家族，具备极强的落地借鉴意义",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-29/102458795.html?cxapp_link=true"
+    },
+    {
+      "title": "华尔街原声",
+      "content": "谷歌母公司Alphabet在6月29日将正式成为道琼斯工业平均指数的30只成分股之一，取代电信公司威瑞森（Verizon）",
+      "source": "caixin_main",
+      "published_at": "",
+      "url": "https://database.caixin.com/2026-06-29/102458584.html?cxapp_link=true"
+    }
+  ],
+  "confidence": 1.0,
+  "market_sentiment": 0.4,
+  "max_abs_theme": 0.735,
+  "hot_keywords": [
+    "云计算",
+    "AI",
+    "科创板",
+    "科创50",
+    "光伏",
+    "新能源",
+    "沪深300",
+    "沪指",
+    "中证A500",
+    "A500"
+  ],
+  "auto_news": {
+    "enabled": true,
+    "article_count": 49,
+    "confidence": 1.0,
+    "market_sentiment": 0.4,
+    "catalyst_hits": 23,
+    "max_abs_theme": 0.735
+  }
+}

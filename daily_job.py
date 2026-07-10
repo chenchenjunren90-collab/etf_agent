@@ -30,6 +30,11 @@ from strategy import (
 )
 from theme_signal import save_theme_signal
 from update_local_csv import update_local_etfs
+from decision_integrity import (
+    apply_integrity_env_caps,
+    build_integrity_context,
+    summarize_integrity_warnings,
+)
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -483,9 +488,17 @@ def _write_fatal_fallback(date_str: str, exc: Exception) -> int:
 def _run_pipeline(args: argparse.Namespace, target_date) -> int:
     """完整的每日决策流程（会被 main() 的兜底 try/except 包裹）。"""
     # 必须先更新行情再复盘，否则上一日 open/close 可能是旧数据（显示 0 元）。
+    price_stats: dict[str, Any] = {"ok": 0, "fail": 0, "fresh": 0, "degraded": 0}
     if not args.skip_price_update:
         log("更新 ETF 行情 CSV...")
-        update_local_etfs(log_fn=lambda m: log(m))
+        price_stats = update_local_etfs(log_fn=lambda m: log(m))
+        log(
+            f"行情更新汇总: 可用={price_stats.get('ok')} "
+            f"新鲜={price_stats.get('fresh')} 缓存降级={price_stats.get('degraded')} "
+            f"失败={price_stats.get('fail')}"
+        )
+
+    integrity_ctx = build_integrity_context(args.date, price_update_stats=price_stats)
 
     log("复盘上一日预测收益...")
     pnl_report = review_previous_prediction(args.date)
@@ -519,6 +532,11 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
     # （见函数注释——错过当日提交的代价高于用保守仓位继续决策）。
     _check_critical_data_quality(news_signal, econ_payload)
 
+    for warn in summarize_integrity_warnings(integrity_ctx):
+        DATA_QUALITY_WARN_FLAGS.append(warn)
+        log(f"[INTEGRITY] {warn}")
+    apply_integrity_env_caps(integrity_ctx)
+
     # 经济日历为空时降低仓位上限；若数据质量检查已因"新闻+日历双重失效"
     # 设了更保守的 30%，这里不再放宽回 50%（取更小值）。
     if econ_payload.get("event_count", 0) == 0:
@@ -541,6 +559,7 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
         llm_decision=llm_decision,
         econ_payload=econ_payload,
         recent_risk=recent_risk,
+        integrity_ctx=integrity_ctx,
     )
     competition_output = to_competition_output(result)
     submit_path, full_path = save_outputs(
