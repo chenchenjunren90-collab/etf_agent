@@ -311,7 +311,9 @@ def _build_llm_decision_bt(
         if feats:
             pool_features[code] = feats
 
-    news_summary = summarize_for_llm(news_signal)
+    news_summary = summarize_for_llm(
+        {"accepted_articles": list(news_signal.get("stale_accepted_articles") or [])}
+    )
     try:
         payload = llm_decider.decide(
             date_str=date_str,

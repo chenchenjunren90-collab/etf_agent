@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from agent_kb import ETF_ALIASES, load_knowledge_base, rebuild_knowledge_base, resolve_etf_code
-from daily_pnl import _load_bar
+from daily_pnl import review_previous_prediction
 import llm_client
 import pandas as pd
 from news_signal import score_news_article
@@ -202,9 +202,7 @@ def _wants_competition_json(message: str) -> bool:
 
 
 def _format_yesterday_pnl() -> str:
-    """上一交易日预测的实际收益（open→close）。"""
-    from daily_pnl import review_previous_prediction
-
+    """上一交易日预测的实际收益（昨收→今收，平台结算口径）。"""
     today = datetime.now().strftime("%Y-%m-%d")
     rec = review_previous_prediction(today)
     if not rec:
@@ -214,10 +212,13 @@ def _format_yesterday_pnl() -> str:
     rows = rec.get("positions") or []
     if not rows:
         return f"**{d}** 为空仓或无成交，收益 **{total:+.2f} 元**。"
-    lines = [f"**{d}** 合计 **{total:+.2f} 元**", ""]
+    lines = [f"**{d}** 合计 **{total:+.2f} 元**（昨收→今收）", ""]
     for r in rows:
         name = r.get("symbol_name") or r.get("symbol")
-        lines.append(f"- **{name}**：{r['return_pct']:+.2f}%，约 **{r['pnl']:+.2f} 元**")
+        lines.append(
+            f"- **{name}**：昨收 {r.get('prev_close')} → 今收 {r.get('close')}，"
+            f"{r['return_pct']:+.2f}%，约 **{r['pnl']:+.2f} 元**"
+        )
     return "\n".join(lines)
 
 
@@ -288,15 +289,21 @@ def _parse_date_from_message(message: str) -> str | None:
     if "大前天" in message:
         return (today - timedelta(days=3)).strftime("%Y-%m-%d")
     if "上周五" in message:
+        from trading_calendar import is_trading_day, previous_trading_day
+
         d = today
-        while d.weekday() != 4 or d == today:
+        # 找最近一个「周五且为交易日」；若该周五休市则再往前一个交易日
+        while True:
             d -= timedelta(days=1)
-        return d.strftime("%Y-%m-%d")
+            if d.weekday() == 4:
+                return (d if is_trading_day(d) else previous_trading_day(d)).strftime("%Y-%m-%d")
     return None
 
 
 def _historical_pnl(date_str: str) -> dict[str, Any] | None:
-    """读取指定日期的预测档案，按当日 open→close 算每只 ETF 盈亏。"""
+    """读取指定日期的预测档案，按昨收→今收（平台结算口径）算盈亏。"""
+    from settlement_prices import get_close_to_close
+
     p = BASE_DIR / "data" / "daily_output" / f"{date_str}_full.json"
     if not p.exists():
         return None
@@ -313,18 +320,19 @@ def _historical_pnl(date_str: str) -> dict[str, Any] | None:
     for pick in picks:
         code = str(pick.get("symbol", "")).zfill(6)
         vol = int(pick.get("volume") or 0)
-        bar = _load_bar(code, date_str)
-        if not bar or vol <= 0:
+        prices = get_close_to_close(code, date_str, data_dir=DATA_DIR)
+        if not prices or vol <= 0:
             continue
-        pnl = (bar["close"] - bar["open"]) * vol
+        prev_close, today_close = prices
+        pnl = (today_close - prev_close) * vol
         total += pnl
         rows.append({
             "symbol": code,
             "symbol_name": pick.get("symbol_name"),
             "volume": vol,
-            "open": round(bar["open"], 4),
-            "close": round(bar["close"], 4),
-            "return_pct": round((bar["close"] / bar["open"] - 1) * 100, 3) if bar["open"] else 0.0,
+            "prev_close": round(prev_close, 4),
+            "close": round(today_close, 4),
+            "return_pct": round((today_close / prev_close - 1) * 100, 3) if prev_close else 0.0,
             "pnl": round(float(pnl), 2),
         })
     return {
@@ -349,7 +357,7 @@ def _answer_history_pnl(date_str: str) -> str:
 
     total = rec.get("total_pnl", 0.0)
     lines = [
-        f"**{date_str} 预测持仓 · 当日盘后收益（开盘买到收盘卖）**",
+        f"**{date_str} 预测持仓 · 盘后收益（昨收→今收）**",
         "",
         f"合计约 **{total:+.2f} 元**（50 万本金估算）。",
         "",
@@ -357,7 +365,7 @@ def _answer_history_pnl(date_str: str) -> str:
     for r in rec["positions"]:
         name = r.get("symbol_name") or r.get("symbol")
         lines.append(
-            f"- **{name}**：开盘 {r['open']} → 收盘 {r['close']}，"
+            f"- **{name}**：昨收 {r['prev_close']} → 今收 {r['close']}，"
             f"涨跌 {r['return_pct']:+.2f}%，约 **{r['pnl']:+.2f} 元**"
         )
     if total > 0:
@@ -412,10 +420,12 @@ def _run_today_prediction(skip_price_update: bool = False, *, force: bool = Fals
 
     today = datetime.now().date()
     today_str = today.strftime("%Y-%m-%d")
-    if today.weekday() >= 5:
+    from trading_calendar import is_trading_day
+
+    if not is_trading_day(today):
         return {
             "ok": False,
-            "error": "今日 A 股休市（周末），不会生成新预测。",
+            "error": "今日 A 股休市，不会生成新预测。",
         }
 
     allowed, block_reason = guard_chat_prediction_run(force=force)
@@ -464,6 +474,7 @@ def _run_today_prediction(skip_price_update: bool = False, *, force: bool = Fals
     env.setdefault("PYTHONUTF8", "1")
     env.setdefault("ETF_AGENT_ALLOW_NETWORK", "1")
     env.setdefault("ETF_AGENT_STRICT_DATA", "1")
+    env.setdefault("SCORE_GATE_MODE", "static")
     # Pin capital for child process too
     env["CAPITAL"] = str(int(COMPETITION_CAPITAL))
 
@@ -536,8 +547,11 @@ def _is_today_pnl_question(message: str) -> bool:
 def _market_closed_for_pnl() -> bool:
     """A 股日 K 落定后再报当日收益。"""
     from datetime import time as dt_time
+
+    from trading_calendar import is_trading_day
+
     now = datetime.now()
-    if now.weekday() >= 5:
+    if not is_trading_day(now.date()):
         return True
     return now.time() >= dt_time(15, 0)
 
@@ -559,6 +573,9 @@ def _extract_codes(message: str) -> list[str]:
 
 
 def _today_pnl_context(kb: dict[str, Any]) -> dict[str, Any] | None:
+    """当日预测持仓按昨收→今收结算（平台口径）。"""
+    from settlement_prices import get_close_to_close
+
     today = kb.get("date")
     if not today:
         return None
@@ -572,23 +589,24 @@ def _today_pnl_context(kb: dict[str, Any]) -> dict[str, Any] | None:
     for p in picks:
         code = str(p["symbol"]).zfill(6)
         vol = int(p.get("volume") or 0)
-        bar = _load_bar(code, today)
-        if not bar or vol <= 0:
+        prices = get_close_to_close(code, today, data_dir=DATA_DIR)
+        if not prices or vol <= 0:
             continue
-        if abs(bar["close"] - bar["open"]) < 1e-9:
+        prev_close, today_close = prices
+        # 半截K：今收几乎等于昨收且尚未过收盘，提示可能未更新完
+        stale = ""
+        if (not _market_closed_for_pnl()) and abs(today_close - prev_close) / max(prev_close, 1e-9) < 0.001:
             stale = "可能未收盘或行情未更新"
-        else:
-            stale = ""
-        pnl = (bar["close"] - bar["open"]) * vol
+        pnl = (today_close - prev_close) * vol
         total += pnl
         settled += 1
         rows.append({
             "symbol": code,
             "symbol_name": p.get("symbol_name"),
             "volume": vol,
-            "open": round(bar["open"], 4),
-            "close": round(bar["close"], 4),
-            "return_pct": round((bar["close"] / bar["open"] - 1) * 100, 3) if bar["open"] else 0.0,
+            "prev_close": round(prev_close, 4),
+            "close": round(today_close, 4),
+            "return_pct": round((today_close / prev_close - 1) * 100, 3) if prev_close else 0.0,
             "pnl": round(float(pnl), 2),
             "stale_note": stale,
         })
@@ -659,7 +677,7 @@ def _answer_today_pnl(kb: dict[str, Any], message: str) -> str:
         return "\n".join(lines)
 
     total = pnl.get("total_pnl", 0.0)
-    lines.append(f"**{kb_date} 预测持仓 · 盘后收益（开盘买到收盘卖）**")
+    lines.append(f"**{kb_date} 预测持仓 · 盘后收益（昨收→今收）**")
     lines.append("")
     lines.append(f"合计约 **{total:+.2f} 元**（50 万本金、按当日建议股数估算）。")
     lines.append("")
@@ -668,7 +686,7 @@ def _answer_today_pnl(kb: dict[str, Any], message: str) -> str:
         name = r.get("symbol_name") or r.get("symbol")
         note = f"（{r['stale_note']}）" if r.get("stale_note") else ""
         lines.append(
-            f"- **{name}**：开盘 {r['open']} → 收盘 {r['close']}，"
+            f"- **{name}**：昨收 {r.get('prev_close', r.get('open'))} → 今收 {r['close']}，"
             f"涨跌 {r['return_pct']:+.2f}%，"
             f"约 **{r['pnl']:+.2f} 元**{note}"
         )

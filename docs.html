@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ETF 投资智能体 - 项目说明</title>
+  <style>
+    :root { color-scheme:light; --ink:#14213d; --muted:#5f6b7a; --line:#d9e0e8; --blue:#1457d9; --bg:#f6f8fb; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:"Microsoft YaHei",Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.75; }
+    header { background:#fff; border-bottom:1px solid var(--line); }
+    .bar, main { width:min(920px, calc(100% - 32px)); margin:auto; }
+    .bar { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { font-size:20px; font-weight:700; }
+    a { color:var(--blue); }
+    .back { text-decoration:none; font-weight:600; }
+    main { padding:44px 0 72px; }
+    h1 { margin:0 0 12px; font-size:34px; line-height:1.3; }
+    h2 { margin:38px 0 10px; font-size:21px; }
+    p { margin:8px 0; color:var(--muted); }
+    ul, ol { margin:8px 0; padding-left:24px; }
+    code { padding:2px 6px; border:1px solid var(--line); background:#fff; }
+    .notice { margin-top:36px; padding:18px 20px; border-left:4px solid #d97706; background:#fff8e8; color:#62410b; }
+    @media (max-width:600px) { h1 { font-size:28px; } .bar { min-height:64px; } main { padding-top:30px; } }
+  </style>
+</head>
+<body>
+  <header><div class="bar"><div class="brand">ETF 投资智能体</div><a class="back" href="/etf-agent/chat/">返回智能体</a></div></header>
+  <main>
+    <h1>项目说明</h1>
+    <p>面向普通用户与 ETF 投资比赛的智能交互系统。通过对话收集投资需求，并结合行情、技术指标、宏观事件与新闻信号生成 ETF 配置建议。</p>
+
+    <h2>核心功能</h2>
+    <ul>
+      <li>通过选择题和填空题收集资金规模、风险偏好、投资期限与关注方向。</li>
+      <li>生成个性化 ETF 配置建议，并解释持仓理由和相关新闻因素。</li>
+      <li>分析用户提供的新闻对相关 ETF 可能产生的方向与强弱影响。</li>
+      <li>识别个股及无关问题，并将对话引导回 ETF 投资范围。</li>
+      <li>按比赛要求输出 <code>symbol</code>、<code>symbol_name</code>、<code>volume</code> 格式的当日建议。</li>
+    </ul>
+
+    <h2>交互流程</h2>
+    <ol>
+      <li>用户提出当日 ETF 投资建议需求。</li>
+      <li>智能体补充询问尚未提供的资金与风险信息。</li>
+      <li>信息完整后，服务器运行决策流程并生成建议。</li>
+      <li>用户可继续追问投资理由、新闻来源和市场影响。</li>
+    </ol>
+
+    <h2>稳定性与边界</h2>
+    <p>系统包含交易日判断、K 线时点检查、陈旧行情拦截、比赛与个人资金隔离、每日重复运行保护及异常降级机制。非交易日不会生成新的比赛预测。</p>
+    <p>产品只覆盖 ETF 研究与建议，不提供个股推荐，也不会承诺收益。</p>
+
+    <h2>在线入口</h2>
+    <p><a href="http://39.105.104.230/etf-agent/chat/">http://39.105.104.230/etf-agent/chat/</a></p>
+    <p>域名：<a href="http://chinaglass.shop/etf-agent/chat/">http://chinaglass.shop/etf-agent/chat/</a></p>
+
+    <div class="notice">风险提示：模型输出基于历史行情、公开资讯和算法判断，仅供研究与决策辅助，不构成确定性收益承诺或持牌投资顾问意见。市场有风险，投资需谨慎。</div>
+  </main>
+</body>
+</html>

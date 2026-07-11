@@ -239,19 +239,23 @@ def decide(
     from econ_calendar import render_for_prompt as render_econ
     from news_signal import render_news_for_prompt, summarize_for_llm
 
-    summary = news_summary
-    if summary is None:
-        summary = summarize_for_llm(news_signal or {})
-    econ_text = render_econ(econ_payload or {})
-
-    # ── 分层新闻：新鲜 vs 陈旧 ──
+    # ── 分层新闻：新鲜 vs 陈旧（{{NEWS}} 只用陈旧，避免与 FRESH_NEWS 重复）──
     fresh_scores = (news_signal or {}).get("fresh_theme_scores", {})
     fresh_articles = (news_signal or {}).get("fresh_accepted_articles", [])
+    stale_articles = (news_signal or {}).get("stale_accepted_articles", [])
     fresh_news_text = render_news_for_prompt(
         summarize_for_llm({"accepted_articles": fresh_articles} if fresh_articles else {})
     ) if fresh_articles else ""
     fresh_scores_text = _format_fresh_news_scores(fresh_scores)
 
+    summary = news_summary
+    if summary is None:
+        summary = summarize_for_llm(
+            {"accepted_articles": stale_articles}
+            if stale_articles or "stale_accepted_articles" in (news_signal or {})
+            else (news_signal or {})
+        )
+    econ_text = render_econ(econ_payload or {})
     news_text = render_news_for_prompt(summary)
 
     prompt = build_prompt(

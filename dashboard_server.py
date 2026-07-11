@@ -91,10 +91,30 @@ def _latest_file(pattern: str, directory: Path, only_weekdays: bool = False) -> 
 
 
 def _settle_prediction(full_path: Path) -> dict[str, Any] | None:
-    """按平台结算口径复盘上一日预测：买入价=昨收，卖出价=今收（见 settlement_prices.py）。"""
+    """按平台结算口径复盘预测日盈亏：买入价=昨收，卖出价=今收。
+
+    查看日若为「今天」且尚未收盘（15:00 前），返回 pending，避免半截K误报。
+    """
     if not full_path.exists():
         return None
     date_str = full_path.name.split("_")[0]
+    now = datetime.now()
+    today_str = now.strftime("%Y-%m-%d")
+    if date_str == today_str and now.hour < 15:
+        try:
+            data = json.loads(full_path.read_text(encoding="utf-8"))
+        except Exception:
+            data = {}
+        comp = data.get("competition_output", []) if isinstance(data, dict) else []
+        return dict(
+            prediction_date=date_str,
+            total_pnl=0.0,
+            rows=[],
+            pending=True,
+            holdings_count=len(comp),
+            settled_count=0,
+            reason="market_not_closed",
+        )
     try:
         data = json.loads(full_path.read_text(encoding="utf-8"))
     except Exception:
@@ -116,11 +136,13 @@ def _settle_prediction(full_path: Path) -> dict[str, Any] | None:
         if prev_close == 0:
             continue
         # 平台口径：amount=volume×昨收，pnl=amount×(今收-昨收)/昨收，
-        # 化简即 volume×(今收-昨收)；此前误写成 volume×涨跌幅（少乘一次
-        # 昨收价，量纲错误，早盘价格<1元时会把盈亏放大数倍）。
+        # 化简即 volume×(今收-昨收)。
         pnl = round(volume * (close - prev_close), 2)
         total_pnl += pnl
-        pnl_rows.append(dict(code=code, name=name, volume=volume, open=prev_close, close=close, pnl=pnl))
+        pnl_rows.append(dict(
+            code=code, name=name, volume=volume,
+            prev_close=prev_close, open=prev_close, close=close, pnl=pnl,
+        ))
     pending = bool(comp) and len(pnl_rows) < len(comp)
     return dict(
         prediction_date=date_str,
@@ -201,21 +223,21 @@ def _build_daily_job_cmd(options: dict[str, Any]) -> tuple[list[str], dict[str, 
     cmd = [sys.executable, "-u", str(BASE_DIR / "daily_job.py")]
     today = datetime.now().date()
     today_str = today.strftime("%Y-%m-%d")
-    if today.weekday() < 5:
+    from trading_calendar import is_trading_day
+
+    if is_trading_day(today):
         cmd.extend(["--date", today_str])
     if options.get("skip_price_update"):
         cmd.append("--skip-price-update")
     if options.get("force"):
         cmd.append("--force")
 
-    load_submit = options.get("load_submit")
-    if load_submit:
-        cmd.append("--load-submit")
-        if isinstance(load_submit, str):
-            cmd.append(load_submit)
+    # --load-submit 已从 daily_job 移除，忽略前端遗留字段
 
     env = dict(os.environ)
     env.setdefault("ETF_AGENT_STRICT_DATA", "1")
+    env.setdefault("SCORE_GATE_MODE", "static")
+    env["CAPITAL"] = "500000"
     env["PYTHONUNBUFFERED"] = "1"
     return cmd, env, today_str
 
@@ -235,8 +257,10 @@ def _prepare_daily_job(options: dict[str, Any]) -> tuple[list[str], dict[str, st
                 pass
 
         import daily_run_guard
+        from trading_calendar import is_trading_day
+
         today_str = datetime.now().strftime("%Y-%m-%d")
-        if not force and datetime.now().weekday() < 5 and daily_run_guard.has_daily_run(today_str):
+        if not force and is_trading_day(today_str) and daily_run_guard.has_daily_run(today_str):
             _RUN_LOCK.release()
             return {
                 "output": "今日预测已存在，跳过重复运行（请用「强制重跑」覆盖）。",

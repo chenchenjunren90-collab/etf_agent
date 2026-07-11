@@ -3,13 +3,13 @@
 Factor priority (high → low). Secondary factors must not overturn a clear
 primary signal:
 
-1. Data integrity — stale K-lines block LLM rescoring / ratio hints (hard).
+1. Data integrity — stale/incomplete K-lines block LLM rescoring (hard).
 2. Primary alpha — composite score (trend + theme + hist − risk).
 3. Risk budget — stability overlay / econ caps / score gate (position size).
 4. Repeat-holding tilt — consecutive days holding a name soft-lowers its
    preference; never bans; cannot flip a clear score leader.
-5. LLM hints — only when prices are fresh; may lower ratio / theme, not raise
-   risk budget past hard caps.
+5. LLM views — only when prices are fresh; may rescore themes, but does not
+   lower invest_ratio (hint is audit-only under current defaults).
 
 Concentration used to force 2-names; that over-weighted a secondary concern.
 Now it only tilts tendency and optionally trims size slightly.
@@ -18,14 +18,14 @@ Now it only tilts tendency and optionally trims size slightly.
 from __future__ import annotations
 
 import json
-from datetime import date, timedelta
+from datetime import date
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
 
 from features import _get_price_for_decision
-from pool import TRADING_POOL
+from pool import ALL_POOL
 
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "data" / "daily_output"
@@ -43,11 +43,9 @@ CLEAR_LEAD_GAP = 4.0
 
 def expected_decision_bar_date(decision_date_str: str) -> date:
     """Last trading day strictly before the decision session (morning run)."""
-    d = pd.to_datetime(decision_date_str).date()
-    d -= timedelta(days=1)
-    while d.weekday() >= 5:
-        d -= timedelta(days=1)
-    return d
+    from trading_calendar import previous_trading_day
+
+    return previous_trading_day(decision_date_str)
 
 
 def _last_bar_date(code: str, decision_date_str: str) -> date | None:
@@ -64,22 +62,48 @@ def audit_price_freshness(
     *,
     price_update_stats: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """Audit whether decision-time bars are fresh enough for a real ranking."""
-    codes = codes or [item["code"] for item in TRADING_POOL]
+    """Audit whether decision-time bars are fresh enough for a real ranking.
+
+    Defaults to ALL_POOL (steady + offensive) so growth ETFs cannot bypass
+    freshness checks while still being tradable.
+    """
+    from market_data import bar_row_looks_incomplete
+
+    codes = codes or [item["code"] for item in ALL_POOL]
     expected = expected_decision_bar_date(decision_date_str)
     per_code: dict[str, dict[str, Any]] = {}
     stale_codes: list[str] = []
     missing_codes: list[str] = []
+    incomplete_codes: list[str] = []
 
     for code in codes:
         last = _last_bar_date(code, decision_date_str)
         if last is None:
             missing_codes.append(code)
-            per_code[code] = {"last_bar": None, "lag_days": None, "ok": False}
+            stale_codes.append(code)
+            per_code[code] = {
+                "last_bar": None, "lag_days": None, "ok": False, "incomplete": False,
+            }
             continue
         lag = (expected - last).days
         ok = lag <= 0
-        per_code[code] = {"last_bar": str(last), "lag_days": lag, "ok": ok}
+        incomplete = False
+        # 仅记录「平收+宽振幅」启发式命中，不单独触发 price_stale：
+        # Baostock 与本地常一致，属真实平收日，误伤会压仓/挡 LLM。
+        df = _get_price_for_decision(code, decision_date_str)
+        if df is not None and not df.empty:
+            try:
+                incomplete = bool(bar_row_looks_incomplete(df.iloc[-1]))
+            except Exception:
+                incomplete = False
+        if incomplete:
+            incomplete_codes.append(code)
+        per_code[code] = {
+            "last_bar": str(last),
+            "lag_days": lag,
+            "ok": ok,
+            "incomplete": incomplete,
+        }
         if not ok:
             stale_codes.append(code)
 
@@ -104,6 +128,7 @@ def audit_price_freshness(
         "per_code": per_code,
         "stale_codes": stale_codes,
         "missing_codes": missing_codes,
+        "incomplete_codes": incomplete_codes,
         "anchor_stale": anchor_stale,
         "stale_ratio": round(stale_ratio, 3),
         "price_stale": price_stale,
@@ -333,6 +358,8 @@ def apply_concentration_risk(
 
 
 def summarize_integrity_warnings(integrity_ctx: dict[str, Any]) -> list[str]:
+    import os
+
     warnings: list[str] = []
     if not integrity_ctx:
         return warnings
@@ -343,22 +370,40 @@ def summarize_integrity_warnings(integrity_ctx: dict[str, Any]) -> list[str]:
             f"陈旧比例{pa.get('stale_ratio', 0):.0%}），"
             f"已禁用LLM主题重排并收紧仓位上限"
         )
+
+    repeat_tilt_enabled = os.environ.get("ETF_REPEAT_TILT", "").strip().lower() in {
+        "1",
+        "true",
+        "yes",
+        "on",
+    }
     holding = integrity_ctx.get("holding_streaks") or {}
     sole = integrity_ctx.get("sole_symbol_streak")
     if holding:
         top_hold = max(holding.items(), key=lambda kv: kv[1])
         if top_hold[1] >= 1:
-            warnings.append(
-                f"近{top_hold[1]}日连续持有{top_hold[0]}，"
-                f"将软性降低其投资倾向（不禁止买入；明显领先时不翻盘）"
-            )
+            if repeat_tilt_enabled:
+                warnings.append(
+                    f"近{top_hold[1]}日连续持有{top_hold[0]}，"
+                    f"将软性降低其投资倾向（不禁止买入；明显领先时不翻盘）"
+                )
+            else:
+                warnings.append(
+                    f"近{top_hold[1]}日连续持有{top_hold[0]}，"
+                    f"已记录集中度风险；重复持仓软倾斜当前未启用"
+                )
     elif sole and int(sole.get("days") or 0) >= 1:
-        warnings.append(
-            f"近{sole['days']}日连续单仓{sole['symbol']}，"
-            f"将软性降低其投资倾向（不禁止、不强制分散）"
-        )
+        if repeat_tilt_enabled:
+            warnings.append(
+                f"近{sole['days']}日连续单仓{sole['symbol']}，"
+                f"将软性降低其投资倾向（不禁止、不强制分散）"
+            )
+        else:
+            warnings.append(
+                f"近{sole['days']}日连续单仓{sole['symbol']}，"
+                f"已记录集中度风险；重复持仓软倾斜当前未启用"
+            )
     return warnings
-
 
 def apply_integrity_env_caps(integrity_ctx: dict[str, Any]) -> None:
     """Tighten position cap when prices are stale (non-blocking)."""

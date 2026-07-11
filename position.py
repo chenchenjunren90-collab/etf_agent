@@ -24,6 +24,13 @@ STABLE_WEAK_SIGNAL_CAP = 0.35
 STABLE_LOSS_CAP = 0.35
 STABLE_DRAWDOWN_CAP = 0.25
 
+# 单票硬顶分档（稳中求盈利）：高仓少见、弱市低仓、空仓由闸门/极端弱市负责。
+# allocate 实际动用 ≈ min(invest_ratio, cap, n_pos × max_single)。
+STABLE_MAX_SINGLE_STRONG = 0.45   # 强信号：2×45% 受 70% cap → 可到高仓
+STABLE_MAX_SINGLE_MODERATE = 0.30 # 中等：2×30% 受 55% cap → 中高仓
+STABLE_MAX_SINGLE_DEFAULT = 0.35  # 常态 1 仓：约 35% 中低仓（多数交易日）
+STABLE_MAX_SINGLE_WEAK = 0.25     # 弱信号/连亏：明确低仓
+
 # 【2026-07 复核】elite 门槛(top_score>=58 & confidence>=0.26 & max_abs>=0.17
 # & articles>=5)在 86 天回测里只有约 20% 的交易日能达到，其余约 80% 的日子
 # 只能持 1 只 ETF。而 allocate_short_race 的单 ETF 硬顶 MAX_SINGLE_WEIGHT=30%
@@ -50,8 +57,12 @@ MODERATE_ARTICLES = 4
 
 
 def evaluate_market_regime(date_str=None):
-    """用宽基 ETF 判断整体市场环境，决定是否需要降仓。"""
-    refs = ["510300", "159915", "588000"]
+    """用宽基 ETF 判断整体市场环境，决定是否需要降仓。
+
+    参照与 scoring.market_avg_score 一致：仅用稳健池宽基，避免进攻成长
+    （159915/588000）半截 K / 高波动污染仓位比例。
+    """
+    refs = ["510300", "510050", "510500"]
     scores = []
     details = []
 
@@ -242,6 +253,28 @@ def apply_stability_overlay(
             )
 
     new_ratio = float(min(invest_ratio, cap))
+
+    # 单票硬顶与档位对齐，避免「invest_ratio=55% 却只能用 30%」的假高仓，
+    # 同时让强信号日真正摸到高仓、弱信号日明确低仓。
+    defensive = bool(
+        weak_signal
+        or consecutive_losses >= 2
+        or (last5_pnl < -5000 and weak_signal)
+        or last_pnl < 0 and weak_signal
+    )
+    if strong_setup and max_positions_cap >= 2 and not defensive:
+        max_single = STABLE_MAX_SINGLE_STRONG
+        notes.append(f"强信号单票上限{max_single:.0%}")
+    elif moderate_setup and max_positions_cap >= 2 and not defensive:
+        max_single = STABLE_MAX_SINGLE_MODERATE
+        notes.append(f"中等信号单票上限{max_single:.0%}")
+    elif defensive or weak_signal:
+        max_single = min(STABLE_MAX_SINGLE_WEAK, cap)
+        notes.append(f"防守单票上限{max_single:.0%}")
+    else:
+        max_single = min(STABLE_MAX_SINGLE_DEFAULT, cap)
+        notes.append(f"常态单票上限{max_single:.0%}")
+
     if new_ratio < invest_ratio:
         market_reason = (
             f"{market_reason}；十天稳健风控 {invest_ratio:.0%}→{new_ratio:.0%}"
@@ -256,6 +289,7 @@ def apply_stability_overlay(
         "final_invest_ratio": round(float(new_ratio), 4),
         "cap": round(float(cap), 4),
         "max_positions_cap": max_positions_cap,
+        "max_single_weight": round(float(max_single), 4),
         "strong_setup": strong_setup,
         "moderate_setup": moderate_setup,
         "weak_signal": weak_signal,
@@ -269,10 +303,22 @@ def apply_stability_overlay(
     return new_ratio, market_reason, max_positions_cap, audit
 
 
-def allocate_short_race(ranked, total_capital, invest_ratio, max_positions=None):
-    """集中持有 1-3 只强势 ETF；持仓数随信号强度动态调整。"""
+def allocate_short_race(
+    ranked,
+    total_capital,
+    invest_ratio,
+    max_positions=None,
+    *,
+    max_single_weight: float | None = None,
+):
+    """集中持有 1-3 只强势 ETF；持仓数随信号强度动态调整。
+
+    ``max_single_weight`` 由稳健层按档位传入；未传则用全局 MAX_SINGLE_WEIGHT。
+    """
     cap = int(max_positions) if max_positions else RACE_MAX_POSITIONS
     cap = max(1, min(RACE_MAX_POSITIONS, cap))
+    max_single = float(max_single_weight) if max_single_weight is not None else float(MAX_SINGLE_WEIGHT)
+    max_single = max(0.10, min(0.70, max_single))
     selected = ranked[:cap]
     # 空仓优先——任何下游条件触发 invest_ratio<=0，直接返回 cash 模式，
     # 比赛输出会是 []，不再误导日志。
@@ -316,20 +362,20 @@ def allocate_short_race(ranked, total_capital, invest_ratio, max_positions=None)
         weights[0] += 0.08
         weights[1:] -= 0.08 / (len(selected) - 1)
 
-    # 单ETF最大仓位限制（防单只暴雷）——始终生效
-    weights = np.clip(weights, 0.10, MAX_SINGLE_WEIGHT)
+    # 单ETF最大仓位限制——档位由稳健层传入（强信号可到 45%，弱信号 25%）
+    weights = np.clip(weights, 0.10, max_single)
     if not tilted:
         weights = weights / weights.sum()
 
     investable = total_capital * invest_ratio
-    # 二次硬限：每只实际金额不超过总资本 × MAX_SINGLE_WEIGHT
-    max_single_amount = total_capital * MAX_SINGLE_WEIGHT
+    # 二次硬限：每只实际金额不超过总资本 × max_single
+    max_single_amount = total_capital * max_single
     allocations = {}
     held = []
 
     for stock, weight in zip(selected, weights):
         amount = int(investable * float(weight) / 100) * 100
-        # 二次硬限——单只不超过总资本×30%
+        # 二次硬限——单只不超过总资本×max_single
         amount = min(amount, int(max_single_amount / 100) * 100)
         if amount < MIN_AMOUNT:
             continue
@@ -343,8 +389,8 @@ def allocate_short_race(ranked, total_capital, invest_ratio, max_positions=None)
             "target_weight": round(float(weight) * invest_ratio * 100, 1),
             "type": "short_race",
             "score": stock["score"],
-            "historical_score": stock["historical_score"],
-            "trend_score": stock["trend_score"],
+            "historical_score": stock.get("historical_score", 0),
+            "trend_score": stock.get("trend_score", 0),
             "fresh_theme_score": stock.get("fresh_theme_score", stock.get("theme_score", 0)),
             "stale_theme_score": stock.get("stale_theme_score", 0),
             "theme_score": stock.get("fresh_theme_score", stock.get("theme_score", 0)),

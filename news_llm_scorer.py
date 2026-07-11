@@ -316,18 +316,40 @@ def merge_llm_into_news_signal(
             if abs(v) >= 0.12  # WEAK_NEWS_THRESHOLD
         }
 
-        # 覆盖原信号中的 theme_scores
+        # 覆盖 theme_scores；文章条数/强弱仍以关键词入选为准（仓位档位读这些字段）。
+        # llm_*_count 是「ETF 判断条数」，绝不能写回 accepted_count，否则 5 文×多 ETF 会灌水。
+        if "_original_accepted_count" not in news_signal:
+            news_signal["_original_accepted_count"] = int(
+                news_signal.get("accepted_count", 0) or 0
+            )
+            news_signal["_original_strong_count"] = int(
+                news_signal.get("strong_count", 0) or 0
+            )
         news_signal["theme_scores"] = llm_theme_scores
         news_signal["source"] = "llm_semantic_scoring"
         news_signal["llm_article_count"] = len(llm_results)
         news_signal["llm_accepted_count"] = llm_accepted
         news_signal["llm_strong_count"] = llm_strong
-        news_signal["accepted_count"] = llm_accepted
-        news_signal["strong_count"] = llm_strong
-        news_signal["weak_count"] = llm_accepted - llm_strong
         news_signal["max_abs_theme"] = round(
             max(abs(v) for v in llm_theme_scores.values()) if llm_theme_scores else 0.0,
             3,
+        )
+        # 仓位档位读 confidence/sentiment：与 LLM theme 对齐，避免关键词置信度压错仓位
+        strong_arts = 0
+        weak_arts = 0
+        for item in llm_results:
+            strengths = [j.get("strength") for j in (item.get("etf_judgments") or [])]
+            if any(s == "strong" for s in strengths):
+                strong_arts += 1
+            elif strengths:
+                weak_arts += 1
+        news_signal["confidence"] = round(
+            min(1.0, 0.20 * strong_arts + 0.04 * weak_arts), 3
+        )
+        market_refs = ("510300", "510050", "510500")
+        market_vals = [llm_theme_scores[c] for c in market_refs if c in llm_theme_scores]
+        news_signal["market_sentiment"] = (
+            round(float(sum(market_vals) / len(market_vals)), 3) if market_vals else 0.0
         )
 
     # 保留原始关键词评分作为参考

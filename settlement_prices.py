@@ -5,13 +5,12 @@
     卖出价     = 当日收盘价（收盘后自动卖出，不留隔夜持仓）
     单笔盈亏   = amount × (当日收盘 − 昨收) / 昨收
 
-这与本项目早期假设的「当日开盘买入、当日收盘卖出」不同——早期假设已被
-daily_pnl.py / run_news_backtest.py / csdn_backtest.py / dashboard_server.py
-分别使用，均需统一改用本模块，确保回测与实盘复盘口径与平台一致。
-
 选股/择时逻辑本身不受影响：features.py 的 ret_1d/ret_3d/ret_5d 等趋势特征
-本来就是收盘价对收盘价计算，与平台结算口径天然一致；仅「回测结算 P&L」
-这一步此前用错了当日开盘价，本模块统一修正。
+本来就是收盘价对收盘价计算，与平台结算口径天然一致。
+
+半截K说明：close≈open 且振幅大 在 Baostock 上也常见（真实平收日），
+不能单独作为拒结算条件。脏价应在拉取阶段用 AkShare≠Baostock 回退修复
+（见 market_data.fetch_etf_hist / repair_incomplete_history）。
 """
 from __future__ import annotations
 
@@ -24,12 +23,15 @@ DATA_DIR = BASE_DIR / "data"
 
 
 def get_close_to_close(code: str, trade_date: str, *, data_dir: Path | None = None) -> tuple[float, float] | None:
-    """返回 (前一交易日收盘价, 当日收盘价)；缺数据或无更早一日收盘时返回 None。"""
+    """返回 (前一交易日收盘价, 当日收盘价)；缺数据或无昨收时返回 None。"""
     path = (data_dir or DATA_DIR) / f"{str(code).zfill(6)}.csv"
     if not path.exists():
         return None
     try:
-        df = pd.read_csv(path).rename(columns={"日期": "date", "开盘": "open", "收盘": "close"})
+        df = pd.read_csv(path).rename(columns={
+            "日期": "date", "开盘": "open", "最高": "high",
+            "最低": "low", "收盘": "close",
+        })
     except Exception:
         return None
     df["date"] = pd.to_datetime(df["date"], errors="coerce")

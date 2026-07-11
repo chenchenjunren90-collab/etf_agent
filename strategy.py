@@ -170,6 +170,33 @@ def build_short_race_reasoning(
     return " ".join(parts)
 
 
+def _drop_stale_bar_names(
+    ranked: list[dict[str, Any]],
+    integrity_ctx: dict[str, Any] | None,
+    *,
+    llm_trace: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    """从排名中剔除 K 线未跟上的标的（尤其进攻池局部陈旧时整体 stale_ratio 仍可能 <50%）。"""
+    per_code = ((integrity_ctx or {}).get("price_audit") or {}).get("per_code") or {}
+    if not per_code or not ranked:
+        return ranked
+    kept: list[dict[str, Any]] = []
+    dropped: list[str] = []
+    for item in ranked:
+        code = str(item.get("code") or "").zfill(6)
+        info = per_code.get(code)
+        if info is not None and not info.get("ok", True):
+            dropped.append(code)
+            continue
+        kept.append(item)
+    if dropped:
+        msg = f"dropped_stale_bars:{','.join(dropped)}"
+        print(f"  剔除陈旧K线标的: {', '.join(dropped)}")
+        if llm_trace is not None:
+            llm_trace.setdefault("hard_rules_applied", []).append(msg)
+    return kept
+
+
 def run_decision(
     date_str: str,
     total_capital: float,
@@ -203,12 +230,12 @@ def run_decision(
     if avg_score is not None and avg_score >= OFFENSIVE_ON_THRESHOLD:
         pool.extend([dict(item) for item in OFFENSIVE_POOL])
         offensive_note = (
-            f"宽基 5 日均涨 {avg_score:+.2f}% ≥ {OFFENSIVE_ON_THRESHOLD}% → "
+            f"宽基复合趋势 {avg_score:+.2f}% ≥ {OFFENSIVE_ON_THRESHOLD}% → "
             f"启用进攻池 (+{len(OFFENSIVE_POOL)} 只)"
         )
     else:
         offensive_note = (
-            f"宽基 5 日均涨 {avg_score:+.2f}% < {OFFENSIVE_ON_THRESHOLD}% → 仅用稳健池"
+            f"宽基复合趋势 {avg_score:+.2f}% < {OFFENSIVE_ON_THRESHOLD}% → 仅用稳健池"
             if avg_score is not None
             else "市场数据不足，仅用稳健池"
         )
@@ -242,17 +269,7 @@ def run_decision(
             "hard_rules_applied": [],
         }
 
-    # LLM cash_decision == stay_cash 直接空仓
-    if llm_decision and llm_decision.get("cash_decision") == "stay_cash":
-        reason = (
-            "LLM 判定 stay_cash："
-            f"{llm_decision.get('summary_zh') or llm_decision.get('regime_reason') or ''}"
-        )
-        if llm_trace:
-            llm_trace["hard_rules_applied"].append("llm_stay_cash")
-        print(f"  LLM stay_cash → 空仓。{reason}")
-        return _empty_cash_result(date_str, total_capital, ranked, theme_signals, reason,
-                                  llm_trace=llm_trace)
+    ranked = _drop_stale_bar_names(ranked, integrity_ctx, llm_trace=llm_trace)
 
     # LLM per_etf_view 覆盖 theme scores 并重新排序（行情陈旧时跳过）
     if block_llm and llm_trace:
@@ -266,6 +283,31 @@ def run_decision(
                 for s in ranked[:3]
             )
             print(f"  TOP3 (LLM-rescored): {top3}")
+        ranked = _drop_stale_bar_names(ranked, integrity_ctx, llm_trace=llm_trace)
+    # stay_cash 放在重打分之后；行情陈旧时忽略 LLM 空仓建议（与 rescore 同口径）
+    if (
+        llm_decision
+        and llm_decision.get("cash_decision") == "stay_cash"
+        and not block_llm
+    ):
+        top0 = float(ranked[0]["score"]) if ranked else 0.0
+        reason = (
+            "LLM 建议 stay_cash："
+            f"{llm_decision.get('summary_zh') or llm_decision.get('regime_reason') or ''}"
+        )
+        if top0 < SCORE_GATE:
+            if llm_trace:
+                llm_trace["hard_rules_applied"].append("llm_stay_cash")
+            print(f"  LLM stay_cash + 最高分{top0:.1f}<{SCORE_GATE} → 空仓。{reason}")
+            return _empty_cash_result(date_str, total_capital, ranked, theme_signals, reason,
+                                      llm_trace=llm_trace)
+        if llm_trace:
+            llm_trace["hard_rules_applied"].append("llm_stay_cash_ignored_score_above_gate")
+        print(
+            f"  LLM stay_cash 忽略（最高分{top0:.1f}>={SCORE_GATE}，由规则继续决策）。{reason}"
+        )
+    elif block_llm and llm_decision and llm_decision.get("cash_decision") == "stay_cash" and llm_trace:
+        llm_trace["hard_rules_applied"].append("llm_stay_cash_ignored_stale_prices")
 
     print("[Step 2/4] Evaluating market regime...")
     invest_ratio, market_reason = evaluate_market_regime(date_str)
@@ -273,18 +315,17 @@ def run_decision(
         invest_ratio, market_reason, theme_signals
     )
 
-    # 与 LLM 的 position_ratio_hint 取 min（行情陈旧时忽略 LLM 仓位提示）
-    if llm_decision and "position_ratio_hint" in llm_decision and not block_llm:
+    # LLM position_ratio_hint 仅审计：仓位由 regime + 新闻 + 经济日历 + stable
+    # 决定。校正后全链路回测显示 min(规则, hint) 系统性压仓，抹掉规则 alpha。
+    if llm_decision and "position_ratio_hint" in llm_decision:
         hint = float(llm_decision.get("position_ratio_hint") or 0.0)
         hint = max(0.0, min(1.0, hint))
-        if hint < invest_ratio:
-            old_ratio = invest_ratio
-            invest_ratio = hint
-            market_reason = f"{market_reason}；LLM 建议 {hint:.0%} (规则 {old_ratio:.0%})，取较低值"
-            if llm_trace:
-                llm_trace["hard_rules_applied"].append("llm_lower_ratio")
-    elif block_llm and llm_decision and "position_ratio_hint" in llm_decision and llm_trace:
-        llm_trace["hard_rules_applied"].append("llm_ratio_hint_ignored_stale_prices")
+        if llm_trace:
+            llm_trace["position_ratio_hint_audit"] = hint
+            if block_llm:
+                llm_trace["hard_rules_applied"].append("llm_ratio_hint_ignored_stale_prices")
+            else:
+                llm_trace["hard_rules_applied"].append("llm_ratio_hint_ignored_rules_own_sizing")
 
     force_cap = os.environ.get("FORCE_POSITION_CAP", "").strip()
     if force_cap:
@@ -318,15 +359,27 @@ def run_decision(
             if llm_trace:
                 llm_trace["hard_rules_applied"].append(f"econ_tier_cap_{econ_cap:.0%}")
 
-    # 评分闸门（行情陈旧时禁用 LLM 动态降闸，避免用过时叙事放宽入场）
+    # 评分闸门（默认 static；仅 SCORE_GATE_MODE=dynamic 时允许降闸）
     top_score = float(ranked[0]["score"]) if ranked else 0.0
+    gate_mode = os.environ.get("SCORE_GATE_MODE", "static").strip().lower()
     override = theme_signals.get("score_gate_override")
-    effective_gate = float(override) if override is not None else SCORE_GATE
+    effective_gate = float(SCORE_GATE)
     gate_note = ""
     if (
         not block_llm
-        and os.environ.get("SCORE_GATE_MODE", "").strip().lower() == "dynamic"
+        and gate_mode == "dynamic"
+        and override is not None
+    ):
+        effective_gate = float(override)
+        if effective_gate < SCORE_GATE:
+            gate_note = f"（LLM 动态闸门 {SCORE_GATE}→{effective_gate}）"
+            if llm_trace:
+                llm_trace["hard_rules_applied"].append("score_gate_lowered_by_llm")
+    elif (
+        not block_llm
+        and gate_mode == "dynamic"
         and llm_decision
+        and override is None
     ):
         per_view = llm_decision.get("per_etf_view") or []
         if per_view:
@@ -336,7 +389,7 @@ def run_decision(
                 gate_note = f"（LLM 强信号 max|score|={max_abs:.2f} → 闸门 {SCORE_GATE}→{effective_gate}）"
                 if llm_trace:
                     llm_trace["hard_rules_applied"].append("score_gate_lowered_by_llm")
-    elif block_llm and llm_trace and os.environ.get("SCORE_GATE_MODE", "").strip().lower() == "dynamic":
+    elif block_llm and llm_trace and gate_mode == "dynamic":
         llm_trace["hard_rules_applied"].append("score_gate_dynamic_blocked_stale_prices")
     if invest_ratio > 0 and top_score < effective_gate:
         invest_ratio = 0.0
@@ -361,7 +414,17 @@ def run_decision(
     print("[Step 3/4] Allocating concentrated race portfolio...")
     dyn_max = short_race_max_positions(theme_signals)
     if stability_max_positions is not None:
-        dyn_max = min(dyn_max, stability_max_positions)
+        # 稳健层在强/中等信号下解锁的仓位数是「应能开到」的档位，
+        # 不能被新闻层更严的 1 仓 min() 短路，否则高仓路径形同虚设。
+        # 弱信号/防守日仍用 min，保持低仓。
+        strong_or_mod = bool(
+            stability_audit
+            and (stability_audit.get("strong_setup") or stability_audit.get("moderate_setup"))
+            and not stability_audit.get("weak_signal")
+        )
+        if strong_or_mod:
+            dyn_max = max(dyn_max, int(stability_max_positions))
+        dyn_max = min(dyn_max, int(stability_max_positions))
 
     concentration_audit: dict[str, Any] | None = None
     if integrity_ctx:
@@ -392,7 +455,17 @@ def run_decision(
                 if llm_trace:
                     llm_trace["hard_rules_applied"].append("score_gate_after_tilt")
 
-    result = allocate_short_race(ranked, total_capital, invest_ratio, max_positions=dyn_max)
+    result = allocate_short_race(
+        ranked,
+        total_capital,
+        invest_ratio,
+        max_positions=dyn_max,
+        max_single_weight=(
+            float(stability_audit["max_single_weight"])
+            if stability_audit and stability_audit.get("max_single_weight") is not None
+            else None
+        ),
+    )
     result["date"] = date_str
     result["ranked"] = ranked[:10]
     result["theme_signals"] = {

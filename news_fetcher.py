@@ -53,12 +53,25 @@ def _parse_time(value: str, trade_date: str) -> datetime | None:
     return None
 
 
+def _fetch_window_start(trade_date: str, cutoff_time: str) -> datetime:
+    """抓取窗口起点：上一交易日 15:00 再往前 48h（供 stale 层），周末/节假日随日历拉长。
+
+    旧实现固定 cutoff-60h，周一 09:30 起点落在周六上午，会丢掉周五盘后新闻。
+    """
+    cutoff = pd.to_datetime(f"{trade_date} {cutoff_time}").to_pydatetime()
+    try:
+        from news_time_split import post_close_cutoff
+
+        return post_close_cutoff(trade_date) - timedelta(hours=48)
+    except Exception:
+        return cutoff - timedelta(hours=84)
+
+
 def _before_cutoff(ts: datetime | None, trade_date: str, cutoff_time: str) -> bool:
     if ts is None:
         return True
     cutoff = pd.to_datetime(f"{trade_date} {cutoff_time}").to_pydatetime()
-    # 收纳「前一交易日盘后~当日 09:30」的隔夜新闻；含周末时窗口自动扩大。
-    start = cutoff - timedelta(hours=60)
+    start = _fetch_window_start(trade_date, cutoff_time)
     return start <= ts <= cutoff
 
 

@@ -15,6 +15,7 @@ DATA_DIR = BASE_DIR / "data"
 
 # 允许比「最近已完成交易日」落后几天仍算可用（周末/小长假后首日等）
 DEFAULT_MAX_LAG_DAYS = 3
+INCOMPLETE_REPAIR_MIN_CLOSE_DIFF = 0.01
 
 
 @contextmanager
@@ -57,26 +58,25 @@ def _normalize_df(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def latest_trade_date(as_of: date | None = None) -> date:
-    """截至 as_of 的最近一个交易日（跳过周末）。"""
-    d = as_of or datetime.now().date()
-    while d.weekday() >= 5:
-        d -= timedelta(days=1)
-    return d
+    """截至 as_of 的最近一个交易日（周末 + 法定休市）。"""
+    from trading_calendar import latest_trading_day
+
+    return latest_trading_day(as_of)
 
 
 def latest_completed_trade_date(as_of: datetime | None = None) -> date:
     """最近一个已有完整日 K 的交易日（09:30 开盘前决策用）。
 
     A 股 15:00 收盘；16:00 前认为「当日 K 线尚未落定」，目标回退到上一交易日。
-    周一 09:25 运行时应接受 CSV 末日为上周五，而不是强求含「今天」。
+    周一/节后开盘前运行时应接受 CSV 末日为上一交易日，而不是强求含「今天」。
     """
+    from trading_calendar import is_trading_day, latest_trading_day
+
     now = as_of or datetime.now()
     d = now.date()
-    if d.weekday() < 5 and now.time() < dt_time(16, 0):
+    if is_trading_day(d) and now.time() < dt_time(16, 0):
         d -= timedelta(days=1)
-    while d.weekday() >= 5:
-        d -= timedelta(days=1)
-    return d
+    return latest_trading_day(d)
 
 
 def _csv_date_column(path: Path) -> str:
@@ -369,25 +369,140 @@ def _fetch_tushare(code: str, start: str, end: str) -> pd.DataFrame | None:
         return None
 
 
-def fetch_etf_hist(code: str, *, days: int = 800) -> tuple[pd.DataFrame | None, str]:
-    """优先 AkShare；失败时回退 Baostock（同为前复权，见 QFQ_CONSISTENT_SOURCES）。
+def bar_row_looks_incomplete(row: pd.Series | dict[str, Any]) -> bool:
+    """Detect half-baked daily bars (close stuck near open while range is wide).
 
-    2026-07 实测：东方财富/AkShare 连续多日 ConnectionError，导致 CSV 停在
-    7/8，决策用过时K线。Baostock 仍可拿到 7/9 收盘，且 adjustflag=2 前复权
-    与本地历史口径一致，故作为第二源启用。Tushare fund_daily 仍不启用
-    （不复权，会污染历史）。
+    2026-07-10 AkShare returned 588000 close≈open (2.333/2.334) with a real
+    high/low range; Baostock close was 2.209 (−5%). That corrupted settlement.
+    """
+    try:
+        o = float(row["open"])
+        c = float(row["close"])
+        h = float(row["high"])
+        low = float(row["low"])
+    except Exception:
+        return False
+    if o <= 0:
+        return False
+    near_open = abs(c - o) / o < 0.005
+    wide_range = (h - low) / o > 0.02
+    return bool(near_open and wide_range)
+
+
+def _last_bar_looks_incomplete(df: pd.DataFrame) -> bool:
+    if df is None or len(df) < 1:
+        return False
+    return bar_row_looks_incomplete(df.iloc[-1])
+
+
+def repair_incomplete_history(code: str, *, lookback: int = 40) -> dict[str, Any]:
+    """Scan recent local CSV rows; replace incomplete bars from Baostock.
+
+    Only the fetch last-bar check is not enough — older half-bars stay in CSV
+    and poison ret_1d/ret_5d. Call after each successful update.
+    """
+    code = str(code).zfill(6)
+    path = DATA_DIR / f"{code}.csv"
+    result: dict[str, Any] = {"code": code, "repaired_dates": [], "ok": False}
+    if not path.exists():
+        return result
+    try:
+        local = pd.read_csv(path)
+        col = "日期" if "日期" in local.columns else "date"
+        local = local.rename(columns={
+            col: "date", "开盘": "open", "最高": "high",
+            "最低": "low", "收盘": "close", "成交量": "volume",
+        })
+        local["date"] = pd.to_datetime(local["date"], errors="coerce")
+        for c in ("open", "high", "low", "close", "volume"):
+            if c in local.columns:
+                local[c] = pd.to_numeric(local[c], errors="coerce")
+        local = local.dropna(subset=["date", "close"]).sort_values("date").reset_index(drop=True)
+    except Exception:
+        return result
+
+    if local.empty:
+        return result
+    tail = local.tail(lookback)
+    bad_idx = [int(i) for i in tail.index if bar_row_looks_incomplete(local.loc[i])]
+    if not bad_idx:
+        result["ok"] = True
+        return result
+
+    end = datetime.now().strftime("%Y%m%d")
+    start = (datetime.now() - timedelta(days=max(lookback * 2, 120))).strftime("%Y%m%d")
+    bs = _fetch_baostock(code, start, end)
+    if bs is None or bs.empty:
+        return result
+
+    bs = bs.copy()
+    bs["date"] = pd.to_datetime(bs["date"], errors="coerce")
+    bs_by_date = {d.normalize(): r for d, r in zip(bs["date"], bs.itertuples(index=False)) if pd.notna(d)}
+
+    repaired: list[str] = []
+    for i in bad_idx:
+        d = pd.to_datetime(local.at[i, "date"]).normalize()
+        src = bs_by_date.get(d)
+        if src is None:
+            continue
+        try:
+            src_open = float(src.open)
+            src_high = float(src.high)
+            src_low = float(src.low)
+            src_close = float(src.close)
+            local_close = float(local.at[i, "close"])
+        except (TypeError, ValueError):
+            continue
+        if (
+            min(src_open, src_high, src_low, src_close) <= 0
+            or src_high < max(src_open, src_close)
+            or src_low > min(src_open, src_close)
+            or src_high < src_low
+        ):
+            continue
+        close_diff = abs(src_close - local_close) / max(abs(src_close), 1e-9)
+        if close_diff < INCOMPLETE_REPAIR_MIN_CLOSE_DIFF:
+            # The shape heuristic also matches legitimate flat-close sessions.
+            # Repair only when the independent source confirms a real mismatch.
+            continue
+        local.at[i, "open"] = src_open
+        local.at[i, "high"] = src_high
+        local.at[i, "low"] = src_low
+        local.at[i, "close"] = src_close
+        if hasattr(src, "volume") and src.volume is not None:
+            local.at[i, "volume"] = float(src.volume)
+        repaired.append(d.strftime("%Y-%m-%d"))
+
+    if repaired:
+        save_etf_csv(code, local, source="baostock")
+    result["repaired_dates"] = repaired
+    result["ok"] = True
+    return result
+
+
+def fetch_etf_hist(code: str, *, days: int = 800) -> tuple[pd.DataFrame | None, str]:
+    """优先 AkShare；失败或末日K线异常时回退 Baostock（同为前复权）。
+
+    2026-07 实测：东方财富/AkShare 连续多日 ConnectionError，或收盘后仍返回
+    「收盘≈开盘」的半截K线。Baostock adjustflag=2 前复权与本地口径一致。
+    Tushare fund_daily 仍不启用（不复权，会污染历史）。
     """
     end = datetime.now().strftime("%Y%m%d")
     start = (datetime.now() - timedelta(days=days)).strftime("%Y%m%d")
     code = str(code).zfill(6)
 
     df = _fetch_akshare(code, start, end)
-    if df is not None:
+    if df is not None and not _last_bar_looks_incomplete(df):
         return df, "akshare"
 
-    df = _fetch_baostock(code, start, end)
-    if df is not None:
-        return df, "baostock"
+    df_bs = _fetch_baostock(code, start, end)
+    if df_bs is not None:
+        return df_bs, "baostock"
+
+    # 末日半截K且 Baostock 不可用时，宁可不更新也不写入可疑收盘价
+    # （2026-07-10 AkShare 588000 close≈open 而真实收盘差 5%+）。
+    if df is not None and not _last_bar_looks_incomplete(df):
+        return df, "akshare"
 
     return None, "none"
 
@@ -406,8 +521,13 @@ def save_etf_csv(code: str, df: pd.DataFrame, *, source: str = "akshare") -> Pat
 
     out = df.copy()
     out["date"] = pd.to_datetime(out["date"])
+    for col in ("open", "high", "low", "close", "volume"):
+        if col in out.columns:
+            out[col] = pd.to_numeric(out[col], errors="coerce")
 
-    if source not in QFQ_CONSISTENT_SOURCES and path.exists():
+    # Always merge into existing history when local file is longer / has older
+    # dates — never let a short repair window truncate multi-year CSV.
+    if path.exists():
         try:
             existing = pd.read_csv(path)
             col = "日期" if "日期" in existing.columns else "date"
@@ -415,13 +535,31 @@ def save_etf_csv(code: str, df: pd.DataFrame, *, source: str = "akshare") -> Pat
                 col: "date", "开盘": "open", "最高": "high",
                 "最低": "low", "收盘": "close", "成交量": "volume",
             })
-            existing["date"] = pd.to_datetime(existing["date"])
-            new_dates_only = out[~out["date"].isin(existing["date"])]
-            out = pd.concat([existing, new_dates_only], ignore_index=True)
-            out = out.sort_values("date").reset_index(drop=True)
+            existing["date"] = pd.to_datetime(existing["date"], errors="coerce")
+            for c in ("open", "high", "low", "close", "volume"):
+                if c in existing.columns:
+                    existing[c] = pd.to_numeric(existing[c], errors="coerce")
+            existing = existing.dropna(subset=["date"]).sort_values("date")
+
+            if source not in QFQ_CONSISTENT_SOURCES:
+                # Non-qfq sources: only append brand-new dates.
+                new_dates_only = out[~out["date"].isin(existing["date"])]
+                out = pd.concat([existing, new_dates_only], ignore_index=True)
+            else:
+                # Qfq-consistent: upsert by date, keep older local rows not in fetch.
+                combined = pd.concat([existing, out], ignore_index=True)
+                combined = combined.dropna(subset=["date", "close"])
+                combined = combined.sort_values("date").drop_duplicates("date", keep="last")
+                out = combined.reset_index(drop=True)
         except Exception:
             pass  # 本地文件损坏时退化为整份覆盖，保底可用
 
+    out = out.sort_values("date").reset_index(drop=True)
+    # Canonical column order used across the repo (AkShare-style).
+    ordered_cols = ["date", "open", "close", "high", "low", "volume"]
+    keep = [c for c in ordered_cols if c in out.columns]
+    extras = [c for c in out.columns if c not in keep and c != "date"]
+    out = out[keep + extras]
     out = out.rename(columns={
         "date": "日期", "open": "开盘", "high": "最高",
         "low": "最低", "close": "收盘", "volume": "成交量",
@@ -460,6 +598,7 @@ def update_one_etf(
             pytime.sleep(1.5)
             continue
         save_etf_csv(code, df, source=src)
+        repair = repair_incomplete_history(code, lookback=40)
         return {
             "code": code,
             "name": name,
@@ -467,10 +606,12 @@ def update_one_etf(
             "source": src,
             "last_date": str(df_last_date(df)),
             "degraded": False,
+            "repaired_dates": repair.get("repaired_dates") or [],
         }
 
     existing_last = csv_last_date(code)
     if existing_last is not None and (target - existing_last).days <= stale_tolerance_days:
+        repair = repair_incomplete_history(code, lookback=40)
         return {
             "code": code,
             "name": name,
@@ -479,6 +620,7 @@ def update_one_etf(
             "last_date": str(existing_last),
             "error": last_err,
             "degraded": True,
+            "repaired_dates": repair.get("repaired_dates") or [],
         }
 
     return {
@@ -566,6 +708,7 @@ def _read_csv(code: str, date_str: str | None = None) -> pd.DataFrame | None:
         if date_str:
             cutoff = pd.to_datetime(date_str, errors="coerce")
             if pd.notna(cutoff):
+                # 含当日行供新鲜度校验；决策侧 features 会再截成 date < date_str
                 df = df[df["date"] <= cutoff]
         return df.reset_index(drop=True) if len(df) >= 20 else None
     except Exception:

@@ -32,7 +32,8 @@ ECON_TIER2_CAP = 0.75   # 3-5条高影响
 ECON_TIER3_CAP = 0.65   # 6+条高影响
 
 # 评分闸门动态模式：环境变量 SCORE_GATE_MODE=dynamic 时，
-# LLM 强信号(max|score|>=0.5)可将闸门降至 SCORE_GATE_DYNAMIC_FLOOR(42)
+# LLM 强信号(max|score|>=0.5)可将闸门降至 SCORE_GATE_DYNAMIC_FLOOR(42)。
+# 默认 static：校正后全链路显示动态降闸放宽入场，拖累规则 alpha。
 SCORE_GATE_DYNAMIC_FLOOR = 42.0
 
 # 轮动惩罚参数
@@ -232,11 +233,11 @@ def rank_etfs_short_race(pool, date_str=None):
 
 
 def _inject_llm_views_into_signals(theme_signals, llm_decision):
-    """将大模型态度分注入到主题信号中（三条使用路径）。
+    """将大模型态度分注入到主题信号中。
 
     路径 1: 覆盖主题分 — LLM 对某 ETF 的态度分直接替换该 ETF 的主题信号
-    路径 2: 降低评分闸门 — max|score| >= 0.5 时闸门从 SCORE_GATE(50) 降至 SCORE_GATE_DYNAMIC_FLOOR(42)
-    路径 3: 仓位比例提示 — 取 min(LLM 建议比例, 规则计算比例)
+    路径 2: 降低评分闸门 — 仅当 SCORE_GATE_MODE=dynamic 且 max|score|>=0.5
+    路径 3: 仓位比例提示 — 仅写入 theme_signals 供审计；strategy 不再用 hint 压仓
     """
     if not llm_decision or not isinstance(llm_decision, dict):
         return theme_signals
@@ -268,9 +269,9 @@ def _inject_llm_views_into_signals(theme_signals, llm_decision):
     theme_signals["llm_hints"] = llm_hints
     theme_signals["llm_max_abs_score"] = max_abs
 
-    # 路径 2: 降低评分闸门
+    # 路径 2: 降低评分闸门（仅 SCORE_GATE_MODE=dynamic 显式开启时）
     if max_abs >= 0.5:
-        gate_mode = os.environ.get("SCORE_GATE_MODE", "dynamic")
+        gate_mode = os.environ.get("SCORE_GATE_MODE", "static").strip().lower()
         if gate_mode == "dynamic":
             theme_signals["score_gate_override"] = SCORE_GATE_DYNAMIC_FLOOR
 

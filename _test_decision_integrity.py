@@ -83,10 +83,27 @@ def test_no_history():
     assert max_pos == 1
 
 
+def test_missing_csv_date_is_not_treated_as_holiday():
+    import pandas as pd
+
+    import market_data
+    from trading_calendar import is_trading_day
+
+    original = market_data._ref_trade_dates
+    market_data._ref_trade_dates = lambda: pd.Series(
+        pd.to_datetime(["2026-07-08", "2026-07-10"])
+    )
+    try:
+        assert is_trading_day("2026-07-09") is True
+    finally:
+        market_data._ref_trade_dates = original
+
+
 if __name__ == "__main__":
     test_streak_counts()
     test_default_off_matches_stable_profit_bias()
     test_near_tie_tilts_and_may_flip()
     test_clear_lead_skips_tilt()
     test_no_history()
+    test_missing_csv_date_is_not_treated_as_holiday()
     print("OK")
