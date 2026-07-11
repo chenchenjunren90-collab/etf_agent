@@ -47,6 +47,7 @@ APP_FILES = [
     "competition_guard.py",
     "dashboard_server.py",
     "dashboard.html",
+    "docs.html",
     "etf_agent_chat.py",
     "info_collector.py",
     "live_personal_runner.py",

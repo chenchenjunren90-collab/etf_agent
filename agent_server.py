@@ -16,6 +16,7 @@ import time
 import webbrowser
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
@@ -519,6 +520,18 @@ class AgentHandler(BaseHTTPRequestHandler):
         # Support reverse-proxy prefix /etf-agent/chat/
         if path in ("/", "/index.html", "/etf-agent/chat", "/etf-agent/chat/"):
             data = CHAT_HTML.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+            return
+        if path in ("/docs", "/docs.html", "/etf-agent/chat/docs", "/etf-agent/chat/docs.html"):
+            docs_path = Path(__file__).resolve().parent / "docs.html"
+            if not docs_path.exists():
+                self.send_error(404, "docs.html missing")
+                return
+            data = docs_path.read_bytes()
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(data)))
