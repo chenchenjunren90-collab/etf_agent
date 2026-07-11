@@ -5,8 +5,6 @@
 ## 在线体验
 
 - 智能体交互前端：<http://chinaglass.shop/etf-agent/chat/>
-- 比赛建议看板：<http://chinaglass.shop/etf-agent/>
-- 当日比赛格式接口：<http://chinaglass.shop/etf-agent/api/today_advice>
 
 ## 主要能力
 
