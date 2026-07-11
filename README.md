@@ -4,9 +4,9 @@
 
 ## 在线体验
 
-- 智能体交互前端：<https://chinaglass.shop/etf-agent/chat/>
-- 项目说明文档：<https://chinaglass.shop/etf-agent/chat/docs>
-- 备用入口（IP）：<https://39.105.104.230/etf-agent/chat/>
+- 智能体交互前端：<http://39.105.104.230/etf-agent/chat/>
+- 项目说明文档：<http://39.105.104.230/etf-agent/chat/docs>
+- 域名入口：<http://chinaglass.shop/etf-agent/chat/>
 
 ## 主要能力
 
