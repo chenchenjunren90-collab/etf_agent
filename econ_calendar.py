@@ -409,10 +409,22 @@ def load_econ_payload(
         if cached:
             return cached
 
-    target_dates = [
-        (datetime.strptime(iso_date, "%Y-%m-%d") - timedelta(days=i)).strftime("%Y-%m-%d")
-        for i in range(lookback_days, -1, -1)
-    ]
+    # 覆盖上一交易日→今日（周一/节后自动含周五），避免 lookback_days=1 只拿到周日空窗
+    try:
+        from news_time_split import previous_trade_date
+
+        prev = previous_trade_date(iso_date)
+        end = datetime.strptime(iso_date, "%Y-%m-%d").date()
+        target_dates: list[str] = []
+        cur = prev
+        while cur <= end:
+            target_dates.append(cur.strftime("%Y-%m-%d"))
+            cur += timedelta(days=1)
+    except Exception:
+        target_dates = [
+            (datetime.strptime(iso_date, "%Y-%m-%d") - timedelta(days=i)).strftime("%Y-%m-%d")
+            for i in range(lookback_days, -1, -1)
+        ]
 
     events: list[dict[str, Any]] = []
     source_used: list[str] = []

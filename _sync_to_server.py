@@ -21,6 +21,7 @@ APP_FILES = [
     "strategy.py",
     "decision_integrity.py",
     "stability_risk.py",
+    "trading_calendar.py",
     "daily_job.py",
     "daily_pnl.py",
     "daily_run_guard.py",
@@ -134,6 +135,26 @@ def main() -> None:
         sftp.put(str(src), dst)
         uploaded.append(name)
         print("UP", name)
+
+    # Sync ALL_POOL CSVs so server settlement/features match local repairs
+    print("--- csv ---")
+    try:
+        from pool import ALL_POOL
+    except Exception as exc:
+        print("SKIP csv import", exc)
+        ALL_POOL = []
+    run(ssh, f"mkdir -p {REMOTE}/data")
+    csv_n = 0
+    for item in ALL_POOL:
+        code = str(item["code"]).zfill(6)
+        src = LOCAL / "data" / f"{code}.csv"
+        if not src.exists():
+            print("SKIP missing csv", code)
+            continue
+        sftp.put(str(src), f"{REMOTE}/data/{code}.csv")
+        csv_n += 1
+        print("UP csv", code)
+    print(f"CSV synced: {csv_n}")
 
     print("--- compile ---")
     compile_targets = " ".join(

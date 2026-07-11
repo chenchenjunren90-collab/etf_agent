@@ -364,7 +364,7 @@ def build_news_signal(
     strong_count = sum(1 for item in accepted if item.get("quality") == "strong")
     weak_count = sum(1 for item in accepted if item.get("quality") == "weak")
     confidence = min(1.0, 0.20 * strong_count + 0.04 * weak_count)
-    market_refs = ("510300", "159915", "588000")
+    market_refs = ("510300", "510050", "510500")
     market_values = [theme_scores[c] for c in market_refs if c in theme_scores]
     market_sentiment = round(float(sum(market_values) / len(market_values)), 3) if market_values else 0.0
     catalyst_hits = sum(

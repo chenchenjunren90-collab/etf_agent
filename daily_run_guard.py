@@ -20,8 +20,23 @@ def daily_submit_path(date_str: str) -> Path:
 
 
 def has_daily_run(date_str: str) -> bool:
-    """True if this date already has a completed daily_job output."""
-    return daily_full_path(date_str).is_file()
+    """True only for a completed pipeline output (not fatal_fallback / corrupt).
+
+    fatal_fallback writes strategy_result=None so the day can be retried without
+    --force after a crash. Intentional empty-cash days still count (strategy_result dict).
+    """
+    path = daily_full_path(date_str)
+    if not path.is_file():
+        return False
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return False
+    if not isinstance(data, dict):
+        return False
+    if data.get("mode") == "fatal_fallback":
+        return False
+    return data.get("strategy_result") is not None
 
 
 def load_submit(date_str: str) -> list[dict[str, Any]]:

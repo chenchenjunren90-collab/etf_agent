@@ -18,7 +18,6 @@ from typing import Any
 
 from competition_guard import COMPETITION_CAPITAL, personal_output_paths
 from daily_job import (
-    build_daily_news_signal,
     build_llm_decision,
     to_competition_output,
 )
@@ -56,12 +55,9 @@ def _load_news_base(date_str: str, *, allow_fetch: bool = True) -> dict[str, Any
             _log(f"news base read failed: {exc}")
     if not allow_fetch:
         return {}
-    _log("news base missing → building from sources (writes news signal only)")
-    try:
-        return build_daily_news_signal(date_str, "09:30")
-    except Exception as exc:
-        _log(f"news build failed: {exc}")
-        return {}
+    # 个人路径禁止重建共享 daily_news_signal，避免污染比赛新闻缓存
+    _log("news base missing → skip fetch (personal path must not overwrite shared news)")
+    return {}
 
 
 def _apply_risk_env(risk: str) -> str | None:
@@ -151,7 +147,9 @@ def run_live_personal_advice(
     avoid_codes = [str(c).zfill(6) for c in (avoid_codes or [])]
     capital = float(capital)
 
-    if datetime.strptime(date_str, "%Y-%m-%d").weekday() >= 5:
+    from trading_calendar import is_trading_day
+
+    if not is_trading_day(date_str):
         return {
             "ok": False,
             "live": True,

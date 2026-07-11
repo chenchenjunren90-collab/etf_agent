@@ -389,7 +389,7 @@
       <div class="card span2">
         <div class="label">策略持仓明细</div>
         <table>
-          <thead><tr><th>代码</th><th>权重</th><th>分数</th><th>理由</th></tr></thead>
+          <thead><tr><th>代码</th><th>实际权重</th><th>分数</th><th>理由</th></tr></thead>
           <tbody id="holdRows"></tbody>
         </table>
       </div>
@@ -568,8 +568,7 @@
       var sys = data.system_info || {};
       var viewDate = data.view_date || sys.today;
       var isToday = viewDate === sys.today;
-      var afterClose = !sys.today_is_weekend;
-      if (!isToday || !afterClose || !pnl || !pnl.pending) return;
+      if (!isToday || sys.today_is_weekend || !pnl || !pnl.pending) return;
       pnlPollTimer = setInterval(function() {
         loadStatus();
       }, 180000);
@@ -599,7 +598,7 @@
       var sys = data.system_info || {};
 
       var badges = [
-        '<span class="pill">50万虚拟资金 · 最多3只ETF · 日内交易</span>'
+        '<span class="pill">50万虚拟资金 · 最多3只ETF · 昨收→今收结算</span>'
       ];
       if (sys.today_is_weekend) {
         badges.push('<span class="pill yellow">今日休市 · ' + (sys.weekday_name || '') + '</span>');
@@ -657,9 +656,21 @@
       var holds = summary.held_stocks || [];
       var holdHtml = "";
       for (var i = 0; i < holds.length; i++) {
-        holdHtml += "<tr><td>" + holds[i].code + "<br><span class='small'>" + holds[i].name + "</span></td><td>" + (holds[i].target_weight || holds[i].weight || "--") + "%</td><td>" + (holds[i].score || "--") + "</td><td class='small'>" + (holds[i].reason || "") + "</td></tr>";
+        // 显示实际动用权重(weight)，不用 target_weight（后者按 invest_ratio 理论值，会虚高）
+        var w = holds[i].weight != null ? holds[i].weight : holds[i].target_weight;
+        holdHtml += "<tr><td>" + holds[i].code + "<br><span class='small'>" + holds[i].name + "</span></td><td>" + (w != null ? w : "--") + "%</td><td>" + (holds[i].score || "--") + "</td><td class='small'>" + (holds[i].reason || "") + "</td></tr>";
       }
-      document.getElementById("holdRows").innerHTML = holdHtml || '<tr><td colspan="4" class="small">暂无持仓</td></tr>';
+      var util = summary.utilization_rate;
+      var ir = summary.invest_ratio;
+      var utilLine = "";
+      if (util != null || ir != null) {
+        utilLine = "<tr><td colspan='4' class='small'>实际动用 " +
+          (util != null ? util + "%" : "--") +
+          " · 规则目标仓位 " +
+          (ir != null ? Math.round(Number(ir) * 100) + "%" : "--") +
+          "（稳中求盈利：高仓少见，弱市可空）</td></tr>";
+      }
+      document.getElementById("holdRows").innerHTML = (holdHtml + utilLine) || '<tr><td colspan="4" class="small">暂无持仓</td></tr>';
 
       var kwHtml = "";
       var kws = news.hot_keywords || [];

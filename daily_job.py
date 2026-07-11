@@ -78,8 +78,12 @@ def _check_critical_data_quality(
     DATA_QUALITY_WARN_FLAGS = []
 
     # --- 新闻质量检查 ---
-    article_count = news_signal.get("article_count", 0)
-    accepted_count = news_signal.get("accepted_count", 0)
+    article_count = int(news_signal.get("article_count", 0) or 0)
+    accepted_count = int(news_signal.get("fresh_accepted_count", 0) or 0)
+    if "fresh_accepted_count" not in news_signal:
+        # 仅当缺字段时用文章列表长度，避免旧 JSON 的 accepted_count=fresh+stale 灌水
+        arts = news_signal.get("fresh_accepted_articles") or news_signal.get("accepted_articles") or []
+        accepted_count = len(arts) if isinstance(arts, list) else 0
     strong_count = news_signal.get("strong_count", 0)
     max_abs = news_signal.get("max_abs_theme", 0.0)
 
@@ -153,8 +157,10 @@ def _consecutive_up_days(df: pd.DataFrame) -> int:
 
 
 def build_trend_context(date_str: str) -> dict[str, dict[str, Any]]:
+    from pool import ALL_POOL
+
     context: dict[str, dict[str, Any]] = {}
-    for item in TRADING_POOL:
+    for item in ALL_POOL:
         code = item["code"]
         df = _get_price_for_decision(code, date_str)
         features = _calc_short_race_features(df)
@@ -168,14 +174,15 @@ def build_trend_context(date_str: str) -> dict[str, dict[str, Any]]:
 
 
 def _split_articles_by_close(articles: list[dict], date_str: str) -> tuple[list[dict], list[dict]]:
-    """按上一交易日 15:00 切分：盘后新鲜 vs 更早陈旧（周一用周五 15:00）。"""
-    from news_time_split import post_close_cutoff, split_articles_by_post_close
+    """按上一交易日 15:00 切分；周一额外把周末桥接段降权并入 stale。"""
+    from news_time_split import describe_split_policy, split_articles_by_post_close
 
     fresh, stale, cutoff = split_articles_by_post_close(articles, date_str)
     prev = cutoff.date()
     log(
-        f"新闻时间切割(>{prev} 15:00 为新鲜): "
-        f"新鲜 {len(fresh)} 条, 陈旧 {len(stale)} 条"
+        f"新闻时间切割({describe_split_policy(date_str)}): "
+        f"新鲜 {len(fresh)} 条, 陈旧/降权 {len(stale)} 条 "
+        f"(上一日收盘锚点 {prev} 15:00)"
     )
     return fresh, stale
 
@@ -204,11 +211,14 @@ def _process_news_pool(articles: list[dict], trend_context: dict, pool_codes: li
 
 
 def build_daily_news_signal(date_str: str, cutoff_time: str) -> dict[str, Any]:
+    from pool import ALL_POOL
+
     log(f"抓取 {date_str} {cutoff_time} 前可用新闻...")
     articles = fetch_news_articles(date_str, cutoff_time=cutoff_time)
     log(f"抓到新闻 {len(articles)} 条，开始按时间分层处理...")
     trend_context = build_trend_context(date_str)
-    pool_codes = [str(item["code"]).zfill(6) for item in TRADING_POOL]
+    # 含进攻池：宽基走强时进攻票会入赛，需提前有新闻分，避免排名不对称
+    pool_codes = [str(item["code"]).zfill(6) for item in ALL_POOL]
 
     # ── 时间切割：昨日收盘后 vs 昨日收盘前 ──
     fresh_articles, stale_articles = _split_articles_by_close(articles, date_str)
@@ -218,12 +228,15 @@ def build_daily_news_signal(date_str: str, cutoff_time: str) -> dict[str, Any]:
     stale_signal = _process_news_pool(stale_articles, trend_context, pool_codes, date_str, "STALE")
 
     # ── 合并为统一的信号结构，新增 fresh/stale 分层字段 ──
+    # 条数以 accepted_articles 为准，避免 LLM merge 曾把 accepted_count 写成 ETF 判断数
     fresh_scores = fresh_signal.get("theme_scores", {})
     stale_scores = stale_signal.get("theme_scores", {})
-    fresh_acc = fresh_signal.get("accepted_count", 0)
-    stale_acc = stale_signal.get("accepted_count", 0)
-    fresh_str = fresh_signal.get("strong_count", 0)
-    stale_str = stale_signal.get("strong_count", 0)
+    fresh_arts = list(fresh_signal.get("accepted_articles") or [])
+    stale_arts = list(stale_signal.get("accepted_articles") or [])
+    fresh_acc = len(fresh_arts)
+    stale_acc = len(stale_arts)
+    fresh_str = sum(1 for a in fresh_arts if a.get("quality") == "strong")
+    stale_str = sum(1 for a in stale_arts if a.get("quality") == "strong")
 
     signal = {
         "date": date_str,
@@ -234,12 +247,12 @@ def build_daily_news_signal(date_str: str, cutoff_time: str) -> dict[str, Any]:
         "fresh_theme_scores": fresh_scores,
         "fresh_accepted_count": fresh_acc,
         "fresh_strong_count": fresh_str,
-        "fresh_accepted_articles": fresh_signal.get("accepted_articles", []),
+        "fresh_accepted_articles": fresh_arts,
         # 陈旧新闻（盘中及更早 — 低权重参考）
         "stale_theme_scores": stale_scores,
         "stale_accepted_count": stale_acc,
         "stale_strong_count": stale_str,
-        "stale_accepted_articles": stale_signal.get("accepted_articles", []),
+        "stale_accepted_articles": stale_arts,
         # 向后兼容旧字段
         "theme_scores": fresh_scores,
         "scores": fresh_scores,
@@ -248,18 +261,21 @@ def build_daily_news_signal(date_str: str, cutoff_time: str) -> dict[str, Any]:
         "weak_count": (fresh_acc - fresh_str) + (stale_acc - stale_str),
         "article_count": len(articles),
         "rejected_count": len(articles) - fresh_acc - stale_acc,
-        "accepted_articles": fresh_signal.get("accepted_articles", []) + stale_signal.get("accepted_articles", []),
+        "accepted_articles": fresh_arts + stale_arts,
         "raw_articles": articles[:80],
         "confidence": fresh_signal.get("confidence", 0.0),
         "market_sentiment": fresh_signal.get("market_sentiment", 0.0),
         "max_abs_theme": fresh_signal.get("max_abs_theme", 0.0),
         "hot_keywords": fresh_signal.get("hot_keywords", []),
+        # 顶层 catalyst_hits：供 theme_signal.get_theme_signals 读取（勿只放 nested）
+        "catalyst_hits": int(fresh_signal.get("catalyst_hits", 0) or 0),
         "auto_news": {
             "enabled": True,
-            "article_count": len(articles),
+            # 仓位档位只看主 fresh 入选数（周一周末桥接不灌水）
+            "article_count": int(fresh_acc),
             "confidence": fresh_signal.get("confidence", 0.0),
             "market_sentiment": fresh_signal.get("market_sentiment", 0.0),
-            "catalyst_hits": fresh_signal.get("catalyst_hits", 0),
+            "catalyst_hits": int(fresh_signal.get("catalyst_hits", 0) or 0),
             "max_abs_theme": fresh_signal.get("max_abs_theme", 0.0),
         },
     }
@@ -294,8 +310,12 @@ def build_llm_decision(
         if feats:
             pool_features[code] = feats
 
-    news_summary = summarize_for_llm(news_signal)
-    log(f"[LLM] 调 DeepSeek 决策（新闻摘要 {len(news_summary)} 条；经济事件 "
+    # {{NEWS}} 段是「陈旧/补充」；新鲜已在 FRESH_NEWS，勿再混入 accepted_articles
+    stale_for_llm = {
+        "accepted_articles": list(news_signal.get("stale_accepted_articles") or []),
+    }
+    news_summary = summarize_for_llm(stale_for_llm)
+    log(f"[LLM] 调 DeepSeek 决策（陈旧新闻摘要 {len(news_summary)} 条；经济事件 "
         f"high={econ_payload.get('high_impact_count', 0)} total={econ_payload.get('event_count', 0)}）...")
     try:
         payload = llm_decider.decide(
@@ -333,6 +353,8 @@ def to_competition_output(result: dict[str, Any]) -> list[dict[str, Any]]:
             continue
         # ETF 按 100 份一手取整，保证输出可交易。
         volume = int(amount // price // 100 * 100)
+        if volume <= 0 and amount >= price * 100:
+            volume = 100
         if volume <= 0:
             continue
         out.append({
@@ -464,18 +486,44 @@ def main() -> int:
     try:
         return _run_pipeline(args, target_date)
     except Exception as exc:
-        return _write_fatal_fallback(args.date, exc)
+        return _write_fatal_fallback(args.date, exc, capital=float(args.capital))
 
 
-def _write_fatal_fallback(date_str: str, exc: Exception) -> int:
+def _write_fatal_fallback(
+    date_str: str,
+    exc: Exception,
+    *,
+    capital: float | None = None,
+) -> int:
     """兜底：流程内出现未预期异常时，仍写出合规空仓 JSON，避免当天无任何提交。
 
     比赛按日提交，一天完全没有输出（含罚款条款）的代价远高于"保守空仓"。
-    这里只在 ``_run_pipeline`` 抛出未被内部处理的异常时触发（正常的数据
-    降级已在 market_data/ _check_critical_data_quality 里处理，不会走到
-    这里）。
+    周末休市日不写 submit，避免污染非交易日档案。
+    非比赛资金只写个人目录，禁止污染官方 daily_output。
     """
     import traceback
+
+    from competition_guard import (
+        COMPETITION_CAPITAL,
+        personal_output_paths,
+        should_write_competition_artifacts,
+    )
+
+    try:
+        from trading_calendar import is_trading_day
+
+        if not is_trading_day(date_str):
+            log(f"[FATAL] {date_str} 为非交易日，不写兜底 submit。异常: {exc}")
+            print(f"\n=== 非交易日异常（未写提交）===\n原因: {exc}")
+            return 1
+    except Exception:
+        try:
+            if pd.to_datetime(date_str).weekday() >= 5:
+                log(f"[FATAL] {date_str} 为周末休市，不写兜底 submit。异常: {exc}")
+                print(f"\n=== 周末异常（未写提交）===\n原因: {exc}")
+                return 1
+        except Exception:
+            pass
 
     tb = traceback.format_exc()
     log(f"[FATAL] 预测流程发生未捕获异常: {exc}，写入兜底空仓提交，避免当日无任何输出。")
@@ -486,12 +534,39 @@ def _write_fatal_fallback(date_str: str, exc: Exception) -> int:
     )
     log(f"错误报告已保存: {error_path}")
 
-    submit_path = OUTPUT_DIR / f"{date_str}_submit.json"
+    cap = COMPETITION_CAPITAL if capital is None else float(capital)
+    write_official = should_write_competition_artifacts(cap)
+    if write_official:
+        submit_path = OUTPUT_DIR / f"{date_str}_submit.json"
+        full_path = OUTPUT_DIR / f"{date_str}_full.json"
+    else:
+        paths = personal_output_paths(date_str)
+        submit_path = paths["submit"]
+        full_path = paths["full"]
+        log(f"[FATAL] 非比赛资金，兜底写入个人目录: {submit_path.parent}")
+
     try:
         if not submit_path.exists():
-            OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+            submit_path.parent.mkdir(parents=True, exist_ok=True)
             submit_path.write_text("[]", encoding="utf-8")
             log(f"[FATAL] 已写入兜底空仓提交(合规JSON，空仓): {submit_path}")
+            if not full_path.exists():
+                full_path.write_text(
+                    json.dumps(
+                        {
+                            "date": date_str,
+                            "competition_output": [],
+                            "mode": "fatal_fallback",
+                            "capital": cap,
+                            "error": str(exc),
+                            "strategy_result": None,
+                        },
+                        ensure_ascii=False,
+                        indent=2,
+                    ),
+                    encoding="utf-8",
+                )
+                log(f"[FATAL] 已写入兜底 full.json: {full_path}")
         else:
             log(f"[FATAL] {submit_path} 已存在（此前已成功产出），保留不覆盖。")
     except Exception as inner_exc:
@@ -503,7 +578,7 @@ def _write_fatal_fallback(date_str: str, exc: Exception) -> int:
 
 def _run_pipeline(args: argparse.Namespace, target_date) -> int:
     """完整的每日决策流程（会被 main() 的兜底 try/except 包裹）。"""
-    # 必须先更新行情再复盘，否则上一日 open/close 可能是旧数据（显示 0 元）。
+    # 必须先更新行情再复盘，否则上一日昨收/今收可能是旧数据（显示 0 元）。
     price_stats: dict[str, Any] = {"ok": 0, "fail": 0, "fresh": 0, "degraded": 0}
     if not args.skip_price_update:
         log("更新 ETF 行情 CSV...")
@@ -523,10 +598,11 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
     recent_risk = build_recent_risk_context(args.date, capital=args.capital)
     log(f"十天稳健风控: {summarize_risk_context(recent_risk)}")
 
-    # A 股周六周日休市：不生成预测，只保留上一日复盘。
-    if target_date.weekday() >= 5:
-        weekday_name = "周六" if target_date.weekday() == 5 else "周日"
-        log(f"{args.date} 是{weekday_name}，A 股休市，今天没有策略建议。")
+    # A 股非交易日（周末+法定休市）：不生成预测，只保留上一日复盘。
+    from trading_calendar import is_trading_day
+
+    if not is_trading_day(target_date):
+        log(f"{args.date} 为 A 股非交易日，今天没有策略建议。")
         if pnl_report is not None:
             print(f"\n上一日收益: {pnl_report['total_pnl']:+.2f} 元 ({pnl_report['prediction_date']})")
         print("\n=== 今日休市 ===\n今天 A 股休市，没有策略建议。")

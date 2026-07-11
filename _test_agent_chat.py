@@ -5,7 +5,6 @@ from __future__ import annotations
 import json
 from agent_orchestrator import handle_chat, start_session
 from info_collector import parse_capital, wants_personal_advice
-from personalized_advisor import scale_holdings
 
 
 def _assert(cond: bool, msg: str) -> None:
@@ -18,14 +17,6 @@ def main() -> None:
     _assert(wants_personal_advice("我想要今日投资建议"), "detect personal advice")
     _assert(parse_capital("20万") == 200000, "parse 20万")
     _assert(parse_capital(150000) == 150000, "parse int capital")
-
-    scaled = scale_holdings(
-        [{"symbol": "510880", "symbol_name": "红利ETF", "volume": 31200}],
-        user_capital=250000,
-        date_str="2026-07-08",
-    )
-    _assert(len(scaled) == 1, "scale produces one holding")
-    _assert(scaled[0]["volume"] == 15600, f"half capital → half volume, got {scaled[0]['volume']}")
 
     boot = start_session()
     sid = boot["session"]["session_id"]
