@@ -15,6 +15,13 @@ DATA_DIR = BASE_DIR / "data"
 OUTPUT_DIR = DATA_DIR / "daily_output"
 GOAL_STATE_PATH = DATA_DIR / "goal_window.json"
 
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv(BASE_DIR / ".env")
+except Exception:
+    pass
+
 GOAL_WINDOW_DAYS = 10
 GOAL_TARGET_RETURN = 0.005
 GOAL_PROTECT_RETURN = 0.0035

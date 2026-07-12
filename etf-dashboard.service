@@ -7,8 +7,6 @@ Type=simple
 User=ciyuan
 WorkingDirectory=/home/ciyuan/chenjunren/etf_agent
 Environment=PYTHONUTF8=1
-Environment=ETF_TEN_DAY_GOAL_MODE=risk_cap
-Environment=ETF_LLM_THEME_MODE=override
 ExecStart=/home/ciyuan/chenjunren/etf_agent/.venv/bin/python dashboard_server.py --host 127.0.0.1 --port 8765 --no-browser
 Restart=on-failure
 RestartSec=5
