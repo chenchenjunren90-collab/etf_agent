@@ -7,7 +7,7 @@ from pathlib import Path
 
 import paramiko
 
-from server_env import CHENJUNREN, HOST, PASSWORD, REMOTE, USER
+from server_env import CHENJUNREN, HOST, PASSWORD, REMOTE, USER, require_allowed_remote
 LOCAL = Path(__file__).resolve().parent
 
 FILES = [
@@ -62,6 +62,7 @@ def sudo(ssh: paramiko.SSHClient, cmd: str, timeout: int = 90) -> str:
 
 
 def main() -> None:
+    require_allowed_remote()
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(HOST, username=USER, password=PASSWORD, timeout=20)
