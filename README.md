@@ -4,8 +4,10 @@
 
 ## 在线体验
 
-- 智能体交互前端：<http://39.105.104.230/etf-agent/chat/>
-- 项目说明文档：<http://39.105.104.230/etf-agent/chat/docs>
+- 外链地址：<http://39.105.104.230/etf-agent/chat/>
+- 演示链接：<http://39.105.104.230/etf-agent/chat/>
+- 文档链接：<http://39.105.104.230/etf-agent/chat/docs>
+- 代码仓库：<https://github.com/chenchenjunren90-collab/etf_agent>
 
 ## 扫码体验
 
