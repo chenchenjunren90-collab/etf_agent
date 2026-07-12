@@ -99,6 +99,7 @@ HELPER_FILES = [
     "_test_competition_isolation.py",
     "_test_decision_integrity.py",
     "_test_live_personal.py",
+    "_test_market_closed_frontend.py",
     "_test_personalization.py",
     "_test_profitability_controls.py",
     "_evaluate_profitability.py",

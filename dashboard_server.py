@@ -27,6 +27,7 @@ from daily_pnl import _load_bar
 import llm_client
 import llm_decider
 import security_guard
+from trading_calendar import is_trading_day
 
 __file__ = Path(__file__).resolve()
 BASE_DIR = __file__.parent
@@ -73,20 +74,16 @@ def _read_json(path: Path | None) -> Any:
 
 def _latest_file(pattern: str, directory: Path, only_weekdays: bool = False) -> Path | None:
     today = datetime.now().date()
-    hits = []
     for p in sorted(directory.glob(pattern), reverse=True):
         try:
             d = datetime.strptime(p.name.split("_")[0], "%Y-%m-%d").date()
         except ValueError:
             continue
-        if only_weekdays and d.weekday() >= 5:
+        if d > today:
             continue
-        hits.append((d, p))
-        if d <= today:
-            break
-    if hits:
-        hits.sort(key=lambda x: x[0], reverse=True)
-        return hits[0][1]
+        if only_weekdays and not is_trading_day(d):
+            continue
+        return p
     return None
 
 
@@ -164,6 +161,7 @@ def _system_info() -> dict[str, Any]:
         "prompt_file": llm_decider.PROMPT_PATH.name,
         "llm_available": llm_client.is_available(),
         "today_is_weekend": wd >= 5,
+        "today_is_trading_day": is_trading_day(today_str),
         "weekday_name": wd_names[wd],
         "today": today_str,
     }
@@ -180,12 +178,9 @@ def load_status(view_date: str | None = None) -> dict[str, Any]:
     else:
         target = today
 
-    # Default view falls back to the latest completed trading-day output. An
-    # explicitly selected date remains exact so historical inspection is clear.
+    # The default view is always exact. On a closed day, returning the previous
+    # session here would make historical holdings look like today's advice.
     full_path = _latest_file(f"{target.strftime('%Y-%m-%d')}*_full.json", OUTPUT_DIR)
-    if full_path is None and view_date is None:
-        full_path = _latest_file("*_full.json", OUTPUT_DIR, only_weekdays=True)
-
     output_date = full_path.name.split("_")[0] if full_path else target.strftime("%Y-%m-%d")
     submit_path = _latest_file(f"{output_date}*_submit.json", OUTPUT_DIR)
     news_path = _latest_file(f"{output_date}.json", NEWS_DIR)
@@ -195,12 +190,22 @@ def load_status(view_date: str | None = None) -> dict[str, Any]:
     news = _read_json(news_path)
 
     previous_pnl = _settle_prediction(full_path) if full_path else None
+    latest_available = _latest_file("*_full.json", OUTPUT_DIR, only_weekdays=True)
+    today_is_trading = is_trading_day(today)
+    target_is_trading = is_trading_day(target)
 
     return {
         "today": today_str,
         "view_date": str(target),
         "today_predicted": full_path is not None and full_path.name.startswith(today_str),
-        "today_is_weekend": target.weekday() >= 5 if view_date else today.weekday() >= 5,
+        "today_is_weekend": today.weekday() >= 5,
+        "today_is_trading_day": today_is_trading,
+        "market_closed": not today_is_trading,
+        "view_is_trading_day": target_is_trading,
+        "is_historical_view": bool(view_date and target != today),
+        "latest_available_date": (
+            latest_available.name.split("_")[0] if latest_available else None
+        ),
         "latest_date": full_path.name.split("_")[0] if full_path else None,
         "full": full,
         "submit": submit,
@@ -253,6 +258,17 @@ def _prepare_daily_job(options: dict[str, Any]) -> tuple[list[str], dict[str, st
         return {"output": "已有预测任务在运行，请等待当前任务结束。", "status": "busy"}
 
     try:
+        import daily_run_guard
+        from trading_calendar import is_trading_day
+
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        if not is_trading_day(today_str):
+            _RUN_LOCK.release()
+            return {
+                "output": "今天 A 股休市，暂无投资建议，不运行预测任务。",
+                "status": "market_closed",
+            }
+
         force = bool(options.get("force"))
         if force:
             try:
@@ -261,10 +277,6 @@ def _prepare_daily_job(options: dict[str, Any]) -> tuple[list[str], dict[str, st
             except Exception:
                 pass
 
-        import daily_run_guard
-        from trading_calendar import is_trading_day
-
-        today_str = datetime.now().strftime("%Y-%m-%d")
         if not force and is_trading_day(today_str) and daily_run_guard.has_daily_run(today_str):
             _RUN_LOCK.release()
             return {
