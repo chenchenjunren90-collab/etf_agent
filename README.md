@@ -6,7 +6,10 @@
 
 - 智能体交互前端：<http://39.105.104.230/etf-agent/chat/>
 - 项目说明文档：<http://39.105.104.230/etf-agent/chat/docs>
-- 域名入口：<http://chinaglass.shop/etf-agent/chat/>
+
+## 扫码体验
+
+![ETF 投资智能体二维码](assets/etf-agent-qr.png)
 
 ## 主要能力
 
