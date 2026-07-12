@@ -7,7 +7,7 @@ from pathlib import Path
 
 import paramiko
 
-from server_env import HOST, PASSWORD, REMOTE, USER
+from server_env import HOST, PASSWORD, REMOTE, USER, require_allowed_remote
 
 LOCAL = Path(__file__).resolve().parent
 
@@ -119,6 +119,7 @@ def sudo(ssh: paramiko.SSHClient, cmd: str, timeout: int = 120) -> str:
 
 
 def main() -> None:
+    require_allowed_remote()
     if not PASSWORD:
         raise SystemExit("ETF_SERVER_PASSWORD is missing. Add it to local .env first.")
 
