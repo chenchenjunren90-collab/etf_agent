@@ -22,6 +22,7 @@ import pandas as pd
 from daily_job import build_llm_decision, to_competition_output
 from decision_integrity import compute_holding_streaks, compute_sole_symbol_streak
 from econ_calendar import load_econ_payload
+from goal_state import summarize_goal_rows
 from settlement_prices import get_close_to_close
 from strategy import reset_rotation_tracker, run_decision
 from theme_signal import get_theme_signals, signal_path
@@ -123,7 +124,11 @@ def _load_news(date_str: str) -> dict[str, Any]:
 
 
 def _load_saved_llm_decision(date_str: str) -> dict[str, Any] | None:
-    """Reuse the exact LLM decision from a historical full.json when available.
+    """Reuse a historical LLM trace while simulating the current policy.
+
+    This is not an exact historical replay: downstream ranking, sizing and
+    controls still come from the current checkout. Use
+    ``_evaluate_profitability.py`` for the immutable live track record.
 
     Prompt hashes change over time, so disk llm_cache often misses. The
     competition full.json stores the live ``llm_trace`` that was actually used
@@ -154,6 +159,34 @@ def _stats(rows: list[dict[str, Any]], label: str) -> dict[str, Any]:
     curve = (1 + returns).cumprod()
     max_drawdown = float(((curve / curve.cummax()) - 1).min()) if len(curve) else 0.0
     llm_ok = int(df["llm_used"].sum()) if "llm_used" in df.columns else 0
+    target = 0.005
+    rolling10 = [
+        float(returns.iloc[i : i + 10].sum())
+        for i in range(max(0, len(returns) - 9))
+    ]
+    nonoverlap10 = [
+        float(returns.iloc[i : i + 10].sum())
+        for i in range(0, max(0, len(returns) - 9), 10)
+    ]
+    used_ratio = df["used"].astype(float) / CAPITAL
+    net_5bps = returns - used_ratio * 5.0 / 10000.0
+    benchmark = pd.Series(
+        [
+            (
+                prices[1] / prices[0] - 1.0
+                if (prices := get_close_to_close("510300", str(date), data_dir=DATA_DIR))
+                else 0.0
+            )
+            for date in df["date"]
+        ],
+        dtype=float,
+    )
+    benchmark_rolling10 = [
+        float(benchmark.iloc[i : i + 10].sum())
+        for i in range(max(0, len(benchmark) - 9))
+    ]
+    holdout_start = max(0, int(len(df) * 0.70))
+    holdout = returns.iloc[holdout_start:]
     return {
         "label": label,
         "days": int(len(df)),
@@ -169,6 +202,27 @@ def _stats(rows: list[dict[str, Any]], label: str) -> dict[str, Any]:
         "max_drawdown_pct": round(max_drawdown * 100, 2),
         "last10_pnl": round(float(df.tail(10)["pnl"].sum()), 2) if len(df) else 0.0,
         "last10_ret_pct": round(float(df.tail(10)["pnl"].sum()) / CAPITAL * 100, 2) if len(df) else 0.0,
+        "target_10d_pct": target * 100,
+        "rolling_10d_windows": len(rolling10),
+        "rolling_10d_hit_rate_pct": round(
+            sum(value >= target for value in rolling10) / len(rolling10) * 100, 1
+        ) if rolling10 else 0.0,
+        "nonoverlap_10d_windows": len(nonoverlap10),
+        "nonoverlap_10d_hit_rate_pct": round(
+            sum(value >= target for value in nonoverlap10) / len(nonoverlap10) * 100, 1
+        ) if nonoverlap10 else 0.0,
+        "net_5bps_total_ret_pct": round(float(net_5bps.sum()) * 100, 2),
+        "benchmark_510300_ret_pct": round(float(benchmark.sum()) * 100, 2),
+        "excess_vs_510300_pct": round(float((returns - benchmark).sum()) * 100, 2),
+        "benchmark_rolling_10d_hit_rate_pct": round(
+            sum(value >= target for value in benchmark_rolling10)
+            / len(benchmark_rolling10)
+            * 100,
+            1,
+        ) if benchmark_rolling10 else 0.0,
+        "holdout_start_date": str(df.iloc[holdout_start]["date"]) if len(holdout) else None,
+        "holdout_ret_pct": round(float(holdout.sum()) * 100, 2) if len(holdout) else 0.0,
+        "holdout_win_rate_pct": round(float((holdout > 0).mean()) * 100, 1) if len(holdout) else 0.0,
     }
 
 
@@ -200,6 +254,14 @@ def run_full_pipeline(
         econ_payload = load_econ_payload(trade_date, allow_live=False, refresh=False)
         recent_risk = _risk_context(rows, trade_date)
         integrity_ctx = _integrity_from_history(rows, trade_date)
+        block_start = (len(rows) // 10) * 10
+        goal_state = summarize_goal_rows(
+            trade_date,
+            capital=CAPITAL,
+            rows=rows[block_start:],
+            start_date=(rows[block_start]["date"] if block_start < len(rows) else trade_date),
+            fixed_window=True,
+        )
 
         llm_payload = None
         llm_decision = None
@@ -244,6 +306,7 @@ def run_full_pipeline(
                 econ_payload=econ_payload,
                 recent_risk=recent_risk,
                 integrity_ctx=integrity_ctx,
+                goal_state=goal_state,
             )
         comp = to_competition_output(result)
         pnl, used = _settle(comp, trade_date)
@@ -381,7 +444,7 @@ def main() -> int:
     )
 
     rows = run_full_pipeline(dates, cache_only=cache_only)
-    stats = _stats(rows, "full_pipeline_stable_conc")
+    stats = _stats(rows, "current_policy_simulation")
     print("\n=== SUMMARY ===")
     print(json.dumps(stats, ensure_ascii=False, indent=2))
 
@@ -404,6 +467,7 @@ def main() -> int:
                 "start": args.start,
                 "end": args.end,
                 "cache_only": cache_only,
+                "replay_kind": "current_policy_simulation_not_historical_track_record",
                 "stats": stats,
                 "rows": rows,
             },

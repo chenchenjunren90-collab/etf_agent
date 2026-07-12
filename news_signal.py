@@ -12,6 +12,7 @@ Core policy:
 
 from __future__ import annotations
 
+import hashlib
 from typing import Any
 
 # Per-ETF keyword weights — used only for tagging hot picks in reports.
@@ -309,11 +310,15 @@ def score_news_article(
         base_quality = "weak"
         reason = f"{reason}_but_price_risk"
 
+    content = str(article.get("content") or "")
     return {
         "accepted": True,
         "title": str(article.get("title") or ""),
         "source": str(article.get("source") or ""),
         "url": str(article.get("url") or ""),
+        "published_at": str(article.get("published_at") or ""),
+        "fetched_at": str(article.get("fetched_at") or ""),
+        "content_sha256": hashlib.sha256(content.encode("utf-8")).hexdigest(),
         "quality": base_quality,
         "reason": reason,
         "event_hits": event_hits,
@@ -390,6 +395,12 @@ def build_news_signal(
         "catalyst_hits": int(catalyst_hits),
         "max_abs_theme": round(max_abs_theme_score(theme_scores), 3),
         "accepted_articles": accepted,
+        "provenance": {
+            "accepted_with_published_at": sum(
+                1 for item in accepted if item.get("published_at")
+            ),
+            "accepted_total": len(accepted),
+        },
         "rejection_reasons": {
             reason: sum(1 for item in rejected if item.get("reason") == reason)
             for reason in sorted({item.get("reason") for item in rejected})

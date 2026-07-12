@@ -72,6 +72,7 @@ from position import (
     allocate_short_race,
 )
 from decision_integrity import apply_concentration_risk
+from goal_state import apply_goal_overlay
 # 也兼容旧版引用
 
 
@@ -205,6 +206,7 @@ def run_decision(
     econ_payload: dict[str, Any] | None = None,
     recent_risk: dict[str, Any] | None = None,
     integrity_ctx: dict[str, Any] | None = None,
+    goal_state: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """每日投资决策主函数（大模型融合模式）。
 
@@ -455,6 +457,21 @@ def run_decision(
                 if llm_trace:
                     llm_trace["hard_rules_applied"].append("score_gate_after_tilt")
 
+    goal_audit: dict[str, Any] | None = None
+    invest_ratio, dyn_max, goal_audit = apply_goal_overlay(
+        invest_ratio, dyn_max, ranked, goal_state
+    )
+    if goal_audit:
+        notes = goal_audit.get("notes") or []
+        if notes:
+            market_reason = f"{market_reason}; ten-day goal control: {'; '.join(notes)}"
+        if (
+            llm_trace
+            and goal_audit["final_invest_ratio"]
+            < goal_audit["original_invest_ratio"]
+        ):
+            llm_trace["hard_rules_applied"].append("ten_day_goal_overlay")
+
     result = allocate_short_race(
         ranked,
         total_capital,
@@ -478,6 +495,8 @@ def run_decision(
     result["market_reason"] = market_reason
     result["reasoning"] = build_short_race_reasoning(ranked, result, market_reason, theme_signals)
     result["stability_overlay"] = stability_audit
+    if goal_audit:
+        result["goal_overlay"] = goal_audit
     if concentration_audit:
         result["concentration_risk"] = concentration_audit
     if integrity_ctx:

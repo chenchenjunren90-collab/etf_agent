@@ -133,6 +133,14 @@ def _calc_short_race_features(df):
     high_break = latest >= high20 * 0.995
     above_ma = latest > ma5 > ma10
     drawdown_5d = float(latest / close.tail(5).max() - 1) * 100
+    daily_returns = close.pct_change().dropna().tail(20)
+    volatility_20d_pct = float(daily_returns.std(ddof=1) * 100) if len(daily_returns) > 1 else 0.0
+    downside = daily_returns[daily_returns < 0]
+    downside_volatility_20d_pct = (
+        float(downside.std(ddof=1) * 100) if len(downside) > 1 else volatility_20d_pct
+    )
+    peak20 = close.tail(20).cummax()
+    max_drawdown_20d_pct = float((close.tail(20) / peak20 - 1).min() * 100)
 
     trend_score = (
         _score_to_0_100(ret_1d, scale=7.0) * 0.15 +
@@ -152,6 +160,10 @@ def _calc_short_race_features(df):
         risk_penalty += min(15.0, (bb_width - 0.08) * 180)
     if ret_1d < -3 and vol_ratio > 1.5:
         risk_penalty += 10.0
+    if volatility_20d_pct > 2.0:
+        risk_penalty += min(15.0, (volatility_20d_pct - 2.0) * 6.0)
+    if max_drawdown_20d_pct < -8.0:
+        risk_penalty += min(12.0, abs(max_drawdown_20d_pct + 8.0) * 1.5)
 
     return {
         "latest_price": latest,
@@ -168,6 +180,9 @@ def _calc_short_race_features(df):
         "above_ma": bool(above_ma),
         "high_break": bool(high_break),
         "drawdown_5d": round(drawdown_5d, 2),
+        "volatility_20d_pct": round(volatility_20d_pct, 3),
+        "downside_volatility_20d_pct": round(downside_volatility_20d_pct, 3),
+        "max_drawdown_20d_pct": round(max_drawdown_20d_pct, 3),
         "trend_score": round(float(trend_score), 2),
         "risk_penalty": round(float(risk_penalty), 2),
     }

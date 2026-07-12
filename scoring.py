@@ -252,15 +252,33 @@ def _inject_llm_views_into_signals(theme_signals, llm_decision):
     llm_hints = dict(theme_signals.get("llm_hints") or {})
 
     max_abs = 0.0
+    blend_weight = float(os.environ.get("ETF_LLM_THEME_BLEND", "0.35") or 0.35)
+    blend_weight = max(0.0, min(1.0, blend_weight))
+    llm_mode = os.environ.get("ETF_LLM_THEME_MODE", "override").strip().lower()
     for view in views:
         code = str(view.get("code", "")).zfill(6)
         score = float(view.get("score", 0.0) or 0.0)
         reason = view.get("reason", "") or view.get("reason_zh", "")
         if code and score != 0.0:
-            scores[code] = score
-            fresh_scores[code] = score
+            base_score = float(fresh_scores.get(code, scores.get(code, 0.0)) or 0.0)
+            if llm_mode == "override":
+                applied_score = score
+            elif llm_mode == "audit":
+                applied_score = base_score
+            else:
+                applied_score = base_score * (1.0 - blend_weight) + score * blend_weight
+            applied_score = float(max(-1.0, min(1.0, applied_score)))
+            scores[code] = applied_score
+            fresh_scores[code] = applied_score
             reasons[code] = f"LLM: {reason}" if reason else "LLM 态度覆盖"
-            llm_hints[code] = {"score": score, "reason": reason}
+            llm_hints[code] = {
+                "raw_score": score,
+                "base_score": round(base_score, 4),
+                "applied_score": round(applied_score, 4),
+                "mode": llm_mode,
+                "weight": blend_weight,
+                "reason": reason,
+            }
             max_abs = max(max_abs, abs(score))
 
     theme_signals["scores"] = scores

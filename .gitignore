@@ -36,3 +36,8 @@ data/econ_calendar_cache/
 
 # Personal sandbox outputs (per-user capital runs)
 data/personal_output/
+data/decision_snapshots/
+data/profitability_evaluation.json
+data/goal_window.json
+data/backtest_current_strategy.json
+data/backtest_full_pipeline.json
