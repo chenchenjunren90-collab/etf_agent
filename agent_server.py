@@ -92,6 +92,8 @@ CHAT_HTML = r"""<!doctype html>
     pre{background:var(--input-bg);border:1px solid var(--line);padding:10px;border-radius:8px;overflow:auto;font-size:12px;color:var(--text)}
     a{color:var(--accent)}
     .footer-bar{padding:8px 16px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center}
+    .market-banner{display:none;padding:10px 20px;background:var(--card);border-bottom:1px solid var(--warn);color:var(--warn);font-size:13px;font-weight:600}
+    .chip.disabled{opacity:.45;cursor:not-allowed;pointer-events:none}
     @media(max-width:800px){main{grid-template-columns:1fr}aside{display:none}}
   </style>
 </head>
@@ -109,13 +111,14 @@ CHAT_HTML = r"""<!doctype html>
       <button type="button" class="theme-btn" id="themeToggle">黑夜模式</button>
     </div>
   </header>
+  <div class="market-banner" id="marketBanner">今天 A 股市场休市，暂无当日 ETF 投资建议。</div>
   <main>
     <aside>
       <h3>快捷入口</h3>
-      <div class="chip" data-q="今日投资建议">今日投资建议</div>
-      <div class="chip" data-q="今日比赛预测">今日比赛预测</div>
-      <div class="chip" data-q="今日比赛提交格式">比赛提交 JSON</div>
-      <div class="chip" data-q="测一下今天">测一下今天预测</div>
+      <div class="chip" data-q="今日投资建议" data-requires-open="1">今日投资建议</div>
+      <div class="chip" data-q="今日比赛预测" data-requires-open="1">今日比赛预测</div>
+      <div class="chip" data-q="今日比赛提交格式" data-requires-open="1">比赛提交 JSON</div>
+      <div class="chip" data-q="测一下今天" data-requires-open="1">测一下今天预测</div>
       <div class="chip" data-q="为什么选这些ETF">为什么选这些 ETF</div>
       <div class="chip" data-q="今日筛选后的新闻有哪些">今日筛选新闻</div>
       <div class="chip" data-q="今天预测的收益是多少">今日盘后收益</div>
@@ -438,6 +441,17 @@ CHAT_HTML = r"""<!doctype html>
       });
       const j = await r.json();
       if (j.session) updateSessionBadge(j.session);
+      const marketClosed = !!j.market_closed;
+      const banner = document.getElementById('marketBanner');
+      banner.style.display = marketClosed ? 'block' : 'none';
+      document.querySelectorAll('.chip[data-requires-open="1"]').forEach(el => {
+        el.classList.toggle('disabled', marketClosed);
+        el.setAttribute('aria-disabled', marketClosed ? 'true' : 'false');
+        el.title = marketClosed ? '今日休市，暂无投资建议' : '';
+      });
+      input.placeholder = marketClosed
+        ? '今日休市，可询问最近交易日复盘或新闻对 ETF 的影响'
+        : '例如：今日投资建议 / 今日比赛预测 / 为什么买红利ETF / 某新闻对证券ETF有何影响';
       messages.innerHTML = '';
       const bot = addMsg(j.reply || '你好。', 'bot', j.intent || 'greeting');
       renderBlocks(j.ui_blocks || [], bot);

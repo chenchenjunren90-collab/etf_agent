@@ -324,9 +324,9 @@
       <span class="small" style="align-self:center;color:var(--muted);">查看日期</span>
       <input id="viewDate" type="date" />
       <button type="button" id="btnRefresh">刷新页面</button>
-      <button type="button" id="btnQuick" class="primary">运行今日预测（快速）</button>
-      <button type="button" id="btnFull" class="primary">运行今日预测（完整）</button>
-      <button type="button" id="btnForce" title="会覆盖今日已有结果，并先备份原档案">强制重跑（完整）</button>
+      <button type="button" id="btnQuick" class="primary" disabled>运行今日预测（快速）</button>
+      <button type="button" id="btnFull" class="primary" disabled>运行今日预测（完整）</button>
+      <button type="button" id="btnForce" title="会覆盖今日已有结果，并先备份原档案" disabled>强制重跑（完整）</button>
       <div id="weekendHint" class="small" style="display:none;color:var(--yellow);align-self:center;">今天 A 股休市</div>
     </div>
   </header>
@@ -343,7 +343,7 @@
     <div id="submitPreviewCard">
       <div class="sp-head">
         <div>
-          <div class="sp-title">参赛提交预览 · 今日投资建议</div>
+          <div class="sp-title" id="spTitle">参赛提交预览 · 今日投资建议</div>
           <div class="sp-team" id="spTeam">团队：--</div>
         </div>
         <span class="sp-status" id="spStatus">--</span>
@@ -519,7 +519,7 @@
       for (var i = 0; i < runButtons.length; i++) {
         var btn = document.getElementById(runButtons[i]);
         if (!btn) continue;
-        btn.disabled = busy || (new Date().getDay() === 0 || new Date().getDay() === 6);
+        btn.disabled = busy || !marketOpenToday;
         btn.classList.toggle("running", busy && btn.id === activeId);
       }
     }
@@ -574,6 +574,7 @@
     }
 
     var pnlPollTimer = null;
+    var marketOpenToday = false;
 
     function schedulePnlAutoRefresh(data, pnl) {
       if (pnlPollTimer) {
@@ -583,7 +584,7 @@
       var sys = data.system_info || {};
       var viewDate = data.view_date || sys.today;
       var isToday = viewDate === sys.today;
-      if (!isToday || sys.today_is_weekend || !pnl || !pnl.pending) return;
+      if (!isToday || sys.today_is_trading_day === false || !pnl || !pnl.pending) return;
       pnlPollTimer = setInterval(function() {
         loadStatus();
       }, 180000);
@@ -608,27 +609,30 @@
       var news = full.news_signal || data.news_signal || {};
       var strategy = full.strategy_result || {};
       var summary = strategy.summary || {};
-      var submit = full.competition_output || data.submit || [];
+      var marketClosedDefault = !!data.market_closed && !data.is_historical_view;
+      var submit = marketClosedDefault ? [] : (full.competition_output || data.submit || []);
       var pnl = data.previous_pnl || full.previous_pnl || null;
       var sys = data.system_info || {};
 
       var badges = [
         '<span class="pill">50万虚拟资金 · 最多3只ETF · 昨收→今收结算</span>'
       ];
-      if (sys.today_is_weekend) {
+      if (sys.today_is_trading_day === false) {
         badges.push('<span class="pill yellow">今日休市 · ' + (sys.weekday_name || '') + '</span>');
       }
       document.getElementById("sysBadges").innerHTML = badges.join("");
 
       var banner = document.getElementById("weekendBanner");
       var detail = document.getElementById("weekendBannerDetail");
-      if (data.today_is_weekend) {
+      if (data.market_closed) {
         banner.style.display = "block";
         banner.style.background = "var(--banner-warn-bg)";
         banner.style.borderColor = "var(--banner-warn-border)";
         banner.style.color = "var(--banner-warn-text)";
         detail.style.color = "var(--banner-warn-text)";
-        detail.textContent = " 今天 A 股休市。";
+        detail.textContent = data.is_historical_view
+          ? " 今天 A 股休市，当前查看历史交易日结果。"
+          : " 今天 A 股休市，暂无投资建议。";
       } else if (!data.today_predicted && data.view_date !== data.today) {
         banner.style.display = "block";
         banner.style.background = "var(--banner-info-bg)";
@@ -757,12 +761,18 @@
         : logText;
 
       renderSubmitPreview(data, submit);
+      applyMarketUi(data);
     }
 
     function renderSubmitPreview(data, submit) {
       var team = data.team_config || {};
       var hasPrediction = !!data.full;
       var isEmpty = hasPrediction && submit.length === 0;
+      var marketClosedDefault = !!data.market_closed && !data.is_historical_view;
+
+      document.getElementById("spTitle").textContent = data.is_historical_view
+        ? "参赛提交预览 · 历史投资建议"
+        : "参赛提交预览 · 今日投资建议";
 
       var deadlineText = team.submit_deadline ? "　提交截止：交易日 " + team.submit_deadline + " 前" : "";
       var penaltyText = team.miss_penalty_yuan ? "（逾期扣款 " + fmt.format(team.miss_penalty_yuan) + " 元）" : "";
@@ -770,7 +780,10 @@
       document.getElementById("spDate").textContent = (data.full && data.full.date) || data.today || "--";
 
       var statusEl = document.getElementById("spStatus");
-      if (!hasPrediction) {
+      if (marketClosedDefault) {
+        statusEl.textContent = "今日休市";
+        statusEl.className = "sp-status missing";
+      } else if (!hasPrediction) {
         statusEl.textContent = "尚未生成";
         statusEl.className = "sp-status missing";
       } else if (isEmpty) {
@@ -787,8 +800,11 @@
           "</td><td>" + fmt.format(submit[i].volume || 0) + "</td></tr>";
       }
       document.getElementById("spRows").innerHTML = rowsHtml ||
-        '<tr><td colspan="3" class="small">' + (hasPrediction ? "空仓，无买入" : "暂无预测") + '</td></tr>';
+        '<tr><td colspan="3" class="small">' + (marketClosedDefault
+          ? "今日休市，暂无投资建议"
+          : (hasPrediction ? "空仓，无买入" : "暂无预测")) + '</td></tr>';
       document.getElementById("spJson").textContent = JSON.stringify(submit, null, 2);
+      document.getElementById("btnCopyJson").disabled = marketClosedDefault || !hasPrediction;
 
       var isPlaceholder = function(v) { return !v || String(v).indexOf("填写") === 0; };
       var items = [
@@ -813,6 +829,7 @@
       }
 
       var openBtn = document.getElementById("btnOpenSubmit");
+      openBtn.disabled = !!data.market_closed || !hasPrediction;
       openBtn.onclick = function() {
         window.open(team.submit_url || "http://120.92.212.20:3000/investment-daily-submit.html", "_blank");
       };
@@ -836,11 +853,10 @@
     }
 
     async function runDaily(skipPriceUpdate, force, activeBtnId) {
-      var todayDow = new Date().getDay();
-      if (todayDow === 0 || todayDow === 6) {
-        var weekendMsg = "今天是" + (todayDow === 6 ? "周六" : "周日") + "，A 股休市。";
-        document.getElementById("log").textContent = weekendMsg;
-        showRunToast(weekendMsg, "warn", true);
+      if (!marketOpenToday) {
+        var closedMsg = "今天 A 股休市，暂无投资建议，不运行预测任务。";
+        document.getElementById("log").textContent = closedMsg;
+        showRunToast(closedMsg, "warn", true);
         return;
       }
       if (force && !confirm("将覆盖今日已有预测，原档案会备份到 archive。确定强制重跑？")) return;
@@ -920,17 +936,16 @@
         showRunToast(lastRunFeedback, "err", true);
       } finally {
         setRunButtonsBusy(false);
-        applyWeekendUi();
+        applyMarketUi({ today_is_trading_day: marketOpenToday });
       }
     }
 
-    function applyWeekendUi() {
-      var todayDow = new Date().getDay();
-      var weekend = (todayDow === 0 || todayDow === 6);
-      document.getElementById("btnQuick").disabled = weekend;
-      document.getElementById("btnFull").disabled = weekend;
-      document.getElementById("btnForce").disabled = weekend;
-      document.getElementById("weekendHint").style.display = weekend ? "block" : "none";
+    function applyMarketUi(data) {
+      marketOpenToday = !!(data && data.today_is_trading_day);
+      document.getElementById("btnQuick").disabled = !marketOpenToday;
+      document.getElementById("btnFull").disabled = !marketOpenToday;
+      document.getElementById("btnForce").disabled = !marketOpenToday;
+      document.getElementById("weekendHint").style.display = marketOpenToday ? "none" : "block";
     }
 
     var todayIso = new Date().toISOString().slice(0,10);
@@ -987,7 +1002,7 @@
       if (e.key === "Escape") setScreenshotMode(false);
     });
 
-    applyWeekendUi();
+    applyMarketUi(null);
     loadStatus();
 
     // 计划任务可用 http://127.0.0.1:8765/?screenshot=1 直接打开截图模式，

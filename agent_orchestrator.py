@@ -37,6 +37,7 @@ from personalized_advisor import (
 from live_personal_runner import run_live_personal_advice
 import session_store as store
 from strategy import OFFENSIVE_POOL, TRADING_POOL
+from trading_calendar import is_trading_day
 
 
 POOL_CODES = {str(x["code"]).zfill(6) for x in TRADING_POOL + OFFENSIVE_POOL}
@@ -121,6 +122,35 @@ def _pack(
     if extra:
         out.update(extra)
     return out
+
+
+def _today_str() -> str:
+    return datetime.now().strftime("%Y-%m-%d")
+
+
+def _is_market_closed_today() -> bool:
+    return not is_trading_day(_today_str())
+
+
+def _market_closed_response(sess: dict[str, Any], message: str = "") -> dict[str, Any]:
+    if message:
+        store.update_session(
+            sess["session_id"],
+            append_message={"role": "user", "text": message},
+        )
+    store.update_session(
+        sess["session_id"],
+        state=store.STATE_IDLE,
+        collect_step=None,
+    )
+    return _pack(
+        sess,
+        reply=(
+            "今天 A 股市场休市，**暂无当日 ETF 投资建议**，也不会生成比赛提交结果。\n\n"
+            "您仍可以查看最近交易日复盘、询问 ETF 新闻影响，或在下一个交易日再获取建议。"
+        ),
+        intent="market_closed",
+    )
 
 
 def _start_collection(sess: dict[str, Any], message: str) -> dict[str, Any]:
@@ -217,6 +247,8 @@ def _continue_collection(
 
 
 def _generate_personal_advice(sess: dict[str, Any]) -> dict[str, Any]:
+    if _is_market_closed_today():
+        return _market_closed_response(sess)
     profile = sess.get("profile") or {}
     capital = float(profile.get("capital") or 500000)
     risk = str(profile.get("risk_preference") or "balanced")
@@ -266,6 +298,8 @@ def _generate_personal_advice(sess: dict[str, Any]) -> dict[str, Any]:
 
 
 def _handle_competition(sess: dict[str, Any], message: str) -> dict[str, Any]:
+    if _is_market_closed_today():
+        return _market_closed_response(sess, message)
     store.update_session(
         sess["session_id"],
         advice_mode="competition",
@@ -394,6 +428,16 @@ def handle_chat(
             intent="off_topic",
         )
 
+    requests_today_advice = bool(
+        field_answer
+        or sess.get("state") == store.STATE_COLLECTING
+        or (message and wants_personal_advice(message))
+        or (message and wants_competition_mode(message))
+        or (message and _wants_run_prediction(message))
+    )
+    if requests_today_advice and _is_market_closed_today():
+        return _market_closed_response(sess, message)
+
     # --- Continue collection if mid-wizard ---
     if sess.get("state") == store.STATE_COLLECTING or field_answer:
         # Allow escape to competition mid-collection
@@ -491,15 +535,36 @@ def handle_chat(
 
 def start_session() -> dict[str, Any]:
     sess = store.create_session()
-    welcome = (
-        "你好，我是 **ETF 投资智能体**。\n\n"
-        "我可以帮你：\n"
-        "- **今日投资建议**（先问资金与风格，再生成配置）\n"
-        "- **今日比赛预测**（固定 50 万，输出提交 JSON）\n"
-        "- 解释为什么这么配、解读新闻对 ETF 的影响\n\n"
-        "本产品**只负责 ETF**，不提供个股建议。\n\n"
-        + DISCLAIMER
-    )
+    market_closed = _is_market_closed_today()
+    if market_closed:
+        welcome = (
+            "你好，我是 **ETF 投资智能体**。\n\n"
+            "今天 A 股市场休市，**暂无当日 ETF 投资建议**，也不会生成比赛提交结果。\n\n"
+            "您仍可以查看最近交易日复盘，或询问新闻对 ETF 市场的潜在影响。\n\n"
+            "本产品**只负责 ETF**，不提供个股建议。\n\n"
+            + DISCLAIMER
+        )
+        options = [
+            {"label": "最近交易日收益复盘", "value": "昨天赚了多少钱"},
+            {"label": "今日筛选新闻", "value": "今日筛选后的新闻有哪些"},
+            {"label": "新闻对 ETF 的影响", "value": "某条新闻对ETF有什么影响"},
+        ]
+    else:
+        welcome = (
+            "你好，我是 **ETF 投资智能体**。\n\n"
+            "我可以帮你：\n"
+            "- **今日投资建议**（先问资金与风格，再生成配置）\n"
+            "- **今日比赛预测**（固定 50 万，输出提交 JSON）\n"
+            "- 解释为什么这么配、解读新闻对 ETF 的影响\n\n"
+            "本产品**只负责 ETF**，不提供个股建议。\n\n"
+            + DISCLAIMER
+        )
+        options = [
+            {"label": "今日投资建议", "value": "今日投资建议"},
+            {"label": "今日比赛预测", "value": "今日比赛预测"},
+            {"label": "为什么选这些 ETF", "value": "为什么选这些ETF"},
+            {"label": "今日筛选新闻", "value": "今日筛选后的新闻有哪些"},
+        ]
     return {
         "session": store.public_view(sess),
         "reply": welcome,
@@ -508,14 +573,10 @@ def start_session() -> dict[str, Any]:
             {
                 "type": "choices",
                 "field": "entry",
-                "question": "您想先做什么？",
-                "options": [
-                    {"label": "今日投资建议", "value": "今日投资建议"},
-                    {"label": "今日比赛预测", "value": "今日比赛预测"},
-                    {"label": "为什么选这些 ETF", "value": "为什么选这些ETF"},
-                    {"label": "今日筛选新闻", "value": "今日筛选后的新闻有哪些"},
-                ],
+                "question": "今日休市，您可以查看：" if market_closed else "您想先做什么？",
+                "options": options,
             }
         ],
         "disclaimer": DISCLAIMER,
+        "market_closed": market_closed,
     }
