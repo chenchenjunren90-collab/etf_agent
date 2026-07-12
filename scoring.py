@@ -265,12 +265,16 @@ def _inject_llm_views_into_signals(theme_signals, llm_decision):
                 applied_score = score
             elif llm_mode == "audit":
                 applied_score = base_score
-            else:
+            elif llm_mode == "blend":
                 applied_score = base_score * (1.0 - blend_weight) + score * blend_weight
+            else:
+                applied_score = base_score + score * blend_weight
             applied_score = float(max(-1.0, min(1.0, applied_score)))
             scores[code] = applied_score
             fresh_scores[code] = applied_score
-            reasons[code] = f"LLM: {reason}" if reason else "LLM 态度覆盖"
+            base_reason = str(reasons.get(code) or "").strip()
+            llm_reason = f"LLM: {reason}" if reason else "LLM 态度修正"
+            reasons[code] = f"{base_reason}; {llm_reason}" if base_reason else llm_reason
             llm_hints[code] = {
                 "raw_score": score,
                 "base_score": round(base_score, 4),

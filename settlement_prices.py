@@ -14,15 +14,44 @@
 """
 from __future__ import annotations
 
+import os
+from datetime import datetime, time
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pandas as pd
+
+from trading_calendar import is_trading_day, previous_trading_day
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 
 
-def get_close_to_close(code: str, trade_date: str, *, data_dir: Path | None = None) -> tuple[float, float] | None:
+def _ready_time() -> time:
+    raw = os.environ.get("ETF_SETTLEMENT_READY_TIME", "16:15").strip()
+    try:
+        hour, minute = (int(part) for part in raw.split(":", 1))
+        return time(hour, minute)
+    except (TypeError, ValueError):
+        return time(16, 15)
+
+
+def _shanghai_now(as_of: datetime | None = None) -> datetime:
+    if as_of is None:
+        return datetime.now(ZoneInfo("Asia/Shanghai"))
+    if as_of.tzinfo is None:
+        return as_of.replace(tzinfo=ZoneInfo("Asia/Shanghai"))
+    return as_of.astimezone(ZoneInfo("Asia/Shanghai"))
+
+
+def get_close_to_close(
+    code: str,
+    trade_date: str,
+    *,
+    data_dir: Path | None = None,
+    as_of: datetime | None = None,
+    require_complete: bool = True,
+) -> tuple[float, float] | None:
     """返回 (前一交易日收盘价, 当日收盘价)；缺数据或无昨收时返回 None。"""
     path = (data_dir or DATA_DIR) / f"{str(code).zfill(6)}.csv"
     if not path.exists():
@@ -30,24 +59,53 @@ def get_close_to_close(code: str, trade_date: str, *, data_dir: Path | None = No
     try:
         df = pd.read_csv(path).rename(columns={
             "日期": "date", "开盘": "open", "最高": "high",
-            "最低": "low", "收盘": "close",
+            "最低": "low", "收盘": "close", "成交量": "volume",
         })
     except Exception:
         return None
-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    df["date"] = pd.to_datetime(df["date"], errors="coerce").dt.normalize()
     df = df.dropna(subset=["date", "close"]).sort_values("date").reset_index(drop=True)
 
     target = pd.to_datetime(trade_date, errors="coerce")
     if pd.isna(target):
         return None
+    target = target.normalize()
+    if not is_trading_day(target):
+        return None
+    now = _shanghai_now(as_of)
+    if target.date() > now.date():
+        return None
     matches = df.index[df["date"] == target]
     if len(matches) == 0:
         return None
     i = int(matches[0])
-    if i == 0:
-        return None  # 没有更早一个交易日的收盘价，无法计算昨收
+    expected_prev = pd.Timestamp(previous_trading_day(target))
+    prev_matches = df.index[df["date"] == expected_prev]
+    if len(prev_matches) == 0:
+        return None
+    prev_i = int(prev_matches[-1])
+    if prev_i >= i:
+        return None
 
-    prev_close = float(df.loc[i - 1, "close"])
+    if require_complete and target.date() == now.date():
+        if now.time() < _ready_time():
+            return None
+        row = df.loc[i]
+        if "volume" in df.columns:
+            try:
+                if float(row.get("volume") or 0.0) <= 0:
+                    return None
+            except (TypeError, ValueError):
+                return None
+        try:
+            from market_data import bar_row_looks_incomplete
+
+            if bar_row_looks_incomplete(row):
+                return None
+        except Exception:
+            pass
+
+    prev_close = float(df.loc[prev_i, "close"])
     today_close = float(df.loc[i, "close"])
     if prev_close <= 0:
         return None

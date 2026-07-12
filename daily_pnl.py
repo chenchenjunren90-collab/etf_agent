@@ -51,18 +51,34 @@ def review_previous_prediction(as_of: str | None = None) -> dict[str, Any] | Non
     if not files:
         return None
 
-    path = files[-1]
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    path = None
+    payload: dict[str, Any] = {}
+    for candidate in reversed(files):
+        try:
+            loaded = json.loads(candidate.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if loaded.get("mode") in {"personal_sandbox", "fatal_fallback"}:
+            continue
+        path = candidate
+        payload = loaded
+        break
+    if path is None:
+        return None
     trade_date = payload.get("date") or path.name.split("_")[0]
     picks = payload.get("competition_output") or []
     rows = []
     total = 0.0
+    unsettled: list[str] = []
 
     for pick in picks:
         code = str(pick.get("symbol") or "").zfill(6)
         volume = int(float(pick.get("volume") or 0))
         bar = _load_bar(code, trade_date)
-        if not code or volume <= 0 or bar is None:
+        if not code or volume <= 0:
+            continue
+        if bar is None:
+            unsettled.append(code)
             continue
         prev_close = bar["prev_close"]
         close = bar["close"]
@@ -84,6 +100,8 @@ def review_previous_prediction(as_of: str | None = None) -> dict[str, Any] | Non
         "source_file": str(path),
         "total_pnl": round(float(total), 2),
         "positions": rows,
+        "pending": bool(unsettled),
+        "unsettled_symbols": unsettled,
     }
 
 
@@ -96,9 +114,15 @@ def write_pnl_report(report: dict[str, Any] | None) -> Path:
 
     lines = [
         f"预测日期: {report['prediction_date']}",
-        f"单日收益: {report['total_pnl']:+.2f} 元（按平台口径：昨收→今收）",
+        (
+            "单日收益: 待完整行情后结算"
+            if report.get("pending")
+            else f"单日收益: {report['total_pnl']:+.2f} 元（按平台口径：昨收→今收）"
+        ),
         "",
     ]
+    if report.get("pending"):
+        lines.append("未结算标的: " + ", ".join(report.get("unsettled_symbols") or []))
     for row in report["positions"]:
         lines.append(
             f"{row['symbol']} {row['symbol_name']} vol={row['volume']} "

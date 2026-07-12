@@ -10,7 +10,7 @@ import json
 import os
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 os.environ.setdefault("ETF_AGENT_ALLOW_NETWORK", "1")
@@ -78,13 +78,22 @@ def main() -> int:
             log(f"  {RETRY_SLEEP_SEC}s 后重试…")
             time.sleep(RETRY_SLEEP_SEC)
 
-    pnl_report = review_previous_prediction(datetime.now().strftime("%Y-%m-%d"))
+    # review_previous_prediction uses an exclusive cutoff. Post-close must
+    # include today's prediction, so pass tomorrow rather than settling yesterday again.
+    review_cutoff = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+    pnl_report = review_previous_prediction(review_cutoff)
     pnl_path = write_pnl_report(pnl_report)
     if pnl_report:
-        log(
-            f"上一日预测复盘: {pnl_report['prediction_date']} "
-            f"收益 {pnl_report['total_pnl']:+.2f} 元"
-        )
+        if pnl_report.get("pending"):
+            log(
+                f"当日预测 {pnl_report['prediction_date']} 尚未完整结算: "
+                + ", ".join(pnl_report.get("unsettled_symbols") or [])
+            )
+        else:
+            log(
+                f"当日预测复盘: {pnl_report['prediction_date']} "
+                f"收益 {pnl_report['total_pnl']:+.2f} 元"
+            )
     else:
         log("暂无可复盘的上一日预测")
 
@@ -99,8 +108,11 @@ def main() -> int:
     }
     _write_status(status)
 
-    if last_fail > 0:
+    settlement_pending = bool(pnl_report and pnl_report.get("pending"))
+    if last_fail > 0 or settlement_pending:
         log(f"同步未完全成功：{last_fail}/{last_ok + last_fail} 只 ETF 仍缺 {target} 收盘")
+        if settlement_pending:
+            log("结算行情仍不完整，等待下一轮闭市同步重试")
         log("=" * 50)
         return 1
 

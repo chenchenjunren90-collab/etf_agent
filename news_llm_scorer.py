@@ -264,8 +264,9 @@ def merge_llm_into_news_signal(
     """将LLM评分结果合并到新闻信号中，生成增强版主题分。
 
     策略：
-    - LLM结果覆盖关键词评分（LLM更准确）
-    - 如果LLM对某ETF给出评分，直接使用；否则保留关键词评分
+    - 关键词评分是可复现的基础信号，LLM只做有界融合
+    - LLM未提及的ETF完整保留关键词评分
+    - 同时命中的ETF按 ``ETF_NEWS_LLM_WEIGHT`` 加权，默认LLM占60%
     - strength 字段：strong → 基础分0.42, moderate → 0.25, weak → 0.15
     - sentiment 字段：negative → 取负号
     """
@@ -316,7 +317,33 @@ def merge_llm_into_news_signal(
             if abs(v) >= 0.12  # WEAK_NEWS_THRESHOLD
         }
 
-        # 覆盖 theme_scores；文章条数/强弱仍以关键词入选为准（仓位档位读这些字段）。
+        keyword_scores = dict(
+            news_signal.get("_original_theme_scores")
+            or news_signal.get("theme_scores")
+            or {}
+        )
+        try:
+            llm_weight = float(os.environ.get("ETF_NEWS_LLM_WEIGHT", "0.60"))
+        except (TypeError, ValueError):
+            llm_weight = 0.60
+        llm_weight = max(0.0, min(1.0, llm_weight))
+        merged_scores: dict[str, float] = {}
+        for code in sorted(set(keyword_scores) | set(llm_theme_scores)):
+            has_keyword = code in keyword_scores
+            has_llm = code in llm_theme_scores
+            keyword_value = float(keyword_scores.get(code, 0.0) or 0.0)
+            llm_value = float(llm_theme_scores.get(code, 0.0) or 0.0)
+            if has_keyword and has_llm:
+                value = keyword_value * (1.0 - llm_weight) + llm_value * llm_weight
+            elif has_llm:
+                value = llm_value
+            else:
+                value = keyword_value
+            value = round(max(-0.85, min(0.85, value)), 3)
+            if value != 0.0:
+                merged_scores[code] = value
+
+        # 文章条数/强弱仍以关键词入选为准（仓位档位读这些字段）。
         # llm_*_count 是「ETF 判断条数」，绝不能写回 accepted_count，否则 5 文×多 ETF 会灌水。
         if "_original_accepted_count" not in news_signal:
             news_signal["_original_accepted_count"] = int(
@@ -325,13 +352,16 @@ def merge_llm_into_news_signal(
             news_signal["_original_strong_count"] = int(
                 news_signal.get("strong_count", 0) or 0
             )
-        news_signal["theme_scores"] = llm_theme_scores
-        news_signal["source"] = "llm_semantic_scoring"
+        news_signal["theme_scores"] = merged_scores
+        news_signal["llm_theme_scores"] = llm_theme_scores
+        news_signal["keyword_theme_scores_backup"] = keyword_scores
+        news_signal["source"] = "keyword_llm_blend"
+        news_signal["news_llm_weight"] = llm_weight
         news_signal["llm_article_count"] = len(llm_results)
         news_signal["llm_accepted_count"] = llm_accepted
         news_signal["llm_strong_count"] = llm_strong
         news_signal["max_abs_theme"] = round(
-            max(abs(v) for v in llm_theme_scores.values()) if llm_theme_scores else 0.0,
+            max(abs(v) for v in merged_scores.values()) if merged_scores else 0.0,
             3,
         )
         # 仓位档位读 confidence/sentiment：与 LLM theme 对齐，避免关键词置信度压错仓位
@@ -347,12 +377,15 @@ def merge_llm_into_news_signal(
             min(1.0, 0.20 * strong_arts + 0.04 * weak_arts), 3
         )
         market_refs = ("510300", "510050", "510500")
-        market_vals = [llm_theme_scores[c] for c in market_refs if c in llm_theme_scores]
+        market_vals = [merged_scores[c] for c in market_refs if c in merged_scores]
         news_signal["market_sentiment"] = (
             round(float(sum(market_vals) / len(market_vals)), 3) if market_vals else 0.0
         )
 
-    # 保留原始关键词评分作为参考
-    news_signal["keyword_theme_scores_backup"] = news_signal.get("_original_theme_scores", {})
+    # 即使 LLM 未产出有效主题，也保留原始关键词评分供审计。
+    news_signal.setdefault(
+        "keyword_theme_scores_backup",
+        dict(news_signal.get("_original_theme_scores") or news_signal.get("theme_scores") or {}),
+    )
 
     return news_signal
