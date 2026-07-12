@@ -55,7 +55,7 @@ CHAT_HTML = r"""<!doctype html>
     h1{margin:0;font-size:20px;letter-spacing:.02em}
     .sub{color:var(--muted);font-size:13px}
     .header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .theme-btn,.ghost-btn{border:1px solid var(--line);border-radius:10px;padding:8px 14px;background:var(--panel);color:var(--text);font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+    .theme-btn,.ghost-btn{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 14px;background:var(--panel);color:var(--text);font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;text-decoration:none}
     .theme-btn:hover,.ghost-btn:hover{border-color:var(--accent);color:var(--accent)}
     main{flex:1;display:grid;grid-template-columns:280px 1fr;min-height:0}
     aside{border-right:1px solid var(--line);padding:14px;overflow:auto;background:var(--aside-bg)}
@@ -104,6 +104,7 @@ CHAT_HTML = r"""<!doctype html>
     <div class="header-right">
       <div class="sub" id="kbInfo">知识库加载中…</div>
       <div class="sub" id="sessInfo"></div>
+      <a class="ghost-btn" id="dashboardLink" href="/etf-agent/" title="查看并复制当日比赛投资建议">Dashboard</a>
       <button type="button" class="ghost-btn" id="newSession" title="新会话">新会话</button>
       <button type="button" class="theme-btn" id="themeToggle">黑夜模式</button>
     </div>
@@ -157,6 +158,33 @@ CHAT_HTML = r"""<!doctype html>
     }
     function storageSet(key, val) {
       try { localStorage.setItem(key, val); } catch (e) {}
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.location.protocol === 'https:') {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (e) {}
+      }
+      const helper = document.createElement('textarea');
+      helper.value = text;
+      helper.setAttribute('readonly', '');
+      helper.style.position = 'fixed';
+      helper.style.opacity = '0';
+      document.body.appendChild(helper);
+      helper.focus();
+      helper.select();
+      helper.setSelectionRange(0, helper.value.length);
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      helper.remove();
+      return ok;
+    }
+
+    const dashboardLink = document.getElementById('dashboardLink');
+    if (dashboardLink && API_BASE === '') {
+      dashboardLink.href = window.location.protocol + '//' + window.location.hostname + ':8765/';
     }
 
     function applyTheme(theme) {
@@ -367,15 +395,11 @@ CHAT_HTML = r"""<!doctype html>
           const copy = document.createElement('button');
           copy.type = 'button';
           copy.className = 'copy-btn';
-          copy.textContent = '复制 JSON';
+          copy.textContent = '复制当日投资建议';
           copy.addEventListener('click', async () => {
-            try {
-              await navigator.clipboard.writeText(text);
-              copy.textContent = '已复制';
-              setTimeout(() => copy.textContent = '复制 JSON', 1500);
-            } catch (e) {
-              copy.textContent = '复制失败';
-            }
+            const ok = await copyText(text);
+            copy.textContent = ok ? '已复制' : '复制失败，请手动选取';
+            setTimeout(() => copy.textContent = '复制当日投资建议', 1500);
           });
           box.appendChild(copy);
         }

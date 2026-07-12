@@ -79,6 +79,20 @@
       white-space: nowrap;
     }
     .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-link:hover { border-color: var(--accent); color: var(--accent); }
     button, input {
       border: 1px solid var(--line);
       background: var(--panel2);
@@ -305,6 +319,7 @@
       <div id="sysBadges" style="margin-top:10px;"></div>
     </div>
     <div class="actions">
+      <a class="nav-link" id="agentLink" href="/etf-agent/chat/" title="返回 ETF 智能体对话">返回智能体</a>
       <button type="button" class="theme-btn" id="themeToggle" title="切换白天/黑夜模式">黑夜模式</button>
       <span class="small" style="align-self:center;color:var(--muted);">查看日期</span>
       <input id="viewDate" type="date" />
@@ -348,7 +363,7 @@
       </div>
       <ul class="sp-checklist" id="spChecklist"></ul>
       <div class="sp-actions">
-        <button type="button" class="primary" id="btnCopyJson">复制 JSON</button>
+        <button type="button" class="primary" id="btnCopyJson">复制当日投资建议</button>
         <button type="button" id="btnScreenshotMode">进入截图模式</button>
         <button type="button" id="btnOpenSubmit">打开提交页面</button>
       </div>
@@ -928,19 +943,43 @@
     document.getElementById("btnFull").addEventListener("click", function() { runDaily(false, false, "btnFull"); });
     document.getElementById("btnForce").addEventListener("click", function() { runDaily(false, true, "btnForce"); });
 
-    document.getElementById("btnCopyJson").addEventListener("click", function() {
+    async function copyText(text) {
+      if (navigator.clipboard && window.location.protocol === "https:") {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (e) {}
+      }
+      var helper = document.createElement("textarea");
+      helper.value = text;
+      helper.setAttribute("readonly", "");
+      helper.style.position = "fixed";
+      helper.style.opacity = "0";
+      document.body.appendChild(helper);
+      helper.focus();
+      helper.select();
+      helper.setSelectionRange(0, helper.value.length);
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      helper.remove();
+      return ok;
+    }
+
+    var agentLink = document.getElementById("agentLink");
+    if (agentLink && (location.port === "8765" || location.pathname.indexOf("/etf-agent/") !== 0)) {
+      agentLink.href = location.protocol + "//" + location.hostname + ":8766/";
+    }
+
+    document.getElementById("btnCopyJson").addEventListener("click", async function() {
       var text = document.getElementById("spJson").textContent;
       var btn = this;
       var done = function(ok) {
         var old = btn.textContent;
+        btn.dataset.copyResult = ok ? "success" : "failed";
         btn.textContent = ok ? "已复制 ✓" : "复制失败，请手动选取";
         setTimeout(function() { btn.textContent = old; }, 1500);
       };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function() { done(true); }, function() { done(false); });
-      } else {
-        done(false);
-      }
+      done(await copyText(text));
     });
     document.getElementById("btnScreenshotMode").addEventListener("click", function() { setScreenshotMode(true); });
     document.getElementById("btnExitScreenshot").addEventListener("click", function() { setScreenshotMode(false); });
