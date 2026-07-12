@@ -180,10 +180,15 @@ def load_status(view_date: str | None = None) -> dict[str, Any]:
     else:
         target = today
 
-    # find full json
+    # Default view falls back to the latest completed trading-day output. An
+    # explicitly selected date remains exact so historical inspection is clear.
     full_path = _latest_file(f"{target.strftime('%Y-%m-%d')}*_full.json", OUTPUT_DIR)
-    submit_path = _latest_file(f"{target.strftime('%Y-%m-%d')}*_submit.json", OUTPUT_DIR)
-    news_path = _latest_file(f"{target.strftime('%Y-%m-%d')}.json", NEWS_DIR)
+    if full_path is None and view_date is None:
+        full_path = _latest_file("*_full.json", OUTPUT_DIR, only_weekdays=True)
+
+    output_date = full_path.name.split("_")[0] if full_path else target.strftime("%Y-%m-%d")
+    submit_path = _latest_file(f"{output_date}*_submit.json", OUTPUT_DIR)
+    news_path = _latest_file(f"{output_date}.json", NEWS_DIR)
 
     full = _read_json(full_path)
     submit = _read_json(submit_path)

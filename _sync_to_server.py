@@ -21,6 +21,8 @@ APP_FILES = [
     "strategy.py",
     "decision_integrity.py",
     "stability_risk.py",
+    "goal_state.py",
+    "decision_snapshot.py",
     "trading_calendar.py",
     "daily_job.py",
     "daily_pnl.py",
@@ -98,6 +100,8 @@ HELPER_FILES = [
     "_test_decision_integrity.py",
     "_test_live_personal.py",
     "_test_personalization.py",
+    "_test_profitability_controls.py",
+    "_evaluate_profitability.py",
     "_test_sources.py",
     "_test_sources2.py",
 ]

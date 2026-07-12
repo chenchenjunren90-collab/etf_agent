@@ -35,6 +35,8 @@ from decision_integrity import (
     build_integrity_context,
     summarize_integrity_warnings,
 )
+from decision_snapshot import write_immutable_snapshot
+from goal_state import build_goal_state
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -427,6 +429,8 @@ def save_outputs(
         "strategy_result": full_result,
         "previous_pnl": pnl_report,
     }
+    if write_official:
+        full_payload["decision_snapshot"] = write_immutable_snapshot(date_str, full_payload)
     full_path.write_text(json.dumps(full_payload, ensure_ascii=False, indent=2), encoding="utf-8")
     return submit_path, full_path
 
@@ -596,6 +600,21 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
     pnl_path = write_pnl_report(pnl_report)
     log(f"复盘报告: {pnl_path}")
     recent_risk = build_recent_risk_context(args.date, capital=args.capital)
+    from competition_guard import is_competition_capital
+
+    goal_state = (
+        build_goal_state(args.date, capital=float(args.capital))
+        if is_competition_capital(float(args.capital))
+        else None
+    )
+    if goal_state:
+        log(
+            "[GOAL] "
+            f"status={goal_state['status']} "
+            f"return={goal_state['cumulative_return']:+.3%} "
+            f"remaining={goal_state['remaining_return']:.3%} "
+            f"days={goal_state['days_elapsed']}/{goal_state['window_days']}"
+        )
     log(f"十天稳健风控: {summarize_risk_context(recent_risk)}")
 
     # A 股非交易日（周末+法定休市）：不生成预测，只保留上一日复盘。
@@ -652,6 +671,7 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
         econ_payload=econ_payload,
         recent_risk=recent_risk,
         integrity_ctx=integrity_ctx,
+        goal_state=goal_state,
     )
     competition_output = to_competition_output(result)
     submit_path, full_path = save_outputs(
