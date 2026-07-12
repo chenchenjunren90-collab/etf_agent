@@ -349,22 +349,40 @@ def build_llm_decision(
 def to_competition_output(result: dict[str, Any]) -> list[dict[str, Any]]:
     out = []
     for item in result.get("summary", {}).get("held_stocks", []):
-        amount = float(item.get("amount") or 0.0)
-        price = float(item.get("latest_price") or 0.0)
-        if amount <= 0 or price <= 0:
-            continue
-        # ETF 按 100 份一手取整，保证输出可交易。
-        volume = int(amount // price // 100 * 100)
-        if volume <= 0 and amount >= price * 100:
-            volume = 100
+        volume = int(float(item.get("volume") or 0))
         if volume <= 0:
-            continue
+            amount = float(item.get("amount") or 0.0)
+            price = float(item.get("latest_price") or 0.0)
+            volume = int(amount // price // 100 * 100) if amount > 0 and price > 0 else 0
+        if volume <= 0 or volume % 100 != 0:
+            raise ValueError(
+                f"策略持仓不可按100份一手提交: {item.get('code')} volume={volume}"
+            )
         out.append({
             "symbol": str(item["code"]).zfill(6),
             "symbol_name": item["name"],
             "volume": volume,
         })
     return out
+
+
+def validate_execution_consistency(
+    result: dict[str, Any], competition_output: list[dict[str, Any]]
+) -> None:
+    """Ensure every narrated holding is exactly represented in submit JSON."""
+    held = result.get("summary", {}).get("held_stocks", []) or []
+    held_map = {
+        str(item.get("code") or "").zfill(6): int(float(item.get("volume") or 0))
+        for item in held
+    }
+    submit_map = {
+        str(item.get("symbol") or "").zfill(6): int(float(item.get("volume") or 0))
+        for item in competition_output
+    }
+    if held_map != submit_map:
+        raise ValueError(
+            f"策略持仓与提交JSON不一致: held={held_map}, submit={submit_map}"
+        )
 
 
 def save_outputs(
@@ -607,13 +625,18 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
         if is_competition_capital(float(args.capital))
         else None
     )
-    if goal_state:
+    if goal_state and goal_state.get("enabled"):
         log(
             "[GOAL] "
             f"status={goal_state['status']} "
             f"return={goal_state['cumulative_return']:+.3%} "
             f"remaining={goal_state['remaining_return']:.3%} "
             f"days={goal_state['days_elapsed']}/{goal_state['window_days']}"
+        )
+    elif goal_state:
+        log(
+            "[GOAL] control disabled: "
+            f"status={goal_state.get('status')} reason={goal_state.get('reason', '')}"
         )
     log(f"十天稳健风控: {summarize_risk_context(recent_risk)}")
 
@@ -623,7 +646,10 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
     if not is_trading_day(target_date):
         log(f"{args.date} 为 A 股非交易日，今天没有策略建议。")
         if pnl_report is not None:
-            print(f"\n上一日收益: {pnl_report['total_pnl']:+.2f} 元 ({pnl_report['prediction_date']})")
+            if pnl_report.get("pending"):
+                print(f"\n上一日收益: 待完整行情后结算 ({pnl_report['prediction_date']})")
+            else:
+                print(f"\n上一日收益: {pnl_report['total_pnl']:+.2f} 元 ({pnl_report['prediction_date']})")
         print("\n=== 今日休市 ===\n今天 A 股休市，没有策略建议。")
         return 0
 
@@ -674,6 +700,7 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
         goal_state=goal_state,
     )
     competition_output = to_competition_output(result)
+    validate_execution_consistency(result, competition_output)
     submit_path, full_path = save_outputs(
         args.date,
         competition_output,
@@ -718,10 +745,14 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
 
     print("\n=== COMPETITION OUTPUT ===")
     print(json.dumps(competition_output, ensure_ascii=False, indent=2))
-    if llm_decision and llm_decision.get("summary_zh"):
-        print(f"\nLLM 摘要: {llm_decision['summary_zh']}")
+    effective_summary = (result.get("llm_trace") or {}).get("summary_zh")
+    if effective_summary:
+        print(f"\nLLM 摘要: {effective_summary}")
     if pnl_report is not None:
-        print(f"\n上一日收益: {pnl_report['total_pnl']:+.2f} 元 ({pnl_report['prediction_date']})")
+        if pnl_report.get("pending"):
+            print(f"\n上一日收益: 待完整行情后结算 ({pnl_report['prediction_date']})")
+        else:
+            print(f"\n上一日收益: {pnl_report['total_pnl']:+.2f} 元 ({pnl_report['prediction_date']})")
     return 0
 
 

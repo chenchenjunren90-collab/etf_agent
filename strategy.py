@@ -464,13 +464,13 @@ def run_decision(
     if goal_audit:
         notes = goal_audit.get("notes") or []
         if notes:
-            market_reason = f"{market_reason}; ten-day goal control: {'; '.join(notes)}"
+            market_reason = f"{market_reason}; goal control: {'; '.join(notes)}"
         if (
             llm_trace
             and goal_audit["final_invest_ratio"]
             < goal_audit["original_invest_ratio"]
         ):
-            llm_trace["hard_rules_applied"].append("ten_day_goal_overlay")
+            llm_trace["hard_rules_applied"].append("goal_control_overlay")
 
     result = allocate_short_race(
         ranked,
@@ -494,6 +494,19 @@ def run_decision(
     }
     result["market_reason"] = market_reason
     result["reasoning"] = build_short_race_reasoning(ranked, result, market_reason, theme_signals)
+    execution_dropped = result.get("summary", {}).get("execution_dropped") or []
+    if execution_dropped and llm_trace is not None:
+        llm_trace["summary_zh_original"] = llm_trace.get("summary_zh")
+        submitted_names = [
+            f"{item.get('code')}({item.get('name')})"
+            for item in result.get("summary", {}).get("held_stocks", [])
+        ]
+        llm_trace["summary_zh"] = (
+            "经交易手数校验，最终可提交持仓为："
+            + ("、".join(submitted_names) if submitted_names else "空仓")
+            + "。原始模型观点保留在审计字段中。"
+        )
+        llm_trace.setdefault("hard_rules_applied", []).append("execution_lot_filter")
     result["stability_overlay"] = stability_audit
     if goal_audit:
         result["goal_overlay"] = goal_audit

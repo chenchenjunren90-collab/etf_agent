@@ -1,4 +1,4 @@
-"""Goal-aware risk controls for a ten-trading-day ETF competition window."""
+"""Auditable goal and volatility controls for a configurable competition window."""
 
 from __future__ import annotations
 
@@ -35,14 +35,28 @@ def _env_float(name: str, default: float) -> float:
         return float(default)
 
 
-def _settle_output(items: list[dict[str, Any]], trade_date: str, data_dir: Path) -> float:
+def _env_int(name: str, default: int) -> int:
+    try:
+        return max(1, int(os.environ.get(name, default)))
+    except (TypeError, ValueError):
+        return int(default)
+
+
+def goal_control_mode() -> str:
+    mode = os.environ.get("ETF_TEN_DAY_GOAL_MODE", "monitor").strip().lower()
+    return mode if mode in {"off", "monitor", "risk_cap", "fixed", "enforce", "on"} else "monitor"
+
+
+def _settle_output(
+    items: list[dict[str, Any]], trade_date: str, data_dir: Path
+) -> float | None:
     pnl = 0.0
     for item in items:
         code = str(item.get("symbol") or "").zfill(6)
         volume = int(float(item.get("volume") or 0))
         prices = get_close_to_close(code, trade_date, data_dir=data_dir)
         if prices is None or volume <= 0:
-            continue
+            return None
         prev_close, today_close = prices
         pnl += volume * (today_close - prev_close)
     return float(pnl)
@@ -103,33 +117,44 @@ def build_goal_state(
     capital: float,
     output_dir: Path = OUTPUT_DIR,
     data_dir: Path = DATA_DIR,
-    window_days: int = GOAL_WINDOW_DAYS,
+    window_days: int | None = None,
     state_path: Path = GOAL_STATE_PATH,
 ) -> dict[str, Any]:
     """Build the state from immutable, already-settled official predictions.
 
-    ``ETF_GOAL_START_DATE`` may pin a competition start date. Without it, the
-    previous ``window_days - 1`` settled predictions form a rolling window.
+    ``monitor`` and ``risk_cap`` use a rolling audit window and never persist a
+    start date. Fixed/enforced competition control requires an explicit
+    ``ETF_GOAL_START_DATE`` so deployment day cannot silently redefine the race.
     """
+    window_days = int(window_days or _env_int("ETF_GOAL_WINDOW_DAYS", GOAL_WINDOW_DAYS))
+    control_mode = goal_control_mode()
+    fixed_window = control_mode in {"fixed", "enforce", "on"}
     cutoff = pd.to_datetime(as_of, errors="coerce")
-    start_raw = os.environ.get("ETF_GOAL_START_DATE", "").strip()
-    if not start_raw:
-        try:
-            import json
-
-            saved = json.loads(state_path.read_text(encoding="utf-8"))
-            start_raw = str(saved.get("start_date") or "").strip()
-        except Exception:
-            start_raw = ""
-    if not start_raw:
-        start_raw = as_of
+    start_raw = os.environ.get("ETF_GOAL_START_DATE", "").strip() if fixed_window else ""
+    if fixed_window and not start_raw:
+        return {
+            "enabled": False,
+            "as_of": as_of,
+            "window_days": window_days,
+            "start_date": None,
+            "window_mode": "fixed",
+            "status": "configuration_required",
+            "control_mode": control_mode,
+            "reason": "ETF_GOAL_START_DATE is required for fixed goal control",
+            "rows": [],
+        }
+    if fixed_window:
         try:
             import json
 
             state_path.parent.mkdir(parents=True, exist_ok=True)
             state_path.write_text(
                 json.dumps(
-                    {"start_date": start_raw, "window_days": int(window_days)},
+                    {
+                        "start_date": start_raw,
+                        "window_days": window_days,
+                        "control_mode": control_mode,
+                    },
                     ensure_ascii=False,
                     indent=2,
                 ),
@@ -137,7 +162,7 @@ def build_goal_state(
             )
         except Exception:
             pass
-    start = pd.to_datetime(start_raw, errors="coerce") if start_raw else pd.NaT
+    start = pd.to_datetime(start_raw, errors="coerce") if fixed_window else pd.NaT
 
     rows: list[dict[str, Any]] = []
     if output_dir.exists() and pd.notna(cutoff):
@@ -154,6 +179,8 @@ def build_goal_state(
                     continue
                 items = payload.get("competition_output") or []
                 pnl = _settle_output(items, trade_date, data_dir)
+                if pnl is None:
+                    continue
                 rows.append(
                     {
                         "date": trade_date,
@@ -171,7 +198,7 @@ def build_goal_state(
         rows=rows,
         window_days=window_days,
         start_date=start_raw or None,
-        fixed_window=True,
+        fixed_window=fixed_window,
     )
 
 
@@ -191,9 +218,23 @@ def apply_goal_overlay(
 
     original_ratio = float(invest_ratio)
     original_positions = int(max_positions)
-    control_mode = os.environ.get("ETF_TEN_DAY_GOAL_MODE", "monitor").strip().lower()
+    control_mode = goal_control_mode()
     if control_mode == "off":
         return original_ratio, original_positions, None
+    if control_mode == "monitor":
+        return original_ratio, original_positions, {
+            "enabled": True,
+            "control_mode": "monitor",
+            "status": str(goal_state.get("status") or "active"),
+            "original_invest_ratio": round(original_ratio, 4),
+            "final_invest_ratio": round(original_ratio, 4),
+            "original_max_positions": original_positions,
+            "final_max_positions": original_positions,
+            "goal_cap": None,
+            "volatility_cap": None,
+            "notes": ["monitor mode records goal state without changing exposure"],
+            "goal_state": goal_state,
+        }
     cap = 1.0
     position_cap = original_positions
     notes: list[str] = []
@@ -226,7 +267,8 @@ def apply_goal_overlay(
         if float(item.get("volatility_20d_pct") or 0.0) > 0
     ]
     volatility_cap = None
-    if volatilities:
+    apply_volatility_cap = control_mode in {"risk_cap", "fixed", "enforce", "on"}
+    if volatilities and apply_volatility_cap:
         reference_vol = max(volatilities) / 100.0
         budget = _env_float("ETF_DAILY_VAR_BUDGET", DAILY_VAR_BUDGET)
         raw_cap = budget / max(DAILY_VAR_Z * reference_vol, 1e-9)

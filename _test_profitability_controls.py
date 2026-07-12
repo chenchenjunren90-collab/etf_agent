@@ -7,8 +7,9 @@ import tempfile
 from pathlib import Path
 
 from decision_snapshot import write_immutable_snapshot
-from goal_state import apply_goal_overlay, summarize_goal_rows
+from goal_state import apply_goal_overlay, build_goal_state, summarize_goal_rows
 from news_signal import score_news_article
+from news_llm_scorer import merge_llm_into_news_signal
 from scoring import _inject_llm_views_into_signals
 
 
@@ -42,7 +43,58 @@ def test_goal_overlay() -> None:
     )
     assert 0.15 <= ratio <= 0.16
     assert audit and audit["volatility_cap"] is not None
+
+    os.environ["ETF_TEN_DAY_GOAL_MODE"] = "monitor"
+    ratio, positions, audit = apply_goal_overlay(
+        0.55,
+        2,
+        [{"volatility_20d_pct": 2.0}],
+        active,
+    )
+    assert ratio == 0.55 and positions == 2
+    assert audit and audit["volatility_cap"] is None
+
+    os.environ["ETF_TEN_DAY_GOAL_MODE"] = "risk_cap"
+    ratio, _, audit = apply_goal_overlay(
+        0.55,
+        2,
+        [{"volatility_20d_pct": 2.0}],
+        active,
+    )
+    assert 0.15 <= ratio <= 0.16
+    assert audit and audit["volatility_cap"] is not None
     os.environ.pop("ETF_TEN_DAY_GOAL_MODE", None)
+
+
+def test_goal_window_requires_explicit_start() -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        state = root / "goal_window.json"
+        os.environ["ETF_TEN_DAY_GOAL_MODE"] = "monitor"
+        os.environ.pop("ETF_GOAL_START_DATE", None)
+        monitored = build_goal_state(
+            "2026-07-12",
+            capital=500000,
+            output_dir=root / "outputs",
+            data_dir=root,
+            state_path=state,
+        )
+        assert monitored["enabled"] is True
+        assert monitored["window_mode"] == "rolling_monitor"
+        assert not state.exists()
+
+        os.environ["ETF_TEN_DAY_GOAL_MODE"] = "fixed"
+        fixed = build_goal_state(
+            "2026-07-12",
+            capital=500000,
+            output_dir=root / "outputs",
+            data_dir=root,
+            state_path=state,
+        )
+        assert fixed["enabled"] is False
+        assert fixed["status"] == "configuration_required"
+        assert not state.exists()
+        os.environ.pop("ETF_TEN_DAY_GOAL_MODE", None)
 
 
 def test_llm_blend() -> None:
@@ -81,6 +133,35 @@ def test_news_provenance() -> None:
     assert len(scored["content_sha256"]) == 64
 
 
+def test_news_llm_preserves_keyword_only_etfs() -> None:
+    signal = {
+        "theme_scores": {"510300": 0.4, "510500": -0.2},
+        "_original_theme_scores": {"510300": 0.4, "510500": -0.2},
+        "accepted_count": 1,
+        "strong_count": 1,
+        "accepted_articles": [{"title": "test"}],
+    }
+    merged = merge_llm_into_news_signal(
+        signal,
+        [
+            {
+                "title": "test",
+                "etf_judgments": [
+                    {
+                        "code": "510300",
+                        "relevance": 1.0,
+                        "sentiment": "positive",
+                        "strength": "strong",
+                    }
+                ],
+            }
+        ],
+    )
+    assert merged["theme_scores"]["510500"] == -0.2
+    assert merged["theme_scores"]["510300"] == 0.412
+    assert merged["keyword_theme_scores_backup"]["510500"] == -0.2
+
+
 def test_snapshot_is_immutable() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         root = Path(tmp)
@@ -102,7 +183,9 @@ def test_snapshot_is_immutable() -> None:
 
 if __name__ == "__main__":
     test_goal_overlay()
+    test_goal_window_requires_explicit_start()
     test_llm_blend()
     test_news_provenance()
+    test_news_llm_preserves_keyword_only_etfs()
     test_snapshot_is_immutable()
     print("PROFITABILITY CONTROLS OK")

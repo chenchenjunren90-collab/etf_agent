@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import subprocess
 from datetime import datetime
 from pathlib import Path
@@ -11,10 +12,27 @@ from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parent
 SNAPSHOT_DIR = BASE_DIR / "data" / "decision_snapshots"
-STRATEGY_VERSION = "ten-day-profitability-v1"
+STRATEGY_VERSION = "profitability-integrity-v2"
+
+
+def _env_int(name: str, default: int) -> int:
+    try:
+        return int(os.environ.get(name, default))
+    except (TypeError, ValueError):
+        return int(default)
 
 
 def _git_commit() -> str | None:
+    configured = os.environ.get("ETF_GIT_COMMIT", "").strip()
+    if configured:
+        return configured
+    deployed = BASE_DIR / "DEPLOYED_VERSION.json"
+    try:
+        value = str(json.loads(deployed.read_text(encoding="utf-8")).get("commit") or "").strip()
+        if value:
+            return value
+    except Exception:
+        pass
     try:
         return subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=BASE_DIR, text=True, timeout=5
@@ -30,6 +48,7 @@ def strategy_manifest() -> dict[str, Any]:
         GOAL_PROTECT_RETURN,
         GOAL_TARGET_RETURN,
         GOAL_WINDOW_DAYS,
+        goal_control_mode,
     )
     from scoring import MAX_SINGLE_WEIGHT, SCORE_GATE
 
@@ -39,7 +58,8 @@ def strategy_manifest() -> dict[str, Any]:
         "parameters": {
             "score_gate": SCORE_GATE,
             "max_single_weight": MAX_SINGLE_WEIGHT,
-            "goal_window_days": GOAL_WINDOW_DAYS,
+            "goal_window_days": _env_int("ETF_GOAL_WINDOW_DAYS", GOAL_WINDOW_DAYS),
+            "goal_control_mode": goal_control_mode(),
             "goal_target_return": GOAL_TARGET_RETURN,
             "goal_protect_return": GOAL_PROTECT_RETURN,
             "goal_max_drawdown": GOAL_MAX_DRAWDOWN,

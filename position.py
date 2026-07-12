@@ -372,19 +372,44 @@ def allocate_short_race(
     max_single_amount = total_capital * max_single
     allocations = {}
     held = []
+    execution_dropped: list[dict[str, Any]] = []
 
     for stock, weight in zip(selected, weights):
-        amount = int(investable * float(weight) / 100) * 100
+        requested_amount = int(investable * float(weight) / 100) * 100
         # 二次硬限——单只不超过总资本×max_single
-        amount = min(amount, int(max_single_amount / 100) * 100)
-        if amount < MIN_AMOUNT:
+        requested_amount = min(requested_amount, int(max_single_amount / 100) * 100)
+        if requested_amount < MIN_AMOUNT:
+            execution_dropped.append({
+                "code": stock.get("code"),
+                "reason": "below_min_amount",
+                "requested_amount": requested_amount,
+            })
             continue
+        price = float(stock.get("latest_price") or 0.0)
+        if price <= 0:
+            execution_dropped.append({
+                "code": stock.get("code"),
+                "reason": "missing_execution_price",
+                "requested_amount": requested_amount,
+            })
+            continue
+        volume = int(requested_amount // price // 100 * 100)
+        if volume <= 0:
+            execution_dropped.append({
+                "code": stock.get("code"),
+                "reason": "insufficient_for_one_lot",
+                "requested_amount": requested_amount,
+                "latest_price": price,
+            })
+            continue
+        amount = round(volume * price, 2)
         code = stock["code"]
         allocations[code] = amount
         held.append({
             "code": code,
             "name": stock["name"],
             "amount": amount,
+            "volume": volume,
             "weight": round(amount / total_capital * 100, 1),
             "target_weight": round(float(weight) * invest_ratio * 100, 1),
             "type": "short_race",
@@ -417,5 +442,6 @@ def allocate_short_race(
             "held_stocks": held,
             "invest_ratio": invest_ratio,
             "mode": "short_race_theme_rotation",
+            "execution_dropped": execution_dropped,
         },
     }

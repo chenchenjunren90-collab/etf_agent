@@ -1,4 +1,4 @@
-"""Short-race stability controls for the 10-day competition window.
+"""Short-race stability controls for a configurable competition window.
 
 The main strategy is allowed to find opportunities, but this layer keeps the
 race account from leaning too hard after recent losses or weak signal quality.
@@ -24,7 +24,7 @@ OUTPUT_DIR = DATA_DIR / "daily_output"
 
 
 def stable_mode_enabled() -> bool:
-    """Return whether the conservative 10-day overlay is active."""
+    """Return whether the conservative recent-performance overlay is active."""
     return os.environ.get("ETF_AGENT_STABLE_MODE", "1").strip().lower() not in {
         "0",
         "false",
@@ -38,14 +38,14 @@ def _settle_competition_output(
     trade_date: str,
     *,
     data_dir: Path = DATA_DIR,
-) -> float:
+) -> float | None:
     total = 0.0
     for item in competition_output:
         code = str(item.get("symbol") or "").zfill(6)
         volume = int(float(item.get("volume") or 0))
         prices = get_close_to_close(code, trade_date, data_dir=data_dir)
         if not code or volume <= 0 or prices is None:
-            continue
+            return None
         prev_close, today_close = prices
         total += volume * (today_close - prev_close)
     return float(total)
@@ -86,8 +86,12 @@ def build_recent_risk_context(
             if pd.isna(d) or d >= cutoff:
                 continue
             payload = json.loads(path.read_text(encoding="utf-8"))
+            if payload.get("mode") in {"personal_sandbox", "fatal_fallback"}:
+                continue
             comp = payload.get("competition_output") or []
             pnl = _settle_competition_output(comp, trade_date, data_dir=data_dir)
+            if pnl is None:
+                continue
             rows.append({
                 "date": trade_date,
                 "pnl": round(pnl, 2),

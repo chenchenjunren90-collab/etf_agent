@@ -19,7 +19,11 @@ from typing import Any
 
 import pandas as pd
 
-from daily_job import build_llm_decision, to_competition_output
+from daily_job import (
+    build_llm_decision,
+    to_competition_output,
+    validate_execution_consistency,
+)
 from decision_integrity import compute_holding_streaks, compute_sole_symbol_streak
 from econ_calendar import load_econ_payload
 from goal_state import summarize_goal_rows
@@ -39,8 +43,10 @@ def _settle(competition_output: list[dict[str, Any]], trade_date: str) -> tuple[
         code = str(item.get("symbol") or "").zfill(6)
         volume = int(float(item.get("volume") or 0))
         prices = get_close_to_close(code, trade_date, data_dir=DATA_DIR)
-        if not code or volume <= 0 or prices is None:
+        if not code or volume <= 0:
             continue
+        if prices is None:
+            raise RuntimeError(f"missing complete settlement prices: {trade_date} {code}")
         prev_close, today_close = prices
         total += volume * (today_close - prev_close)
         used += volume * prev_close
@@ -309,6 +315,7 @@ def run_full_pipeline(
                 goal_state=goal_state,
             )
         comp = to_competition_output(result)
+        validate_execution_consistency(result, comp)
         pnl, used = _settle(comp, trade_date)
         conc = result.get("concentration_risk") or {}
         rows.append({

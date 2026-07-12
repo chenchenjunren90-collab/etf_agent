@@ -56,4 +56,4 @@ python _backtest_full_pipeline.py --start 2026-03-02 --end 2026-07-10 --cache-on
 
 每次正式比赛决策会写入不可覆盖的内容哈希快照，记录策略版本、Git 提交、新闻时间、LLM 元数据与最终输出。评估报告同时显示十日 `0.5%` 达标率、非重叠窗口、沪深 300 基准、成本后收益、最大回撤和后 30% 留出区间。
 
-十日目标控制默认为 `monitor`，只使用前瞻波动预算降低仓位，不会为了追赶目标增加风险。设置 `ETF_TEN_DAY_GOAL_MODE=fixed` 后，系统才会在固定十日窗口内启用止盈保护和回撤防守；该模式应先经过独立样本外验证。
+目标控制默认为 `monitor`，只记录窗口进度，**不会改变仓位**。设置 `ETF_TEN_DAY_GOAL_MODE=risk_cap` 才启用前瞻波动率仓位上限；设置为 `fixed`/`enforce` 才启用达标保护和回撤防守。固定模式必须同时显式配置 `ETF_GOAL_START_DATE`，窗口长度可通过 `ETF_GOAL_WINDOW_DAYS` 调整；缺少开始日时固定控制拒绝生效。

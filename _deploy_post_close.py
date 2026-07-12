@@ -4,8 +4,9 @@ from __future__ import annotations
 import paramiko
 from pathlib import Path
 
-from server_env import CHENJUNREN, HOST, PASSWORD, REMOTE, USER
+from server_env import CHENJUNREN, HOST, PASSWORD, REMOTE, USER, require_allowed_remote
 ROOT = Path(__file__).resolve().parent
+require_allowed_remote()
 
 FILES = [
     "post_close_sync.py",
@@ -15,9 +16,9 @@ FILES = [
 ]
 
 CRON_LINES = [
-    "50 7 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && /home/ciyuan/chenjunren/etf_agent/.venv/bin/python daily_job.py >> data/daily_job_cron.log 2>&1",
-    "10 8 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && /home/ciyuan/chenjunren/etf_agent/.venv/bin/python daily_job.py >> data/daily_job_cron.log 2>&1",
-    "25 8 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && /home/ciyuan/chenjunren/etf_agent/.venv/bin/python daily_job.py >> data/daily_job_cron.log 2>&1",
+    "50 7 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && ETF_TEN_DAY_GOAL_MODE=risk_cap ETF_LLM_THEME_MODE=override /home/ciyuan/chenjunren/etf_agent/.venv/bin/python daily_job.py >> data/daily_job_cron.log 2>&1",
+    "10 8 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && ETF_TEN_DAY_GOAL_MODE=risk_cap ETF_LLM_THEME_MODE=override /home/ciyuan/chenjunren/etf_agent/.venv/bin/python daily_job.py >> data/daily_job_cron.log 2>&1",
+    "25 8 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && ETF_TEN_DAY_GOAL_MODE=risk_cap ETF_LLM_THEME_MODE=override /home/ciyuan/chenjunren/etf_agent/.venv/bin/python daily_job.py >> data/daily_job_cron.log 2>&1",
     "15 16 * * 1-5 /home/ciyuan/chenjunren/etf_agent/scripts/post_close_sync.sh >> /home/ciyuan/chenjunren/etf_agent/data/daily_output/post_close_sync.log 2>&1",
     "45 16 * * 1-5 /home/ciyuan/chenjunren/etf_agent/scripts/post_close_sync.sh >> /home/ciyuan/chenjunren/etf_agent/data/daily_output/post_close_sync.log 2>&1",
     "15 17 * * 1-5 /home/ciyuan/chenjunren/etf_agent/scripts/post_close_sync.sh >> /home/ciyuan/chenjunren/etf_agent/data/daily_output/post_close_sync.log 2>&1",
@@ -45,11 +46,12 @@ _, o, e = c.exec_command(f"chmod +x {REMOTE}/scripts/post_close_sync.sh")
 o.read()
 
 cron_body = "\n".join(CRON_LINES) + "\n"
+c.exec_command(f"mkdir -p {REMOTE}/.deploy")
 sftp = c.open_sftp()
-with sftp.file("/tmp/etf_cron_new", "w") as f:
+with sftp.file(f"{REMOTE}/.deploy/etf_cron_new", "w") as f:
     f.write(cron_body)
 sftp.close()
-_, o, e = c.exec_command("crontab /tmp/etf_cron_new && crontab -l")
+_, o, e = c.exec_command(f"crontab {REMOTE}/.deploy/etf_cron_new && crontab -l")
 print("=== crontab ===")
 print(o.read().decode())
 
@@ -74,10 +76,10 @@ p = Path('/home/ciyuan/chenjunren/etf_agent/data/daily_output/2026-07-09_full.js
 print(_settle_prediction(p))
 """
 sftp = c.open_sftp()
-with sftp.file("/tmp/_verify_pnl.py", "w") as f:
+with sftp.file(f"{REMOTE}/.deploy/_verify_pnl.py", "w") as f:
     f.write(script)
 sftp.close()
-_, o, e = c.exec_command(f"cd {REMOTE} && .venv/bin/python /tmp/_verify_pnl.py")
+_, o, e = c.exec_command(f"cd {REMOTE} && .venv/bin/python {REMOTE}/.deploy/_verify_pnl.py")
 print(o.read().decode())
 
 c.close()
