@@ -25,6 +25,7 @@ from trading_calendar import is_trading_day, previous_trading_day
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
+DEFAULT_MIN_COMPLETION_VOLUME_RATIO = 0.05
 
 
 def _ready_time() -> time:
@@ -34,6 +35,17 @@ def _ready_time() -> time:
         return time(hour, minute)
     except (TypeError, ValueError):
         return time(16, 15)
+
+
+def _min_completion_volume_ratio() -> float:
+    raw = os.environ.get(
+        "ETF_SETTLEMENT_MIN_VOLUME_RATIO",
+        str(DEFAULT_MIN_COMPLETION_VOLUME_RATIO),
+    )
+    try:
+        return max(0.0, min(1.0, float(raw)))
+    except (TypeError, ValueError):
+        return DEFAULT_MIN_COMPLETION_VOLUME_RATIO
 
 
 def _shanghai_now(as_of: datetime | None = None) -> datetime:
@@ -93,10 +105,20 @@ def get_close_to_close(
         row = df.loc[i]
         if "volume" in df.columns:
             try:
-                if float(row.get("volume") or 0.0) <= 0:
+                current_volume = float(row.get("volume") or 0.0)
+                if current_volume <= 0:
                     return None
             except (TypeError, ValueError):
                 return None
+            historical_volume = pd.to_numeric(
+                df.loc[df.index < i, "volume"], errors="coerce"
+            ).dropna().tail(20)
+            historical_volume = historical_volume[historical_volume > 0]
+            if len(historical_volume) >= 2:
+                normal_volume = float(historical_volume.median())
+                min_ratio = _min_completion_volume_ratio()
+                if normal_volume > 0 and current_volume < normal_volume * min_ratio:
+                    return None
         try:
             from market_data import bar_row_looks_incomplete
 

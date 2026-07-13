@@ -36,9 +36,9 @@ def main() -> None:
     full_files = [f.strip() for f in out2.read().decode().splitlines() if f.strip()]
     for path in reversed(full_files[:5]):
         _, o, _ = ssh.exec_command(
-            f"python3 -c \"import json; d=json.load(open('{path}')); "
-            "r=d.get('ranked',[]); "
-            "print('{path}', [(x.get('symbol'), round(x.get('score',0),3)) for x in r[:5]])\"",
+            f"{REMOTE}/.venv/bin/python -c \"import json; d=json.load(open('{path}')); "
+            "r=(d.get('strategy_result') or {}).get('ranked',[]); "
+            f"print('{path}', [(x.get('code'), round(x.get('score',0),3)) for x in r[:5]])\"",
             timeout=15,
         )
         print(o.read().decode().strip())

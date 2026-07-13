@@ -59,3 +59,5 @@ python _backtest_full_pipeline.py --start 2026-03-02 --end 2026-07-10 --cache-on
 目标控制默认为 `monitor`，只记录窗口进度，**不会改变仓位**。设置 `ETF_TEN_DAY_GOAL_MODE=risk_cap` 才启用前瞻波动率仓位上限；设置为 `fixed`/`enforce` 才启用达标保护和回撤防守。固定模式必须同时显式配置 `ETF_GOAL_START_DATE`，窗口长度可通过 `ETF_GOAL_WINDOW_DAYS` 调整；缺少开始日时固定控制拒绝生效。
 
 线上运行模式应在项目目录的 `.env` 中显式配置，例如 `ETF_TEN_DAY_GOAL_MODE=risk_cap` 和 `ETF_LLM_THEME_MODE=override`；`.env` 不提交到 GitHub。
+
+当日盈亏默认在上海时间 16:15 后才允许结算，并要求当日成交量不低于近 20 日中位数的 5%，避免早盘残留的半截 K 线被误当成收盘数据。可通过 `ETF_SETTLEMENT_READY_TIME` 和 `ETF_SETTLEMENT_MIN_VOLUME_RATIO` 调整。

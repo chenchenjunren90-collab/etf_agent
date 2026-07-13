@@ -22,9 +22,15 @@ for d in ('2026-07-08', '2026-07-09'):
 print('review_previous_prediction(2026-07-09)', review_previous_prediction('2026-07-09'))
 """
 sftp = c.open_sftp()
-with sftp.file("/tmp/_check_pnl2.py", "w") as f:
+remote_script = f"{REMOTE}/.deploy/_check_pnl2.py"
+try:
+    sftp.mkdir(f"{REMOTE}/.deploy")
+except OSError:
+    pass
+with sftp.file(remote_script, "w") as f:
     f.write(script)
 sftp.close()
-_, o, e = c.exec_command(f"cd {REMOTE} && python3 /tmp/_check_pnl2.py")
+_, o, e = c.exec_command(f"cd {REMOTE} && .venv/bin/python {remote_script}")
 print((o.read() + e.read()).decode())
+c.exec_command(f"rm -f {remote_script}")
 c.close()
