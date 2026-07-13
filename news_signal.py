@@ -146,6 +146,14 @@ def _article_text(article: dict[str, Any]) -> str:
     )
 
 
+def _core_article_text(article: dict[str, Any]) -> str:
+    """Use the event-bearing fields before considering long-form body text."""
+    return " ".join(
+        str(article.get(k) or "")
+        for k in ("title", "summary", "digest", "keywords")
+    )
+
+
 def _hit_words(text: str, words: tuple[str, ...]) -> list[str]:
     return [w for w in words if w and w in text]
 
@@ -160,6 +168,25 @@ def _theme_scores_from_text(text: str) -> dict[str, float]:
         if raw > 0:
             scores[code] = round(min(raw, 1.5), 3)
     return scores
+
+
+def _theme_hits_for_article(article: dict[str, Any]) -> tuple[dict[str, float], str]:
+    """Map the core event, rejecting ambiguous incidental body mentions.
+
+    A title/summary can legitimately mention multiple affected themes. When the
+    core fields contain no mapping, full text is accepted only if it points to
+    exactly one ETF; otherwise a roundup article would contaminate unrelated
+    sectors merely because their names appear somewhere in the body.
+    """
+    core_hits = _theme_scores_from_text(_core_article_text(article))
+    if core_hits:
+        return core_hits, "core_event_fields"
+    body_hits = _theme_scores_from_text(str(article.get("content") or ""))
+    if len(body_hits) == 1:
+        return body_hits, "single_theme_body_fallback"
+    if body_hits:
+        return {}, "ambiguous_multi_theme_body"
+    return {}, "no_theme_mapping"
 
 
 def _concrete_event_hits(text: str) -> dict[str, list[str]]:
@@ -245,7 +272,7 @@ def score_news_article(
     event_hits = _concrete_event_hits(text)
     vague_hits = _hit_words(text, VAGUE_NEWS_HINTS)
     negative_hits = _hit_words(text, NEGATIVE_CATALYST_HINTS)
-    theme_hits = _theme_scores_from_text(text)
+    theme_hits, mapping_scope = _theme_hits_for_article(article)
 
     if not theme_hits:
         return {
@@ -254,6 +281,7 @@ def score_news_article(
             "source": str(article.get("source") or ""),
             "quality": "rejected",
             "reason": "no_clear_sector_or_etf_mapping",
+            "mapping_scope": mapping_scope,
             "event_hits": event_hits,
             "theme_scores": {},
             "risk_flags": [],
@@ -301,6 +329,7 @@ def score_news_article(
             "source": str(article.get("source") or ""),
             "quality": "rejected",
             "reason": "filtered_by_price_context",
+            "mapping_scope": mapping_scope,
             "event_hits": event_hits,
             "theme_scores": {},
             "risk_flags": sorted(set(risk_flags)),
@@ -321,6 +350,7 @@ def score_news_article(
         "content_sha256": hashlib.sha256(content.encode("utf-8")).hexdigest(),
         "quality": base_quality,
         "reason": reason,
+        "mapping_scope": mapping_scope,
         "event_hits": event_hits,
         "vague_hits": vague_hits,
         "negative_hits": negative_hits,

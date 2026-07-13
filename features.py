@@ -75,8 +75,8 @@ def _load_local_price(code, date_str=None, limit=120):
 
 def _get_price_for_decision(code, date_str=None):
     """实盘/回测决策行情：严格 date < 交易日，不含当日 K 线（避免盘中重跑偷看）。"""
-    strict = os.environ.get("ETF_AGENT_STRICT_DATA", "1") == "1"
-    if strict or os.environ.get("ETF_AGENT_ALLOW_NETWORK", "0") == "1":
+    allow_network = os.environ.get("ETF_AGENT_ALLOW_NETWORK", "0") == "1"
+    if allow_network:
         try:
             from market_data import load_fresh_price
 
