@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import math
 import threading
 import time
 from collections import defaultdict
@@ -46,25 +47,36 @@ def _env_int(name: str, default: int) -> int:
         return default
 
 
+def _env_float(name: str, default: float) -> float:
+    raw = os.environ.get(name, "").strip()
+    if not raw:
+        return default
+    try:
+        return float(raw)
+    except ValueError:
+        return default
+
+
 def rate_limit(
     key: str,
     *,
     max_calls: int,
     window_sec: float,
     min_interval_sec: float = 0,
-) -> tuple[bool, str]:
+) -> tuple[bool, str, int]:
     now = time.time()
     with _lock:
         times = [t for t in _hits[key] if now - t < window_sec]
         if times and min_interval_sec > 0 and (now - times[-1]) < min_interval_sec:
-            wait = int(min_interval_sec - (now - times[-1])) + 1
-            return False, f"操作太频繁，请 {wait} 秒后再试"
+            wait = max(1, math.ceil(min_interval_sec - (now - times[-1])))
+            return False, f"操作太频繁，请 {wait} 秒后再试", wait
         if len(times) >= max_calls:
             window_min = max(1, int(window_sec / 60))
-            return False, f"已达到限制（{max_calls} 次/{window_min} 分钟），请稍后再试"
+            wait = max(1, math.ceil(window_sec - (now - times[0])))
+            return False, f"已达到限制（{max_calls} 次/{window_min} 分钟），请稍后再试", wait
         times.append(now)
         _hits[key] = times
-    return True, ""
+    return True, "", 0
 
 
 def admin_token_ok(handler: BaseHTTPRequestHandler, body: dict[str, Any] | None = None) -> bool:
@@ -85,14 +97,14 @@ def check_api_run(handler: BaseHTTPRequestHandler, body: dict[str, Any]) -> dict
     window_sec = float(_env_int("ETF_RUN_WINDOW_SEC", 7200))
     min_interval = float(_env_int("ETF_RUN_MIN_INTERVAL_SEC", 180))
 
-    ok, msg = rate_limit(
+    ok, msg, retry_after = rate_limit(
         f"run:{ip}",
         max_calls=max_calls,
         window_sec=window_sec,
         min_interval_sec=min_interval,
     )
     if not ok:
-        return {"status": "rate_limited", "output": msg}
+        return {"status": "rate_limited", "output": msg, "retry_after": retry_after}
 
     if body.get("force") and not admin_token_ok(handler, body):
         return {
@@ -102,20 +114,46 @@ def check_api_run(handler: BaseHTTPRequestHandler, body: dict[str, Any]) -> dict
     return None
 
 
-def check_chat(handler: BaseHTTPRequestHandler) -> dict[str, Any] | None:
+def check_chat(
+    handler: BaseHTTPRequestHandler,
+    body: dict[str, Any] | None = None,
+) -> dict[str, Any] | None:
     ip = client_ip(handler)
-    max_calls = _env_int("ETF_CHAT_MAX_PER_WINDOW", 20)
+    body = body or {}
+    session_id = str(body.get("session_id") or "anonymous")[:80]
+    max_calls = _env_int("ETF_CHAT_MAX_PER_WINDOW", 40)
     window_sec = float(_env_int("ETF_CHAT_WINDOW_SEC", 600))
-    min_interval = float(_env_int("ETF_CHAT_MIN_INTERVAL_SEC", 2))
+    min_interval = _env_float("ETF_CHAT_SESSION_MIN_INTERVAL_SEC", 0.25)
 
-    ok, msg = rate_limit(
-        f"chat:{ip}",
+    # A short per-session interval catches duplicate clicks without making all
+    # users behind the same NAT share one conversational cooldown.
+    ok, msg, retry_after = rate_limit(
+        f"chat-session:{ip}:{session_id}",
         max_calls=max_calls,
         window_sec=window_sec,
         min_interval_sec=min_interval,
     )
     if not ok:
-        return {"error": msg, "reply": msg, "intent": "rate_limited"}
+        return {
+            "error": msg,
+            "reply": msg,
+            "intent": "rate_limited",
+            "retry_after": retry_after,
+        }
+
+    ip_max_calls = _env_int("ETF_CHAT_IP_MAX_PER_WINDOW", 120)
+    ok, msg, retry_after = rate_limit(
+        f"chat-ip:{ip}",
+        max_calls=ip_max_calls,
+        window_sec=window_sec,
+    )
+    if not ok:
+        return {
+            "error": msg,
+            "reply": msg,
+            "intent": "rate_limited",
+            "retry_after": retry_after,
+        }
     return None
 
 

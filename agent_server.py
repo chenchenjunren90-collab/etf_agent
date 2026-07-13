@@ -458,6 +458,7 @@ CHAT_HTML = r"""<!doctype html>
     }
 
     async function sendField(field, value, displayLabel) {
+      if (busy) return;
       const label = displayLabel != null ? String(displayLabel) : String(value);
       addMsg(label, 'user');
       await postChat({
@@ -480,14 +481,26 @@ CHAT_HTML = r"""<!doctype html>
       const pending = addMsg(heavy ? '正在用基础数据现算建议（行情+新闻+策略），约数十秒，请稍候…' : '思考中…', 'bot');
       try {
         const body = Object.assign({ session_id: sessionId }, payload);
-        const r = await fetch(apiUrl('/api/chat'), {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(body)
-        });
+        let r;
+        for (let attempt = 0; attempt < 2; attempt += 1) {
+          r = await fetch(apiUrl('/api/chat'), {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+          });
+          if (r.status !== 429 || attempt > 0) break;
+          const retryAfter = Number(r.headers.get('Retry-After') || 0);
+          if (!retryAfter || retryAfter > 2) break;
+          await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+        }
+        if (r.status === 429) {
+          const limited = await r.json().catch(() => ({}));
+          pending.remove();
+          addMsg(limited.reply || '消息发送较快，请稍等片刻后重试。', 'bot', 'rate_limited');
+          return;
+        }
         if (!r.ok) {
-          const t = await r.text();
-          throw new Error('HTTP ' + r.status + ' ' + t.slice(0, 80));
+          throw new Error('服务暂时不可用（HTTP ' + r.status + '）');
         }
         const j = await r.json();
         pending.remove();
@@ -499,7 +512,7 @@ CHAT_HTML = r"""<!doctype html>
         }
       } catch (e) {
         pending.remove();
-        addMsg('请求失败：' + e, 'bot');
+        addMsg('请求暂时失败，请稍后再试。', 'bot', 'network_error');
       } finally {
         busy = false;
       }
@@ -525,12 +538,19 @@ CHAT_HTML = r"""<!doctype html>
 </html>"""
 
 
-def _json(handler: BaseHTTPRequestHandler, payload: Any, status: int = 200) -> None:
+def _json(
+    handler: BaseHTTPRequestHandler,
+    payload: Any,
+    status: int = 200,
+    headers: dict[str, str] | None = None,
+) -> None:
     data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
     handler.send_response(status)
     handler.send_header("Content-Type", "application/json; charset=utf-8")
     handler.send_header("Content-Length", str(len(data)))
     handler.send_header("Access-Control-Allow-Origin", "*")
+    for name, value in (headers or {}).items():
+        handler.send_header(name, value)
     handler.end_headers()
     handler.wfile.write(data)
 
@@ -618,9 +638,14 @@ class AgentHandler(BaseHTTPRequestHandler):
             return
 
         if path in ("/api/chat", "/etf-agent/chat/api/chat"):
-            blocked = security_guard.check_chat(self)
+            blocked = security_guard.check_chat(self, body)
             if blocked:
-                _json(self, blocked, status=429)
+                _json(
+                    self,
+                    blocked,
+                    status=429,
+                    headers={"Retry-After": str(blocked.get("retry_after") or 1)},
+                )
                 return
             msg = str(body.get("message") or "")
             date = body.get("date")
