@@ -66,6 +66,30 @@ def main() -> None:
             "same-day bar remains pending before readiness cutoff",
         )
 
+        low_volume_rows = [
+            valid_rows[0],
+            valid_rows[1],
+            {
+                "date": "2026-07-10",
+                "open": 3.01,
+                "high": 3.01,
+                "low": 3.01,
+                "close": 3.01,
+                "volume": 10,
+            },
+        ]
+        _write_prices(root, "510880", low_volume_rows)
+        _assert(
+            get_close_to_close(
+                "510880",
+                "2026-07-10",
+                data_dir=root,
+                as_of=datetime(2026, 7, 10, 16, 30),
+            )
+            is None,
+            "low-volume intraday residue is rejected after cutoff",
+        )
+
         output = root / "outputs"
         output.mkdir()
         (output / "2026-07-08_full.json").write_text(

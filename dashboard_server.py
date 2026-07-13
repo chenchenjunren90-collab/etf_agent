@@ -170,6 +170,7 @@ def _system_info() -> dict[str, Any]:
 def load_status(view_date: str | None = None) -> dict[str, Any]:
     today = datetime.now().date()
     today_str = today.strftime("%Y-%m-%d")
+    today_is_trading = is_trading_day(today)
     if view_date:
         try:
             target = datetime.strptime(view_date, "%Y-%m-%d").date()
@@ -180,10 +181,18 @@ def load_status(view_date: str | None = None) -> dict[str, Any]:
 
     # The default view is always exact. On a closed day, returning the previous
     # session here would make historical holdings look like today's advice.
+    closed_default = not view_date and not today_is_trading
     full_path = _latest_file(f"{target.strftime('%Y-%m-%d')}*_full.json", OUTPUT_DIR)
+    if closed_default:
+        # A stale/manual artifact must never turn a closed session into today's
+        # actionable advice. Explicit historical views remain available below.
+        full_path = None
     output_date = full_path.name.split("_")[0] if full_path else target.strftime("%Y-%m-%d")
     submit_path = _latest_file(f"{output_date}*_submit.json", OUTPUT_DIR)
     news_path = _latest_file(f"{output_date}.json", NEWS_DIR)
+    if closed_default:
+        submit_path = None
+        news_path = None
 
     full = _read_json(full_path)
     submit = _read_json(submit_path)
@@ -191,7 +200,6 @@ def load_status(view_date: str | None = None) -> dict[str, Any]:
 
     previous_pnl = _settle_prediction(full_path) if full_path else None
     latest_available = _latest_file("*_full.json", OUTPUT_DIR, only_weekdays=True)
-    today_is_trading = is_trading_day(today)
     target_is_trading = is_trading_day(target)
 
     return {
@@ -233,8 +241,6 @@ def _build_daily_job_cmd(options: dict[str, Any]) -> tuple[list[str], dict[str, 
     cmd = [sys.executable, "-u", str(BASE_DIR / "daily_job.py")]
     today = datetime.now().date()
     today_str = today.strftime("%Y-%m-%d")
-    from trading_calendar import is_trading_day
-
     if is_trading_day(today):
         cmd.extend(["--date", today_str])
     if options.get("skip_price_update"):
@@ -259,7 +265,6 @@ def _prepare_daily_job(options: dict[str, Any]) -> tuple[list[str], dict[str, st
 
     try:
         import daily_run_guard
-        from trading_calendar import is_trading_day
 
         today_str = datetime.now().strftime("%Y-%m-%d")
         if not is_trading_day(today_str):
