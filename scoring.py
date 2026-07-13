@@ -235,7 +235,7 @@ def rank_etfs_short_race(pool, date_str=None):
 def _inject_llm_views_into_signals(theme_signals, llm_decision):
     """将大模型态度分注入到主题信号中。
 
-    路径 1: 覆盖主题分 — LLM 对某 ETF 的态度分直接替换该 ETF 的主题信号
+    路径 1: 默认仅审计 — LLM 解释保留，但不得直接控制交易评分
     路径 2: 降低评分闸门 — 仅当 SCORE_GATE_MODE=dynamic 且 max|score|>=0.5
     路径 3: 仓位比例提示 — 仅写入 theme_signals 供审计；strategy 不再用 hint 压仓
     """
@@ -254,7 +254,9 @@ def _inject_llm_views_into_signals(theme_signals, llm_decision):
     max_abs = 0.0
     blend_weight = float(os.environ.get("ETF_LLM_THEME_BLEND", "0.35") or 0.35)
     blend_weight = max(0.0, min(1.0, blend_weight))
-    llm_mode = os.environ.get("ETF_LLM_THEME_MODE", "override").strip().lower()
+    requested_mode = os.environ.get("ETF_LLM_THEME_MODE", "audit").strip().lower()
+    llm_control_enabled = os.environ.get("ETF_ALLOW_LLM_SCORE_CONTROL", "0").strip() == "1"
+    llm_mode = requested_mode if llm_control_enabled else "audit"
     for view in views:
         code = str(view.get("code", "")).zfill(6)
         score = float(view.get("score", 0.0) or 0.0)
@@ -280,6 +282,8 @@ def _inject_llm_views_into_signals(theme_signals, llm_decision):
                 "base_score": round(base_score, 4),
                 "applied_score": round(applied_score, 4),
                 "mode": llm_mode,
+                "requested_mode": requested_mode,
+                "score_control_enabled": llm_control_enabled,
                 "weight": blend_weight,
                 "reason": reason,
             }
@@ -290,6 +294,8 @@ def _inject_llm_views_into_signals(theme_signals, llm_decision):
     theme_signals["reasons"] = reasons
     theme_signals["llm_hints"] = llm_hints
     theme_signals["llm_max_abs_score"] = max_abs
+    theme_signals["llm_score_control_enabled"] = llm_control_enabled
+    theme_signals["llm_requested_mode"] = requested_mode
 
     # 路径 2: 降低评分闸门（仅 SCORE_GATE_MODE=dynamic 显式开启时）
     if max_abs >= 0.5:

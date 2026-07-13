@@ -56,8 +56,12 @@ python _backtest_full_pipeline.py --start 2026-03-02 --end 2026-07-10 --cache-on
 
 每次正式比赛决策会写入不可覆盖的内容哈希快照，记录策略版本、Git 提交、新闻时间、LLM 元数据与最终输出。评估报告同时显示十日 `0.5%` 达标率、非重叠窗口、沪深 300 基准、成本后收益、最大回撤和后 30% 留出区间。
 
+当前策略采用“候选排序 + 独立盈利证据层”的两阶段决策。排序模型只能提出候选；只有严格早于决策日的相似历史状态显示成本后正收益，且新闻能直接映射到相关 ETF、入场位置不过度延伸时，候选才可进入组合。高置信机会仓位上限为 20%，不确定但仍有正优势的机会仓位上限为 8%，证据不足时默认空仓。该机制用于降低误交易和回撤，不能保证固定期限收益。
+
+新闻映射优先使用标题、摘要与结构化关键词。只有核心字段无法映射且正文仅指向一个 ETF 时才使用全文，避免行业综述中顺带出现的词语污染其他 ETF。LLM 默认处于 `audit` 模式，可提供解释和风险提示，但不能直接覆盖量化分数。
+
 目标控制默认为 `monitor`，只记录窗口进度，**不会改变仓位**。设置 `ETF_TEN_DAY_GOAL_MODE=risk_cap` 才启用前瞻波动率仓位上限；设置为 `fixed`/`enforce` 才启用达标保护和回撤防守。固定模式必须同时显式配置 `ETF_GOAL_START_DATE`，窗口长度可通过 `ETF_GOAL_WINDOW_DAYS` 调整；缺少开始日时固定控制拒绝生效。
 
-线上运行模式应在项目目录的 `.env` 中显式配置，例如 `ETF_TEN_DAY_GOAL_MODE=risk_cap` 和 `ETF_LLM_THEME_MODE=override`；`.env` 不提交到 GitHub。
+线上运行模式应在项目目录的 `.env` 中显式配置，例如 `ETF_TEN_DAY_GOAL_MODE=risk_cap`、`ETF_LLM_THEME_MODE=audit` 和 `ETF_ALLOW_LLM_SCORE_CONTROL=0`；`.env` 不提交到 GitHub。只有研究环境明确设置 `ETF_ALLOW_LLM_SCORE_CONTROL=1` 时，旧版 `blend`/`override` 才会生效。
 
 当日盈亏默认在上海时间 16:15 后才允许结算，并要求当日成交量不低于近 20 日中位数的 5%，避免早盘残留的半截 K 线被误当成收盘数据。可通过 `ETF_SETTLEMENT_READY_TIME` 和 `ETF_SETTLEMENT_MIN_VOLUME_RATIO` 调整。

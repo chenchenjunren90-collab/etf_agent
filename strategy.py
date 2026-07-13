@@ -3,9 +3,9 @@
 本模块是每日预测的编排中心，负责：
   1. 加载交易池（基础池 + 动态进攻池）
   2. 调用评分模块排名 ETF
-  3. 注入 LLM 态度分（若有）
-  4. 逐层执行风控规则（仓位限制 / 经济日历硬顶 / 评分闸门）
-  5. 调用资金分配模块输出最终持仓
+  3. 记录 LLM 态度（默认仅审计，不控制交易评分）
+  4. 用严格历史样本验证成本后盈利证据，不足则空仓
+  5. 逐层执行风控规则并输出最终持仓
 
 模块拆分说明（从原 strategy.py 拆出）：
   - pool.py       → TRADING_POOL, OFFENSIVE_POOL, Cache
@@ -73,6 +73,7 @@ from position import (
 )
 from decision_integrity import apply_concentration_risk
 from goal_state import apply_goal_overlay
+from profitability_evidence import evaluate_trade_candidates
 # 也兼容旧版引用
 
 
@@ -105,6 +106,7 @@ def _empty_cash_result(
     market_reason: str,
     *,
     llm_trace: dict | None = None,
+    profitability_gate: dict | None = None,
 ) -> dict[str, Any]:
     """统一构造空仓输出。"""
     summary = {
@@ -117,7 +119,7 @@ def _empty_cash_result(
         "invest_ratio": 0.0,
         "mode": "short_race_cash",
     }
-    return {
+    result = {
         "date": date_str,
         "allocations": {},
         "summary": summary,
@@ -133,6 +135,9 @@ def _empty_cash_result(
         "reasoning": f"Hold cash. Market: {market_reason}",
         "llm_trace": llm_trace,
     }
+    if profitability_gate is not None:
+        result["profitability_gate"] = profitability_gate
+    return result
 
 
 def build_short_race_reasoning(
@@ -212,11 +217,12 @@ def run_decision(
 
     因素主次（高→低，次级不得压过清晰主信号）：
       1) 数据完整性：行情陈旧则禁用 LLM 重排/仓位提示；
-      2) 主信号：综合分（趋势+主题+历史−风险）；
-      3) 风险预算：稳健层/经济日历/评分闸门（管仓位大小）；
-      4) 连持倾向：连续持有同名仅软性降分，不禁买、不强制分散，
+      2) 盈利证据：严格历史相似状态的成本后优势，无优势即空仓；
+      3) 主信号：综合分只负责提出候选，不再拥有最终入场权；
+      4) 风险预算：稳健层/经济日历/评分闸门（管仓位大小）；
+      5) 连持倾向：连续持有同名仅软性降分，不禁买、不强制分散，
          明显领先时不因连持翻盘；
-      5) LLM：仅行情新鲜时可用，只可下调仓位/主题，不可突破硬顶。
+      6) LLM：仅行情新鲜时可用，只可解释和审计，不可突破硬顶。
 
     传入 ``llm_decision=None`` 即退化为纯规则路径。
     """
@@ -311,11 +317,55 @@ def run_decision(
     elif block_llm and llm_decision and llm_decision.get("cash_decision") == "stay_cash" and llm_trace:
         llm_trace["hard_rules_applied"].append("llm_stay_cash_ignored_stale_prices")
 
+    # 独立盈利证据层拥有最终入场否决权。综合分只提出候选；相似历史
+    # 状态没有显示成本后正优势、新闻缺乏直接事件映射，或入场已过度延伸，
+    # 都必须拒绝，而不是靠降低仓位掩盖错误信号。
+    proposed_ranked = list(ranked)
+    ranked, profitability_gate = evaluate_trade_candidates(
+        ranked,
+        theme_signals,
+        date_str,
+    )
+    if llm_trace is not None:
+        llm_trace["llm_score_control_enabled"] = bool(
+            theme_signals.get("llm_score_control_enabled")
+        )
+        llm_trace["hard_rules_applied"].append("profitability_evidence_gate")
+    if not ranked:
+        reason = "盈利证据不足：历史相似状态未显示可靠的成本后正收益，今日保持空仓。"
+        if llm_trace is not None:
+            llm_trace["summary_zh_original"] = llm_trace.get("summary_zh")
+            llm_trace["summary_zh"] = reason
+        print(f"  [EvidenceGate] {reason}")
+        return _empty_cash_result(
+            date_str,
+            total_capital,
+            proposed_ranked,
+            theme_signals,
+            reason,
+            llm_trace=llm_trace,
+            profitability_gate=profitability_gate,
+        )
+    evidence_cap = float(profitability_gate.get("exposure_cap") or 0.0)
+    evidence_max_positions = int(profitability_gate.get("max_positions") or 1)
+    print(
+        "  [EvidenceGate] "
+        f"mode={profitability_gate.get('mode')} selected={profitability_gate.get('selected_code')} "
+        f"cap={evidence_cap:.0%}"
+    )
+
     print("[Step 2/4] Evaluating market regime...")
     invest_ratio, market_reason = evaluate_market_regime(date_str)
     invest_ratio, market_reason = adjust_invest_ratio_by_news(
         invest_ratio, market_reason, theme_signals
     )
+    if evidence_cap > 0 and invest_ratio > evidence_cap:
+        old_ratio = invest_ratio
+        invest_ratio = evidence_cap
+        market_reason = (
+            f"{market_reason}；盈利证据层仓位上限 {evidence_cap:.0%} "
+            f"(原{old_ratio:.0%})"
+        )
 
     # LLM position_ratio_hint 仅审计：仓位由 regime + 新闻 + 经济日历 + stable
     # 决定。校正后全链路回测显示 min(规则, hint) 系统性压仓，抹掉规则 alpha。
@@ -414,7 +464,7 @@ def run_decision(
     print(f"  Invest ratio: {invest_ratio:.0%} ({market_reason})")
 
     print("[Step 3/4] Allocating concentrated race portfolio...")
-    dyn_max = short_race_max_positions(theme_signals)
+    dyn_max = min(short_race_max_positions(theme_signals), evidence_max_positions)
     if stability_max_positions is not None:
         # 稳健层在强/中等信号下解锁的仓位数是「应能开到」的档位，
         # 不能被新闻层更严的 1 仓 min() 短路，否则高仓路径形同虚设。
@@ -494,6 +544,7 @@ def run_decision(
     }
     result["market_reason"] = market_reason
     result["reasoning"] = build_short_race_reasoning(ranked, result, market_reason, theme_signals)
+    result["profitability_gate"] = profitability_gate
     execution_dropped = result.get("summary", {}).get("execution_dropped") or []
     if execution_dropped and llm_trace is not None:
         llm_trace["summary_zh_original"] = llm_trace.get("summary_zh")

@@ -98,9 +98,9 @@ def test_goal_window_requires_explicit_start() -> None:
 
 
 def test_llm_blend() -> None:
-    os.environ.pop("ETF_LLM_THEME_MODE", None)
     os.environ["ETF_LLM_THEME_MODE"] = "blend"
     os.environ["ETF_LLM_THEME_BLEND"] = "0.35"
+    os.environ.pop("ETF_ALLOW_LLM_SCORE_CONTROL", None)
     signals = {
         "scores": {"510300": 0.2},
         "fresh_theme_scores": {"510300": 0.2},
@@ -110,12 +110,20 @@ def test_llm_blend() -> None:
             {"code": "510300", "score": 0.8, "reason": "test"},
         ]
     }
+    audited = _inject_llm_views_into_signals(signals, decision)
+    assert audited["fresh_theme_scores"]["510300"] == 0.2
+    assert audited["llm_score_control_enabled"] is False
+    assert audited["llm_hints"]["510300"]["mode"] == "audit"
+
+    os.environ["ETF_ALLOW_LLM_SCORE_CONTROL"] = "1"
     merged = _inject_llm_views_into_signals(signals, decision)
     assert abs(merged["fresh_theme_scores"]["510300"] - 0.41) < 1e-9
     hint = merged["llm_hints"]["510300"]
     assert hint["raw_score"] == 0.8
     assert hint["applied_score"] == 0.41
     os.environ.pop("ETF_LLM_THEME_MODE", None)
+    os.environ.pop("ETF_LLM_THEME_BLEND", None)
+    os.environ.pop("ETF_ALLOW_LLM_SCORE_CONTROL", None)
 
 
 def test_news_provenance() -> None:
@@ -131,6 +139,21 @@ def test_news_provenance() -> None:
     assert scored["accepted"] is True
     assert scored["published_at"] == article["published_at"]
     assert len(scored["content_sha256"]) == 64
+
+
+def test_news_body_does_not_contaminate_unrelated_etf() -> None:
+    article = {
+        "title": "半导体公司并购重组获批",
+        "summary": "芯片产业链整合取得实质性进展。",
+        "content": "公告聚焦半导体并购。文末市场综述还提到医药和消费行业。",
+        "source": "test",
+        "published_at": "2026-07-12 08:30:00",
+    }
+    scored = score_news_article(article)
+    assert scored["accepted"] is True
+    assert scored["mapping_scope"] == "core_event_fields"
+    assert "588000" in scored["theme_scores"]
+    assert "512010" not in scored["theme_scores"]
 
 
 def test_news_llm_preserves_keyword_only_etfs() -> None:
@@ -186,6 +209,7 @@ if __name__ == "__main__":
     test_goal_window_requires_explicit_start()
     test_llm_blend()
     test_news_provenance()
+    test_news_body_does_not_contaminate_unrelated_etf()
     test_news_llm_preserves_keyword_only_etfs()
     test_snapshot_is_immutable()
     print("PROFITABILITY CONTROLS OK")

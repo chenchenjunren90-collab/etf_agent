@@ -12,7 +12,7 @@ from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parent
 SNAPSHOT_DIR = BASE_DIR / "data" / "decision_snapshots"
-STRATEGY_VERSION = "profitability-integrity-v2"
+STRATEGY_VERSION = "high-confidence-abstention-v3"
 
 
 def _env_int(name: str, default: int) -> int:
@@ -51,6 +51,13 @@ def strategy_manifest() -> dict[str, Any]:
         goal_control_mode,
     )
     from scoring import MAX_SINGLE_WEIGHT, SCORE_GATE
+    from profitability_evidence import (
+        CONSERVATIVE_EXPOSURE_CAP,
+        CONSERVATIVE_PROBABILITY,
+        HIGH_EXPOSURE_CAP,
+        HIGH_PROBABILITY,
+        ROUND_TRIP_COST,
+    )
 
     return {
         "strategy_version": STRATEGY_VERSION,
@@ -64,6 +71,11 @@ def strategy_manifest() -> dict[str, Any]:
             "goal_protect_return": GOAL_PROTECT_RETURN,
             "goal_max_drawdown": GOAL_MAX_DRAWDOWN,
             "daily_var_budget": DAILY_VAR_BUDGET,
+            "empirical_round_trip_cost": ROUND_TRIP_COST,
+            "high_probability_floor": HIGH_PROBABILITY,
+            "conservative_probability_floor": CONSERVATIVE_PROBABILITY,
+            "high_exposure_cap": HIGH_EXPOSURE_CAP,
+            "conservative_exposure_cap": CONSERVATIVE_EXPOSURE_CAP,
         },
     }
 
