@@ -107,6 +107,10 @@ def query_articles_before(
     channels: set[str] | None = None,
     db_path: Path = DB_PATH,
 ) -> list[dict[str, Any]]:
+    # A read path must not create an empty database. This matters for strict
+    # backtests, where input files are required to remain byte-for-byte stable.
+    if not db_path.exists():
+        return []
     cutoff = datetime.strptime(f"{trade_date[:10]} {cutoff_time}", "%Y-%m-%d %H:%M")
     start = cutoff - timedelta(hours=lookback_hours)
     sql = (

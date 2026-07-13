@@ -6,7 +6,8 @@
   - market_avg_score：候选池平均评分
   - SCORE_GATE / ECON_TIER*_CAP 等关键常量
 
-权重：fresh×25% + stale×10% + trend×30% + hist×20% - risk×15% - rotation
+正向权重先按总和归一化：fresh×25% + stale×10% + trend×30% + hist×20%，
+再减 risk×15% 与 rotation。这样中性输入仍为 50 分，可与 SCORE_GATE 同量纲比较。
   经济日历分级仓位上限(85/75/65%) + 单ETF硬限30%总资产 + SCORE_GATE=50
 """
 
@@ -35,6 +36,8 @@ ECON_TIER3_CAP = 0.65   # 6+条高影响
 # LLM 强信号(max|score|>=0.5)可将闸门降至 SCORE_GATE_DYNAMIC_FLOOR(42)。
 # 默认 static：校正后全链路显示动态降闸放宽入场，拖累规则 alpha。
 SCORE_GATE_DYNAMIC_FLOOR = 42.0
+SHORT_RACE_POSITIVE_WEIGHT_TOTAL = 0.25 + 0.10 + 0.30 + 0.20
+SHORT_RACE_PRICE_WEIGHT_TOTAL = 0.30 + 0.20
 
 # 轮动惩罚参数
 # 2026-07 实测关闭：平台按「昨收→今收」结算（非日内开→收），
@@ -194,15 +197,28 @@ def rank_etfs_short_race(pool, date_str=None):
         fresh_theme_score = _apply_price_confirmation_inline(code, fresh_raw, fresh_theme_score, features)
 
         rotation_penalty = _get_rotation_penalty(code)
-        final_score = (
+        positive_score = (
             fresh_theme_score * 0.25 +
             stale_theme_score * 0.10 +
             features["trend_score"] * 0.30 +
-            historical_score * 0.20 -
-            features.get("risk_penalty", 0.0) * 0.15 -
-            rotation_penalty
+            historical_score * 0.20
+        )
+        final_score = (
+            positive_score / SHORT_RACE_POSITIVE_WEIGHT_TOTAL
+            - features.get("risk_penalty", 0.0) * 0.15
+            - rotation_penalty
         )
         final_score = float(np.clip(final_score, 0, 100))
+        price_score = (
+            (
+                features["trend_score"] * 0.30
+                + historical_score * 0.20
+            )
+            / SHORT_RACE_PRICE_WEIGHT_TOTAL
+            - features.get("risk_penalty", 0.0) * 0.15
+            - rotation_penalty
+        )
+        price_score = float(np.clip(price_score, 0, 100))
 
         reason = ""
         try:
@@ -215,6 +231,7 @@ def rank_etfs_short_race(pool, date_str=None):
             "name": name,
             "category": item.get("category", ""),
             "score": round(float(final_score), 2),
+            "price_score": round(float(price_score), 2),
             "historical_score": round(float(historical_score), 2),
             "fresh_theme_score": round(fresh_theme_score, 2),
             "stale_theme_score": round(stale_theme_score, 2),

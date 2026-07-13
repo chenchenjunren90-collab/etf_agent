@@ -26,10 +26,15 @@ HIGH_PROBABILITY = 0.57
 CONSERVATIVE_PROBABILITY = 0.53
 HIGH_NET_EDGE = 0.0006
 CONSERVATIVE_NET_EDGE = 0.0002
-HIGH_EXPOSURE_CAP = 0.20
+HIGH_EXPOSURE_CAP = 0.12
 CONSERVATIVE_EXPOSURE_CAP = 0.08
+UNCALIBRATED_EXPOSURE_CAP = 0.05
+CALIBRATION_MIN_SIGNALS = 8
+CALIBRATION_MAX_ANCHORS = 90
+PRICE_ADMISSION_GATE = 50.0
 
 _SAMPLE_CACHE: dict[tuple[str, str, int, int], list[dict[str, Any]]] = {}
+_CALIBRATION_CACHE: dict[tuple[str, str, str, int, int], dict[str, Any]] = {}
 
 
 def _load_price_history(code: str, data_dir: Path) -> pd.DataFrame | None:
@@ -107,6 +112,108 @@ def _historical_samples(code: str, data_dir: Path) -> list[dict[str, Any]]:
     return samples
 
 
+def _neighbor_estimate(
+    samples: list[dict[str, Any]],
+    current: np.ndarray,
+) -> dict[str, Any] | None:
+    if len(samples) < MIN_HISTORY_SAMPLES:
+        return None
+    recent = samples[-180:]
+    distances = np.asarray([
+        float(np.sqrt(np.mean(np.square(item["vector"] - current))))
+        for item in recent
+    ])
+    order = np.argsort(distances)[: min(NEIGHBOR_COUNT, len(recent))]
+    selected = [recent[int(i)] for i in order]
+    selected_distances = distances[order]
+    bandwidth = max(0.35, float(np.median(selected_distances)))
+    weights = np.exp(-0.5 * np.square(selected_distances / bandwidth))
+    weights = np.maximum(weights, 0.05)
+    returns = np.asarray([
+        float(np.clip(item["return"], -0.04, 0.04))
+        for item in selected
+    ])
+    weight_sum = float(weights.sum())
+    effective_n = float(weight_sum * weight_sum / np.square(weights).sum())
+    weighted_wins = float(weights[returns > ROUND_TRIP_COST].sum())
+    positive_probability = (weighted_wins + 3.0) / (weight_sum + 6.0)
+    expected_gross = float(np.average(returns, weights=weights))
+    variance = float(np.average(np.square(returns - expected_gross), weights=weights))
+    standard_error = math.sqrt(max(0.0, variance)) / math.sqrt(max(1.0, effective_n))
+    expected_net = expected_gross - ROUND_TRIP_COST
+    return {
+        "selected": selected,
+        "neighbor_count": len(selected),
+        "effective_sample_size": effective_n,
+        "positive_probability": float(positive_probability),
+        "expected_gross_return": expected_gross,
+        "expected_net_return": expected_net,
+        "lower_expected_net": expected_net - standard_error,
+    }
+
+
+def _walk_forward_calibration(
+    code: str,
+    samples: list[dict[str, Any]],
+    trade_date: str,
+    data_dir: Path,
+) -> dict[str, Any]:
+    path = data_dir / f"{str(code).zfill(6)}.csv"
+    stat = path.stat()
+    key = (
+        str(code).zfill(6),
+        str(data_dir.resolve()),
+        str(trade_date)[:10],
+        stat.st_mtime_ns,
+        stat.st_size,
+    )
+    cached = _CALIBRATION_CACHE.get(key)
+    if cached is not None:
+        return cached
+
+    triggered: list[dict[str, Any]] = []
+    start = max(MIN_HISTORY_SAMPLES, len(samples) - CALIBRATION_MAX_ANCHORS)
+    for index in range(start, len(samples)):
+        prediction = _neighbor_estimate(samples[:index], samples[index]["vector"])
+        if not prediction:
+            continue
+        if (
+            prediction["positive_probability"] >= CONSERVATIVE_PROBABILITY
+            and prediction["expected_net_return"] >= CONSERVATIVE_NET_EDGE
+        ):
+            realized_net = float(samples[index]["return"]) - ROUND_TRIP_COST
+            triggered.append({
+                "date": samples[index]["date"],
+                "realized_net_return": realized_net,
+                "win": realized_net > 0.0,
+            })
+
+    count = len(triggered)
+    wins = sum(1 for item in triggered if item["win"])
+    posterior_win_rate = (wins + 2.0) / (count + 4.0)
+    mean_net = float(np.mean([
+        item["realized_net_return"] for item in triggered
+    ])) if triggered else 0.0
+    if count < CALIBRATION_MIN_SIGNALS:
+        status = "insufficient"
+    elif mean_net > 0.0 and posterior_win_rate >= 0.50:
+        status = "positive"
+    else:
+        status = "negative"
+    result = {
+        "status": status,
+        "signal_count": count,
+        "wins": wins,
+        "posterior_win_rate": round(float(posterior_win_rate), 4),
+        "mean_realized_net_return": round(mean_net, 6),
+        "latest_evaluation_date": (
+            triggered[-1]["date"].strftime("%Y-%m-%d") if triggered else None
+        ),
+    }
+    _CALIBRATION_CACHE[key] = result
+    return result
+
+
 def estimate_empirical_edge(
     code: str,
     features: dict[str, Any],
@@ -131,43 +238,24 @@ def estimate_empirical_edge(
             "sample_count": len(samples),
         }
 
-    current = _feature_vector(features)
-    distances = np.asarray([
-        float(np.sqrt(np.mean(np.square(item["vector"] - current))))
-        for item in samples
-    ])
-    order = np.argsort(distances)[: min(NEIGHBOR_COUNT, len(samples))]
-    selected = [samples[int(i)] for i in order]
-    selected_distances = distances[order]
-    bandwidth = max(0.35, float(np.median(selected_distances)))
-    weights = np.exp(-0.5 * np.square(selected_distances / bandwidth))
-    weights = np.maximum(weights, 0.05)
-    returns = np.asarray([
-        float(np.clip(item["return"], -0.04, 0.04))
-        for item in selected
-    ])
-    weight_sum = float(weights.sum())
-    effective_n = float(weight_sum * weight_sum / np.square(weights).sum())
-    weighted_wins = float(weights[returns > ROUND_TRIP_COST].sum())
-    # Weakly informative Beta(3, 3) prior prevents small samples from looking certain.
-    positive_probability = (weighted_wins + 3.0) / (weight_sum + 6.0)
-    expected_gross = float(np.average(returns, weights=weights))
-    variance = float(np.average(np.square(returns - expected_gross), weights=weights))
-    standard_error = math.sqrt(max(0.0, variance)) / math.sqrt(max(1.0, effective_n))
-    expected_net = expected_gross - ROUND_TRIP_COST
-    lower_expected_net = expected_net - standard_error
+    estimate = _neighbor_estimate(samples, _feature_vector(features))
+    if estimate is None:
+        return {"available": False, "reason": "neighbor_estimate_unavailable"}
+    selected = estimate.pop("selected")
+    calibration = _walk_forward_calibration(code, samples, trade_date, root)
 
     return {
         "available": True,
         "sample_count": len(samples),
-        "neighbor_count": len(selected),
-        "effective_sample_size": round(effective_n, 2),
-        "positive_probability": round(float(positive_probability), 4),
-        "expected_gross_return": round(expected_gross, 6),
-        "expected_net_return": round(expected_net, 6),
-        "lower_expected_net": round(lower_expected_net, 6),
+        "neighbor_count": estimate["neighbor_count"],
+        "effective_sample_size": round(estimate["effective_sample_size"], 2),
+        "positive_probability": round(estimate["positive_probability"], 4),
+        "expected_gross_return": round(estimate["expected_gross_return"], 6),
+        "expected_net_return": round(estimate["expected_net_return"], 6),
+        "lower_expected_net": round(estimate["lower_expected_net"], 6),
         "estimated_cost": ROUND_TRIP_COST,
         "latest_sample_date": max(item["date"] for item in selected).strftime("%Y-%m-%d") if selected else None,
+        "walk_forward_calibration": calibration,
     }
 
 
@@ -179,28 +267,41 @@ def _direct_news_support(code: str, theme_signals: dict[str, Any]) -> dict[str, 
     )
     strong = 0
     weak = 0
+    strong_negative = 0
+    weak_negative = 0
     titles: list[str] = []
+    negative_titles: list[str] = []
     sources: set[str] = set()
     for article in articles:
         scores = article.get("theme_scores") or {}
         value = float(scores.get(code, 0.0) or 0.0)
-        if value <= 0:
+        if value == 0:
             continue
-        if str(article.get("quality") or "") == "strong":
+        is_strong = str(article.get("quality") or "") == "strong"
+        if value > 0 and is_strong:
             strong += 1
-        else:
+        elif value > 0:
             weak += 1
+        elif is_strong:
+            strong_negative += 1
+        else:
+            weak_negative += 1
         title = str(article.get("title") or "").strip()
-        if title and title not in titles:
+        if value > 0 and title and title not in titles:
             titles.append(title)
+        if value < 0 and title and title not in negative_titles:
+            negative_titles.append(title)
         source = str(article.get("source") or "").strip()
         if source:
             sources.add(source)
     return {
         "strong_count": strong,
         "weak_count": weak,
+        "strong_negative_count": strong_negative,
+        "weak_negative_count": weak_negative,
         "source_count": len(sources),
         "titles": titles[:3],
+        "negative_titles": negative_titles[:3],
     }
 
 
@@ -210,6 +311,7 @@ def evaluate_candidate(
     trade_date: str,
     *,
     data_dir: Path | None = None,
+    recent_submit_history: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     code = str(candidate.get("code") or "").zfill(6)
     empirical = estimate_empirical_edge(
@@ -230,12 +332,49 @@ def evaluate_candidate(
         flags.append("positive_news_without_direct_event_support")
     if fresh_raw >= 0.20 and confidence < 0.35:
         flags.append("low_news_confidence")
+    if support["strong_negative_count"] > 0:
+        flags.append("direct_strong_negative_news")
     if float(candidate.get("price_position_20d", 0.5) or 0.5) >= 0.88 and not candidate.get("high_break"):
         flags.append("high_price_position_without_breakout")
     if float(candidate.get("ret_10d", 0.0) or 0.0) >= 8.0 and not candidate.get("high_break"):
         flags.append("late_entry_after_10d_rally")
     if float(candidate.get("rsi", 50.0) or 50.0) >= 72.0:
         flags.append("elevated_rsi")
+    ret_1d = float(candidate.get("ret_1d", 0.0) or 0.0)
+    rsi = float(candidate.get("rsi", 50.0) or 50.0)
+    price_position = float(candidate.get("price_position_20d", 0.5) or 0.5)
+    high_break = bool(candidate.get("high_break"))
+    price_score = float(candidate.get("price_score", candidate.get("score", 0.0)) or 0.0)
+    if price_score < PRICE_ADMISSION_GATE:
+        flags.append("news_promoted_without_price_gate")
+    if ret_1d >= 2.0 and (
+        not high_break or (rsi >= 65.0 and price_position >= 0.95)
+    ):
+        flags.append("one_day_surge_entry_risk")
+    if (
+        high_break
+        and float(candidate.get("ret_10d", 0.0) or 0.0) >= 10.0
+        and float(candidate.get("volume_ratio", 1.0) or 1.0) < 0.8
+    ):
+        flags.append("low_volume_late_breakout")
+
+    if recent_submit_history:
+        try:
+            from trading_calendar import previous_trading_day
+
+            previous_date = pd.Timestamp(previous_trading_day(trade_date)).strftime("%Y-%m-%d")
+            previous_rows = [
+                row for row in recent_submit_history
+                if str(row.get("date") or "")[:10] == previous_date
+            ]
+            if previous_rows:
+                symbols = previous_rows[-1].get("symbols") or []
+                if isinstance(symbols, str):
+                    symbols = [part.strip() for part in symbols.split(",") if part.strip()]
+                if code in {str(value).zfill(6) for value in symbols}:
+                    flags.append("same_symbol_previous_trade_day")
+        except Exception:
+            pass
 
     action = "cash"
     cap = 0.0
@@ -245,18 +384,36 @@ def evaluate_candidate(
         expected_net = float(empirical.get("expected_net_return") or 0.0)
         lower_net = float(empirical.get("lower_expected_net") or 0.0)
         hard_news_failure = "positive_news_without_direct_event_support" in flags
+        entry_veto = next((
+            flag for flag in (
+                "same_symbol_previous_trade_day",
+                "one_day_surge_entry_risk",
+                "low_volume_late_breakout",
+                "news_promoted_without_price_gate",
+                "direct_strong_negative_news",
+            )
+            if flag in flags
+        ), None)
         overextended = sum(
             flag in flags
             for flag in ("high_price_position_without_breakout", "late_entry_after_10d_rally", "elevated_rsi")
         )
         high_confirmation = support["strong_count"] > 0 or lower_net > 0.0
+        calibration = empirical.get("walk_forward_calibration") or {
+            "status": "insufficient",
+            "signal_count": 0,
+        }
 
         if hard_news_failure:
             reason = "news_event_not_economically_verified"
+        elif entry_veto:
+            reason = entry_veto
         elif probability < CONSERVATIVE_PROBABILITY or expected_net < CONSERVATIVE_NET_EDGE:
             reason = "historical_edge_below_conservative_floor"
         elif overextended >= 2:
             reason = "overextended_without_breakout"
+        elif calibration.get("status") == "negative":
+            reason = "walk_forward_calibration_not_profitable"
         elif (
             probability >= HIGH_PROBABILITY
             and expected_net >= HIGH_NET_EDGE
@@ -274,6 +431,11 @@ def evaluate_candidate(
         else:
             reason = "edge_exists_but_entry_risk_is_high"
 
+        if action != "cash" and calibration.get("status") == "insufficient":
+            action = "conservative"
+            cap = UNCALIBRATED_EXPOSURE_CAP
+            reason = "insufficient_calibration_small_trial"
+
     return {
         "code": code,
         "action": action,
@@ -281,6 +443,7 @@ def evaluate_candidate(
         "reason": reason,
         "risk_flags": flags,
         "news_confidence": round(confidence, 3),
+        "price_score": round(price_score, 2),
         "direct_news_support": support,
         "empirical": empirical,
     }
@@ -292,13 +455,20 @@ def evaluate_trade_candidates(
     trade_date: str,
     *,
     data_dir: Path | None = None,
+    recent_submit_history: list[dict[str, Any]] | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Return only candidates with a measured edge, plus a full audit trail."""
     audited: list[dict[str, Any]] = []
     eligible: list[dict[str, Any]] = []
     for candidate in ranked:
         item = dict(candidate)
-        evidence = evaluate_candidate(item, theme_signals, trade_date, data_dir=data_dir)
+        evidence = evaluate_candidate(
+            item,
+            theme_signals,
+            trade_date,
+            data_dir=data_dir,
+            recent_submit_history=recent_submit_history,
+        )
         item["profitability_evidence"] = evidence
         audited.append({
             "code": item.get("code"),
@@ -322,7 +492,7 @@ def evaluate_trade_candidates(
     cap = float(top_evidence.get("exposure_cap") or 0.0) if top_evidence else 0.0
     mode = str(top_evidence.get("action") or "cash") if top_evidence else "cash"
     audit = {
-        "version": "profitability-evidence-v3",
+        "version": "profitability-evidence-v4",
         "mode": mode,
         "exposure_cap": cap,
         "max_positions": 1 if eligible else 0,
@@ -333,7 +503,7 @@ def evaluate_trade_candidates(
         "notes": (
             "仅在严格历史相似状态显示成本后正优势时交易；证据不足默认空仓。"
             if not eligible
-            else "高置信证据正常仓上限20%；不确定正优势仅保守仓上限8%。"
+            else "高置信证据仓位上限12%；保守正优势上限8%；未校准试探上限5%。"
         ),
     }
     return eligible, audit

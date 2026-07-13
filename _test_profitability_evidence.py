@@ -19,6 +19,7 @@ def _candidate(**overrides):
         "code": "510300",
         "name": "沪深300ETF",
         "score": 72.0,
+        "price_score": 72.0,
         "fresh_theme_raw": 0.0,
         "price_position_20d": 0.65,
         "ret_10d": 2.0,
@@ -29,7 +30,12 @@ def _candidate(**overrides):
     return candidate
 
 
-def _empirical(probability=0.60, expected_net=0.0010, lower_net=0.0002):
+def _empirical(
+    probability=0.60,
+    expected_net=0.0010,
+    lower_net=0.0002,
+    calibration=None,
+):
     return {
         "available": True,
         "sample_count": 100,
@@ -37,6 +43,12 @@ def _empirical(probability=0.60, expected_net=0.0010, lower_net=0.0002):
         "positive_probability": probability,
         "expected_net_return": expected_net,
         "lower_expected_net": lower_net,
+        "walk_forward_calibration": calibration or {
+            "status": "positive",
+            "signal_count": 20,
+            "posterior_win_rate": 0.55,
+            "mean_realized_net_return": 0.001,
+        },
     }
 
 
@@ -44,7 +56,7 @@ def test_gate_actions() -> None:
     with patch.object(evidence, "estimate_empirical_edge", return_value=_empirical()):
         strong = evidence.evaluate_candidate(_candidate(), {}, "2026-07-13")
         assert strong["action"] == "trade"
-        assert strong["exposure_cap"] == 0.20
+        assert strong["exposure_cap"] == 0.12
 
     with patch.object(
         evidence,
@@ -62,6 +74,31 @@ def test_gate_actions() -> None:
     ):
         rejected = evidence.evaluate_candidate(_candidate(), {}, "2026-07-13")
         assert rejected["action"] == "cash"
+
+    negative_calibration = {
+        "status": "negative",
+        "signal_count": 20,
+        "posterior_win_rate": 0.42,
+        "mean_realized_net_return": -0.001,
+    }
+    with patch.object(
+        evidence,
+        "estimate_empirical_edge",
+        return_value=_empirical(calibration=negative_calibration),
+    ):
+        rejected = evidence.evaluate_candidate(_candidate(), {}, "2026-07-13")
+        assert rejected["action"] == "cash"
+        assert rejected["reason"] == "walk_forward_calibration_not_profitable"
+
+    insufficient_calibration = {"status": "insufficient", "signal_count": 3}
+    with patch.object(
+        evidence,
+        "estimate_empirical_edge",
+        return_value=_empirical(calibration=insufficient_calibration),
+    ):
+        trial = evidence.evaluate_candidate(_candidate(), {}, "2026-07-13")
+        assert trial["action"] == "conservative"
+        assert trial["exposure_cap"] == 0.05
 
 
 def test_news_and_entry_risk_can_veto() -> None:
@@ -81,6 +118,55 @@ def test_news_and_entry_risk_can_veto() -> None:
         )
         assert stretched["action"] == "cash"
         assert stretched["reason"] == "overextended_without_breakout"
+
+        surged = evidence.evaluate_candidate(
+            _candidate(ret_1d=2.2, high_break=False),
+            {},
+            "2026-07-13",
+        )
+        assert surged["action"] == "cash"
+        assert surged["reason"] == "one_day_surge_entry_risk"
+
+        late_breakout = evidence.evaluate_candidate(
+            _candidate(high_break=True, ret_10d=10.5, volume_ratio=0.6),
+            {},
+            "2026-07-13",
+        )
+        assert late_breakout["action"] == "cash"
+        assert late_breakout["reason"] == "low_volume_late_breakout"
+
+        cooldown = evidence.evaluate_candidate(
+            _candidate(),
+            {},
+            "2026-07-13",
+            recent_submit_history=[{"date": "2026-07-10", "symbols": ["510300"]}],
+        )
+        assert cooldown["action"] == "cash"
+        assert cooldown["reason"] == "same_symbol_previous_trade_day"
+
+        news_promoted = evidence.evaluate_candidate(
+            _candidate(score=64.0, price_score=48.0),
+            {},
+            "2026-07-13",
+        )
+        assert news_promoted["action"] == "cash"
+        assert news_promoted["reason"] == "news_promoted_without_price_gate"
+
+        negative_news = evidence.evaluate_candidate(
+            _candidate(),
+            {
+                "confidence": 0.8,
+                "fresh_accepted_articles": [{
+                    "title": "行业监管处罚落地",
+                    "source": "test",
+                    "quality": "strong",
+                    "theme_scores": {"510300": -0.4},
+                }],
+            },
+            "2026-07-13",
+        )
+        assert negative_news["action"] == "cash"
+        assert negative_news["reason"] == "direct_strong_negative_news"
 
 
 def test_estimator_uses_only_strictly_prior_rows() -> None:

@@ -12,7 +12,7 @@ from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parent
 SNAPSHOT_DIR = BASE_DIR / "data" / "decision_snapshots"
-STRATEGY_VERSION = "high-confidence-abstention-v3"
+STRATEGY_VERSION = "competition-balanced-entry-v4"
 
 
 def _env_int(name: str, default: int) -> int:
@@ -50,9 +50,15 @@ def strategy_manifest() -> dict[str, Any]:
         GOAL_WINDOW_DAYS,
         goal_control_mode,
     )
-    from scoring import MAX_SINGLE_WEIGHT, SCORE_GATE
+    from scoring import (
+        MAX_SINGLE_WEIGHT,
+        SCORE_GATE,
+        SHORT_RACE_POSITIVE_WEIGHT_TOTAL,
+        SHORT_RACE_PRICE_WEIGHT_TOTAL,
+    )
     from profitability_evidence import (
         CONSERVATIVE_EXPOSURE_CAP,
+        UNCALIBRATED_EXPOSURE_CAP,
         CONSERVATIVE_PROBABILITY,
         HIGH_EXPOSURE_CAP,
         HIGH_PROBABILITY,
@@ -64,6 +70,9 @@ def strategy_manifest() -> dict[str, Any]:
         "git_commit": _git_commit(),
         "parameters": {
             "score_gate": SCORE_GATE,
+            "short_race_positive_weight_total": SHORT_RACE_POSITIVE_WEIGHT_TOTAL,
+            "short_race_price_weight_total": SHORT_RACE_PRICE_WEIGHT_TOTAL,
+            "news_backtest_provenance": "strict-published-and-fetched-cutoff-v1",
             "max_single_weight": MAX_SINGLE_WEIGHT,
             "goal_window_days": _env_int("ETF_GOAL_WINDOW_DAYS", GOAL_WINDOW_DAYS),
             "goal_control_mode": goal_control_mode(),
@@ -76,6 +85,7 @@ def strategy_manifest() -> dict[str, Any]:
             "conservative_probability_floor": CONSERVATIVE_PROBABILITY,
             "high_exposure_cap": HIGH_EXPOSURE_CAP,
             "conservative_exposure_cap": CONSERVATIVE_EXPOSURE_CAP,
+            "uncalibrated_exposure_cap": UNCALIBRATED_EXPOSURE_CAP,
         },
     }
 

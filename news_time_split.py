@@ -48,6 +48,11 @@ def _parse_pub(art: dict[str, Any]) -> datetime | None:
         return None
 
 
+def decision_cutoff(trade_date: str | date, cutoff_time: str = "09:30") -> datetime:
+    """Return the latest timestamp information may have in a decision replay."""
+    return datetime.strptime(f"{str(trade_date)[:10]} {cutoff_time}", "%Y-%m-%d %H:%M")
+
+
 def split_articles_by_post_close(
     articles: list[dict],
     trade_date: str | date,
@@ -67,8 +72,8 @@ def split_articles_by_post_close(
     for art in articles:
         pub_ts = _parse_pub(art)
         if pub_ts is None:
-            # 长间隔缺时间戳不进主 fresh，防止休市抓取噪声抬高仓位档位
-            (stale if hot_cut is not None else fresh).append(art)
+            # 缺时间戳无法证明在决策前已公开，只能进入低权重审计层。
+            stale.append(art)
             continue
         if pub_ts <= cutoff:
             stale.append(art)

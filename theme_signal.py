@@ -42,7 +42,9 @@ def _load_signal(date_str: str | None = None) -> dict[str, Any]:
     path = signal_path(date_str)
     if path.exists():
         return json.loads(path.read_text(encoding="utf-8"))
-    if AUTO_SIGNAL_PATH.exists():
+    # 只有实时未指定日期时可回退最新信号；显式历史日期缺档必须返回空，
+    # 否则回测会把 auto_theme_signal 的未来新闻注入过去。
+    if date_str is None and AUTO_SIGNAL_PATH.exists():
         return json.loads(AUTO_SIGNAL_PATH.read_text(encoding="utf-8"))
     return {}
 
@@ -111,6 +113,9 @@ def get_theme_signals(date_str: str | None = None) -> dict[str, Any]:
         "updated_at": signal.get("updated_at", ""),
         "market_view": market_view,
         "hot_keywords": signal.get("hot_keywords") or nested.get("hot_keywords") or [],
+        "fresh_accepted_articles": list(signal.get("fresh_accepted_articles") or []),
+        "stale_accepted_articles": list(signal.get("stale_accepted_articles") or []),
+        "accepted_articles": list(signal.get("accepted_articles") or []),
         "auto_news": {
             "enabled": True,
             "confidence": float(

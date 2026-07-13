@@ -16,6 +16,7 @@ APP_FILES = [
     "pool.py",
     "indicators.py",
     "features.py",
+    "backtest_provenance.py",
     "profitability_evidence.py",
     "scoring.py",
     "position.py",
