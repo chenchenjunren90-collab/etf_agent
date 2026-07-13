@@ -5,12 +5,27 @@ from __future__ import annotations
 import os
 import tempfile
 from pathlib import Path
+from unittest.mock import patch
 
+from backtest_provenance import sanitize_news_signal_for_backtest
 from decision_snapshot import write_immutable_snapshot
 from goal_state import apply_goal_overlay, build_goal_state, summarize_goal_rows
 from news_signal import score_news_article
+from news_time_split import split_articles_by_post_close
 from news_llm_scorer import merge_llm_into_news_signal
-from scoring import _inject_llm_views_into_signals
+from news_store import query_articles_before
+from scoring import SHORT_RACE_POSITIVE_WEIGHT_TOTAL, _inject_llm_views_into_signals
+from theme_signal import _load_signal, get_theme_signals
+
+
+def test_short_race_score_scale_is_normalized() -> None:
+    neutral = (
+        50.0 * 0.25
+        + 50.0 * 0.10
+        + 50.0 * 0.30
+        + 50.0 * 0.20
+    ) / SHORT_RACE_POSITIVE_WEIGHT_TOTAL
+    assert abs(neutral - 50.0) < 1e-12
 
 
 def test_goal_overlay() -> None:
@@ -156,6 +171,119 @@ def test_news_body_does_not_contaminate_unrelated_etf() -> None:
     assert "512010" not in scored["theme_scores"]
 
 
+def test_news_backtest_provenance_is_point_in_time() -> None:
+    base = {
+        "quality": "strong",
+        "event_hits": {"policy": ["test"]},
+        "theme_scores": {"510300": 0.4},
+    }
+    signal = {
+        "cutoff_time": "09:30",
+        "accepted_articles": [
+            {**base, "title": "valid", "published_at": "2026-07-13 08:30:00"},
+            {**base, "title": "future", "published_at": "2026-07-13 10:00:00"},
+            {**base, "title": "missing", "published_at": ""},
+            {
+                **base,
+                "title": "fetched late",
+                "published_at": "2026-07-13 08:20:00",
+                "fetched_at": "2026-07-13 09:31:00",
+            },
+        ],
+    }
+    cleaned = sanitize_news_signal_for_backtest(signal, "2026-07-13")
+    assert [item["title"] for item in cleaned["fresh_accepted_articles"]] == ["valid"]
+    assert cleaned["fresh_theme_scores"] == {"510300": 0.4}
+    audit = cleaned["backtest_provenance"]
+    assert audit["input_articles"] == 4
+    assert audit["accepted_articles"] == 1
+    assert audit["rejected_articles"] == 3
+
+
+def test_old_news_archive_recovers_timestamp_from_raw_article() -> None:
+    accepted = {
+        "title": "央行降准支持市场",
+        "source": "test",
+        "url": "https://example.test/old/1",
+        "quality": "strong",
+        "event_hits": {"policy": ["降准"]},
+        "theme_scores": {"510300": 0.4},
+    }
+    signal = {
+        "cutoff_time": "09:30",
+        "accepted_articles": [accepted],
+        "raw_articles": [{
+            "title": accepted["title"],
+            "source": accepted["source"],
+            "url": accepted["url"],
+            "published_at": "2026-07-13 08:30:00",
+        }],
+    }
+    cleaned = sanitize_news_signal_for_backtest(signal, "2026-07-13")
+    assert cleaned["accepted_count"] == 1
+    assert cleaned["fresh_accepted_articles"][0]["published_at"] == "2026-07-13 08:30:00"
+
+
+def test_old_news_archive_rejects_raw_article_published_after_cutoff() -> None:
+    signal = {
+        "cutoff_time": "09:30",
+        "accepted_articles": [{
+            "title": "late",
+            "source": "test",
+            "url": "https://example.test/old/late",
+            "quality": "strong",
+            "theme_scores": {"510300": 0.4},
+        }],
+        "raw_articles": [{
+            "title": "late",
+            "source": "test",
+            "url": "https://example.test/old/late",
+            "published_at": "2026-07-13 09:31:00",
+        }],
+    }
+    cleaned = sanitize_news_signal_for_backtest(signal, "2026-07-13")
+    assert cleaned["accepted_count"] == 0
+    assert cleaned["backtest_provenance"]["rejection_reasons"] == {
+        "published_after_decision_cutoff": 1,
+    }
+
+
+def test_missing_news_database_is_not_created_by_read() -> None:
+    with tempfile.TemporaryDirectory() as tmp:
+        db_path = Path(tmp) / "missing.db"
+        assert query_articles_before("2026-07-13", db_path=db_path) == []
+        assert not db_path.exists()
+
+
+def test_missing_timestamp_never_enters_fresh_news() -> None:
+    fresh, stale, _ = split_articles_by_post_close(
+        [{"title": "unknown", "published_at": ""}],
+        "2026-07-13",
+    )
+    assert fresh == []
+    assert len(stale) == 1
+
+
+def test_theme_signal_preserves_direct_article_evidence() -> None:
+    raw = {
+        "fresh_theme_scores": {"510300": 0.4},
+        "fresh_accepted_articles": [{"title": "direct", "theme_scores": {"510300": 0.4}}],
+        "stale_accepted_articles": [],
+        "accepted_articles": [{"title": "direct", "theme_scores": {"510300": 0.4}}],
+        "fresh_accepted_count": 1,
+    }
+    with patch("theme_signal._load_signal", return_value=raw):
+        loaded = get_theme_signals("2026-07-13")
+    assert loaded["fresh_accepted_articles"][0]["title"] == "direct"
+
+
+def test_missing_historical_news_never_uses_latest_auto_signal() -> None:
+    with patch("theme_signal.signal_path") as path, patch("theme_signal.AUTO_SIGNAL_PATH") as auto:
+        path.return_value.exists.return_value = False
+        auto.exists.return_value = True
+        assert _load_signal("2020-01-01") == {}
+
+
 def test_news_llm_preserves_keyword_only_etfs() -> None:
     signal = {
         "theme_scores": {"510300": 0.4, "510500": -0.2},
@@ -205,11 +333,19 @@ def test_snapshot_is_immutable() -> None:
 
 
 if __name__ == "__main__":
+    test_short_race_score_scale_is_normalized()
     test_goal_overlay()
     test_goal_window_requires_explicit_start()
     test_llm_blend()
     test_news_provenance()
     test_news_body_does_not_contaminate_unrelated_etf()
+    test_news_backtest_provenance_is_point_in_time()
+    test_old_news_archive_recovers_timestamp_from_raw_article()
+    test_old_news_archive_rejects_raw_article_published_after_cutoff()
+    test_missing_news_database_is_not_created_by_read()
+    test_missing_timestamp_never_enters_fresh_news()
+    test_theme_signal_preserves_direct_article_evidence()
+    test_missing_historical_news_never_uses_latest_auto_signal()
     test_news_llm_preserves_keyword_only_etfs()
     test_snapshot_is_immutable()
     print("PROFITABILITY CONTROLS OK")

@@ -212,6 +212,7 @@ def run_decision(
     recent_risk: dict[str, Any] | None = None,
     integrity_ctx: dict[str, Any] | None = None,
     goal_state: dict[str, Any] | None = None,
+    theme_signals_override: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """每日投资决策主函数（大模型融合模式）。
 
@@ -248,7 +249,11 @@ def run_decision(
             else "市场数据不足，仅用稳健池"
         )
     print(f"[Step 1/4] Ranking {len(pool)} ETFs ({offensive_note}) ...")
-    ranked, theme_signals = rank_etfs_short_race(pool, date_str=date_str)
+    if theme_signals_override is not None:
+        theme_signals = dict(theme_signals_override)
+        ranked = _re_rank_with_signals(pool, theme_signals, date_str)
+    else:
+        ranked, theme_signals = rank_etfs_short_race(pool, date_str=date_str)
     print(f"  Scored: {len(ranked)}")
 
     # 行情陈旧时禁用 LLM 重排/仓位提示（避免用过时K线+幻觉叙事把排序钉死），
@@ -325,6 +330,7 @@ def run_decision(
         ranked,
         theme_signals,
         date_str,
+        recent_submit_history=(integrity_ctx or {}).get("recent_submit_history") or [],
     )
     if llm_trace is not None:
         llm_trace["llm_score_control_enabled"] = bool(
@@ -466,16 +472,8 @@ def run_decision(
     print("[Step 3/4] Allocating concentrated race portfolio...")
     dyn_max = min(short_race_max_positions(theme_signals), evidence_max_positions)
     if stability_max_positions is not None:
-        # 稳健层在强/中等信号下解锁的仓位数是「应能开到」的档位，
-        # 不能被新闻层更严的 1 仓 min() 短路，否则高仓路径形同虚设。
-        # 弱信号/防守日仍用 min，保持低仓。
-        strong_or_mod = bool(
-            stability_audit
-            and (stability_audit.get("strong_setup") or stability_audit.get("moderate_setup"))
-            and not stability_audit.get("weak_signal")
-        )
-        if strong_or_mod:
-            dyn_max = max(dyn_max, int(stability_max_positions))
+        # 下游风控只能收紧上游盈利证据许可，绝不能把 evidence_max_positions=1
+        # 重新扩大成 2；否则第二只未通过独立校准的 ETF 也会被提交。
         dyn_max = min(dyn_max, int(stability_max_positions))
 
     concentration_audit: dict[str, Any] | None = None

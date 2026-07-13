@@ -62,6 +62,7 @@ print("MONDAY_SPLIT_OK", ft)
 
 src = pathlib.Path("strategy.py").read_text(encoding="utf-8")
 assert src.find("LLM per_etf_view") < src.find("stay_cash 放在重打分之后")
+assert "dyn_max = max(dyn_max" not in src
 print("STAY_CASH_ORDER_OK")
 
 bat = pathlib.Path("start_auto.bat").read_text(encoding="utf-8", errors="ignore")
@@ -254,5 +255,11 @@ for path, pat in [
     text = pathlib.Path(path).read_text(encoding="utf-8")
     if re.search(pat, text):
         bad.append((path, pat))
+
+backtest_source = pathlib.Path("_backtest_full_pipeline.py").read_text(encoding="utf-8")
+if "save_theme_signal" in backtest_source:
+    bad.append(("_backtest_full_pipeline.py", "backtest writes live news signals"))
+if "save_debug=False" not in backtest_source:
+    bad.append(("_backtest_full_pipeline.py", "backtest writes LLM debug files"))
 print("LEFTOVER_BAD", bad)
 print("ALL_CHECKS_PASSED" if not fails and not bad else "HAS_ISSUES")

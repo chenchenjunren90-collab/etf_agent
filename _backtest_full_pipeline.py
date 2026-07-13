@@ -19,17 +19,14 @@ from typing import Any
 
 import pandas as pd
 
-from daily_job import (
-    build_llm_decision,
-    to_competition_output,
-    validate_execution_consistency,
-)
+from daily_job import to_competition_output, validate_execution_consistency
+from backtest_provenance import sanitize_news_signal_for_backtest
 from decision_integrity import compute_holding_streaks, compute_sole_symbol_streak
 from econ_calendar import load_econ_payload
 from goal_state import summarize_goal_rows
 from settlement_prices import get_close_to_close
 from strategy import reset_rotation_tracker, run_decision
-from theme_signal import get_theme_signals, signal_path
+from theme_signal import signal_path
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -122,11 +119,8 @@ def _load_news(date_str: str) -> dict[str, Any]:
                 return data
         except Exception:
             pass
-    # Fallback: theme_signal helper (may return empty structure)
-    try:
-        return get_theme_signals(date_str) or {}
-    except Exception:
-        return {"date": date_str, "source": "missing", "theme_scores": {}, "auto_news": {}}
+    # Explicit historical dates never fall back to the latest auto signal.
+    return {"date": date_str, "source": "missing", "theme_scores": {}, "auto_news": {}}
 
 
 def _load_saved_llm_decision(date_str: str) -> dict[str, Any] | None:
@@ -170,6 +164,14 @@ def _stats(rows: list[dict[str, Any]], label: str) -> dict[str, Any]:
         float(returns.iloc[i : i + 10].sum())
         for i in range(max(0, len(returns) - 9))
     ]
+    rolling12_trade_days = [
+        int((df["n"].iloc[i : i + 12] > 0).sum())
+        for i in range(max(0, len(df) - 11))
+    ]
+    rolling12_returns = [
+        float(returns.iloc[i : i + 12].sum())
+        for i in range(max(0, len(returns) - 11))
+    ]
     nonoverlap10 = [
         float(returns.iloc[i : i + 10].sum())
         for i in range(0, max(0, len(returns) - 9), 10)
@@ -204,10 +206,32 @@ def _stats(rows: list[dict[str, Any]], label: str) -> dict[str, Any]:
         "avg_used_pct": round(float((df["used"] / CAPITAL).mean()) * 100, 1) if len(df) else 0.0,
         "avg_positions": round(float(df["n"].mean()), 2) if len(df) else 0.0,
         "sole_name_days": int((df["n"] == 1).sum()) if len(df) else 0,
+        "trade_days": int((df["n"] > 0).sum()) if len(df) else 0,
         "sharpe_ann": round(float(returns.mean()) / std * math.sqrt(252), 2) if std else 0.0,
         "max_drawdown_pct": round(max_drawdown * 100, 2),
         "last10_pnl": round(float(df.tail(10)["pnl"].sum()), 2) if len(df) else 0.0,
         "last10_ret_pct": round(float(df.tail(10)["pnl"].sum()) / CAPITAL * 100, 2) if len(df) else 0.0,
+        "last12_trade_days": int((df.tail(12)["n"] > 0).sum()) if len(df) else 0,
+        "last12_ret_pct": round(float(df.tail(12)["pnl"].sum()) / CAPITAL * 100, 3) if len(df) else 0.0,
+        "rolling_12d_windows": len(rolling12_trade_days),
+        "rolling_12d_avg_trade_days": round(
+            sum(rolling12_trade_days) / len(rolling12_trade_days), 2
+        ) if rolling12_trade_days else 0.0,
+        "rolling_12d_2_to_3_trade_days_pct": round(
+            sum(2 <= value <= 3 for value in rolling12_trade_days)
+            / len(rolling12_trade_days)
+            * 100,
+            1,
+        ) if rolling12_trade_days else 0.0,
+        "rolling_12d_positive_return_pct": round(
+            sum(value > 0 for value in rolling12_returns)
+            / len(rolling12_returns)
+            * 100,
+            1,
+        ) if rolling12_returns else 0.0,
+        "rolling_12d_worst_ret_pct": round(
+            min(rolling12_returns) * 100, 3
+        ) if rolling12_returns else 0.0,
         "target_10d_pct": target * 100,
         "rolling_10d_windows": len(rolling10),
         "rolling_10d_hit_rate_pct": round(
@@ -246,17 +270,9 @@ def run_full_pipeline(
 
     for i, trade_date in enumerate(dates, 1):
         news_signal = _load_news(trade_date)
-        # Ensure theme file is visible to rank_etfs_short_race via get_theme_signals
-        if news_signal and news_signal.get("source") != "missing":
-            try:
-                from theme_signal import save_theme_signal
-
-                # Avoid rewriting archives every day in BT — write only if missing
-                if not signal_path(trade_date).exists():
-                    save_theme_signal(news_signal, trade_date)
-            except Exception:
-                pass
-
+        news_signal = sanitize_news_signal_for_backtest(news_signal, trade_date)
+        # The sanitized payload is passed directly to run_decision. Backtests
+        # must not persist it as a live news signal.
         econ_payload = load_econ_payload(trade_date, allow_live=False, refresh=False)
         recent_risk = _risk_context(rows, trade_date)
         integrity_ctx = _integrity_from_history(rows, trade_date)
@@ -313,6 +329,7 @@ def run_full_pipeline(
                 recent_risk=recent_risk,
                 integrity_ctx=integrity_ctx,
                 goal_state=goal_state,
+                theme_signals_override=news_signal,
             )
         comp = to_competition_output(result)
         validate_execution_consistency(result, comp)
@@ -395,6 +412,7 @@ def _build_llm_decision_bt(
             news_summary=news_summary,
             use_cache=True,
             cache_only=cache_only,
+            save_debug=False,
         )
     except Exception:
         if cache_only:

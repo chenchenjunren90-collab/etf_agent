@@ -69,7 +69,8 @@ def _fetch_window_start(trade_date: str, cutoff_time: str) -> datetime:
 
 def _before_cutoff(ts: datetime | None, trade_date: str, cutoff_time: str) -> bool:
     if ts is None:
-        return True
+        # 无法证明在决策截止前已公开的新闻不得进入实时评分。
+        return False
     cutoff = pd.to_datetime(f"{trade_date} {cutoff_time}").to_pydatetime()
     start = _fetch_window_start(trade_date, cutoff_time)
     return start <= ts <= cutoff
