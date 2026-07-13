@@ -50,6 +50,9 @@ def main() -> None:
 
     _assert("marketBanner" in CHAT_HTML, "chat contains market-closed banner")
     _assert("data-requires-open" in CHAT_HTML, "chat advice shortcuts are controllable")
+    _assert('id="kbInfo"' not in CHAT_HTML, "header hides knowledge-base metadata")
+    _assert('id="sessInfo"' not in CHAT_HTML, "header hides session and capital metadata")
+    _assert("storageSet(SESS_KEY, sessionId)" in CHAT_HTML, "hidden session state is still persisted")
     print("MARKET CLOSED FRONTEND OK")
 
 

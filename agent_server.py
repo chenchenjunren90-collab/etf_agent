@@ -104,8 +104,6 @@ CHAT_HTML = r"""<!doctype html>
       <div class="sub">对话式建议 · 信息收集 · 比赛提交 · 新闻解读</div>
     </div>
     <div class="header-right">
-      <div class="sub" id="kbInfo">知识库加载中…</div>
-      <div class="sub" id="sessInfo"></div>
       <a class="ghost-btn" id="dashboardLink" href="/etf-agent/" title="查看并复制当日比赛投资建议">Dashboard</a>
       <button type="button" class="ghost-btn" id="newSession" title="新会话">新会话</button>
       <button type="button" class="theme-btn" id="themeToggle">黑夜模式</button>
@@ -138,8 +136,6 @@ CHAT_HTML = r"""<!doctype html>
   <script>
     const messages = document.getElementById('messages');
     const input = document.getElementById('input');
-    const kbInfo = document.getElementById('kbInfo');
-    const sessInfo = document.getElementById('sessInfo');
     const themeToggle = document.getElementById('themeToggle');
     const THEME_KEY = 'etf-agent-theme';
     const SESS_KEY = 'etf-agent-session';
@@ -214,16 +210,10 @@ CHAT_HTML = r"""<!doctype html>
       return html;
     }
 
-    function updateSessionBadge(sess) {
+    function updateSessionState(sess) {
       if (!sess) return;
       sessionId = sess.session_id;
       storageSet(SESS_KEY, sessionId);
-      const cap = sess.profile && sess.profile.capital;
-      const risk = sess.profile && sess.profile.risk_preference;
-      let t = '会话 ' + String(sessionId).slice(0,6);
-      if (cap) t += ' · 资金 ' + Number(cap).toLocaleString();
-      if (risk) t += ' · ' + risk;
-      sessInfo.textContent = t;
     }
 
     function addMsg(text, who, meta) {
@@ -413,20 +403,6 @@ CHAT_HTML = r"""<!doctype html>
       messages.scrollTop = messages.scrollHeight;
     }
 
-    async function loadKb() {
-      try {
-        const r = await fetch(apiUrl('/api/kb'));
-        const j = await r.json();
-        if (j.kb && j.kb.date) {
-          kbInfo.textContent = '知识库：' + j.kb.date + ' · 更新 ' + (j.kb.updated_at || '');
-        } else {
-          kbInfo.textContent = '知识库未就绪，可先「测一下今天」';
-        }
-      } catch (e) {
-        kbInfo.textContent = '知识库加载失败';
-      }
-    }
-
     async function initSession(forceNew) {
       if (!forceNew) {
         sessionId = storageGet(SESS_KEY);
@@ -440,7 +416,7 @@ CHAT_HTML = r"""<!doctype html>
         body: JSON.stringify(forceNew || !sessionId ? {} : {session_id: sessionId})
       });
       const j = await r.json();
-      if (j.session) updateSessionBadge(j.session);
+      if (j.session) updateSessionState(j.session);
       const marketClosed = !!j.market_closed;
       const banner = document.getElementById('marketBanner');
       banner.style.display = marketClosed ? 'block' : 'none';
@@ -504,12 +480,9 @@ CHAT_HTML = r"""<!doctype html>
         }
         const j = await r.json();
         pending.remove();
-        if (j.session) updateSessionBadge(j.session);
+        if (j.session) updateSessionState(j.session);
         const bot = addMsg(j.reply || j.error || '无回复', 'bot', (j.intent || '') + (j.via ? ' · ' + j.via : ''));
         renderBlocks(j.ui_blocks || [], bot);
-        if (j.kb_saved || j.intent === 'run_today_job' || j.intent === 'personal_advice' || j.intent === 'competition') {
-          loadKb();
-        }
       } catch (e) {
         pending.remove();
         addMsg('请求暂时失败，请稍后再试。', 'bot', 'network_error');
@@ -531,7 +504,6 @@ CHAT_HTML = r"""<!doctype html>
       el.addEventListener('click', () => send(el.dataset.q));
     });
 
-    loadKb();
     initSession(false);
   </script>
 </body>
