@@ -8,7 +8,7 @@ from typing import Any
 
 import pandas as pd
 
-from settlement_prices import get_close_to_close
+from settlement_prices import conservative_risk_pnl, settle_competition_output
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -56,17 +56,8 @@ def goal_control_mode() -> str:
 
 def _settle_output(
     items: list[dict[str, Any]], trade_date: str, data_dir: Path
-) -> float | None:
-    pnl = 0.0
-    for item in items:
-        code = str(item.get("symbol") or "").zfill(6)
-        volume = int(float(item.get("volume") or 0))
-        prices = get_close_to_close(code, trade_date, data_dir=data_dir)
-        if prices is None or volume <= 0:
-            return None
-        prev_close, today_close = prices
-        pnl += volume * (today_close - prev_close)
-    return float(pnl)
+) -> dict[str, Any]:
+    return settle_competition_output(items, trade_date, data_dir=data_dir)
 
 
 def summarize_goal_rows(
@@ -185,7 +176,8 @@ def build_goal_state(
                 if payload.get("mode") in {"personal_sandbox", "fatal_fallback"}:
                     continue
                 items = payload.get("competition_output") or []
-                pnl = _settle_output(items, trade_date, data_dir)
+                settlement = _settle_output(items, trade_date, data_dir)
+                pnl = conservative_risk_pnl(settlement)
                 if pnl is None:
                     continue
                 rows.append(
@@ -194,6 +186,9 @@ def build_goal_state(
                         "pnl": round(pnl, 2),
                         "return": round(pnl / capital, 8) if capital else 0.0,
                         "positions": len(items),
+                        "settlement_complete": bool(settlement["complete"]),
+                        "settled_positions": int(settlement["settled_count"]),
+                        "unsettled_symbols": settlement["unsettled_symbols"],
                     }
                 )
             except Exception:

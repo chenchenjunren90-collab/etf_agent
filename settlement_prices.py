@@ -17,6 +17,7 @@ from __future__ import annotations
 import os
 from datetime import datetime, time
 from pathlib import Path
+from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
@@ -48,12 +49,26 @@ def _min_completion_volume_ratio() -> float:
         return DEFAULT_MIN_COMPLETION_VOLUME_RATIO
 
 
-def _shanghai_now(as_of: datetime | None = None) -> datetime:
+def shanghai_now(as_of: datetime | None = None) -> datetime:
     if as_of is None:
         return datetime.now(ZoneInfo("Asia/Shanghai"))
     if as_of.tzinfo is None:
         return as_of.replace(tzinfo=ZoneInfo("Asia/Shanghai"))
     return as_of.astimezone(ZoneInfo("Asia/Shanghai"))
+
+
+def settlement_ready(trade_date: str, *, as_of: datetime | None = None) -> bool:
+    """Return whether a daily bar may be treated as final in Shanghai time."""
+    target = pd.to_datetime(trade_date, errors="coerce")
+    if pd.isna(target):
+        return False
+    now = shanghai_now(as_of)
+    target_date = target.date()
+    if target_date < now.date():
+        return True
+    if target_date > now.date() or not is_trading_day(target_date):
+        return False
+    return now.time() >= _ready_time()
 
 
 def get_close_to_close(
@@ -84,7 +99,7 @@ def get_close_to_close(
     target = target.normalize()
     if not is_trading_day(target):
         return None
-    now = _shanghai_now(as_of)
+    now = shanghai_now(as_of)
     if target.date() > now.date():
         return None
     matches = df.index[df["date"] == target]
@@ -132,6 +147,57 @@ def get_close_to_close(
     if prev_close <= 0:
         return None
     return prev_close, today_close
+
+
+def settle_competition_output(
+    items: list[dict[str, Any]],
+    trade_date: str,
+    *,
+    data_dir: Path | None = None,
+    as_of: datetime | None = None,
+) -> dict[str, Any]:
+    """Settle every executable position while retaining incomplete-day evidence."""
+    pnl = 0.0
+    settled_count = 0
+    unsettled_symbols: list[str] = []
+    position_count = 0
+    for item in items:
+        position_count += 1
+        raw_code = str(item.get("symbol") or "").strip()
+        code = raw_code.zfill(6) if raw_code else ""
+        try:
+            volume = int(float(item.get("volume") or 0))
+        except (TypeError, ValueError):
+            volume = 0
+        prices = get_close_to_close(
+            code,
+            trade_date,
+            data_dir=data_dir,
+            as_of=as_of,
+        )
+        if not code or volume <= 0 or prices is None:
+            unsettled_symbols.append(code or "invalid")
+            continue
+        prev_close, today_close = prices
+        pnl += volume * (today_close - prev_close)
+        settled_count += 1
+    return {
+        "pnl": float(pnl),
+        "position_count": position_count,
+        "settled_count": settled_count,
+        "unsettled_symbols": unsettled_symbols,
+        "complete": settled_count == position_count,
+    }
+
+
+def conservative_risk_pnl(settlement: dict[str, Any]) -> float | None:
+    """Use complete PnL, or only a negative partial PnL, never partial gains."""
+    pnl = float(settlement.get("pnl") or 0.0)
+    if settlement.get("complete"):
+        return pnl
+    if int(settlement.get("settled_count") or 0) > 0 and pnl < 0:
+        return pnl
+    return None
 
 
 def settle_pnl(code: str, trade_date: str, volume: int, *, data_dir: Path | None = None) -> dict | None:

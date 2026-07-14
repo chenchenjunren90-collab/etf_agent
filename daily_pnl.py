@@ -7,13 +7,12 @@
 from __future__ import annotations
 
 import json
-from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
 
-from settlement_prices import get_close_to_close
+from settlement_prices import get_close_to_close, shanghai_now
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -46,7 +45,7 @@ def _output_files_before(as_of: str) -> list[Path]:
 
 def review_previous_prediction(as_of: str | None = None) -> dict[str, Any] | None:
     """Find the latest prediction before ``as_of`` and settle it 昨收→今收（平台口径）。"""
-    as_of = as_of or datetime.now().strftime("%Y-%m-%d")
+    as_of = as_of or shanghai_now().strftime("%Y-%m-%d")
     files = _output_files_before(as_of)
     if not files:
         return None
@@ -95,7 +94,7 @@ def review_previous_prediction(as_of: str | None = None) -> dict[str, Any] | Non
         total += pnl
 
     return {
-        "review_date": date.today().strftime("%Y-%m-%d"),
+        "review_date": shanghai_now().strftime("%Y-%m-%d"),
         "prediction_date": trade_date,
         "source_file": str(path),
         "total_pnl": round(float(total), 2),

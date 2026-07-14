@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 
 # 允许比「最近已完成交易日」落后几天仍算可用（周末/小长假后首日等）
-DEFAULT_MAX_LAG_DAYS = 3
+DEFAULT_MAX_LAG_DAYS = 0
 INCOMPLETE_REPAIR_MIN_CLOSE_DIFF = 0.01
 
 
@@ -217,7 +217,8 @@ def is_fresh(
         target = latest_completed_trade_date(datetime.combine(as_of, dt_time(16, 0)))
     else:
         target = latest_completed_trade_date()
-    return (target - last).days <= max_lag_days
+    lag_days = (target - last).days
+    return 0 <= lag_days <= max_lag_days
 
 
 def _bs_symbol(code: str) -> str:

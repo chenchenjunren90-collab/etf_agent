@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
-from datetime import date
+import json
+from datetime import date, datetime
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import mock
 
 import dashboard_server
+import etf_agent_chat
 from agent_server import CHAT_HTML
 
 
@@ -47,6 +49,29 @@ def main() -> None:
             dashboard_server._latest_file("*_full.json", root) is None,
             "future output is never selected",
         )
+
+        full = root / "2026-07-10_full.json"
+        full.write_text(
+            json.dumps(
+                {
+                    "competition_output": [
+                        {"symbol": "510300", "symbol_name": "ETF", "volume": 100}
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+        with mock.patch.object(dashboard_server, "shanghai_now", return_value=datetime(2026, 7, 10, 15, 30)), mock.patch.object(
+            dashboard_server, "settlement_ready", return_value=False
+        ), mock.patch.object(dashboard_server, "_load_bar") as load_bar:
+            pending = dashboard_server._settle_prediction(full)
+            _assert(pending["pending"] is True, "Dashboard waits for settlement readiness")
+            load_bar.assert_not_called()
+
+        with mock.patch.object(etf_agent_chat, "shanghai_now", return_value=datetime(2026, 7, 10, 15, 30)):
+            _assert(not etf_agent_chat._market_closed_for_pnl(), "chat does not settle at 15:30")
+        with mock.patch.object(etf_agent_chat, "shanghai_now", return_value=datetime(2026, 7, 10, 16, 30)):
+            _assert(etf_agent_chat._market_closed_for_pnl(), "chat settles after 16:15")
 
     _assert("marketBanner" in CHAT_HTML, "chat contains market-closed banner")
     _assert("data-requires-open" in CHAT_HTML, "chat advice shortcuts are controllable")

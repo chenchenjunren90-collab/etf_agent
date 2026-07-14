@@ -9,6 +9,8 @@ from tempfile import TemporaryDirectory
 
 import pandas as pd
 
+from goal_state import build_goal_state
+from market_data import is_fresh
 from settlement_prices import get_close_to_close
 from stability_risk import build_recent_risk_context
 
@@ -32,6 +34,20 @@ def main() -> None:
             {"date": "2026-07-10", "open": 3.01, "high": 3.05, "low": 2.98, "close": 3.04, "volume": 1200},
         ]
         _write_prices(root, "510300", valid_rows)
+        _assert(
+            not is_fresh(
+                pd.DataFrame(valid_rows[:-1]),
+                as_of=datetime(2026, 7, 10, 16, 30),
+            ),
+            "one-trading-day-old fetch is not reported fresh",
+        )
+        _assert(
+            is_fresh(
+                pd.DataFrame(valid_rows),
+                as_of=datetime(2026, 7, 10, 16, 30),
+            ),
+            "exact target trading day is fresh",
+        )
         prices = get_close_to_close(
             "510300",
             "2026-07-10",
@@ -92,6 +108,11 @@ def main() -> None:
 
         output = root / "outputs"
         output.mkdir()
+        negative_rows = [
+            {"date": "2026-07-08", "open": 3.0, "high": 3.0, "low": 3.0, "close": 3.0, "volume": 1000},
+            {"date": "2026-07-09", "open": 3.0, "high": 3.0, "low": 2.9, "close": 2.9, "volume": 1000},
+        ]
+        _write_prices(root, "512880", negative_rows)
         (output / "2026-07-08_full.json").write_text(
             json.dumps({"mode": "fatal_fallback", "competition_output": []}),
             encoding="utf-8",
@@ -101,7 +122,8 @@ def main() -> None:
                 {
                     "mode": "competition",
                     "competition_output": [
-                        {"symbol": "510300", "volume": 100, "symbol_name": "沪深300ETF"}
+                        {"symbol": "512880", "volume": 100, "symbol_name": "securities"},
+                        {"symbol": "999999", "volume": 100, "symbol_name": "missing"},
                     ],
                 }
             ),
@@ -114,6 +136,19 @@ def main() -> None:
             data_dir=root,
         )
         _assert([row["date"] for row in context["rows"]] == ["2026-07-09"], "fatal fallback excluded from risk history")
+        partial = context["rows"][0]
+        _assert(partial["pnl"] < 0, "known partial loss remains in risk history")
+        _assert(partial["settlement_complete"] is False, "partial settlement is audited")
+        _assert(partial["unsettled_symbols"] == ["999999"], "missing symbol is recorded")
+
+        goal = build_goal_state(
+            "2026-07-10",
+            capital=500000,
+            output_dir=output,
+            data_dir=root,
+            state_path=root / "goal.json",
+        )
+        _assert(goal["rows"][0]["pnl"] < 0, "goal drawdown includes known partial loss")
 
     print("SETTLEMENT INTEGRITY OK")
 

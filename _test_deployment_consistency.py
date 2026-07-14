@@ -16,7 +16,7 @@ try:
 except ModuleNotFoundError:
     sys.modules["paramiko"] = types.ModuleType("paramiko")
 
-from _sync_to_server import tracked_code_changes
+from _sync_to_server import run_checked, tracked_code_changes
 
 
 ROOT = Path(__file__).resolve().parent
@@ -42,6 +42,10 @@ def test_cron_refresh_contract() -> None:
     assert all("ETF_ALLOW_LLM_SCORE_CONTROL=0" in line for line in cron)
     assert all("ETF_REPEAT_TILT=1" in line for line in cron)
     assert all("ETF_LLM_THEME_MODE=override" not in line for line in cron)
+    assert "--cutoff 07:50" in cron[0]
+    assert "--cutoff 08:10" in cron[1]
+    assert "--cutoff 08:25" in cron[2]
+    assert all("--cutoff 09:30" not in line for line in cron)
 
 
 def test_snapshot_deployment_markers() -> None:
@@ -70,6 +74,11 @@ def test_sync_guard_contract() -> None:
     assert "ETF_SYNC_PRICE_CSV" in source
     assert ".venv/bin/python -m py_compile" in source
     assert "DEPLOYED_GIT_COMMIT" in source
+    assert "/.deploy/staging/" in source
+    assert "/.deploy/backups/" in source
+    assert "rollback_cmd" in source
+    assert "curl -fsS" in source
+    assert "HEALTH_OK" in source
 
 
 def test_sync_guard_allows_local_data_only() -> None:
@@ -77,9 +86,38 @@ def test_sync_guard_allows_local_data_only() -> None:
     assert tracked_code_changes(status) == [" M strategy.py"]
 
 
+def test_failed_remote_command_raises() -> None:
+    class Channel:
+        def __init__(self, code: int):
+            self.code = code
+
+        def recv_exit_status(self) -> int:
+            return self.code
+
+    class Stream:
+        def __init__(self, data: bytes, code: int):
+            self.data = data
+            self.channel = Channel(code)
+
+        def read(self) -> bytes:
+            return self.data
+
+    class SSH:
+        def exec_command(self, _cmd: str, timeout: int = 120):
+            return None, Stream(b"", 1), Stream(b"health failed", 1)
+
+    try:
+        run_checked(SSH(), "false")  # type: ignore[arg-type]
+    except RuntimeError as exc:
+        assert "health failed" in str(exc)
+    else:
+        raise AssertionError("failed remote command was treated as success")
+
+
 if __name__ == "__main__":
     test_cron_refresh_contract()
     test_snapshot_deployment_markers()
     test_sync_guard_contract()
     test_sync_guard_allows_local_data_only()
+    test_failed_remote_command_raises()
     print("DEPLOYMENT CONSISTENCY OK")

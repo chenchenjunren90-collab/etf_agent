@@ -16,7 +16,7 @@ from typing import Any
 
 import pandas as pd
 
-from settlement_prices import get_close_to_close
+from settlement_prices import conservative_risk_pnl, settle_competition_output
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -38,17 +38,12 @@ def _settle_competition_output(
     trade_date: str,
     *,
     data_dir: Path = DATA_DIR,
-) -> float | None:
-    total = 0.0
-    for item in competition_output:
-        code = str(item.get("symbol") or "").zfill(6)
-        volume = int(float(item.get("volume") or 0))
-        prices = get_close_to_close(code, trade_date, data_dir=data_dir)
-        if not code or volume <= 0 or prices is None:
-            return None
-        prev_close, today_close = prices
-        total += volume * (today_close - prev_close)
-    return float(total)
+) -> dict[str, Any]:
+    return settle_competition_output(
+        competition_output,
+        trade_date,
+        data_dir=data_dir,
+    )
 
 
 def build_recent_risk_context(
@@ -89,7 +84,8 @@ def build_recent_risk_context(
             if payload.get("mode") in {"personal_sandbox", "fatal_fallback"}:
                 continue
             comp = payload.get("competition_output") or []
-            pnl = _settle_competition_output(comp, trade_date, data_dir=data_dir)
+            settlement = _settle_competition_output(comp, trade_date, data_dir=data_dir)
+            pnl = conservative_risk_pnl(settlement)
             if pnl is None:
                 continue
             rows.append({
@@ -97,6 +93,9 @@ def build_recent_risk_context(
                 "pnl": round(pnl, 2),
                 "positions": len(comp),
                 "source_file": str(path),
+                "settlement_complete": bool(settlement["complete"]),
+                "settled_positions": int(settlement["settled_count"]),
+                "unsettled_symbols": settlement["unsettled_symbols"],
             })
         except Exception:
             continue

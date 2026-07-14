@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import re
-from datetime import datetime
 from typing import Any
 
 from agent_kb import load_knowledge_base
@@ -34,6 +33,7 @@ from personalized_advisor import (
     competition_ui_blocks,
     format_advice_markdown,
 )
+from settlement_prices import shanghai_now
 from live_personal_runner import run_live_personal_advice
 import session_store as store
 from strategy import OFFENSIVE_POOL, TRADING_POOL
@@ -125,7 +125,7 @@ def _pack(
 
 
 def _today_str() -> str:
-    return datetime.now().strftime("%Y-%m-%d")
+    return shanghai_now().strftime("%Y-%m-%d")
 
 
 def _is_market_closed_today() -> bool:
@@ -255,7 +255,7 @@ def _generate_personal_advice(sess: dict[str, Any]) -> dict[str, Any]:
     focus = str(profile.get("focus") or "auto")
     prefer_codes = list(profile.get("prefer_codes") or [])
     avoid_codes = list(profile.get("avoid_codes") or [])
-    date_str = datetime.now().strftime("%Y-%m-%d")
+    date_str = shanghai_now().strftime("%Y-%m-%d")
 
     # Live run from base data (K-line / news / econ). Never overwrites competition.
     advice = run_live_personal_advice(
@@ -305,7 +305,7 @@ def _handle_competition(sess: dict[str, Any], message: str) -> dict[str, Any]:
         advice_mode="competition",
         append_message={"role": "user", "text": message},
     )
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = shanghai_now().strftime("%Y-%m-%d")
     kb = load_knowledge_base(today)
     used_fallback = False
 
@@ -502,7 +502,7 @@ def handle_chat(
     ui_blocks: list[dict[str, Any]] = []
     intent = result.get("intent") or "etf_general"
     if intent in ("competition", "run_today_job", "run_today_cached"):
-        today = datetime.now().strftime("%Y-%m-%d")
+        today = shanghai_now().strftime("%Y-%m-%d")
         kb = load_knowledge_base(today) or load_knowledge_base(result.get("kb_date"))
         if kb:
             ui_blocks = competition_ui_blocks(
