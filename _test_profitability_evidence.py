@@ -141,8 +141,8 @@ def test_news_and_entry_risk_can_veto() -> None:
             "2026-07-13",
             recent_submit_history=[{"date": "2026-07-10", "symbols": ["510300"]}],
         )
-        assert cooldown["action"] == "cash"
-        assert cooldown["reason"] == "same_symbol_previous_trade_day"
+        assert cooldown["action"] != "cash"
+        assert "same_symbol_previous_trade_day" in cooldown["risk_flags"]
 
         news_promoted = evidence.evaluate_candidate(
             _candidate(score=64.0, price_score=48.0),

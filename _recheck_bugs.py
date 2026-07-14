@@ -65,10 +65,14 @@ assert src.find("LLM per_etf_view") < src.find("stay_cash 放在重打分之后"
 assert "dyn_max = max(dyn_max" not in src
 print("STAY_CASH_ORDER_OK")
 
-bat = pathlib.Path("start_auto.bat").read_text(encoding="utf-8", errors="ignore")
-assert "SCORE_GATE_MODE=static" in bat
-assert "SCORE_GATE_MODE=dynamic" not in bat
-print("BAT_STATIC_OK")
+bat_path = pathlib.Path("start_auto.bat")
+if bat_path.exists():
+    bat = bat_path.read_text(encoding="utf-8", errors="ignore")
+    assert "SCORE_GATE_MODE=static" in bat
+    assert "SCORE_GATE_MODE=dynamic" not in bat
+    print("BAT_STATIC_OK")
+else:
+    print("BAT_STATIC_SKIP non-Windows deployment")
 
 a = audit_price_freshness(
     "2026-07-10",

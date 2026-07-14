@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
+import json
+import os
+import subprocess
 import time
+from datetime import datetime
 from pathlib import Path
 
 import paramiko
@@ -100,6 +104,7 @@ HELPER_FILES = [
     "_test_akshare.py",
     "_test_competition_isolation.py",
     "_test_decision_integrity.py",
+    "_test_deployment_consistency.py",
     "_test_execution_consistency.py",
     "_test_profitability_evidence.py",
     "_test_live_personal.py",
@@ -111,6 +116,54 @@ HELPER_FILES = [
     "_test_sources.py",
     "_test_sources2.py",
 ]
+
+
+def _git(*args: str, check: bool = True) -> str:
+    result = subprocess.run(
+        ["git", *args],
+        cwd=LOCAL,
+        text=True,
+        capture_output=True,
+        timeout=60,
+    )
+    if check and result.returncode != 0:
+        detail = (result.stderr or result.stdout).strip()
+        raise SystemExit(f"git {' '.join(args)} failed: {detail}")
+    return result.stdout.strip()
+
+
+def deployment_commit() -> str:
+    """Refuse accidental production deploys from stale or edited code."""
+    required = LOCAL / "profitability_evidence.py"
+    if not required.exists():
+        raise SystemExit("DEPLOY BLOCKED: profitability_evidence.py is missing")
+
+    allow_unsafe = os.environ.get("ETF_ALLOW_NON_MASTER_DEPLOY", "0") == "1"
+    if not allow_unsafe:
+        _git("fetch", "origin", "master", "--quiet")
+        head = _git("rev-parse", "HEAD")
+        origin_master = _git("rev-parse", "origin/master")
+        if head != origin_master:
+            raise SystemExit(
+                "DEPLOY BLOCKED: local HEAD is not origin/master "
+                f"(HEAD={head[:12]}, origin/master={origin_master[:12]}). "
+                "Merge/pull the published version first."
+            )
+
+        dirty = []
+        for line in _git("status", "--porcelain", "--untracked-files=no").splitlines():
+            path = line[3:].split(" -> ")[-1].replace("\\", "/")
+            if not path.startswith("data/") and path != "auto_theme_signal.json":
+                dirty.append(line)
+        if dirty:
+            raise SystemExit(
+                "DEPLOY BLOCKED: tracked code/config has uncommitted changes:\n"
+                + "\n".join(dirty[:20])
+            )
+        return head
+
+    print("WARNING: ETF_ALLOW_NON_MASTER_DEPLOY=1 bypassed Git deployment checks")
+    return _git("rev-parse", "HEAD")
 
 
 def run(ssh: paramiko.SSHClient, cmd: str, timeout: int = 120) -> str:
@@ -128,6 +181,7 @@ def main() -> None:
     require_allowed_remote()
     if not PASSWORD:
         raise SystemExit("ETF_SERVER_PASSWORD is missing. Add it to local .env first.")
+    commit = deployment_commit()
 
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -148,25 +202,27 @@ def main() -> None:
         uploaded.append(name)
         print("UP", name)
 
-    # Sync ALL_POOL CSVs so server settlement/features match local repairs
-    print("--- csv ---")
-    try:
-        from pool import ALL_POOL
-    except Exception as exc:
-        print("SKIP csv import", exc)
-        ALL_POOL = []
-    run(ssh, f"mkdir -p {REMOTE}/data")
-    csv_n = 0
-    for item in ALL_POOL:
-        code = str(item["code"]).zfill(6)
-        src = LOCAL / "data" / f"{code}.csv"
-        if not src.exists():
-            print("SKIP missing csv", code)
-            continue
-        sftp.put(str(src), f"{REMOTE}/data/{code}.csv")
-        csv_n += 1
-        print("UP csv", code)
-    print(f"CSV synced: {csv_n}")
+    if os.environ.get("ETF_SYNC_PRICE_CSV", "0") == "1":
+        print("--- csv ---")
+        try:
+            from pool import ALL_POOL
+        except Exception as exc:
+            print("SKIP csv import", exc)
+            ALL_POOL = []
+        run(ssh, f"mkdir -p {REMOTE}/data")
+        csv_n = 0
+        for item in ALL_POOL:
+            code = str(item["code"]).zfill(6)
+            src = LOCAL / "data" / f"{code}.csv"
+            if not src.exists():
+                print("SKIP missing csv", code)
+                continue
+            sftp.put(str(src), f"{REMOTE}/data/{code}.csv")
+            csv_n += 1
+            print("UP csv", code)
+        print(f"CSV synced: {csv_n}")
+    else:
+        print("--- csv: skipped (set ETF_SYNC_PRICE_CSV=1 for an intentional data sync) ---")
 
     print("--- compile ---")
     compile_targets = " ".join(
@@ -194,7 +250,26 @@ def main() -> None:
         )
         if (LOCAL / p).exists()
     )
-    print(run(ssh, f"cd {REMOTE} && python3 -m py_compile {compile_targets} && echo COMPILE_OK"))
+    compile_output = run(
+        ssh,
+        f"cd {REMOTE} && .venv/bin/python -m py_compile {compile_targets} && echo COMPILE_OK",
+    )
+    print(compile_output)
+    if "COMPILE_OK" not in compile_output:
+        sftp.close()
+        ssh.close()
+        raise SystemExit("DEPLOY FAILED: remote compile did not complete")
+
+    metadata = {
+        "commit": commit,
+        "git_commit": commit,
+        "deployed_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "source": "origin/master",
+    }
+    with sftp.file(f"{REMOTE}/DEPLOYED_GIT_COMMIT", "w") as handle:
+        handle.write(commit + "\n")
+    with sftp.file(f"{REMOTE}/DEPLOYED_VERSION.json", "w") as handle:
+        handle.write(json.dumps(metadata, ensure_ascii=True, indent=2) + "\n")
 
     print("--- systemd ---")
     print(sudo(ssh, f"cp {REMOTE}/etf-dashboard.service /etc/systemd/system/etf-dashboard.service"))
