@@ -53,6 +53,8 @@ def test_snapshot_deployment_markers() -> None:
 
 def test_sync_guard_contract() -> None:
     source = (ROOT / "_sync_to_server.py").read_text(encoding="utf-8")
+    helpers = _literal_assignment(ROOT / "_sync_to_server.py", "HELPER_FILES")
+    assert "_recheck_bugs.py" in helpers
     assert '"profitability_evidence.py"' in source
     assert '"origin/master"' in source
     assert "ETF_ALLOW_NON_MASTER_DEPLOY" in source
