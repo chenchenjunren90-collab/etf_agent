@@ -130,7 +130,18 @@ def _git(*args: str, check: bool = True) -> str:
     if check and result.returncode != 0:
         detail = (result.stderr or result.stdout).strip()
         raise SystemExit(f"git {' '.join(args)} failed: {detail}")
-    return result.stdout.strip()
+    return result.stdout.rstrip()
+
+
+def tracked_code_changes(status_output: str) -> list[str]:
+    dirty: list[str] = []
+    for line in status_output.splitlines():
+        if len(line) < 4:
+            continue
+        path = line[3:].split(" -> ")[-1].replace("\\", "/")
+        if not path.startswith("data/") and path != "auto_theme_signal.json":
+            dirty.append(line)
+    return dirty
 
 
 def deployment_commit() -> str:
@@ -151,11 +162,9 @@ def deployment_commit() -> str:
                 "Merge/pull the published version first."
             )
 
-        dirty = []
-        for line in _git("status", "--porcelain", "--untracked-files=no").splitlines():
-            path = line[3:].split(" -> ")[-1].replace("\\", "/")
-            if not path.startswith("data/") and path != "auto_theme_signal.json":
-                dirty.append(line)
+        dirty = tracked_code_changes(
+            _git("status", "--porcelain", "--untracked-files=no")
+        )
         if dirty:
             raise SystemExit(
                 "DEPLOY BLOCKED: tracked code/config has uncommitted changes:\n"

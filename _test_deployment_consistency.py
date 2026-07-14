@@ -8,6 +8,7 @@ import tempfile
 from pathlib import Path
 
 import decision_snapshot
+from _sync_to_server import tracked_code_changes
 
 
 ROOT = Path(__file__).resolve().parent
@@ -63,8 +64,14 @@ def test_sync_guard_contract() -> None:
     assert "DEPLOYED_GIT_COMMIT" in source
 
 
+def test_sync_guard_allows_local_data_only() -> None:
+    status = " M auto_theme_signal.json\n M data/510300.csv\n M strategy.py\n"
+    assert tracked_code_changes(status) == [" M strategy.py"]
+
+
 if __name__ == "__main__":
     test_cron_refresh_contract()
     test_snapshot_deployment_markers()
     test_sync_guard_contract()
+    test_sync_guard_allows_local_data_only()
     print("DEPLOYMENT CONSISTENCY OK")
