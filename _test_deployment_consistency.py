@@ -4,10 +4,18 @@ from __future__ import annotations
 
 import ast
 import json
+import sys
 import tempfile
+import types
 from pathlib import Path
 
 import decision_snapshot
+
+try:
+    import paramiko  # noqa: F401
+except ModuleNotFoundError:
+    sys.modules["paramiko"] = types.ModuleType("paramiko")
+
 from _sync_to_server import tracked_code_changes
 
 
