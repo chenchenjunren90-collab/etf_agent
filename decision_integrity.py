@@ -154,6 +154,16 @@ def load_recent_submit_history(
             continue
         if d >= cutoff:
             continue
+        full_path = OUTPUT_DIR / f"{d.isoformat()}_full.json"
+        if full_path.exists():
+            try:
+                full = json.loads(full_path.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            if full.get("mode") in {"personal_sandbox", "fatal_fallback"}:
+                continue
+            if "strategy_result" in full and full.get("strategy_result") is None:
+                continue
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except Exception:

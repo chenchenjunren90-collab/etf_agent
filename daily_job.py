@@ -212,7 +212,12 @@ def _process_news_pool(articles: list[dict], trend_context: dict, pool_codes: li
     return signal
 
 
-def build_daily_news_signal(date_str: str, cutoff_time: str) -> dict[str, Any]:
+def build_daily_news_signal(
+    date_str: str,
+    cutoff_time: str,
+    *,
+    persist: bool = True,
+) -> dict[str, Any]:
     from pool import ALL_POOL
 
     log(f"抓取 {date_str} {cutoff_time} 前可用新闻...")
@@ -282,9 +287,12 @@ def build_daily_news_signal(date_str: str, cutoff_time: str) -> dict[str, Any]:
         },
     }
 
-    path = save_theme_signal(signal, date_str)
     log(f"新闻分层完成: 新鲜={fresh_acc}条(强{fresh_str}) 陈旧={stale_acc}条(强{stale_str})")
-    log(f"新闻信号保存: {path}")
+    if persist:
+        path = save_theme_signal(signal, date_str)
+        log(f"新闻信号保存: {path}")
+    else:
+        log("非比赛本金运行：新闻信号仅用于本次计算，不写共享缓存。")
     return signal
 
 
@@ -620,9 +628,10 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
     recent_risk = build_recent_risk_context(args.date, capital=args.capital)
     from competition_guard import is_competition_capital
 
+    official_run = is_competition_capital(float(args.capital))
     goal_state = (
         build_goal_state(args.date, capital=float(args.capital))
-        if is_competition_capital(float(args.capital))
+        if official_run
         else None
     )
     if goal_state and goal_state.get("enabled"):
@@ -653,7 +662,11 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
         print("\n=== 今日休市 ===\n今天 A 股休市，没有策略建议。")
         return 0
 
-    news_signal = build_daily_news_signal(args.date, args.cutoff)
+    news_signal = build_daily_news_signal(
+        args.date,
+        args.cutoff,
+        persist=official_run,
+    )
 
     log("加载经济日历（仓位风控与决策提示输入）...")
     econ_payload = load_econ_payload(args.date, allow_live=True, refresh=True)
@@ -712,11 +725,6 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
         capital=float(args.capital),
     )
 
-    # Only rebuild official agent_kb for competition-capital runs.
-    from competition_guard import is_competition_capital as _is_comp_cap
-
-    _official_run = _is_comp_cap(float(args.capital))
-
     # 将数据质量警告写入 full.json
     if DATA_QUALITY_WARN_FLAGS:
         try:
@@ -732,7 +740,7 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
     log(f"比赛格式输出: {submit_path}")
     log(f"完整记录输出: {full_path}")
 
-    if _official_run:
+    if official_run:
         try:
             from agent_kb import rebuild_knowledge_base
 

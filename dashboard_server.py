@@ -27,6 +27,7 @@ from daily_pnl import _load_bar
 import llm_client
 import llm_decider
 import security_guard
+from settlement_prices import settlement_ready, shanghai_now
 from trading_calendar import is_trading_day
 
 __file__ = Path(__file__).resolve()
@@ -73,7 +74,7 @@ def _read_json(path: Path | None) -> Any:
 
 
 def _latest_file(pattern: str, directory: Path, only_weekdays: bool = False) -> Path | None:
-    today = datetime.now().date()
+    today = shanghai_now().date()
     for p in sorted(directory.glob(pattern), reverse=True):
         try:
             d = datetime.strptime(p.name.split("_")[0], "%Y-%m-%d").date()
@@ -90,14 +91,14 @@ def _latest_file(pattern: str, directory: Path, only_weekdays: bool = False) -> 
 def _settle_prediction(full_path: Path) -> dict[str, Any] | None:
     """按平台结算口径复盘预测日盈亏：买入价=昨收，卖出价=今收。
 
-    查看日若为「今天」且尚未收盘（15:00 前），返回 pending，避免半截K误报。
+    查看日若为「今天」且尚未达到结算就绪时间（默认 16:15），返回 pending。
     """
     if not full_path.exists():
         return None
     date_str = full_path.name.split("_")[0]
-    now = datetime.now()
+    now = shanghai_now()
     today_str = now.strftime("%Y-%m-%d")
-    if date_str == today_str and now.hour < 15:
+    if date_str == today_str and not settlement_ready(date_str, as_of=now):
         try:
             data = json.loads(full_path.read_text(encoding="utf-8"))
         except Exception:
@@ -152,7 +153,7 @@ def _settle_prediction(full_path: Path) -> dict[str, Any] | None:
 
 
 def _system_info() -> dict[str, Any]:
-    today = datetime.now()
+    today = shanghai_now()
     today_str = today.strftime("%Y-%m-%d")
     wd = today.weekday()
     wd_names = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
@@ -168,7 +169,7 @@ def _system_info() -> dict[str, Any]:
 
 
 def load_status(view_date: str | None = None) -> dict[str, Any]:
-    today = datetime.now().date()
+    today = shanghai_now().date()
     today_str = today.strftime("%Y-%m-%d")
     today_is_trading = is_trading_day(today)
     if view_date:
@@ -239,7 +240,7 @@ def _json_response(handler: BaseHTTPRequestHandler, payload: Any, status: int = 
 def _build_daily_job_cmd(options: dict[str, Any]) -> tuple[list[str], dict[str, str], str]:
     """组装 daily_job 命令行；返回 (cmd, env, today_str)。"""
     cmd = [sys.executable, "-u", str(BASE_DIR / "daily_job.py")]
-    today = datetime.now().date()
+    today = shanghai_now().date()
     today_str = today.strftime("%Y-%m-%d")
     if is_trading_day(today):
         cmd.extend(["--date", today_str])
@@ -266,7 +267,7 @@ def _prepare_daily_job(options: dict[str, Any]) -> tuple[list[str], dict[str, st
     try:
         import daily_run_guard
 
-        today_str = datetime.now().strftime("%Y-%m-%d")
+        today_str = shanghai_now().strftime("%Y-%m-%d")
         if not is_trading_day(today_str):
             _RUN_LOCK.release()
             return {

@@ -33,6 +33,15 @@ def main() -> None:
     _assert(should_write_competition_artifacts(500000), "500k may write official")
     _assert(not should_write_competition_artifacts(200000), "200k must not write official")
 
+    from daily_job import build_daily_news_signal
+
+    with mock.patch("daily_job.fetch_news_articles", return_value=[]), mock.patch(
+        "daily_job.save_theme_signal"
+    ) as save_signal:
+        build_daily_news_signal("2099-01-01", "08:25", persist=False)
+        save_signal.assert_not_called()
+    _assert(True, "personal run does not write shared news signal")
+
     # Force blocked by default
     os.environ.pop("ETF_CHAT_ALLOW_FORCE_RERUN", None)
     _assert(not chat_force_allowed(), "force env off by default")

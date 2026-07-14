@@ -16,6 +16,7 @@ from daily_pnl import review_previous_prediction
 import llm_client
 import pandas as pd
 from news_signal import score_news_article
+from settlement_prices import settlement_ready, shanghai_now
 from strategy import OFFENSIVE_POOL, TRADING_POOL
 
 
@@ -182,7 +183,7 @@ def _format_competition(kb: dict[str, Any]) -> str:
 
 def _format_competition_json(kb: dict[str, Any] | None) -> str:
     """比赛提交格式：仅输出 JSON 指令。"""
-    today_str = datetime.now().strftime("%Y-%m-%d")
+    today_str = shanghai_now().strftime("%Y-%m-%d")
     today_submit = BASE_DIR / "data" / "daily_output" / f"{today_str}_submit.json"
     if today_submit.exists():
         try:
@@ -203,7 +204,7 @@ def _wants_competition_json(message: str) -> bool:
 
 def _format_yesterday_pnl() -> str:
     """上一交易日预测的实际收益（昨收→今收，平台结算口径）。"""
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = shanghai_now().strftime("%Y-%m-%d")
     rec = review_previous_prediction(today)
     if not rec:
         return "暂无上一交易日收益记录。"
@@ -255,7 +256,7 @@ def _cn_num(s: str) -> int | None:
 
 def _parse_date_from_message(message: str) -> str | None:
     """从用户问题里解析出具体日期 (YYYY-MM-DD)。支持: 5/25, 5-25, 5月25日/号, 五月二十五号."""
-    today = datetime.now().date()
+    today = shanghai_now().date()
     year = today.year
 
     # 1. 数字格式 5/25, 5-25, 05.25, 2026-05-25
@@ -382,7 +383,7 @@ def _backup_today_outputs(date_str: str) -> None:
     import shutil
     arch = BASE_DIR / "data" / "daily_output" / "archive"
     arch.mkdir(parents=True, exist_ok=True)
-    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    stamp = shanghai_now().strftime("%Y%m%d_%H%M%S")
     for name in (f"{date_str}_submit.json", f"{date_str}_full.json"):
         src = BASE_DIR / "data" / "daily_output" / name
         if src.exists():
@@ -418,7 +419,7 @@ def _run_today_prediction(skip_price_update: bool = False, *, force: bool = Fals
     from competition_guard import COMPETITION_CAPITAL, guard_chat_prediction_run
     from daily_run_guard import has_daily_run
 
-    today = datetime.now().date()
+    today = shanghai_now().date()
     today_str = today.strftime("%Y-%m-%d")
     from trading_calendar import is_trading_day
 
@@ -546,14 +547,12 @@ def _is_today_pnl_question(message: str) -> bool:
 
 def _market_closed_for_pnl() -> bool:
     """A 股日 K 落定后再报当日收益。"""
-    from datetime import time as dt_time
-
     from trading_calendar import is_trading_day
 
-    now = datetime.now()
+    now = shanghai_now()
     if not is_trading_day(now.date()):
         return True
-    return now.time() >= dt_time(15, 0)
+    return settlement_ready(now.strftime("%Y-%m-%d"), as_of=now)
 
 
 def _is_quote_question(message: str) -> bool:
@@ -639,11 +638,11 @@ def _answer_today_pnl(kb: dict[str, Any], message: str) -> str:
     if not _market_closed_for_pnl():
         return (
             "今天还没收盘，暂不报当日收益。"
-            "收盘（15:00 后）再问「今天预测收益多少」。"
+            "结算行情就绪（默认 16:15 后）再问「今天预测收益多少」。"
             "上一日收益可以说「昨天赚了多少钱」。"
         )
 
-    cal_today = datetime.now().strftime("%Y-%m-%d")
+    cal_today = shanghai_now().strftime("%Y-%m-%d")
     kb_date = kb.get("date") or cal_today
     lines: list[str] = []
 
@@ -908,7 +907,7 @@ def handle_message(message: str, date_str: str | None = None) -> dict[str, Any]:
     if not message:
         return {"reply": "请输入您的问题。", "intent": "empty", "kb_date": None, "via": "rule"}
 
-    target_date = (date_str or datetime.now().strftime("%Y-%m-%d"))[:10]
+    target_date = (date_str or shanghai_now().strftime("%Y-%m-%d"))[:10]
     kb = load_knowledge_base(target_date)
 
     asks_about_pnl = any(w in message for w in ("收益", "赚", "亏", "盈亏", "挣"))
@@ -919,7 +918,7 @@ def handle_message(message: str, date_str: str | None = None) -> dict[str, Any]:
                 or re.search(r"\d{1,2}[/\-.]\d{1,2}", message) \
                 or "前天" in message or "大前天" in message or "上周" in message:
             d = _parse_date_from_message(message)
-            today_str = datetime.now().strftime("%Y-%m-%d")
+            today_str = shanghai_now().strftime("%Y-%m-%d")
             if d and d != today_str:
                 return {"reply": _answer_history_pnl(d), "intent": "history_pnl",
                         "kb_date": (kb or {}).get("date"), "via": "rule"}
@@ -927,7 +926,7 @@ def handle_message(message: str, date_str: str | None = None) -> dict[str, Any]:
     wants_run = _wants_run_prediction(message)
 
     if any(h in message for h in COMPETITION_HINTS) and not asks_about_pnl and not wants_run:
-        today_kb = load_knowledge_base(datetime.now().strftime("%Y-%m-%d")) or kb
+        today_kb = load_knowledge_base(shanghai_now().strftime("%Y-%m-%d")) or kb
         if today_kb is None:
             return {"reply": "暂无当日预测，请说「测一下今天」。", "intent": "no_kb",
                     "kb_date": None, "via": "rule"}
@@ -940,7 +939,7 @@ def handle_message(message: str, date_str: str | None = None) -> dict[str, Any]:
                 "kb_date": (kb or {}).get("date"), "via": "rule"}
 
     if wants_run:
-        today_str = datetime.now().strftime("%Y-%m-%d")
+        today_str = shanghai_now().strftime("%Y-%m-%d")
         force = any(h in message for h in FORCE_RERUN_HINTS)
         from competition_guard import chat_force_allowed
         from daily_run_guard import has_daily_run

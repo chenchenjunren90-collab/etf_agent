@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
 from decision_integrity import (
     CLEAR_LEAD_GAP,
     apply_concentration_risk,
@@ -99,6 +103,33 @@ def test_missing_csv_date_is_not_treated_as_holiday():
         market_data._ref_trade_dates = original
 
 
+def test_fatal_submit_is_excluded_from_holding_history():
+    import decision_integrity
+
+    original = decision_integrity.OUTPUT_DIR
+    with TemporaryDirectory() as tmp:
+        output = Path(tmp)
+        decision_integrity.OUTPUT_DIR = output
+        try:
+            (output / "2026-07-08_submit.json").write_text("[]", encoding="utf-8")
+            (output / "2026-07-08_full.json").write_text(
+                json.dumps({"mode": "fatal_fallback", "strategy_result": None}),
+                encoding="utf-8",
+            )
+            (output / "2026-07-09_submit.json").write_text(
+                json.dumps([{"symbol": "510300", "volume": 100}]),
+                encoding="utf-8",
+            )
+            (output / "2026-07-09_full.json").write_text(
+                json.dumps({"mode": "competition", "strategy_result": {"summary": {}}}),
+                encoding="utf-8",
+            )
+            history = decision_integrity.load_recent_submit_history("2026-07-10")
+            assert history == [{"date": "2026-07-09", "symbols": ["510300"]}]
+        finally:
+            decision_integrity.OUTPUT_DIR = original
+
+
 if __name__ == "__main__":
     test_streak_counts()
     test_default_off_matches_stable_profit_bias()
@@ -106,4 +137,5 @@ if __name__ == "__main__":
     test_clear_lead_skips_tilt()
     test_no_history()
     test_missing_csv_date_is_not_treated_as_holiday()
+    test_fatal_submit_is_excluded_from_holding_history()
     print("OK")
