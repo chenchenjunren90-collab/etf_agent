@@ -95,6 +95,7 @@ HELPER_FILES = [
     "_fix_chat_service.py",
     "_fix_nginx_rate.py",
     "_pull_full_json.py",
+    "_recheck_bugs.py",
     "_restart_dashboard.py",
     "_restore_systemd.py",
     "_run_post_close.py",
