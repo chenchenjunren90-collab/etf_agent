@@ -26,16 +26,28 @@ def _git_commit() -> str | None:
     configured = os.environ.get("ETF_GIT_COMMIT", "").strip()
     if configured:
         return configured
+    marker = BASE_DIR / "DEPLOYED_GIT_COMMIT"
+    try:
+        value = marker.read_text(encoding="utf-8").strip()
+        if value:
+            return value
+    except Exception:
+        pass
     deployed = BASE_DIR / "DEPLOYED_VERSION.json"
     try:
-        value = str(json.loads(deployed.read_text(encoding="utf-8")).get("commit") or "").strip()
+        metadata = json.loads(deployed.read_text(encoding="utf-8"))
+        value = str(metadata.get("commit") or metadata.get("git_commit") or "").strip()
         if value:
             return value
     except Exception:
         pass
     try:
         return subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=BASE_DIR, text=True, timeout=5
+            ["git", "rev-parse", "HEAD"],
+            cwd=BASE_DIR,
+            text=True,
+            timeout=5,
+            stderr=subprocess.DEVNULL,
         ).strip()
     except Exception:
         return None

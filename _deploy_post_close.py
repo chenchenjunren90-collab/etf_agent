@@ -16,9 +16,9 @@ FILES = [
 ]
 
 CRON_LINES = [
-    "50 7 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && ETF_TEN_DAY_GOAL_MODE=risk_cap ETF_LLM_THEME_MODE=override /home/ciyuan/chenjunren/etf_agent/.venv/bin/python daily_job.py >> data/daily_job_cron.log 2>&1",
-    "10 8 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && ETF_TEN_DAY_GOAL_MODE=risk_cap ETF_LLM_THEME_MODE=override /home/ciyuan/chenjunren/etf_agent/.venv/bin/python daily_job.py >> data/daily_job_cron.log 2>&1",
-    "25 8 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && ETF_TEN_DAY_GOAL_MODE=risk_cap ETF_LLM_THEME_MODE=override /home/ciyuan/chenjunren/etf_agent/.venv/bin/python daily_job.py >> data/daily_job_cron.log 2>&1",
+    "50 7 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && /usr/bin/flock -n /tmp/etf-agent-daily.lock env ETF_TEN_DAY_GOAL_MODE=risk_cap ETF_LLM_THEME_MODE=audit ETF_ALLOW_LLM_SCORE_CONTROL=0 ETF_REPEAT_TILT=1 .venv/bin/python daily_job.py >> data/daily_job_cron.log 2>&1",
+    "10 8 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && /usr/bin/flock -n /tmp/etf-agent-daily.lock env ETF_TEN_DAY_GOAL_MODE=risk_cap ETF_LLM_THEME_MODE=audit ETF_ALLOW_LLM_SCORE_CONTROL=0 ETF_REPEAT_TILT=1 .venv/bin/python daily_job.py --force --skip-price-update >> data/daily_job_cron.log 2>&1",
+    "25 8 * * 1-5 cd /home/ciyuan/chenjunren/etf_agent && /usr/bin/flock -n /tmp/etf-agent-daily.lock env ETF_TEN_DAY_GOAL_MODE=risk_cap ETF_LLM_THEME_MODE=audit ETF_ALLOW_LLM_SCORE_CONTROL=0 ETF_REPEAT_TILT=1 .venv/bin/python daily_job.py --force --skip-price-update >> data/daily_job_cron.log 2>&1",
     "15 16 * * 1-5 /home/ciyuan/chenjunren/etf_agent/scripts/post_close_sync.sh >> /home/ciyuan/chenjunren/etf_agent/data/daily_output/post_close_sync.log 2>&1",
     "45 16 * * 1-5 /home/ciyuan/chenjunren/etf_agent/scripts/post_close_sync.sh >> /home/ciyuan/chenjunren/etf_agent/data/daily_output/post_close_sync.log 2>&1",
     "15 17 * * 1-5 /home/ciyuan/chenjunren/etf_agent/scripts/post_close_sync.sh >> /home/ciyuan/chenjunren/etf_agent/data/daily_output/post_close_sync.log 2>&1",

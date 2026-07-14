@@ -386,7 +386,6 @@ def evaluate_candidate(
         hard_news_failure = "positive_news_without_direct_event_support" in flags
         entry_veto = next((
             flag for flag in (
-                "same_symbol_previous_trade_day",
                 "one_day_surge_entry_risk",
                 "low_volume_late_breakout",
                 "news_promoted_without_price_gate",
