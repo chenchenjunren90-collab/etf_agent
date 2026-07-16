@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
-from datetime import datetime
+from datetime import datetime, time as dt_time
 from pathlib import Path
 from typing import Any
 
@@ -37,11 +37,58 @@ from decision_integrity import (
 )
 from decision_snapshot import write_immutable_snapshot
 from goal_state import build_goal_state
+from settlement_prices import shanghai_now
 
 
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "data" / "daily_output"
 ARCHIVE_DIR = OUTPUT_DIR / "archive"
+DEFAULT_SUBMISSION_DEADLINE = "08:30"
+
+
+def parse_hhmm(value: str) -> str:
+    """Validate and normalize an HH:MM command-line value."""
+    try:
+        return datetime.strptime(value.strip(), "%H:%M").strftime("%H:%M")
+    except (AttributeError, ValueError) as exc:
+        raise argparse.ArgumentTypeError("expected time in HH:MM format") from exc
+
+
+def submission_deadline_passed(
+    date_str: str,
+    deadline: str,
+    *,
+    as_of: datetime | None = None,
+) -> bool:
+    target = pd.to_datetime(date_str, errors="coerce")
+    if pd.isna(target):
+        return False
+    now = shanghai_now(as_of)
+    if target.date() != now.date():
+        return False
+    cutoff = dt_time.fromisoformat(parse_hhmm(deadline))
+    return now.time() >= cutoff
+
+
+def has_successful_official_output(
+    date_str: str,
+    *,
+    output_dir: Path = OUTPUT_DIR,
+) -> bool:
+    submit_path = output_dir / f"{date_str}_submit.json"
+    full_path = output_dir / f"{date_str}_full.json"
+    if not submit_path.exists() or not full_path.exists():
+        return False
+    try:
+        submit = json.loads(submit_path.read_text(encoding="utf-8"))
+        full = json.loads(full_path.read_text(encoding="utf-8"))
+    except Exception:
+        return False
+    if not isinstance(submit, list) or not isinstance(full, dict):
+        return False
+    if full.get("mode") in {"personal_sandbox", "fatal_fallback"}:
+        return False
+    return full.get("strategy_result") is not None
 
 
 def log(message: str) -> None:
@@ -465,7 +512,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="ETF daily news-driven prediction job.")
     parser.add_argument("--date", default=datetime.now().strftime("%Y-%m-%d"))
     parser.add_argument("--capital", type=float, default=float(os.environ.get("CAPITAL", "500000")))
-    parser.add_argument("--cutoff", default="09:30")
+    parser.add_argument("--cutoff", type=parse_hhmm, default="09:30")
+    parser.add_argument(
+        "--deadline",
+        type=parse_hhmm,
+        default=os.environ.get("ETF_SUBMISSION_DEADLINE", DEFAULT_SUBMISSION_DEADLINE),
+        help="Preserve an earlier successful official output after this Shanghai-time deadline.",
+    )
     parser.add_argument("--skip-price-update", action="store_true")
     parser.add_argument(
         "--force",
@@ -619,6 +672,12 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
             f"失败={price_stats.get('fail')}"
         )
 
+    # The update stage already owns all live price fetching and freshness
+    # fallback. Re-fetching every ETF in each downstream feature pass added
+    # roughly nine minutes and could push the final refresh past submission.
+    os.environ["ETF_AGENT_ALLOW_NETWORK"] = "0"
+    log("决策阶段使用已更新并校验的本地收盘数据，停止重复联网拉取 K 线。")
+
     integrity_ctx = build_integrity_context(args.date, price_update_stats=price_stats)
 
     log("复盘上一日预测收益...")
@@ -714,6 +773,21 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
     )
     competition_output = to_competition_output(result)
     validate_execution_consistency(result, competition_output)
+    if (
+        official_run
+        and submission_deadline_passed(args.date, args.deadline)
+        and has_successful_official_output(args.date)
+    ):
+        from daily_run_guard import load_submit
+
+        cached = load_submit(args.date)
+        log(
+            f"[DEADLINE] 当前已超过 {args.deadline}，保留截止前成功输出，"
+            "不使用本次晚到结果覆盖。"
+        )
+        print("\n=== COMPETITION OUTPUT (截止前版本，未覆盖) ===")
+        print(json.dumps(cached, ensure_ascii=False, indent=2))
+        return 0
     submit_path, full_path = save_outputs(
         args.date,
         competition_output,

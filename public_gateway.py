@@ -44,6 +44,7 @@ def resolve_upstream(raw_path: str) -> tuple[str, int, str] | None:
 class PublicGatewayServer(ThreadingHTTPServer):
     daemon_threads = True
     allow_reuse_address = True
+    request_queue_size = 64
 
 
 class PublicGatewayHandler(BaseHTTPRequestHandler):

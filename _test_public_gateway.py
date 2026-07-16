@@ -66,6 +66,7 @@ def request(
 
 
 def main() -> None:
+    assert public_gateway.PublicGatewayServer.request_queue_size >= 64
     dashboard, _ = start_server(EchoHandler)
     chat, _ = start_server(EchoHandler)
 

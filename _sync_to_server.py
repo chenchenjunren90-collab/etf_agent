@@ -108,6 +108,7 @@ HELPER_FILES = [
     "_test_akshare.py",
     "_test_competition_isolation.py",
     "_test_decision_integrity.py",
+    "_test_daily_deadline.py",
     "_test_deployment_consistency.py",
     "_test_execution_consistency.py",
     "_test_profitability_evidence.py",
