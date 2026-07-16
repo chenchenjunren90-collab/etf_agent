@@ -213,6 +213,13 @@ def main() -> None:
     if not PASSWORD:
         raise SystemExit("ETF_SERVER_PASSWORD is missing. Add it to local .env first.")
     commit = deployment_commit()
+    allow_system_changes = os.environ.get("ETF_ALLOW_SYSTEM_CHANGES", "0") == "1"
+    try:
+        public_port = int(os.environ.get("ETF_PUBLIC_PORT", "3004"))
+    except ValueError as exc:
+        raise SystemExit("ETF_PUBLIC_PORT must be an integer") from exc
+    if not 1024 <= public_port <= 65535:
+        raise SystemExit("ETF_PUBLIC_PORT must be between 1024 and 65535")
 
     artifacts: list[tuple[str, Path]] = []
     for name in APP_FILES + HELPER_FILES:
@@ -309,22 +316,42 @@ def main() -> None:
         promoted = True
         run_checked(ssh, promote_cmd, timeout=240)
 
-        print("--- systemd ---")
-        print(sudo_checked(ssh, f"cp {REMOTE}/etf-dashboard.service /etc/systemd/system/etf-dashboard.service"))
-        print(sudo_checked(ssh, f"cp {REMOTE}/etf-agent-chat.service /etc/systemd/system/etf-agent-chat.service"))
-        print(sudo_checked(ssh, "systemctl daemon-reload"))
-        print(sudo_checked(ssh, "systemctl restart etf-dashboard etf-agent-chat"))
-        time.sleep(2)
+        if allow_system_changes:
+            print("--- administrator-authorized systemd integration ---")
+            print(sudo_checked(ssh, f"cp {REMOTE}/etf-dashboard.service /etc/systemd/system/etf-dashboard.service"))
+            print(sudo_checked(ssh, f"cp {REMOTE}/etf-agent-chat.service /etc/systemd/system/etf-agent-chat.service"))
+            print(sudo_checked(ssh, "systemctl daemon-reload"))
+            print(sudo_checked(ssh, "systemctl restart etf-dashboard etf-agent-chat"))
+            time.sleep(2)
+        else:
+            print("--- folder-only runtime (no sudo/systemd/nginx changes) ---")
+            run_checked(ssh, f"chmod +x {REMOTE}/scripts/public_gateway.sh")
+            print(
+                run_checked(
+                    ssh,
+                    f"cd {REMOTE} && env ETF_PUBLIC_PORT={public_port} "
+                    "scripts/public_gateway.sh restart",
+                )
+            )
 
         print("--- strict health ---")
-        health = run_checked(
-            ssh,
-            "systemctl is-active --quiet etf-dashboard etf-agent-chat "
-            "&& curl -fsS http://127.0.0.1/etf-agent/ >/dev/null "
-            "&& curl -fsS http://127.0.0.1/etf-agent/chat/ >/dev/null "
-            "&& curl -fsS http://127.0.0.1/etf-agent/chat/docs >/dev/null "
-            "&& echo HEALTH_OK",
-        )
+        if allow_system_changes:
+            health_command = (
+                "systemctl is-active --quiet etf-dashboard etf-agent-chat "
+                "&& curl -fsS http://127.0.0.1/etf-agent/ >/dev/null "
+                "&& curl -fsS http://127.0.0.1/etf-agent/chat/ >/dev/null "
+                "&& curl -fsS http://127.0.0.1/etf-agent/chat/docs >/dev/null "
+                "&& echo HEALTH_OK"
+            )
+        else:
+            health_command = (
+                f"curl -fsS http://127.0.0.1:{public_port}/healthz >/dev/null "
+                f"&& curl -fsS http://127.0.0.1:{public_port}/etf-agent/ >/dev/null "
+                f"&& curl -fsS http://127.0.0.1:{public_port}/etf-agent/chat/ >/dev/null "
+                f"&& curl -fsS http://127.0.0.1:{public_port}/etf-agent/chat/docs >/dev/null "
+                "&& echo HEALTH_OK"
+            )
+        health = run_checked(ssh, health_command)
         if "HEALTH_OK" not in health:
             raise RuntimeError("strict health check did not confirm success")
         print(health)
@@ -335,6 +362,8 @@ def main() -> None:
             "deployed_at": datetime.now().astimezone().isoformat(timespec="seconds"),
             "source": "origin/master",
             "backup": backup,
+            "system_changes_authorized": allow_system_changes,
+            "deployment_mode": "systemd" if allow_system_changes else "folder_only",
         }
         with sftp.file(f"{staging}/DEPLOYED_GIT_COMMIT", "w") as handle:
             handle.write(commit + "\n")
@@ -350,10 +379,19 @@ def main() -> None:
         if promoted:
             print(f"DEPLOY FAILED, rolling back from {backup}: {exc}")
             run_checked(ssh, rollback_cmd, timeout=240)
-            print(sudo_checked(ssh, f"cp {REMOTE}/etf-dashboard.service /etc/systemd/system/etf-dashboard.service"))
-            print(sudo_checked(ssh, f"cp {REMOTE}/etf-agent-chat.service /etc/systemd/system/etf-agent-chat.service"))
-            print(sudo_checked(ssh, "systemctl daemon-reload"))
-            print(sudo_checked(ssh, "systemctl restart etf-dashboard etf-agent-chat"))
+            if allow_system_changes:
+                print(sudo_checked(ssh, f"cp {REMOTE}/etf-dashboard.service /etc/systemd/system/etf-dashboard.service"))
+                print(sudo_checked(ssh, f"cp {REMOTE}/etf-agent-chat.service /etc/systemd/system/etf-agent-chat.service"))
+                print(sudo_checked(ssh, "systemctl daemon-reload"))
+                print(sudo_checked(ssh, "systemctl restart etf-dashboard etf-agent-chat"))
+            else:
+                print(
+                    run_checked(
+                        ssh,
+                        f"cd {REMOTE} && env ETF_PUBLIC_PORT={public_port} "
+                        "scripts/public_gateway.sh restart",
+                    )
+                )
         sftp.close()
         ssh.close()
         raise SystemExit(f"DEPLOY FAILED: {exc}") from exc
