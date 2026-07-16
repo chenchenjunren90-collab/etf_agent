@@ -56,6 +56,31 @@ OFFENSIVE_OFF_THRESHOLD: float = 1.0  # 预留退出滞回阈值（每日独立�
 
 # 日常行情更新 / 收盘校验覆盖：稳健池 + 进攻池（避免进攻池 CSV 陈旧）
 ALL_POOL: list[dict] = list(TRADING_POOL) + list(OFFENSIVE_POOL)
+OFFENSIVE_CODES = {str(item["code"]).zfill(6) for item in OFFENSIVE_POOL}
+
+
+def event_supported_offensive_pool(theme_signals: dict | None) -> list[dict]:
+    """Return offensive ETFs explicitly mapped by fresh accepted news.
+
+    The broad-market regime remains the normal offensive-pool switch. This
+    narrow event path only makes directly mentioned ETFs visible to the price
+    and profitability gates; it does not authorize a trade by itself.
+    """
+    payload = theme_signals or {}
+    articles = payload.get("fresh_accepted_articles") or payload.get("accepted_articles") or []
+    supported: set[str] = set()
+    for article in articles:
+        if not isinstance(article, dict):
+            continue
+        for raw_code, raw_score in (article.get("theme_scores") or {}).items():
+            code = str(raw_code).zfill(6)
+            try:
+                score = float(raw_score or 0.0)
+            except (TypeError, ValueError):
+                continue
+            if code in OFFENSIVE_CODES and score > 0.0:
+                supported.add(code)
+    return [dict(item) for item in OFFENSIVE_POOL if item["code"] in supported]
 
 
 # ================================================

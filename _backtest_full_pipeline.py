@@ -91,7 +91,7 @@ def _integrity_from_history(rows: list[dict[str, Any]], trade_date: str) -> dict
         },
         "price_stale": False,
         "block_llm_rescore": False,
-        "recent_submit_history": history[-6:],
+        "recent_submit_history": history[-12:],
         "sole_symbol_streak": streak,
         "holding_streaks": compute_holding_streaks(history),
     }
@@ -376,6 +376,7 @@ def _build_llm_decision_bt(
         OFFENSIVE_ON_THRESHOLD,
         OFFENSIVE_POOL,
         TRADING_POOL,
+        event_supported_offensive_pool,
         _calc_short_race_features,
         _get_price_for_decision,
         market_avg_score,
@@ -389,6 +390,8 @@ def _build_llm_decision_bt(
     avg_score = market_avg_score(date_str)
     if avg_score is not None and avg_score >= OFFENSIVE_ON_THRESHOLD:
         pool.extend([dict(item) for item in OFFENSIVE_POOL])
+    else:
+        pool.extend(event_supported_offensive_pool(news_signal))
 
     pool_features: dict[str, dict[str, Any]] = {}
     for item in pool:

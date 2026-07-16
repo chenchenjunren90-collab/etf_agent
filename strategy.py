@@ -30,6 +30,7 @@ from pool import (
     TRADING_POOL,
     OFFENSIVE_POOL,
     OFFENSIVE_ON_THRESHOLD,
+    event_supported_offensive_pool,
     OFFENSIVE_OFF_THRESHOLD,
     Cache,
     _pool_cache,
@@ -74,6 +75,13 @@ from position import (
 from decision_integrity import apply_concentration_risk
 from goal_state import apply_goal_overlay
 from profitability_evidence import evaluate_trade_candidates
+
+
+def _resolve_score_gate(rule_gate: float, evidence_floor: Any) -> float:
+    """Keep downstream score gating compatible with an audited probe floor."""
+    if evidence_floor is None:
+        return float(rule_gate)
+    return min(float(rule_gate), float(evidence_floor))
 # 也兼容旧版引用
 
 
@@ -236,11 +244,18 @@ def run_decision(
     # 动态池：宽基强势时纳入进攻 ETF，弱势时只用稳健池。
     pool = [dict(item) for item in TRADING_POOL]
     avg_score = market_avg_score(date_str)
+    event_offensive = event_supported_offensive_pool(theme_signals_override)
     if avg_score is not None and avg_score >= OFFENSIVE_ON_THRESHOLD:
         pool.extend([dict(item) for item in OFFENSIVE_POOL])
         offensive_note = (
             f"宽基复合趋势 {avg_score:+.2f}% ≥ {OFFENSIVE_ON_THRESHOLD}% → "
             f"启用进攻池 (+{len(OFFENSIVE_POOL)} 只)"
+        )
+    elif event_offensive:
+        pool.extend(event_offensive)
+        offensive_note = (
+            f"宽基趋势未达进攻阈值，但新鲜新闻直接映射 → "
+            f"仅评估事件进攻池 (+{len(event_offensive)} 只)"
         )
     else:
         offensive_note = (
@@ -449,6 +464,15 @@ def run_decision(
                     llm_trace["hard_rules_applied"].append("score_gate_lowered_by_llm")
     elif block_llm and llm_trace and gate_mode == "dynamic":
         llm_trace["hard_rules_applied"].append("score_gate_dynamic_blocked_stale_prices")
+    evidence_score_floor = profitability_gate.get("score_gate_floor")
+    if evidence_score_floor is not None:
+        effective_gate = _resolve_score_gate(effective_gate, evidence_score_floor)
+        gate_note = (
+            f"（盈利证据试探门槛 {SCORE_GATE}→{effective_gate}；"
+            "仓位仍受证据层上限约束）"
+        )
+        if llm_trace:
+            llm_trace["hard_rules_applied"].append("profitability_evidence_score_gate")
     if invest_ratio > 0 and top_score < effective_gate:
         invest_ratio = 0.0
         market_reason = f"{market_reason}；最高分 {top_score:.1f} < {effective_gate} 闸门，强制空仓{gate_note}"

@@ -22,6 +22,7 @@ from stability_risk import build_recent_risk_context, summarize_risk_context
 from strategy import (
     OFFENSIVE_POOL,
     OFFENSIVE_ON_THRESHOLD,
+    event_supported_offensive_pool,
     TRADING_POOL,
     _calc_short_race_features,
     _get_price_for_decision,
@@ -358,6 +359,8 @@ def build_llm_decision(
     avg_score = market_avg_score(date_str)
     if avg_score is not None and avg_score >= OFFENSIVE_ON_THRESHOLD:
         pool.extend([dict(item) for item in OFFENSIVE_POOL])
+    else:
+        pool.extend(event_supported_offensive_pool(news_signal))
 
     pool_features: dict[str, dict[str, Any]] = {}
     for item in pool:
@@ -770,6 +773,7 @@ def _run_pipeline(args: argparse.Namespace, target_date) -> int:
         recent_risk=recent_risk,
         integrity_ctx=integrity_ctx,
         goal_state=goal_state,
+        theme_signals_override=news_signal,
     )
     competition_output = to_competition_output(result)
     validate_execution_consistency(result, competition_output)
