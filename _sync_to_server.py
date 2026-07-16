@@ -117,6 +117,7 @@ HELPER_FILES = [
     "_test_personalization.py",
     "_test_profitability_controls.py",
     "_test_public_gateway.py",
+    "_test_server_env.py",
     "_test_settlement_integrity.py",
     "_evaluate_profitability.py",
     "_test_sources.py",
