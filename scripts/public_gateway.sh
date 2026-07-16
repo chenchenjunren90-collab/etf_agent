@@ -31,6 +31,9 @@ start_gateway() {
         echo "port ${PORT} is already in use" >&2
         return 1
     fi
+    if [[ -f "${LOG_FILE}" ]] && (( $(stat -c '%s' "${LOG_FILE}") > 10485760 )); then
+        mv -f "${LOG_FILE}" "${LOG_FILE}.1"
+    fi
     nohup "${PYTHON}" "${ROOT}/public_gateway.py" --host "${HOST}" --port "${PORT}" \
         >> "${LOG_FILE}" 2>&1 < /dev/null &
     echo "$!" > "${PID_FILE}"
@@ -41,6 +44,8 @@ start_gateway() {
         return 1
     fi
     curl -fsS "http://127.0.0.1:${PORT}/healthz" >/dev/null
+    curl -fsS "http://127.0.0.1:${PORT}/etf-agent/" >/dev/null
+    curl -fsS "http://127.0.0.1:${PORT}/etf-agent/chat/" >/dev/null
     echo "public gateway started (pid=$(cat "${PID_FILE}"), port=${PORT})"
 }
 
@@ -68,6 +73,10 @@ status_gateway() {
     if is_running; then
         echo "public gateway running (pid=$(cat "${PID_FILE}"), port=${PORT})"
         curl -fsS "http://127.0.0.1:${PORT}/healthz"
+        curl -fsS "http://127.0.0.1:${PORT}/etf-agent/" >/dev/null
+        curl -fsS "http://127.0.0.1:${PORT}/etf-agent/chat/" >/dev/null
+        echo
+        echo "dashboard and chat upstreams are healthy"
     else
         echo "public gateway is not running"
         return 1
