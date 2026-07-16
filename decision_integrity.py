@@ -139,7 +139,7 @@ def audit_price_freshness(
 
 def load_recent_submit_history(
     decision_date_str: str,
-    lookback: int = 6,
+    lookback: int = 12,
 ) -> list[dict[str, Any]]:
     """Prior competition submits with date < decision_date, oldest→newest."""
     cutoff = pd.to_datetime(decision_date_str).date()

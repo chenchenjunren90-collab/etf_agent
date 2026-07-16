@@ -16,6 +16,7 @@ from news_llm_scorer import merge_llm_into_news_signal
 from news_store import query_articles_before
 from scoring import SHORT_RACE_POSITIVE_WEIGHT_TOTAL, _inject_llm_views_into_signals
 from theme_signal import _load_signal, get_theme_signals
+from strategy import _resolve_score_gate
 
 
 def test_short_race_score_scale_is_normalized() -> None:
@@ -26,6 +27,17 @@ def test_short_race_score_scale_is_normalized() -> None:
         + 50.0 * 0.20
     ) / SHORT_RACE_POSITIVE_WEIGHT_TOTAL
     assert abs(neutral - 50.0) < 1e-12
+
+
+def test_profitability_probe_floor_survives_downstream_score_gate() -> None:
+    assert _resolve_score_gate(50.0, None) == 50.0
+    assert _resolve_score_gate(50.0, 35.0) == 35.0
+    assert _resolve_score_gate(45.0, 35.0) == 35.0
+
+
+def test_official_job_passes_news_into_strategy() -> None:
+    source = (Path(__file__).resolve().parent / "daily_job.py").read_text(encoding="utf-8")
+    assert "theme_signals_override=news_signal" in source
 
 
 def test_goal_overlay() -> None:
@@ -334,6 +346,8 @@ def test_snapshot_is_immutable() -> None:
 
 if __name__ == "__main__":
     test_short_race_score_scale_is_normalized()
+    test_profitability_probe_floor_survives_downstream_score_gate()
+    test_official_job_passes_news_into_strategy()
     test_goal_overlay()
     test_goal_window_requires_explicit_start()
     test_llm_blend()

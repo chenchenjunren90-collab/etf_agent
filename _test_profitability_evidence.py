@@ -12,6 +12,7 @@ import pandas as pd
 import profitability_evidence as evidence
 import features
 from features import _calc_short_race_features
+from pool import event_supported_offensive_pool
 
 
 def _candidate(**overrides):
@@ -169,6 +170,121 @@ def test_news_and_entry_risk_can_veto() -> None:
         assert negative_news["reason"] == "direct_strong_negative_news"
 
 
+def test_event_rotation_probe_is_small_and_price_confirmed() -> None:
+    news = {
+        "confidence": 0.9,
+        "fresh_accepted_articles": [{
+            "title": "科技产业出现明确订单催化",
+            "source": "test",
+            "quality": "strong",
+            "theme_scores": {"159949": 0.4},
+        }],
+    }
+    assert [item["code"] for item in event_supported_offensive_pool(news)] == ["159949"]
+
+    event_edge = _empirical(
+        probability=0.60,
+        expected_net=0.003,
+        lower_net=-0.001,
+    )
+    with patch.object(evidence, "estimate_empirical_edge", return_value=event_edge):
+        probe = evidence.evaluate_candidate(
+            _candidate(code="159949", price_score=43.0),
+            news,
+            "2026-07-13",
+        )
+        assert probe["action"] == "conservative"
+        assert probe["exposure_cap"] == evidence.EVENT_PROBE_EXPOSURE_CAP
+        assert probe["reason"] == "event_supported_early_rotation_probe"
+        assert probe["score_gate_floor"] == evidence.EVENT_PRICE_ADMISSION_GATE
+
+        unsupported = evidence.evaluate_candidate(
+            _candidate(code="159949", price_score=34.9),
+            news,
+            "2026-07-13",
+        )
+        assert unsupported["action"] == "cash"
+        assert unsupported["reason"] == "news_promoted_without_price_gate"
+
+        falling_knife = evidence.evaluate_candidate(
+            _candidate(
+                code="159949",
+                price_score=55.0,
+                ret_1d=-4.0,
+                ret_3d=-2.0,
+                volatility_20d_pct=3.0,
+            ),
+            news,
+            "2026-07-13",
+        )
+        assert falling_knife["action"] == "cash"
+        assert falling_knife["reason"] == "violent_reversal_entry_risk"
+
+        deep_downtrend = evidence.evaluate_candidate(
+            _candidate(
+                code="159949",
+                price_score=55.0,
+                ret_1d=0.5,
+                ret_3d=-7.0,
+                above_ma=False,
+            ),
+            news,
+            "2026-07-13",
+        )
+        assert deep_downtrend["action"] == "cash"
+        assert deep_downtrend["reason"] == "deep_short_term_downtrend"
+
+
+def test_cadence_cap_never_forces_or_overtrades() -> None:
+    history = [
+        {"date": f"2026-07-{day:02d}", "symbols": ["510300"]}
+        for day in (1, 3, 6, 8)
+    ]
+    with patch.object(evidence, "estimate_empirical_edge", return_value=_empirical()):
+        eligible, audit = evidence.evaluate_trade_candidates(
+            [_candidate()],
+            {},
+            "2026-07-13",
+            recent_submit_history=history,
+        )
+    assert eligible == []
+    assert audit["mode"] == "cash"
+    assert audit["cadence"]["max_reached"] is True
+    assert audit["cadence"]["forced_trade"] is False
+
+
+def test_cadence_probe_requires_positive_calibrated_edge() -> None:
+    history = [
+        {"date": f"2026-07-{day:02d}", "symbols": []}
+        for day in (6, 7, 8, 9)
+    ]
+    calibrated = _empirical(
+        probability=0.55,
+        expected_net=0.0001,
+        lower_net=-0.002,
+        calibration={
+            "status": "insufficient",
+            "signal_count": 6,
+            "posterior_win_rate": 0.60,
+            "mean_realized_net_return": 0.002,
+        },
+    )
+    with patch.object(evidence, "estimate_empirical_edge", return_value=calibrated):
+        eligible, audit = evidence.evaluate_trade_candidates(
+            [_candidate(price_score=42.0)],
+            {},
+            "2026-07-13",
+            recent_submit_history=history,
+        )
+    assert [item["code"] for item in eligible] == ["510300"]
+    selected = eligible[0]["profitability_evidence"]
+    assert selected["reason"] == "cadence_positive_edge_probe"
+    assert selected["exposure_cap"] == evidence.CADENCE_PROBE_EXPOSURE_CAP
+    assert selected["score_gate_floor"] == evidence.CADENCE_PROBE_MIN_PRICE_SCORE
+    assert audit["cadence"]["probe_code"] == "510300"
+    assert audit["cadence"]["forced_trade"] is False
+
+
 def test_estimator_uses_only_strictly_prior_rows() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         root = Path(tmp)
@@ -220,6 +336,9 @@ def test_offline_price_read_never_refreshes_network() -> None:
 if __name__ == "__main__":
     test_gate_actions()
     test_news_and_entry_risk_can_veto()
+    test_event_rotation_probe_is_small_and_price_confirmed()
+    test_cadence_cap_never_forces_or_overtrades()
+    test_cadence_probe_requires_positive_calibrated_edge()
     test_estimator_uses_only_strictly_prior_rows()
     test_offline_price_read_never_refreshes_network()
     print("PROFITABILITY EVIDENCE OK")

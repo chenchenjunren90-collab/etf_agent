@@ -15,6 +15,7 @@ import numpy as np
 import pandas as pd
 
 from features import _calc_short_race_features
+from pool import OFFENSIVE_CODES
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -32,6 +33,20 @@ UNCALIBRATED_EXPOSURE_CAP = 0.05
 CALIBRATION_MIN_SIGNALS = 8
 CALIBRATION_MAX_ANCHORS = 90
 PRICE_ADMISSION_GATE = 50.0
+EVENT_PRICE_ADMISSION_GATE = 35.0
+EVENT_PROBE_EXPOSURE_CAP = 0.03
+EVENT_PROBE_PROBABILITY = 0.57
+EVENT_PROBE_MIN_EXPECTED_NET = 0.002
+EVENT_PROBE_MIN_LOWER_NET = -0.0015
+CADENCE_WINDOW_DAYS = 12
+CADENCE_MIN_TRADE_DAYS = 2
+CADENCE_MAX_TRADE_DAYS = 4
+CADENCE_MIN_CASH_STREAK = 3
+CADENCE_PROBE_EXPOSURE_CAP = 0.02
+CADENCE_PROBE_PROBABILITY = 0.54
+CADENCE_PROBE_MIN_PRICE_SCORE = 40.0
+CADENCE_PROBE_MIN_EXPECTED_NET = 0.0
+CADENCE_PROBE_MIN_LOWER_NET = -0.0025
 
 _SAMPLE_CACHE: dict[tuple[str, str, int, int], list[dict[str, Any]]] = {}
 _CALIBRATION_CACHE: dict[tuple[str, str, str, int, int], dict[str, Any]] = {}
@@ -345,8 +360,17 @@ def evaluate_candidate(
     price_position = float(candidate.get("price_position_20d", 0.5) or 0.5)
     high_break = bool(candidate.get("high_break"))
     price_score = float(candidate.get("price_score", candidate.get("score", 0.0)) or 0.0)
-    if price_score < PRICE_ADMISSION_GATE:
+    event_rotation_probe = bool(
+        code in OFFENSIVE_CODES
+        and support["strong_count"] + support["weak_count"] > 0
+        and confidence >= 0.70
+        and price_score >= EVENT_PRICE_ADMISSION_GATE
+        and price_score < PRICE_ADMISSION_GATE
+    )
+    if price_score < PRICE_ADMISSION_GATE and not event_rotation_probe:
         flags.append("news_promoted_without_price_gate")
+    elif price_score < PRICE_ADMISSION_GATE:
+        flags.append("event_supported_early_rotation")
     if ret_1d >= 2.0 and (
         not high_break or (rsi >= 65.0 and price_position >= 0.95)
     ):
@@ -357,6 +381,12 @@ def evaluate_candidate(
         and float(candidate.get("volume_ratio", 1.0) or 1.0) < 0.8
     ):
         flags.append("low_volume_late_breakout")
+    volatility = float(candidate.get("volatility_20d_pct", 0.0) or 0.0)
+    ret_3d = float(candidate.get("ret_3d", 0.0) or 0.0)
+    if ret_1d <= -3.0 and volatility >= 2.5:
+        flags.append("violent_reversal_entry_risk")
+    if ret_3d <= -6.0 and not candidate.get("above_ma"):
+        flags.append("deep_short_term_downtrend")
 
     if recent_submit_history:
         try:
@@ -388,6 +418,8 @@ def evaluate_candidate(
             flag for flag in (
                 "one_day_surge_entry_risk",
                 "low_volume_late_breakout",
+                "violent_reversal_entry_risk",
+                "deep_short_term_downtrend",
                 "news_promoted_without_price_gate",
                 "direct_strong_negative_news",
             )
@@ -434,6 +466,21 @@ def evaluate_candidate(
             action = "conservative"
             cap = UNCALIBRATED_EXPOSURE_CAP
             reason = "insufficient_calibration_small_trial"
+        if action != "cash" and event_rotation_probe:
+            event_evidence_is_strong = bool(
+                probability >= EVENT_PROBE_PROBABILITY
+                and expected_net >= EVENT_PROBE_MIN_EXPECTED_NET
+                and lower_net >= EVENT_PROBE_MIN_LOWER_NET
+                and calibration.get("status") == "positive"
+            )
+            if event_evidence_is_strong:
+                action = "conservative"
+                cap = min(cap, EVENT_PROBE_EXPOSURE_CAP)
+                reason = "event_supported_early_rotation_probe"
+            else:
+                action = "cash"
+                cap = 0.0
+                reason = "event_rotation_evidence_below_floor"
 
     return {
         "code": code,
@@ -443,6 +490,11 @@ def evaluate_candidate(
         "risk_flags": flags,
         "news_confidence": round(confidence, 3),
         "price_score": round(price_score, 2),
+        "score_gate_floor": (
+            EVENT_PRICE_ADMISSION_GATE
+            if reason == "event_supported_early_rotation_probe"
+            else None
+        ),
         "direct_news_support": support,
         "empirical": empirical,
     }
@@ -458,6 +510,7 @@ def evaluate_trade_candidates(
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Return only candidates with a measured edge, plus a full audit trail."""
     audited: list[dict[str, Any]] = []
+    evaluated_items: list[dict[str, Any]] = []
     eligible: list[dict[str, Any]] = []
     for candidate in ranked:
         item = dict(candidate)
@@ -469,6 +522,7 @@ def evaluate_trade_candidates(
             recent_submit_history=recent_submit_history,
         )
         item["profitability_evidence"] = evidence
+        evaluated_items.append(item)
         audited.append({
             "code": item.get("code"),
             "name": item.get("name"),
@@ -487,6 +541,88 @@ def evaluate_trade_candidates(
         ),
         reverse=True,
     )
+    recent_rows = list(recent_submit_history or [])[-(CADENCE_WINDOW_DAYS - 1):]
+    recent_trade_days = sum(bool(row.get("symbols")) for row in recent_rows)
+    cash_streak = 0
+    for row in reversed(recent_rows):
+        if row.get("symbols"):
+            break
+        cash_streak += 1
+    cadence_blocked = recent_trade_days >= CADENCE_MAX_TRADE_DAYS
+    if cadence_blocked:
+        eligible = []
+    cadence_probe_code = None
+    if (
+        not eligible
+        and not cadence_blocked
+        and recent_trade_days < CADENCE_MIN_TRADE_DAYS
+        and cash_streak >= CADENCE_MIN_CASH_STREAK
+    ):
+        hard_flags = {
+            "positive_news_without_direct_event_support",
+            "one_day_surge_entry_risk",
+            "low_volume_late_breakout",
+            "violent_reversal_entry_risk",
+            "deep_short_term_downtrend",
+            "direct_strong_negative_news",
+        }
+        probe_candidates: list[dict[str, Any]] = []
+        for item in evaluated_items:
+            evidence = item.get("profitability_evidence") or {}
+            empirical = evidence.get("empirical") or {}
+            calibration = empirical.get("walk_forward_calibration") or {}
+            flags = set(evidence.get("risk_flags") or [])
+            overextended = len(flags & {
+                "high_price_position_without_breakout",
+                "late_entry_after_10d_rally",
+                "elevated_rsi",
+            })
+            calibrated = calibration.get("status") == "positive" or (
+                calibration.get("status") == "insufficient"
+                and int(calibration.get("signal_count") or 0) >= 5
+                and float(calibration.get("posterior_win_rate") or 0.0) >= 0.55
+                and float(calibration.get("mean_realized_net_return") or 0.0) > 0.0
+            )
+            if (
+                empirical.get("available")
+                and float(empirical.get("positive_probability") or 0.0)
+                >= CADENCE_PROBE_PROBABILITY
+                and float(empirical.get("expected_net_return") or 0.0)
+                >= CADENCE_PROBE_MIN_EXPECTED_NET
+                and float(empirical.get("lower_expected_net") or 0.0)
+                >= CADENCE_PROBE_MIN_LOWER_NET
+                and float(evidence.get("price_score") or 0.0)
+                >= CADENCE_PROBE_MIN_PRICE_SCORE
+                and calibrated
+                and not (flags & hard_flags)
+                and overextended < 2
+            ):
+                probe_candidates.append(item)
+        probe_candidates.sort(
+            key=lambda item: (
+                float((item.get("profitability_evidence") or {}).get("empirical", {}).get("expected_net_return") or 0.0),
+                float((item.get("profitability_evidence") or {}).get("empirical", {}).get("positive_probability") or 0.0),
+                float(item.get("price_score") or 0.0),
+            ),
+            reverse=True,
+        )
+        if probe_candidates:
+            selected = probe_candidates[0]
+            evidence = dict(selected.get("profitability_evidence") or {})
+            evidence.update({
+                "action": "conservative",
+                "exposure_cap": CADENCE_PROBE_EXPOSURE_CAP,
+                "reason": "cadence_positive_edge_probe",
+                "cadence_probe": True,
+                "score_gate_floor": CADENCE_PROBE_MIN_PRICE_SCORE,
+            })
+            selected["profitability_evidence"] = evidence
+            cadence_probe_code = str(selected.get("code") or "").zfill(6)
+            eligible = [selected]
+            for audit_item in audited:
+                if str(audit_item.get("code") or "").zfill(6) == cadence_probe_code:
+                    audit_item.update(evidence)
+                    break
     top_evidence = eligible[0]["profitability_evidence"] if eligible else None
     cap = float(top_evidence.get("exposure_cap") or 0.0) if top_evidence else 0.0
     mode = str(top_evidence.get("action") or "cash") if top_evidence else "cash"
@@ -498,6 +634,22 @@ def evaluate_trade_candidates(
         "eligible_count": len(eligible),
         "rejected_count": len(ranked) - len(eligible),
         "selected_code": eligible[0].get("code") if eligible else None,
+        "score_gate_floor": (
+            float(top_evidence.get("score_gate_floor"))
+            if top_evidence and top_evidence.get("score_gate_floor") is not None
+            else None
+        ),
+        "cadence": {
+            "window_days": CADENCE_WINDOW_DAYS,
+            "target_trade_days": [CADENCE_MIN_TRADE_DAYS, CADENCE_MAX_TRADE_DAYS],
+            "recent_trade_days": recent_trade_days,
+            "projected_trade_days": recent_trade_days + (1 if eligible else 0),
+            "cash_streak": cash_streak,
+            "shortfall": max(0, CADENCE_MIN_TRADE_DAYS - recent_trade_days),
+            "max_reached": cadence_blocked,
+            "forced_trade": False,
+            "probe_code": cadence_probe_code,
+        },
         "candidates": audited,
         "notes": (
             "仅在严格历史相似状态显示成本后正优势时交易；证据不足默认空仓。"
