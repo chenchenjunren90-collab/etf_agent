@@ -38,6 +38,7 @@ APP_FILES = [
     "market_data.py",
     "update_local_csv.py",
     "post_close_sync.py",
+    "public_gateway.py",
     # News / econ / LLM
     "theme_signal.py",
     "news_signal.py",
@@ -70,6 +71,7 @@ APP_FILES = [
     "nginx_etf_agent_chat.conf",
     "nginx_etf_agent_security.conf",
     "scripts/post_close_sync.sh",
+    "scripts/public_gateway.sh",
     "start_agent.bat",
 ]
 
@@ -113,6 +115,7 @@ HELPER_FILES = [
     "_test_market_closed_frontend.py",
     "_test_personalization.py",
     "_test_profitability_controls.py",
+    "_test_public_gateway.py",
     "_test_settlement_integrity.py",
     "_evaluate_profitability.py",
     "_test_sources.py",
