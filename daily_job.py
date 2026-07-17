@@ -248,12 +248,13 @@ def _process_news_pool(articles: list[dict], trend_context: dict, pool_codes: li
     signal["_original_theme_scores"] = dict(signal.get("theme_scores", {}))
 
     accepted = signal.get("accepted_articles", [])
+    semantic_candidates = signal.get("semantic_candidates") or accepted
     skip_news_llm = os.environ.get("ETF_AGENT_SKIP_NEWS_LLM", "0").strip() == "1"
-    if not skip_news_llm and accepted and pool_codes:
+    if not skip_news_llm and semantic_candidates and pool_codes:
         try:
-            llm_results = score_news_with_llm(accepted, pool_codes)
-            if llm_results:
-                signal = merge_llm_into_news_signal(signal, llm_results)
+            llm_review = score_news_with_llm(semantic_candidates, pool_codes)
+            if llm_review.get("review_completed"):
+                signal = merge_llm_into_news_signal(signal, llm_review)
         except Exception as exc:
             log(f"[{label}] LLM语义评分异常: {exc}，保留关键词评分。")
 
@@ -293,9 +294,13 @@ def build_daily_news_signal(
     fresh_str = sum(1 for a in fresh_arts if a.get("quality") == "strong")
     stale_str = sum(1 for a in stale_arts if a.get("quality") == "strong")
 
+    semantic_enabled = bool(fresh_signal.get("semantic_review_completed"))
     signal = {
         "date": date_str,
-        "source": "split_fresh_stale",
+        "source": (
+            "split_fresh_stale_semantic_events"
+            if semantic_enabled else "split_fresh_stale"
+        ),
         "cutoff_time": cutoff_time,
         "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         # 新鲜新闻（盘后至今 — 高权重）
@@ -303,6 +308,12 @@ def build_daily_news_signal(
         "fresh_accepted_count": fresh_acc,
         "fresh_strong_count": fresh_str,
         "fresh_accepted_articles": fresh_arts,
+        "fresh_keyword_theme_scores": dict(
+            fresh_signal.get("keyword_theme_scores_backup") or {}
+        ),
+        "fresh_llm_theme_scores": dict(fresh_signal.get("llm_theme_scores") or {}),
+        "fresh_semantic_review_completed": semantic_enabled,
+        "fresh_semantic_audit": dict(fresh_signal.get("semantic_audit") or {}),
         # 陈旧新闻（盘中及更早 — 低权重参考）
         "stale_theme_scores": stale_scores,
         "stale_accepted_count": stale_acc,
@@ -324,6 +335,14 @@ def build_daily_news_signal(
         "hot_keywords": fresh_signal.get("hot_keywords", []),
         # 顶层 catalyst_hits：供 theme_signal.get_theme_signals 读取（勿只放 nested）
         "catalyst_hits": int(fresh_signal.get("catalyst_hits", 0) or 0),
+        "semantic_review_completed": semantic_enabled,
+        "semantic_audit": dict(fresh_signal.get("semantic_audit") or {}),
+        "keyword_theme_scores_backup": dict(
+            fresh_signal.get("keyword_theme_scores_backup") or {}
+        ),
+        "llm_theme_scores": dict(fresh_signal.get("llm_theme_scores") or {}),
+        "news_llm_weight": fresh_signal.get("news_llm_weight"),
+        "keyword_only_weight": fresh_signal.get("keyword_only_weight"),
         "auto_news": {
             "enabled": True,
             # 仓位档位只看主 fresh 入选数（周一周末桥接不灌水）

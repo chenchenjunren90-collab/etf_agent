@@ -48,7 +48,7 @@ CADENCE_PROBE_MIN_PRICE_SCORE = PRICE_ADMISSION_GATE
 CADENCE_PROBE_MIN_EXPECTED_NET = 0.0
 CADENCE_PROBE_MIN_LOWER_NET = -0.0025
 CADENCE_ABOVE_TARGET_EXPOSURE_CAP = 0.05
-PROFITABILITY_EVIDENCE_VERSION = "profitability-evidence-v6"
+PROFITABILITY_EVIDENCE_VERSION = "profitability-evidence-v8-verified-transmission"
 
 _SAMPLE_CACHE: dict[tuple[str, str, int, int], list[dict[str, Any]]] = {}
 _CALIBRATION_CACHE: dict[tuple[str, str, str, int, int], dict[str, Any]] = {}
@@ -64,6 +64,11 @@ IDIOSYNCRATIC_EVENT_HINTS = (
 
 
 def _is_broad_etf_catalyst(article: dict[str, Any]) -> bool:
+    semantic = article.get("semantic_event") or {}
+    if semantic.get("grounded") and semantic.get("scope") in {
+        "market", "sector", "multi_company",
+    }:
+        return True
     core = " ".join(
         str(article.get(key) or "")
         for key in ("title", "summary", "digest")
@@ -295,6 +300,44 @@ def estimate_empirical_edge(
     }
 
 
+def _grounded_semantic_support(
+    article: dict[str, Any],
+    code: str,
+) -> tuple[float, str] | None:
+    event = article.get("semantic_event") or {}
+    if not event.get("grounded"):
+        return None
+    if event.get("event_status") not in {"occurred", "announced"}:
+        return None
+    if event.get("novelty") == "repeat":
+        return None
+    if event.get("scope") not in {"market", "sector", "multi_company"}:
+        return None
+    for judgment in event.get("etf_judgments") or []:
+        if str(judgment.get("code") or "").zfill(6) != code:
+            continue
+        if not judgment.get("direct_evidence"):
+            continue
+        direction = str(
+            judgment.get("direction") or judgment.get("sentiment") or "neutral"
+        )
+        if direction not in {"positive", "negative"}:
+            continue
+        try:
+            value = float(
+                judgment.get("score")
+                or (article.get("semantic_theme_scores") or {}).get(code)
+                or 0.0
+            )
+        except (TypeError, ValueError):
+            continue
+        if value == 0.0:
+            continue
+        strength = str(judgment.get("strength") or "weak")
+        return value, strength
+    return None
+
+
 def _direct_news_support(code: str, theme_signals: dict[str, Any]) -> dict[str, Any]:
     from news_signal import direct_core_theme_scores
 
@@ -314,21 +357,44 @@ def _direct_news_support(code: str, theme_signals: dict[str, Any]) -> dict[str, 
     broad_sources: set[str] = set()
     discarded_indirect = 0
     discarded_titles: list[str] = []
+    semantic_confirmed = 0
+    semantic_unconfirmed = 0
+    semantic_reviewed = bool(
+        theme_signals.get("semantic_review_completed")
+        or theme_signals.get("fresh_semantic_review_completed")
+    )
     for article in articles:
+        article_semantic_reviewed = bool(
+            article.get("semantic_reviewed", semantic_reviewed)
+        )
         scores = article.get("theme_scores") or {}
-        value = float(scores.get(code, 0.0) or 0.0)
+        semantic_support = _grounded_semantic_support(article, code)
+        if semantic_support is not None:
+            value, semantic_strength = semantic_support
+            semantic_confirmed += 1
+        else:
+            value = float(scores.get(code, 0.0) or 0.0)
         if value == 0:
             continue
-        # Persisted article scores may come from a long-body fallback or an old
-        # keyword table. Revalidate with the current core-field mapping before
-        # treating the item as direct evidence for a trade.
-        if code not in direct_core_theme_scores(article):
+        # New runs require grounded semantic confirmation. Historical archives
+        # predate that layer and retain deterministic core-field validation so
+        # point-in-time replays do not silently change their evidence source.
+        if article_semantic_reviewed and semantic_support is None:
+            semantic_unconfirmed += 1
             discarded_indirect += 1
             title = str(article.get("title") or "").strip()
             if title and title not in discarded_titles:
                 discarded_titles.append(title)
             continue
-        is_strong = str(article.get("quality") or "") == "strong"
+        if not article_semantic_reviewed and code not in direct_core_theme_scores(article):
+            discarded_indirect += 1
+            title = str(article.get("title") or "").strip()
+            if title and title not in discarded_titles:
+                discarded_titles.append(title)
+            continue
+        is_strong = (
+            semantic_support is not None and semantic_strength == "strong"
+        ) or str(article.get("quality") or "") == "strong"
         if value > 0 and is_strong:
             strong += 1
             if _is_broad_etf_catalyst(article):
@@ -359,6 +425,9 @@ def _direct_news_support(code: str, theme_signals: dict[str, Any]) -> dict[str, 
         "broad_source_count": len(broad_sources),
         "discarded_indirect_count": discarded_indirect,
         "discarded_indirect_titles": discarded_titles[:3],
+        "semantic_reviewed": semantic_reviewed,
+        "semantic_confirmed_count": semantic_confirmed,
+        "semantic_unconfirmed_count": semantic_unconfirmed,
         "titles": titles[:3],
         "negative_titles": negative_titles[:3],
     }

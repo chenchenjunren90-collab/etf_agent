@@ -12,7 +12,7 @@ from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parent
 SNAPSHOT_DIR = BASE_DIR / "data" / "decision_snapshots"
-STRATEGY_VERSION = "competition-balanced-entry-v6"
+STRATEGY_VERSION = "competition-balanced-entry-v7"
 
 
 def output_strategy_version(payload: dict[str, Any] | None) -> str | None:
