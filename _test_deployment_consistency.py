@@ -81,6 +81,8 @@ def test_sync_guard_contract() -> None:
     assert "HEALTH_OK" in source
     assert 'os.environ.get("ETF_ALLOW_SYSTEM_CHANGES", "0") == "1"' in source
     assert "folder-only runtime (no sudo/systemd/nginx changes)" in source
+    assert "scripts/post_close_sync.sh" in source
+    assert "chmod +x" in source
     assert "system_changes_authorized" in source
 
 

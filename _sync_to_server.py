@@ -339,7 +339,11 @@ def main() -> None:
             time.sleep(2)
         else:
             print("--- folder-only runtime (no sudo/systemd/nginx changes) ---")
-            run_checked(ssh, f"chmod +x {REMOTE}/scripts/public_gateway.sh")
+            run_checked(
+                ssh,
+                f"chmod +x {REMOTE}/scripts/public_gateway.sh "
+                f"{REMOTE}/scripts/post_close_sync.sh",
+            )
             print(
                 run_checked(
                     ssh,
