@@ -48,7 +48,7 @@ CADENCE_PROBE_MIN_PRICE_SCORE = PRICE_ADMISSION_GATE
 CADENCE_PROBE_MIN_EXPECTED_NET = 0.0
 CADENCE_PROBE_MIN_LOWER_NET = -0.0025
 CADENCE_ABOVE_TARGET_EXPOSURE_CAP = 0.05
-PROFITABILITY_EVIDENCE_VERSION = "profitability-evidence-v5"
+PROFITABILITY_EVIDENCE_VERSION = "profitability-evidence-v6"
 
 _SAMPLE_CACHE: dict[tuple[str, str, int, int], list[dict[str, Any]]] = {}
 _CALIBRATION_CACHE: dict[tuple[str, str, str, int, int], dict[str, Any]] = {}
@@ -296,6 +296,8 @@ def estimate_empirical_edge(
 
 
 def _direct_news_support(code: str, theme_signals: dict[str, Any]) -> dict[str, Any]:
+    from news_signal import direct_core_theme_scores
+
     articles = (
         theme_signals.get("fresh_accepted_articles")
         or theme_signals.get("accepted_articles")
@@ -310,10 +312,21 @@ def _direct_news_support(code: str, theme_signals: dict[str, Any]) -> dict[str, 
     sources: set[str] = set()
     broad_strong = 0
     broad_sources: set[str] = set()
+    discarded_indirect = 0
+    discarded_titles: list[str] = []
     for article in articles:
         scores = article.get("theme_scores") or {}
         value = float(scores.get(code, 0.0) or 0.0)
         if value == 0:
+            continue
+        # Persisted article scores may come from a long-body fallback or an old
+        # keyword table. Revalidate with the current core-field mapping before
+        # treating the item as direct evidence for a trade.
+        if code not in direct_core_theme_scores(article):
+            discarded_indirect += 1
+            title = str(article.get("title") or "").strip()
+            if title and title not in discarded_titles:
+                discarded_titles.append(title)
             continue
         is_strong = str(article.get("quality") or "") == "strong"
         if value > 0 and is_strong:
@@ -344,6 +357,8 @@ def _direct_news_support(code: str, theme_signals: dict[str, Any]) -> dict[str, 
         "source_count": len(sources),
         "broad_strong_count": broad_strong,
         "broad_source_count": len(broad_sources),
+        "discarded_indirect_count": discarded_indirect,
+        "discarded_indirect_titles": discarded_titles[:3],
         "titles": titles[:3],
         "negative_titles": negative_titles[:3],
     }

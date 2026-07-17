@@ -158,7 +158,7 @@ def test_news_and_entry_risk_can_veto() -> None:
             {
                 "confidence": 0.8,
                 "fresh_accepted_articles": [{
-                    "title": "行业监管处罚落地",
+                    "title": "A股行业监管处罚落地",
                     "source": "test",
                     "quality": "strong",
                     "theme_scores": {"510300": -0.4},
@@ -170,11 +170,60 @@ def test_news_and_entry_risk_can_veto() -> None:
         assert negative_news["reason"] == "direct_strong_negative_news"
 
 
+def test_broker_byline_is_not_securities_etf_evidence() -> None:
+    news = {
+        "confidence": 0.88,
+        "fresh_accepted_articles": [
+            {
+                "title": "华泰证券：当前化工行业结构性机会凸显",
+                "source": "test",
+                "quality": "strong",
+                "mapping_scope": "core_event_fields",
+                "theme_scores": {"512880": 0.357},
+            },
+            {
+                "title": "中信建投：创新药打开肿瘤治疗新格局",
+                "source": "test",
+                "quality": "strong",
+                "mapping_scope": "single_theme_body_fallback",
+                "theme_scores": {"512880": 0.357},
+            },
+        ],
+    }
+    with patch.object(evidence, "estimate_empirical_edge", return_value=_empirical()):
+        rejected = evidence.evaluate_candidate(
+            _candidate(code="512880", fresh_theme_raw=0.62),
+            news,
+            "2026-07-17",
+        )
+    support = rejected["direct_news_support"]
+    assert support["strong_count"] == 0
+    assert support["discarded_indirect_count"] == 2
+    assert rejected["action"] == "cash"
+    assert rejected["reason"] == "news_event_not_economically_verified"
+
+    genuine = dict(news)
+    genuine["fresh_accepted_articles"] = [{
+        "title": "券商板块受益于资本市场改革政策落地",
+        "source": "test",
+        "quality": "strong",
+        "theme_scores": {"512880": 0.42},
+    }]
+    with patch.object(evidence, "estimate_empirical_edge", return_value=_empirical()):
+        admitted = evidence.evaluate_candidate(
+            _candidate(code="512880", fresh_theme_raw=0.42),
+            genuine,
+            "2026-07-17",
+        )
+    assert admitted["direct_news_support"]["strong_count"] == 1
+    assert admitted["action"] != "cash"
+
+
 def test_event_rotation_probe_is_small_and_price_confirmed() -> None:
     news = {
         "confidence": 0.9,
         "fresh_accepted_articles": [{
-            "title": "科技产业出现明确订单催化",
+            "title": "创业板50科技产业出现明确订单催化",
             "source": "test",
             "quality": "strong",
             "theme_scores": {"159949": 0.4},
@@ -367,6 +416,7 @@ def test_offline_price_read_never_refreshes_network() -> None:
 if __name__ == "__main__":
     test_gate_actions()
     test_news_and_entry_risk_can_veto()
+    test_broker_byline_is_not_securities_etf_evidence()
     test_event_rotation_probe_is_small_and_price_confirmed()
     test_cadence_target_sizes_but_does_not_block_qualified_edge()
     test_cadence_probe_requires_positive_calibrated_edge()
