@@ -36,7 +36,17 @@ ETF_THEME_KEYWORDS: dict[str, dict[str, float]] = {
     "512100": {"中证1000": 0.85, "小盘": 0.4, "专精特新": 0.35},
     "159845": {"中证1000": 0.85, "小盘": 0.4},
     "510880": {"红利": 0.85, "高股息": 0.7, "煤炭": 0.35, "公用事业": 0.25},
-    "512880": {"券商": 0.9, "证券": 0.85, "投行": 0.35, "成交": 0.2},
+    # Do not use bare "证券" or "成交": broker research bylines such as
+    # "华泰证券：化工..." otherwise become false securities-ETF catalysts.
+    "512880": {
+        "券商": 0.9,
+        "证券行业": 0.9,
+        "证券板块": 0.85,
+        "证券公司": 0.8,
+        "投行": 0.35,
+        "两市成交": 0.25,
+        "A股成交": 0.25,
+    },
     "512690": {"白酒": 0.85, "消费": 0.45, "茅台": 0.5, "食品饮料": 0.35},
     "159949": {"创业板50": 0.85, "创业板": 0.55, "创蓝筹": 0.5},
     "512010": {"医药": 0.85, "医疗": 0.75, "创新药": 0.55, "CXO": 0.35, "医保": 0.2},
@@ -200,6 +210,16 @@ def _theme_hits_for_article(article: dict[str, Any]) -> tuple[dict[str, float], 
     if body_hits:
         return {}, "ambiguous_multi_theme_body"
     return {}, "no_theme_mapping"
+
+
+def direct_core_theme_scores(article: dict[str, Any]) -> dict[str, float]:
+    """Return ETF mappings stated directly in event-bearing core fields.
+
+    This deliberately excludes full article bodies. Body fallback is useful
+    for discovery, but it is too weak to count as direct profitability
+    evidence because an unrelated sector can appear incidentally in long text.
+    """
+    return _theme_scores_from_text(_core_article_text(article))
 
 
 def _concrete_event_hits(text: str) -> dict[str, list[str]]:

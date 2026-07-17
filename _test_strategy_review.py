@@ -112,6 +112,30 @@ def main() -> None:
         assert "data.current_strategy_review" in dashboard
         assert "JSON.stringify(submit, null, 2)" in dashboard
 
+        current_official = dict(official_payload)
+        current_official["decision_snapshot"] = {
+            "strategy_version": STRATEGY_VERSION,
+        }
+        official_path.write_text(
+            json.dumps(current_official, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        _, _, _, official_version = strategy_review._official_inputs(
+            "2026-07-17",
+            output_dir=output_dir,
+            news_dir=news_dir,
+        )
+        assert official_version == STRATEGY_VERSION
+        not_needed = strategy_review.generate_current_strategy_review(
+            "2026-07-17",
+            output_dir=output_dir,
+            news_dir=news_dir,
+            review_dir=review_dir,
+        )
+        assert not_needed["status"] == "not_needed"
+        assert not_needed["competition_output"] == []
+        assert not_needed["strategy_result"] is None
+
     print("STRATEGY REVIEW OK")
 
 

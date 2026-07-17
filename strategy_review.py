@@ -17,7 +17,11 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from decision_snapshot import STRATEGY_VERSION, strategy_manifest
+from decision_snapshot import (
+    STRATEGY_VERSION,
+    output_strategy_version,
+    strategy_manifest,
+)
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -68,7 +72,12 @@ def _official_inputs(
     *,
     output_dir: Path,
     news_dir: Path,
-) -> tuple[dict[str, Any] | None, dict[str, Any] | None, str | None]:
+) -> tuple[
+    dict[str, Any] | None,
+    dict[str, Any] | None,
+    str | None,
+    str | None,
+]:
     for path in sorted(output_dir.glob(f"{date_str}*_full.json"), reverse=True):
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
@@ -79,14 +88,15 @@ def _official_inputs(
         news = payload.get("news_signal")
         econ = payload.get("econ_calendar")
         if isinstance(news, dict):
-            return news, econ if isinstance(econ, dict) else None, path.name
+            version = output_strategy_version(payload)
+            return news, econ if isinstance(econ, dict) else None, path.name, version
 
     path = news_dir / f"{date_str}.json"
     try:
         news = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
-        return None, None, None
-    return (news if isinstance(news, dict) else None), None, path.name
+        return None, None, None, None
+    return (news if isinstance(news, dict) else None), None, path.name, None
 
 
 def generate_current_strategy_review(
@@ -134,7 +144,7 @@ def generate_current_strategy_review(
         _atomic_write(review_path(date_str, review_dir=review_dir), payload)
         return payload
 
-    news_signal, captured_econ, source_name = _official_inputs(
+    news_signal, captured_econ, source_name, official_version = _official_inputs(
         date_str,
         output_dir=output_dir,
         news_dir=news_dir,
@@ -144,6 +154,19 @@ def generate_current_strategy_review(
             **common,
             "status": "unavailable",
             "reason": "official_morning_news_signal_missing",
+            "competition_output": [],
+            "strategy_result": None,
+        }
+        _atomic_write(review_path(date_str, review_dir=review_dir), payload)
+        return payload
+
+    if official_version == STRATEGY_VERSION:
+        payload = {
+            **common,
+            "status": "not_needed",
+            "reason": "official_output_already_uses_current_strategy",
+            "source_official_input": source_name,
+            "official_strategy_version": official_version,
             "competition_output": [],
             "strategy_result": None,
         }
