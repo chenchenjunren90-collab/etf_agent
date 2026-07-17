@@ -237,13 +237,32 @@ merged2 = merge_llm_into_news_signal(
         "confidence": 0.05,
         "market_sentiment": 0.0,
         "theme_scores": {"510300": 0.1},
-        "accepted_articles": [{"title": "t0"}, {"title": "t1"}],
+        "accepted_articles": [
+            {"article_id": "t0", "title": "t0"},
+            {"article_id": "t1", "title": "t1"},
+        ],
+        "semantic_candidates": [{"article_id": "t0", "title": "t0"}],
     },
     [
         {
+            "article_id": "t0",
             "title": "t0",
+            "source": "test",
+            "event_type": "macro",
+            "event_status": "occurred",
+            "novelty": "new",
+            "scope": "market",
+            "event_key": "macro|t0",
+            "evidence": "t0",
+            "grounded": True,
             "etf_judgments": [
-                {"code": "510300", "relevance": 0.9, "sentiment": "positive", "strength": "strong"},
+                {
+                    "code": "510300",
+                    "relevance": 0.9,
+                    "direction": "positive",
+                    "strength": "strong",
+                    "direct_evidence": True,
+                },
             ],
         }
     ],

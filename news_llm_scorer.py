@@ -1,9 +1,9 @@
-"""News semantic scoring via DeepSeek — replaces pure keyword matching.
+"""Grounded financial-event extraction via DeepSeek.
 
 Two-stage architecture:
-  Stage 1 (fast): keyword pre-filter in news_signal.py → removes obvious noise
-  Stage 2 (precise): this module → batch-send pre-filtered articles to DeepSeek
-    for semantic relevance, sentiment, and ETF mapping judgment.
+  Stage 1 (fast): rule hits plus high-recall event-language retrieval.
+  Stage 2 (precise): extract structured events from bounded source excerpts,
+    require verbatim evidence, and map only grounded events to candidate ETFs.
 
 Anti-hallucination measures:
   - Prompt constrains output to only ETF codes in the candidate pool
@@ -15,8 +15,10 @@ Anti-hallucination measures:
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
+import re
 from datetime import datetime
 from typing import Any
 
@@ -35,7 +37,7 @@ RELEVANCE_FLOOR = 0.30        # 低于此值直接丢弃
 # 2. 逆势利好是毒药：跌势+正面新闻 → 次日-0.14%
 # 3. 共振勉强有效：涨势+正面新闻 → 次日+0.01%
 # 结论：新闻只能做趋势的增强器，不能单独决策
-SYSTEM_PROMPT = """你是专业金融新闻语义分析系统。你的输出将被量化策略直接使用。
+_LEGACY_DIRECTIONAL_SYSTEM_PROMPT = """你是专业金融新闻语义分析系统。你的输出将被量化策略直接使用。
 
 === 核心铁律（来自四年数据回测） ===
 1. 新闻不能逆转趋势。当市场已在下行，利好新闻基本无效甚至有害。
@@ -95,6 +97,29 @@ sentiment:
 只输出上述 json，不要 markdown 代码块，不要任何多余文字。"""
 
 
+# Keep factual extraction independent from the downstream profit objective.
+EVENT_EXTRACTION_SYSTEM_PROMPT = """你是金融事件事实抽取器，不是投资顾问。
+
+任务：只根据给出的标题和正文摘录，识别已经发生或已经正式宣布的具体事件，
+并判断该事实通过什么经济机制影响候选ETF。不要预测价格，不要给买卖建议，
+不要为了寻找盈利机会而放宽事实标准。
+
+硬性规则：
+1. evidence 必须逐字摘自输入标题或正文；没有可核验原文就不要输出该事件。
+2. event_status 只能是 occurred、announced、forecast、rumor、unclear。
+3. scope 只能是 market、sector、multi_company、single_company、unclear。
+4. 单家公司财报或订单默认是 single_company，不能伪装成整个ETF事件。
+5. novelty 只能是 new、update、repeat、unclear；重复报道不要增强强度。
+6. 只允许输出候选池中的ETF代码，每篇最多3只ETF。
+7. direction 只能是 positive、negative、neutral；不确定时用 neutral。
+8. relevance 表示事实与ETF基本面的直接关联度，不表示涨跌概率。
+
+严格输出 JSON 对象：
+{"articles":[{"article_id":"输入ID","event_type":"policy|earnings|macro|orders|capital_investment|technology|regulation|supply|other","event_status":"occurred|announced|forecast|rumor|unclear","novelty":"new|update|repeat|unclear","scope":"market|sector|multi_company|single_company|unclear","event_key":"主体|事件类型|核心事实","entities":["主体"],"evidence":"输入中的连续原文","etf_judgments":[{"code":"510300","relevance":0.80,"direction":"positive","strength":"strong|moderate|weak","transmission":"事实影响ETF的简短机制"}]}]}
+
+没有满足条件的事件时输出 {"articles":[]}。只输出 JSON。"""
+
+
 def _build_user_prompt(
     articles: list[dict[str, Any]],
     pool_codes: list[str],
@@ -119,10 +144,13 @@ def _build_user_prompt(
     lines.append("")
     lines.append("=== 待分析新闻（请输出 json） ===")
     for idx, art in enumerate(articles, 1):
+        article_id = str(art.get("article_id") or "")
         title = str(art.get("title", ""))[:120]
-        content = str(art.get("content", ""))[:300]
+        content = str(
+            art.get("content_excerpt") or art.get("content") or ""
+        )[:900]
         source = str(art.get("source", ""))[:32]
-        lines.append(f"[{idx}] 来源:{source} | {title}")
+        lines.append(f"[{idx}] article_id={article_id} | 来源:{source} | {title}")
         if content:
             lines.append(f"    正文: {content}")
     return "\n".join(lines)
@@ -175,48 +203,202 @@ def _parse_llm_response(
         return []
 
 
+def _grounding_text(value: Any) -> str:
+    return re.sub(r"[^0-9A-Za-z\u4e00-\u9fff]+", "", str(value or "")).lower()
+
+
+def _parse_structured_response(
+    raw: str,
+    valid_codes: set[str],
+    candidates: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Parse structured events and reject claims not grounded in source text."""
+    try:
+        data = json.loads(raw.strip())
+    except (json.JSONDecodeError, TypeError):
+        return []
+    if not isinstance(data, list):
+        return []
+
+    by_id = {
+        str(item.get("article_id") or ""): item
+        for item in candidates
+        if str(item.get("article_id") or "")
+    }
+    valid_statuses = {"occurred", "announced", "forecast", "rumor", "unclear"}
+    valid_novelty = {"new", "update", "repeat", "unclear"}
+    valid_scopes = {"market", "sector", "multi_company", "single_company", "unclear"}
+    valid_directions = {"positive", "negative", "neutral"}
+    valid_strengths = {"strong", "moderate", "weak"}
+    parsed: list[dict[str, Any]] = []
+
+    for item in data:
+        if not isinstance(item, dict):
+            continue
+        article_id = str(item.get("article_id") or "").strip()
+        candidate = by_id.get(article_id)
+        if candidate is None:
+            continue
+        evidence = str(item.get("evidence") or "").strip()[:240]
+        source_text = f"{candidate.get('title', '')} {candidate.get('content_excerpt', '')}"
+        grounded_evidence = _grounding_text(evidence)
+        grounded = bool(
+            len(grounded_evidence) >= 6
+            and grounded_evidence in _grounding_text(source_text)
+        )
+        if not grounded:
+            continue
+
+        status = str(item.get("event_status") or "unclear").lower()
+        novelty = str(item.get("novelty") or "unclear").lower()
+        scope = str(item.get("scope") or "unclear").lower()
+        if status not in valid_statuses:
+            status = "unclear"
+        if novelty not in valid_novelty:
+            novelty = "unclear"
+        if scope not in valid_scopes:
+            scope = "unclear"
+
+        actionable_status = status in {"occurred", "announced"}
+        not_repeated = novelty in {"new", "update"}
+        etf_wide_scope = scope in {"market", "sector", "multi_company"}
+        judgments: list[dict[str, Any]] = []
+        raw_judgments = item.get("etf_judgments") or []
+        if not isinstance(raw_judgments, list):
+            raw_judgments = []
+        for judgment in raw_judgments[:MAX_ETFS_PER_ARTICLE]:
+            if not isinstance(judgment, dict):
+                continue
+            code = str(judgment.get("code") or "").strip().zfill(6)
+            if code not in valid_codes:
+                continue
+            try:
+                relevance = float(judgment.get("relevance") or 0.0)
+            except (TypeError, ValueError):
+                continue
+            relevance = max(0.0, min(1.0, relevance))
+            direction = str(
+                judgment.get("direction") or judgment.get("sentiment") or "neutral"
+            ).lower()
+            strength = str(judgment.get("strength") or "weak").lower()
+            if direction not in valid_directions:
+                direction = "neutral"
+            if strength not in valid_strengths:
+                strength = "weak"
+            direct_evidence = bool(
+                actionable_status
+                and not_repeated
+                and etf_wide_scope
+                and direction != "neutral"
+                and relevance >= 0.55
+                and strength in {"strong", "moderate"}
+            )
+            if not actionable_status or not not_repeated:
+                relevance = min(relevance, RELEVANCE_FLOOR - 0.01)
+            elif scope == "single_company":
+                relevance = min(relevance, 0.49)
+                strength = "weak"
+            if relevance < RELEVANCE_FLOOR or direction == "neutral":
+                continue
+            judgments.append({
+                "code": code,
+                "relevance": round(relevance, 3),
+                "direction": direction,
+                "sentiment": direction,
+                "strength": strength,
+                "transmission": str(
+                    judgment.get("transmission") or judgment.get("reason") or ""
+                )[:160],
+                "direct_evidence": direct_evidence,
+            })
+
+        if not judgments:
+            continue
+        entities = [
+            str(value).strip()[:40]
+            for value in (item.get("entities") or [])[:8]
+            if str(value).strip()
+        ]
+        event_type = str(item.get("event_type") or "other").lower()[:40]
+        event_key = str(item.get("event_key") or "").strip()[:120]
+        if not event_key:
+            seed = "|".join(entities + [event_type, grounded_evidence[:80]])
+            event_key = hashlib.sha256(seed.encode("utf-8")).hexdigest()[:20]
+        parsed.append({
+            "article_id": article_id,
+            "title": str(candidate.get("title") or "")[:120],
+            "source": str(candidate.get("source") or "")[:40],
+            "event_type": event_type,
+            "event_status": status,
+            "novelty": novelty,
+            "scope": scope,
+            "event_key": event_key,
+            "entities": entities,
+            "evidence": evidence,
+            "grounded": True,
+            "etf_judgments": judgments,
+        })
+    return parsed
+
+
 def score_news_with_llm(
-    pre_filtered_articles: list[dict[str, Any]],
+    semantic_candidates: list[dict[str, Any]],
     pool_codes: list[str],
     *,
     max_retries: int = 1,
-) -> list[dict[str, Any]]:
-    """用DeepSeek对预筛选后的新闻做语义评分。
+) -> dict[str, Any]:
+    """Use DeepSeek to extract grounded events from high-recall candidates.
 
     Args:
-        pre_filtered_articles: 经过关键词预筛选后的新闻列表
+        semantic_candidates: 规则命中与事件语言召回组成的候选列表
         pool_codes: 候选ETF代码列表
         max_retries: LLM调用失败时的重试次数
 
     Returns:
-        LLM评分结果列表，每项包含 title 和 etf_judgments。
-        失败时返回空列表（调用方应降级到关键词评分）。
+        包含 events 与 review_completed 的审查结果。成功审查但无事件
+        与服务不可用是不同状态，前者必须保留语义否决。
     """
     if not is_available():
         print("[news_llm] DeepSeek未配置，跳过LLM新闻评分。")
-        return []
+        return {
+            "events": [], "review_completed": False,
+            "candidate_count": len(semantic_candidates), "successful_batches": 0,
+            "failed_batches": 0, "reason": "llm_unavailable",
+        }
 
-    if not pre_filtered_articles:
-        return []
+    if not semantic_candidates:
+        return {
+            "events": [], "review_completed": False,
+            "candidate_count": 0, "successful_batches": 0,
+            "failed_batches": 0, "reason": "no_candidates",
+        }
 
     if not pool_codes:
-        return []
+        return {
+            "events": [], "review_completed": False,
+            "candidate_count": len(semantic_candidates), "successful_batches": 0,
+            "failed_batches": 0, "reason": "empty_etf_pool",
+        }
 
     valid_codes = {str(c).zfill(6) for c in pool_codes}
     all_results: list[dict[str, Any]] = []
+    successful_batches = 0
+    failed_batches = 0
+    reviewed_article_ids: list[str] = []
+    failed_article_ids: list[str] = []
 
     # 分批处理，每批最多 MAX_ARTICLES_PER_CALL 条
     date_tag = os.environ.get("TRADE_DATE", datetime.now().strftime("%Y-%m-%d"))
 
-    for batch_start in range(0, len(pre_filtered_articles), MAX_ARTICLES_PER_CALL):
-        batch = pre_filtered_articles[batch_start:batch_start + MAX_ARTICLES_PER_CALL]
+    for batch_start in range(0, len(semantic_candidates), MAX_ARTICLES_PER_CALL):
+        batch = semantic_candidates[batch_start:batch_start + MAX_ARTICLES_PER_CALL]
         user_prompt = _build_user_prompt(batch, sorted(valid_codes))
 
         for attempt in range(max_retries + 1):
             try:
                 resp = call_json(
                     prompt=user_prompt,
-                    system=SYSTEM_PROMPT,
+                    system=EVENT_EXTRACTION_SYSTEM_PROMPT,
                     schema={"required": ["articles"], "types": {"articles": list}},
                     model=LLM_NEWS_MODEL,
                     temperature=LLM_NEWS_TEMPERATURE,
@@ -229,18 +411,26 @@ def score_news_with_llm(
                 if isinstance(raw_data, dict):
                     articles_data = raw_data.get("articles", [])
                     if isinstance(articles_data, list):
-                        parsed = _parse_llm_response(
+                        parsed = _parse_structured_response(
                             json.dumps(articles_data, ensure_ascii=False),
                             valid_codes,
+                            batch,
                         )
                     else:
-                        parsed = _parse_llm_response(
+                        parsed = _parse_structured_response(
                             json.dumps(raw_data, ensure_ascii=False),
                             valid_codes,
+                            batch,
                         )
                 else:
-                    parsed = _parse_llm_response(str(raw_data), valid_codes)
+                    parsed = _parse_structured_response(
+                        str(raw_data), valid_codes, batch
+                    )
                 all_results.extend(parsed)
+                successful_batches += 1
+                reviewed_article_ids.extend(
+                    str(item.get("article_id") or "") for item in batch
+                )
                 print(f"[news_llm] batch {batch_start}-{batch_start+len(batch)-1}: "
                       f"{len(batch)}条 → {len(parsed)}条有效评分"
                       f" (cache={resp.get('cache_hit', False)})")
@@ -248,16 +438,33 @@ def score_news_with_llm(
             except (LLMUnavailable, LLMResponseError) as e:
                 print(f"[news_llm] LLM调用失败 (attempt {attempt+1}/{max_retries+1}): {e}")
                 if attempt == max_retries:
+                    failed_batches += 1
+                    failed_article_ids.extend(
+                        str(item.get("article_id") or "") for item in batch
+                    )
                     print(f"[news_llm] batch {batch_start} 全部失败，跳过")
             except Exception as e:
                 print(f"[news_llm] 未知错误 (attempt {attempt+1}/{max_retries+1}): {e}")
                 if attempt == max_retries:
+                    failed_batches += 1
+                    failed_article_ids.extend(
+                        str(item.get("article_id") or "") for item in batch
+                    )
                     print(f"[news_llm] batch {batch_start} 全部失败，跳过")
 
-    return all_results
+    return {
+        "events": all_results,
+        "review_completed": successful_batches > 0,
+        "candidate_count": len(semantic_candidates),
+        "successful_batches": successful_batches,
+        "failed_batches": failed_batches,
+        "reviewed_article_ids": list(dict.fromkeys(reviewed_article_ids)),
+        "failed_article_ids": list(dict.fromkeys(failed_article_ids)),
+        "reason": "ok" if successful_batches > 0 else "all_batches_failed",
+    }
 
 
-def merge_llm_into_news_signal(
+def _merge_llm_into_news_signal_legacy(
     news_signal: dict[str, Any],
     llm_results: list[dict[str, Any]],
 ) -> dict[str, Any]:
@@ -388,4 +595,264 @@ def merge_llm_into_news_signal(
         dict(news_signal.get("_original_theme_scores") or news_signal.get("theme_scores") or {}),
     )
 
+    return news_signal
+
+
+def _semantic_judgment_score(judgment: dict[str, Any]) -> float:
+    base = {
+        "strong": 0.42,
+        "moderate": 0.25,
+        "weak": 0.15,
+    }.get(str(judgment.get("strength") or "weak"), 0.15)
+    relevance = max(0.0, min(1.0, float(judgment.get("relevance") or 0.0)))
+    direction = str(
+        judgment.get("direction") or judgment.get("sentiment") or "neutral"
+    )
+    if direction not in {"positive", "negative"}:
+        return 0.0
+    score = base * max(0.5, relevance)
+    if not judgment.get("direct_evidence"):
+        score *= 0.5
+    return round(-score if direction == "negative" else score, 3)
+
+
+def merge_llm_into_news_signal(
+    news_signal: dict[str, Any],
+    llm_results: list[dict[str, Any]] | dict[str, Any],
+) -> dict[str, Any]:
+    """Merge grounded semantic events while retaining keyword audit data.
+
+    Keyword-only mappings are deliberately downweighted after a successful
+    semantic review. They remain visible for retrieval diagnostics and as a
+    no-LLM fallback, but they no longer carry full conviction.
+    """
+    review_meta: dict[str, Any] = {}
+    if isinstance(llm_results, dict):
+        review_meta = dict(llm_results)
+        events = list(review_meta.get("events") or [])
+        review_completed = bool(review_meta.get("review_completed"))
+    else:
+        events = list(llm_results or [])
+        review_completed = bool(events)
+    if not review_completed:
+        return news_signal
+    llm_results = events
+
+    candidates = list(news_signal.get("semantic_candidates") or [])
+    candidate_by_id = {
+        str(item.get("article_id") or ""): item
+        for item in candidates
+        if str(item.get("article_id") or "")
+    }
+    accepted = [dict(item) for item in (news_signal.get("accepted_articles") or [])]
+    accepted_by_id = {
+        str(item.get("article_id") or ""): index
+        for index, item in enumerate(accepted)
+        if str(item.get("article_id") or "")
+    }
+    reviewed_article_ids = {
+        str(value) for value in (review_meta.get("reviewed_article_ids") or [])
+        if str(value)
+    }
+    if reviewed_article_ids:
+        for item in accepted:
+            article_id = str(item.get("article_id") or "")
+            item["semantic_reviewed"] = article_id in reviewed_article_ids
+
+    event_source_sets: dict[str, set[str]] = {}
+    for result in llm_results:
+        event_key = _grounding_text(result.get("event_key"))
+        if not event_key:
+            continue
+        source = str(result.get("source") or "").strip()
+        if source:
+            event_source_sets.setdefault(event_key, set()).add(source)
+
+    per_code_events: dict[str, dict[str, float]] = {}
+    direct_event_keys: set[str] = set()
+    strong_event_keys: set[str] = set()
+    moderate_event_keys: set[str] = set()
+    semantic_only_added = 0
+
+    for result in llm_results:
+        article_id = str(result.get("article_id") or "")
+        candidate = candidate_by_id.get(article_id, {})
+        event_key = _grounding_text(result.get("event_key"))
+        if not event_key:
+            event_key = hashlib.sha256(article_id.encode("utf-8")).hexdigest()[:20]
+        source_count = len(event_source_sets.get(event_key, set()))
+        semantic_scores: dict[str, float] = {}
+        enriched_judgments: list[dict[str, Any]] = []
+        for raw_judgment in result.get("etf_judgments") or []:
+            judgment = dict(raw_judgment)
+            score = _semantic_judgment_score(judgment)
+            judgment["score"] = score
+            enriched_judgments.append(judgment)
+            if score == 0.0:
+                continue
+            code = str(judgment.get("code") or "").zfill(6)
+            semantic_scores[code] = score
+            code_events = per_code_events.setdefault(code, {})
+            current = code_events.get(event_key)
+            if current is None or abs(score) > abs(current):
+                code_events[event_key] = score
+            if judgment.get("direct_evidence"):
+                direct_event_keys.add(event_key)
+                if judgment.get("strength") == "strong":
+                    strong_event_keys.add(event_key)
+                else:
+                    moderate_event_keys.add(event_key)
+
+        semantic_event = {
+            "event_type": result.get("event_type"),
+            "event_status": result.get("event_status"),
+            "novelty": result.get("novelty"),
+            "scope": result.get("scope"),
+            "event_key": result.get("event_key"),
+            "entities": list(result.get("entities") or []),
+            "evidence": result.get("evidence"),
+            "grounded": bool(result.get("grounded")),
+            "independent_source_count": source_count,
+            "etf_judgments": enriched_judgments,
+        }
+        if article_id in accepted_by_id:
+            index = accepted_by_id[article_id]
+            accepted[index]["semantic_event"] = semantic_event
+            accepted[index]["semantic_theme_scores"] = semantic_scores
+            accepted[index]["semantic_reviewed"] = True
+        elif any(
+            judgment.get("direct_evidence") and abs(float(judgment.get("score") or 0.0)) >= 0.12
+            for judgment in enriched_judgments
+        ):
+            quality = "strong" if any(
+                judgment.get("direct_evidence") and judgment.get("strength") == "strong"
+                for judgment in enriched_judgments
+            ) else "weak"
+            excerpt = str(candidate.get("content_excerpt") or "")
+            article = {
+                "accepted": True,
+                "article_id": article_id,
+                "title": str(candidate.get("title") or result.get("title") or ""),
+                "source": str(candidate.get("source") or result.get("source") or ""),
+                "url": str(candidate.get("url") or ""),
+                "published_at": str(candidate.get("published_at") or ""),
+                "fetched_at": str(candidate.get("fetched_at") or ""),
+                "content_excerpt": excerpt,
+                "content_sha256": hashlib.sha256(excerpt.encode("utf-8")).hexdigest(),
+                "quality": quality,
+                "reason": "llm_grounded_semantic_event",
+                "mapping_scope": "llm_grounded_event",
+                "event_hits": {
+                    str(result.get("event_type") or "other"): [str(result.get("evidence") or "")[:80]]
+                },
+                "vague_hits": [],
+                "negative_hits": ["semantic_negative"] if any(v < 0 for v in semantic_scores.values()) else [],
+                "theme_scores": semantic_scores,
+                "risk_flags": [],
+                "semantic_event": semantic_event,
+                "semantic_theme_scores": semantic_scores,
+                "semantic_reviewed": True,
+                "rule_accepted": False,
+            }
+            accepted_by_id[article_id] = len(accepted)
+            accepted.append(article)
+            semantic_only_added += 1
+
+    topk_weights = (1.0, 0.5, 0.25)
+    llm_theme_scores: dict[str, float] = {}
+    for code, event_scores in per_code_events.items():
+        strongest = sorted(event_scores.values(), key=abs, reverse=True)[:len(topk_weights)]
+        value = sum(score * weight for score, weight in zip(strongest, topk_weights))
+        value = round(max(-0.85, min(0.85, value)), 3)
+        if abs(value) >= 0.12:
+            llm_theme_scores[code] = value
+
+    keyword_scores = dict(
+        news_signal.get("_original_theme_scores")
+        or news_signal.get("theme_scores")
+        or {}
+    )
+    try:
+        llm_weight = float(os.environ.get("ETF_NEWS_LLM_WEIGHT", "0.60"))
+    except (TypeError, ValueError):
+        llm_weight = 0.60
+    try:
+        keyword_only_weight = float(os.environ.get("ETF_NEWS_KEYWORD_ONLY_WEIGHT", "0.25"))
+    except (TypeError, ValueError):
+        keyword_only_weight = 0.25
+    llm_weight = max(0.0, min(1.0, llm_weight))
+    keyword_only_weight = max(0.0, min(1.0, keyword_only_weight))
+    configured_keyword_only_weight = keyword_only_weight
+    if int(review_meta.get("failed_batches") or 0) > 0:
+        keyword_only_weight = 1.0
+
+    merged_scores: dict[str, float] = {}
+    for code in sorted(set(keyword_scores) | set(llm_theme_scores)):
+        keyword_value = float(keyword_scores.get(code, 0.0) or 0.0)
+        llm_value = float(llm_theme_scores.get(code, 0.0) or 0.0)
+        if code in keyword_scores and code in llm_theme_scores:
+            value = keyword_value * (1.0 - llm_weight) + llm_value * llm_weight
+        elif code in llm_theme_scores:
+            value = llm_value
+        else:
+            value = keyword_value * keyword_only_weight
+        value = round(max(-0.85, min(0.85, value)), 3)
+        if abs(value) >= 0.08:
+            merged_scores[code] = value
+
+    original_accepted_count = int(news_signal.get("accepted_count", 0) or 0)
+    original_strong_count = int(news_signal.get("strong_count", 0) or 0)
+    original_weak_count = int(news_signal.get("weak_count", 0) or 0)
+    news_signal["_original_accepted_count"] = original_accepted_count
+    news_signal["_original_strong_count"] = original_strong_count
+    news_signal["accepted_articles"] = accepted
+    added_strong = sum(
+        1 for item in accepted[original_accepted_count:]
+        if item.get("quality") == "strong"
+    )
+    news_signal["accepted_count"] = original_accepted_count + semantic_only_added
+    news_signal["strong_count"] = original_strong_count + added_strong
+    news_signal["weak_count"] = (
+        original_weak_count + semantic_only_added - added_strong
+    )
+    news_signal["theme_scores"] = merged_scores
+    news_signal["llm_theme_scores"] = llm_theme_scores
+    news_signal["keyword_theme_scores_backup"] = keyword_scores
+    news_signal["source"] = "grounded_semantic_event_blend"
+    news_signal["news_llm_weight"] = llm_weight
+    news_signal["keyword_only_weight"] = keyword_only_weight
+    news_signal["semantic_review_completed"] = True
+    news_signal["llm_article_count"] = len(llm_results)
+    news_signal["llm_accepted_count"] = sum(
+        len(item.get("etf_judgments") or []) for item in llm_results
+    )
+    news_signal["llm_strong_count"] = len(strong_event_keys)
+    news_signal["semantic_audit"] = {
+        "candidate_count": int(review_meta.get("candidate_count") or len(candidates)),
+        "successful_batches": int(review_meta.get("successful_batches") or 0),
+        "failed_batches": int(review_meta.get("failed_batches") or 0),
+        "grounded_event_count": len(llm_results),
+        "direct_event_count": len(direct_event_keys),
+        "unique_event_count": len({
+            _grounding_text(item.get("event_key")) for item in llm_results
+        }),
+        "semantic_only_articles_added": semantic_only_added,
+        "keyword_only_weight": keyword_only_weight,
+        "configured_keyword_only_weight": configured_keyword_only_weight,
+        "event_source_counts": {
+            key[:80]: len(sources) for key, sources in event_source_sets.items()
+        },
+    }
+    news_signal["confidence"] = round(
+        min(1.0, 0.20 * len(strong_event_keys) + 0.08 * len(moderate_event_keys)),
+        3,
+    )
+    market_refs = ("510300", "510050", "510500")
+    market_values = [merged_scores[code] for code in market_refs if code in merged_scores]
+    news_signal["market_sentiment"] = round(
+        float(sum(market_values) / len(market_values)), 3
+    ) if market_values else 0.0
+    news_signal["max_abs_theme"] = round(
+        max((abs(value) for value in merged_scores.values()), default=0.0), 3
+    )
     return news_signal

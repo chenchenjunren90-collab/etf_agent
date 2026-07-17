@@ -319,27 +319,39 @@ def test_news_llm_preserves_keyword_only_etfs() -> None:
         "_original_theme_scores": {"510300": 0.4, "510500": -0.2},
         "accepted_count": 1,
         "strong_count": 1,
-        "accepted_articles": [{"title": "test"}],
+        "accepted_articles": [{"article_id": "a1", "title": "test"}],
+        "semantic_candidates": [{"article_id": "a1", "title": "test"}],
     }
     merged = merge_llm_into_news_signal(
         signal,
         [
             {
+                "article_id": "a1",
                 "title": "test",
+                "source": "test",
+                "event_type": "macro",
+                "event_status": "occurred",
+                "novelty": "new",
+                "scope": "market",
+                "event_key": "macro|test",
+                "evidence": "test",
+                "grounded": True,
                 "etf_judgments": [
                     {
                         "code": "510300",
                         "relevance": 1.0,
-                        "sentiment": "positive",
+                        "direction": "positive",
                         "strength": "strong",
+                        "direct_evidence": True,
                     }
                 ],
             }
         ],
     )
-    assert merged["theme_scores"]["510500"] == -0.2
+    assert "510500" not in merged["theme_scores"]
     assert merged["theme_scores"]["510300"] == 0.412
     assert merged["keyword_theme_scores_backup"]["510500"] == -0.2
+    assert merged["accepted_articles"][0]["semantic_event"]["grounded"] is True
 
 
 def test_snapshot_is_immutable() -> None:

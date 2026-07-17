@@ -13,6 +13,8 @@ Core policy:
 from __future__ import annotations
 
 import hashlib
+import os
+import re
 from typing import Any
 
 # Per-ETF keyword weights — used only for tagging hot picks in reports.
@@ -154,6 +156,90 @@ ETF_THEME_KEYWORDS.update({
 
 STRONG_NEWS_THRESHOLD = 0.35
 WEAK_NEWS_THRESHOLD = 0.12
+
+SEMANTIC_EVENT_CUES = (
+    "宣布", "完成", "签署", "获批", "批准", "发布", "实施", "落地", "启动",
+    "上调", "下调", "增长", "下降", "扭亏", "亏损", "超预期", "不及预期",
+    "暂停", "恢复", "限制", "取消", "突破", "中标", "交付", "回购", "增持",
+)
+SEMANTIC_HARD_REJECTIONS = {
+    "empty_article",
+    "data_tick_not_event",
+    "single_security_listing_not_etf_catalyst",
+}
+SEMANTIC_MAX_CANDIDATES = max(
+    20, int(os.environ.get("ETF_NEWS_SEMANTIC_MAX_CANDIDATES", "75") or 75)
+)
+SEMANTIC_EXCERPT_CHARS = max(
+    200, int(os.environ.get("ETF_NEWS_SEMANTIC_EXCERPT_CHARS", "700") or 700)
+)
+
+
+def _article_identity(article: dict[str, Any]) -> str:
+    raw = "|".join(
+        str(article.get(key) or "").strip()
+        for key in ("url", "published_at", "source", "title")
+    )
+    return hashlib.sha256(raw.encode("utf-8", errors="ignore")).hexdigest()[:20]
+
+
+def _semantic_excerpt(article: dict[str, Any]) -> str:
+    parts = []
+    for key in ("summary", "digest", "content"):
+        value = str(article.get(key) or "").strip()
+        if value and value not in parts:
+            parts.append(value)
+    text = " ".join(parts)
+    return re.sub(r"\s+", " ", text).strip()[:SEMANTIC_EXCERPT_CHARS]
+
+
+def _semantic_candidate(
+    article: dict[str, Any],
+    scored: dict[str, Any],
+) -> tuple[int, dict[str, Any]] | None:
+    """Return a bounded high-recall candidate for factual LLM extraction."""
+    reason = str(scored.get("reason") or "")
+    if reason in SEMANTIC_HARD_REJECTIONS:
+        return None
+
+    title = str(article.get("title") or "").strip()
+    excerpt = _semantic_excerpt(article)
+    core = f"{title} {excerpt}".strip()
+    event_count = sum(len(values) for values in (scored.get("event_hits") or {}).values())
+    cue_count = sum(1 for cue in SEMANTIC_EVENT_CUES if cue in core)
+    has_number = bool(re.search(r"\d+(?:\.\d+)?\s*(?:%|亿|万|元|吨|台|项|家)?", core))
+
+    if scored.get("accepted"):
+        priority = 100 + min(10, event_count)
+        candidate_reason = "rule_accepted"
+    elif event_count:
+        priority = 80 + min(10, event_count)
+        candidate_reason = "concrete_event_without_rule_mapping"
+    elif cue_count and has_number:
+        priority = 68 + min(8, cue_count)
+        candidate_reason = "event_language_with_quantity"
+    elif cue_count:
+        priority = 55 + min(8, cue_count)
+        candidate_reason = "event_language_semantic_discovery"
+    else:
+        return None
+
+    candidate = {
+        "article_id": _article_identity(article),
+        "title": title,
+        "source": str(article.get("source") or ""),
+        "url": str(article.get("url") or ""),
+        "published_at": str(article.get("published_at") or ""),
+        "fetched_at": str(article.get("fetched_at") or ""),
+        "content_excerpt": excerpt,
+        "rule_accepted": bool(scored.get("accepted")),
+        "rule_reason": reason,
+        "rule_quality": str(scored.get("quality") or "rejected"),
+        "rule_theme_scores": dict(scored.get("theme_scores") or {}),
+        "rule_event_hits": dict(scored.get("event_hits") or {}),
+        "semantic_candidate_reason": candidate_reason,
+    }
+    return priority, candidate
 
 
 def max_abs_theme_score(theme_scores: dict[str, Any] | None) -> float:
@@ -393,11 +479,13 @@ def score_news_article(
     content = str(article.get("content") or "")
     return {
         "accepted": True,
+        "article_id": _article_identity(article),
         "title": str(article.get("title") or ""),
         "source": str(article.get("source") or ""),
         "url": str(article.get("url") or ""),
         "published_at": str(article.get("published_at") or ""),
         "fetched_at": str(article.get("fetched_at") or ""),
+        "content_excerpt": _semantic_excerpt(article),
         "content_sha256": hashlib.sha256(content.encode("utf-8")).hexdigest(),
         "quality": base_quality,
         "reason": reason,
@@ -426,9 +514,14 @@ def build_news_signal(
     contrib: dict[str, list[float]] = {code: [] for code in ETF_THEME_KEYWORDS}
     accepted = []
     rejected = []
+    semantic_ranked: list[tuple[int, int, dict[str, Any]]] = []
 
-    for article in articles:
+    for input_index, article in enumerate(articles):
         scored = score_news_article(article, trend_context=trend_context)
+        semantic = _semantic_candidate(article, scored)
+        if semantic is not None:
+            priority, candidate = semantic
+            semantic_ranked.append((priority, -input_index, candidate))
         if scored["accepted"]:
             accepted.append(scored)
             for code, value in scored["theme_scores"].items():
@@ -461,6 +554,21 @@ def build_news_signal(
     for code, score in sorted(theme_scores.items(), key=lambda kv: abs(kv[1]), reverse=True):
         hot_keywords.extend(list(ETF_THEME_KEYWORDS.get(code, {}).keys())[:2])
 
+    semantic_ranked.sort(key=lambda item: (item[0], item[1]), reverse=True)
+    semantic_candidates = [
+        item[2] for item in semantic_ranked[:SEMANTIC_MAX_CANDIDATES]
+    ]
+    semantic_reason_counts = {
+        reason: sum(
+            1 for item in semantic_candidates
+            if item.get("semantic_candidate_reason") == reason
+        )
+        for reason in sorted({
+            str(item.get("semantic_candidate_reason") or "unknown")
+            for item in semantic_candidates
+        })
+    }
+
     return {
         "date": date,
         "source": "strict_news_filter",
@@ -476,6 +584,10 @@ def build_news_signal(
         "catalyst_hits": int(catalyst_hits),
         "max_abs_theme": round(max_abs_theme_score(theme_scores), 3),
         "accepted_articles": accepted,
+        "semantic_candidates": semantic_candidates,
+        "semantic_candidate_count": len(semantic_candidates),
+        "semantic_candidate_total_before_cap": len(semantic_ranked),
+        "semantic_candidate_reason_counts": semantic_reason_counts,
         "provenance": {
             "accepted_with_published_at": sum(
                 1 for item in accepted if item.get("published_at")
