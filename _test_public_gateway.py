@@ -81,6 +81,14 @@ def main() -> None:
         return name, port, target
 
     public_gateway.resolve_upstream = test_resolve
+    original_review_loader = public_gateway.load_current_review
+    public_gateway.load_current_review = lambda date: {
+        "status": "ok",
+        "date": date,
+        "strategy_version": "test-v1",
+        "official_submission_unchanged": True,
+        "competition_output": [],
+    }
     gateway, _ = start_server(public_gateway.PublicGatewayHandler)
     try:
         status, _, headers = request(gateway.server_port, "GET", "/")
@@ -116,8 +124,26 @@ def main() -> None:
 
         status, payload, _ = request(gateway.server_port, "GET", "/healthz")
         assert status == 200 and payload["status"] == "ok"
+
+        status, payload, headers = request(
+            gateway.server_port,
+            "GET",
+            "/etf-agent/api/current-review?date=2026-07-17",
+        )
+        assert status == 200
+        assert payload["date"] == "2026-07-17"
+        assert payload["official_submission_unchanged"] is True
+        assert headers["cache-control"] == "no-store"
+
+        status, payload, _ = request(
+            gateway.server_port,
+            "POST",
+            "/etf-agent/api/current-review",
+        )
+        assert status == 405 and payload["status"] == "method_not_allowed"
     finally:
         public_gateway.resolve_upstream = original
+        public_gateway.load_current_review = original_review_loader
         gateway.shutdown()
         dashboard.shutdown()
         chat.shutdown()

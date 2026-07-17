@@ -29,6 +29,7 @@ import llm_decider
 import security_guard
 from settlement_prices import settlement_ready, shanghai_now
 from trading_calendar import is_trading_day
+from strategy_review import load_current_review
 
 __file__ = Path(__file__).resolve()
 BASE_DIR = __file__.parent
@@ -433,6 +434,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
             qs = parse_qs(parsed.query)
             view_date = qs.get("date", [None])[0]
             self._json_response(load_status(view_date))
+        elif parsed.path == "/api/current-review":
+            from urllib.parse import parse_qs
+            qs = parse_qs(parsed.query)
+            view_date = qs.get("date", [shanghai_now().strftime("%Y-%m-%d")])[0]
+            payload = load_current_review(view_date)
+            self._json_response(
+                payload or {"status": "not_found", "date": view_date},
+                status=200 if payload else 404,
+            )
         elif parsed.path in ("/api/today_advice", "/api/submit"):
             from urllib.parse import parse_qs
             qs = parse_qs(parsed.query)

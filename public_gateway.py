@@ -6,8 +6,12 @@ import argparse
 import http.client
 import json
 import socket
+from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit, urlunsplit
+from zoneinfo import ZoneInfo
+
+from strategy_review import load_current_review
 
 
 DEFAULT_HOST = "0.0.0.0"
@@ -76,6 +80,9 @@ class PublicGatewayHandler(BaseHTTPRequestHandler):
         if parsed.path == "/healthz":
             self._json_response({"status": "ok", "port": self.server.server_port})
             return
+        if parsed.path == "/etf-agent/api/current-review":
+            self._serve_current_review(parsed.query)
+            return
         if parsed.path in {"", "/"}:
             self._redirect("/etf-agent/chat/")
             return
@@ -92,6 +99,23 @@ class PublicGatewayHandler(BaseHTTPRequestHandler):
             return
         _, port, target = upstream
         self._proxy(port, target)
+
+    def _serve_current_review(self, query: str) -> None:
+        if self.command not in {"GET", "HEAD"}:
+            self._json_response({"status": "method_not_allowed"}, status=405)
+            return
+        from urllib.parse import parse_qs
+
+        today = datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d")
+        date_str = parse_qs(query).get("date", [today])[0]
+        review = load_current_review(date_str)
+        if review is None:
+            self._json_response(
+                {"status": "not_found", "date": date_str},
+                status=404,
+            )
+            return
+        self._json_response(review)
 
     def _proxy(self, port: int, target: str) -> None:
         try:
@@ -159,6 +183,7 @@ class PublicGatewayHandler(BaseHTTPRequestHandler):
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Cache-Control", "no-store")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         if self.command != "HEAD":

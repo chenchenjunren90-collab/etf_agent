@@ -39,6 +39,7 @@ APP_FILES = [
     "update_local_csv.py",
     "post_close_sync.py",
     "public_gateway.py",
+    "strategy_review.py",
     # News / econ / LLM
     "theme_signal.py",
     "news_signal.py",
@@ -119,6 +120,7 @@ HELPER_FILES = [
     "_test_public_gateway.py",
     "_test_server_env.py",
     "_test_settlement_integrity.py",
+    "_test_strategy_review.py",
     "_evaluate_profitability.py",
     "_test_sources.py",
     "_test_sources2.py",
@@ -316,6 +318,17 @@ def main() -> None:
         print("--- promote staged release ---")
         promoted = True
         run_checked(ssh, promote_cmd, timeout=240)
+
+        print("--- generate current-code review (official output remains unchanged) ---")
+        review_date_cmd = "$(TZ=Asia/Shanghai date +%F)"
+        print(
+            run_checked(
+                ssh,
+                f"cd {remote_q} && env ETF_GIT_COMMIT={shlex.quote(commit)} "
+                f".venv/bin/python strategy_review.py --date {review_date_cmd}",
+                timeout=240,
+            )
+        )
 
         if allow_system_changes:
             print("--- administrator-authorized systemd integration ---")
