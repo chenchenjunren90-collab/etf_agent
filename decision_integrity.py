@@ -24,6 +24,8 @@ from typing import Any
 
 import pandas as pd
 
+from decision_snapshot import STRATEGY_VERSION, is_current_strategy_output
+from trading_calendar import previous_trading_day
 from features import _get_price_for_decision
 from pool import ALL_POOL
 
@@ -43,8 +45,6 @@ CLEAR_LEAD_GAP = 4.0
 
 def expected_decision_bar_date(decision_date_str: str) -> date:
     """Last trading day strictly before the decision session (morning run)."""
-    from trading_calendar import previous_trading_day
-
     return previous_trading_day(decision_date_str)
 
 
@@ -140,30 +140,41 @@ def audit_price_freshness(
 def load_recent_submit_history(
     decision_date_str: str,
     lookback: int = 12,
+    *,
+    strategy_version: str = STRATEGY_VERSION,
 ) -> list[dict[str, Any]]:
-    """Prior competition submits with date < decision_date, oldest→newest."""
+    """Current-version submits in the prior ``lookback`` trading sessions."""
     cutoff = pd.to_datetime(decision_date_str).date()
     hits: list[tuple[date, list[str]]] = []
-    if not OUTPUT_DIR.exists():
+    if lookback <= 0 or not OUTPUT_DIR.exists():
         return []
+
+    allowed_dates: set[date] = set()
+    cursor = previous_trading_day(cutoff)
+    for _ in range(lookback):
+        allowed_dates.add(cursor)
+        cursor = previous_trading_day(cursor)
 
     for path in OUTPUT_DIR.glob("*_submit.json"):
         try:
             d = pd.to_datetime(path.name.split("_")[0]).date()
         except ValueError:
             continue
-        if d >= cutoff:
+        if d >= cutoff or d not in allowed_dates:
             continue
         full_path = OUTPUT_DIR / f"{d.isoformat()}_full.json"
-        if full_path.exists():
-            try:
-                full = json.loads(full_path.read_text(encoding="utf-8"))
-            except Exception:
-                continue
-            if full.get("mode") in {"personal_sandbox", "fatal_fallback"}:
-                continue
-            if "strategy_result" in full and full.get("strategy_result") is None:
-                continue
+        if not full_path.exists():
+            continue
+        try:
+            full = json.loads(full_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if not is_current_strategy_output(full, expected_version=strategy_version):
+            continue
+        if full.get("mode") in {"personal_sandbox", "fatal_fallback"}:
+            continue
+        if "strategy_result" in full and full.get("strategy_result") is None:
+            continue
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except Exception:
@@ -174,7 +185,7 @@ def load_recent_submit_history(
         hits.append((d, symbols))
 
     hits.sort(key=lambda x: x[0])
-    return [{"date": str(d), "symbols": syms} for d, syms in hits[-lookback:]]
+    return [{"date": str(d), "symbols": syms} for d, syms in hits]
 
 
 def compute_sole_symbol_streak(history: list[dict[str, Any]]) -> dict[str, Any] | None:

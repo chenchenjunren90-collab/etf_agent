@@ -44,12 +44,33 @@ CADENCE_MAX_TRADE_DAYS = 4
 CADENCE_MIN_CASH_STREAK = 3
 CADENCE_PROBE_EXPOSURE_CAP = 0.02
 CADENCE_PROBE_PROBABILITY = 0.54
-CADENCE_PROBE_MIN_PRICE_SCORE = 40.0
+CADENCE_PROBE_MIN_PRICE_SCORE = PRICE_ADMISSION_GATE
 CADENCE_PROBE_MIN_EXPECTED_NET = 0.0
 CADENCE_PROBE_MIN_LOWER_NET = -0.0025
+CADENCE_ABOVE_TARGET_EXPOSURE_CAP = 0.05
+PROFITABILITY_EVIDENCE_VERSION = "profitability-evidence-v5"
 
 _SAMPLE_CACHE: dict[tuple[str, str, int, int], list[dict[str, Any]]] = {}
 _CALIBRATION_CACHE: dict[tuple[str, str, str, int, int], dict[str, Any]] = {}
+
+BROAD_ETF_CATALYST_HINTS = (
+    "行业", "产业", "板块", "政策", "全市场", "多家", "集体", "景气",
+    "供需", "价格", "关税", "利率", "流动性", "央行", "证监会",
+    "国务院", "工信部", "发改委", "财政部", "交易所",
+)
+IDIOSYNCRATIC_EVENT_HINTS = (
+    "IPO", "上会", "申购", "打新", "中签", "新股", "单家公司",
+)
+
+
+def _is_broad_etf_catalyst(article: dict[str, Any]) -> bool:
+    core = " ".join(
+        str(article.get(key) or "")
+        for key in ("title", "summary", "digest")
+    )
+    if any(hint in core for hint in IDIOSYNCRATIC_EVENT_HINTS):
+        return False
+    return any(hint in core for hint in BROAD_ETF_CATALYST_HINTS)
 
 
 def _load_price_history(code: str, data_dir: Path) -> pd.DataFrame | None:
@@ -287,6 +308,8 @@ def _direct_news_support(code: str, theme_signals: dict[str, Any]) -> dict[str, 
     titles: list[str] = []
     negative_titles: list[str] = []
     sources: set[str] = set()
+    broad_strong = 0
+    broad_sources: set[str] = set()
     for article in articles:
         scores = article.get("theme_scores") or {}
         value = float(scores.get(code, 0.0) or 0.0)
@@ -295,6 +318,8 @@ def _direct_news_support(code: str, theme_signals: dict[str, Any]) -> dict[str, 
         is_strong = str(article.get("quality") or "") == "strong"
         if value > 0 and is_strong:
             strong += 1
+            if _is_broad_etf_catalyst(article):
+                broad_strong += 1
         elif value > 0:
             weak += 1
         elif is_strong:
@@ -309,12 +334,16 @@ def _direct_news_support(code: str, theme_signals: dict[str, Any]) -> dict[str, 
         source = str(article.get("source") or "").strip()
         if source:
             sources.add(source)
+            if value > 0 and is_strong and _is_broad_etf_catalyst(article):
+                broad_sources.add(source)
     return {
         "strong_count": strong,
         "weak_count": weak,
         "strong_negative_count": strong_negative,
         "weak_negative_count": weak_negative,
         "source_count": len(sources),
+        "broad_strong_count": broad_strong,
+        "broad_source_count": len(broad_sources),
         "titles": titles[:3],
         "negative_titles": negative_titles[:3],
     }
@@ -363,6 +392,7 @@ def evaluate_candidate(
     event_rotation_probe = bool(
         code in OFFENSIVE_CODES
         and support["strong_count"] + support["weak_count"] > 0
+        and support["broad_strong_count"] > 0
         and confidence >= 0.70
         and price_score >= EVENT_PRICE_ADMISSION_GATE
         and price_score < PRICE_ADMISSION_GATE
@@ -548,13 +578,10 @@ def evaluate_trade_candidates(
         if row.get("symbols"):
             break
         cash_streak += 1
-    cadence_blocked = recent_trade_days >= CADENCE_MAX_TRADE_DAYS
-    if cadence_blocked:
-        eligible = []
+    cadence_upper_target_reached = recent_trade_days >= CADENCE_MAX_TRADE_DAYS
     cadence_probe_code = None
     if (
         not eligible
-        and not cadence_blocked
         and recent_trade_days < CADENCE_MIN_TRADE_DAYS
         and cash_streak >= CADENCE_MIN_CASH_STREAK
     ):
@@ -564,6 +591,7 @@ def evaluate_trade_candidates(
             "low_volume_late_breakout",
             "violent_reversal_entry_risk",
             "deep_short_term_downtrend",
+            "news_promoted_without_price_gate",
             "direct_strong_negative_news",
         }
         probe_candidates: list[dict[str, Any]] = []
@@ -623,11 +651,28 @@ def evaluate_trade_candidates(
                 if str(audit_item.get("code") or "").zfill(6) == cadence_probe_code:
                     audit_item.update(evidence)
                     break
+    cadence_size_limited = False
+    if cadence_upper_target_reached and eligible:
+        for item in eligible:
+            evidence = dict(item.get("profitability_evidence") or {})
+            original_cap = float(evidence.get("exposure_cap") or 0.0)
+            limited_cap = min(original_cap, CADENCE_ABOVE_TARGET_EXPOSURE_CAP)
+            evidence.update({
+                "exposure_cap": limited_cap,
+                "cadence_size_limited": limited_cap < original_cap,
+                "cadence_original_exposure_cap": original_cap,
+            })
+            item["profitability_evidence"] = evidence
+            cadence_size_limited = cadence_size_limited or limited_cap < original_cap
+            for audit_item in audited:
+                if str(audit_item.get("code") or "").zfill(6) == str(item.get("code") or "").zfill(6):
+                    audit_item.update(evidence)
+                    break
     top_evidence = eligible[0]["profitability_evidence"] if eligible else None
     cap = float(top_evidence.get("exposure_cap") or 0.0) if top_evidence else 0.0
     mode = str(top_evidence.get("action") or "cash") if top_evidence else "cash"
     audit = {
-        "version": "profitability-evidence-v4",
+        "version": PROFITABILITY_EVIDENCE_VERSION,
         "mode": mode,
         "exposure_cap": cap,
         "max_positions": 1 if eligible else 0,
@@ -646,7 +691,9 @@ def evaluate_trade_candidates(
             "projected_trade_days": recent_trade_days + (1 if eligible else 0),
             "cash_streak": cash_streak,
             "shortfall": max(0, CADENCE_MIN_TRADE_DAYS - recent_trade_days),
-            "max_reached": cadence_blocked,
+            "upper_target_reached": cadence_upper_target_reached,
+            "hard_blocked": False,
+            "size_limited": cadence_size_limited,
             "forced_trade": False,
             "probe_code": cadence_probe_code,
         },

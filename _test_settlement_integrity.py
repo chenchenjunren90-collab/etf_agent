@@ -9,6 +9,7 @@ from tempfile import TemporaryDirectory
 
 import pandas as pd
 
+from decision_snapshot import STRATEGY_VERSION
 from goal_state import build_goal_state
 from market_data import is_fresh
 from settlement_prices import get_close_to_close
@@ -114,7 +115,19 @@ def main() -> None:
         ]
         _write_prices(root, "512880", negative_rows)
         (output / "2026-07-08_full.json").write_text(
-            json.dumps({"mode": "fatal_fallback", "competition_output": []}),
+            json.dumps({
+                "mode": "fatal_fallback",
+                "competition_output": [],
+                "decision_snapshot": {"strategy_version": STRATEGY_VERSION},
+            }),
+            encoding="utf-8",
+        )
+        (output / "2026-07-07_full.json").write_text(
+            json.dumps({
+                "mode": "competition",
+                "competition_output": [],
+                "decision_snapshot": {"strategy_version": "competition-balanced-entry-v4"},
+            }),
             encoding="utf-8",
         )
         (output / "2026-07-09_full.json").write_text(
@@ -125,6 +138,7 @@ def main() -> None:
                         {"symbol": "512880", "volume": 100, "symbol_name": "securities"},
                         {"symbol": "999999", "volume": 100, "symbol_name": "missing"},
                     ],
+                    "decision_snapshot": {"strategy_version": STRATEGY_VERSION},
                 }
             ),
             encoding="utf-8",

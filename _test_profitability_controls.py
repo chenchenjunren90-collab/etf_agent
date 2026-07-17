@@ -183,6 +183,23 @@ def test_news_body_does_not_contaminate_unrelated_etf() -> None:
     assert "512010" not in scored["theme_scores"]
 
 
+def test_single_security_listing_is_not_an_etf_catalyst() -> None:
+    scored = score_news_article({
+        "title": "某公司创业板IPO下周上会",
+        "summary": "该公司进入发行审核流程",
+        "source": "test",
+    })
+    assert scored["accepted"] is False
+    assert scored["reason"] == "single_security_listing_not_etf_catalyst"
+
+    broad_policy = score_news_article({
+        "title": "证监会发布创业板IPO制度改革新规",
+        "summary": "新规则面向创业板全市场实施",
+        "source": "test",
+    })
+    assert broad_policy["accepted"] is True
+
+
 def test_news_backtest_provenance_is_point_in_time() -> None:
     base = {
         "quality": "strong",
@@ -353,6 +370,7 @@ if __name__ == "__main__":
     test_llm_blend()
     test_news_provenance()
     test_news_body_does_not_contaminate_unrelated_etf()
+    test_single_security_listing_is_not_an_etf_catalyst()
     test_news_backtest_provenance_is_point_in_time()
     test_old_news_archive_recovers_timestamp_from_raw_article()
     test_old_news_archive_rejects_raw_article_published_after_cutoff()

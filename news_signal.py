@@ -87,6 +87,19 @@ DATA_TICK_TITLE_HINTS = (
     "资金流向", "融资融券余额",
 )
 
+# A single security entering the listing pipeline is not yet an ETF-wide
+# earnings or liquidity catalyst. Broad policy changes mentioning IPOs remain
+# eligible when the title explicitly carries a market-wide authority marker.
+SINGLE_SECURITY_LISTING_HINTS = (
+    "IPO", "上会", "申购", "打新", "中签", "新股上市", "上市申请",
+)
+LISTING_POLICY_AUTHORITIES = (
+    "证监会", "交易所", "国务院",
+)
+LISTING_POLICY_CHANGE_HINTS = (
+    "新规", "规则", "政策", "制度", "改革",
+)
+
 ETF_THEME_KEYWORDS.update({
     "515790": {
         **ETF_THEME_KEYWORDS["515790"],
@@ -267,6 +280,24 @@ def score_news_article(
             "event_hits": {},
             "theme_scores": {},
             "risk_flags": [],
+        }
+
+    if (
+        any(hint in title for hint in SINGLE_SECURITY_LISTING_HINTS)
+        and not (
+            any(hint in title for hint in LISTING_POLICY_AUTHORITIES)
+            and any(hint in title for hint in LISTING_POLICY_CHANGE_HINTS)
+        )
+    ):
+        return {
+            "accepted": False,
+            "title": title,
+            "source": str(article.get("source") or ""),
+            "quality": "rejected",
+            "reason": "single_security_listing_not_etf_catalyst",
+            "event_hits": {},
+            "theme_scores": {},
+            "risk_flags": ["idiosyncratic_event"],
         }
 
     event_hits = _concrete_event_hits(text)
