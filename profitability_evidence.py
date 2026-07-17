@@ -48,7 +48,7 @@ CADENCE_PROBE_MIN_PRICE_SCORE = PRICE_ADMISSION_GATE
 CADENCE_PROBE_MIN_EXPECTED_NET = 0.0
 CADENCE_PROBE_MIN_LOWER_NET = -0.0025
 CADENCE_ABOVE_TARGET_EXPOSURE_CAP = 0.05
-PROFITABILITY_EVIDENCE_VERSION = "profitability-evidence-v7-semantic-events"
+PROFITABILITY_EVIDENCE_VERSION = "profitability-evidence-v8-verified-transmission"
 
 _SAMPLE_CACHE: dict[tuple[str, str, int, int], list[dict[str, Any]]] = {}
 _CALIBRATION_CACHE: dict[tuple[str, str, str, int, int], dict[str, Any]] = {}

@@ -207,6 +207,93 @@ def _grounding_text(value: Any) -> str:
     return re.sub(r"[^0-9A-Za-z\u4e00-\u9fff]+", "", str(value or "")).lower()
 
 
+_BROAD_MARKET_CODES = {"510300", "510050", "510500", "510330", "159338"}
+_ETF_DIRECT_TERMS = {
+    "510300": ("沪深300",),
+    "510050": ("上证50",),
+    "510500": ("中证500",),
+    "510330": ("沪深300",),
+    "159338": ("中证a500", "a500指数"),
+    "510880": ("红利指数", "高股息", "分红"),
+    "512880": ("券商", "证券行业", "证券公司"),
+    "512010": ("医药行业", "医疗行业", "创新药"),
+    "159915": ("创业板",),
+    "588000": ("科创50", "科创板", "半导体行业", "芯片行业", "集成电路行业"),
+    "159949": ("创业板50", "创业板"),
+}
+_FORECAST_MARKERS = (
+    "研报", "证券认为", "证券：", "预计", "预期", "有望", "或将", "可能",
+    "建议关注", "看好", "迎来需求", "前景", "空间巨大",
+)
+_SECTOR_BREADTH_MARKERS = (
+    "全行业", "行业进入", "行业价格", "行业供需", "行业政策", "行业新规",
+    "板块政策", "多家公司", "多家企业", "龙头企业密集", "普遍涨价",
+    "全国范围", "全市场", "监管部门", "国务院", "央行", "证监会",
+)
+_INDIRECT_TRANSMISSION_MARKERS = (
+    "间接", "非成分股", "不是成分股", "相关产业链公司", "包含相关产业链",
+    "含相关成分股", "可能带动", "可能受益", "利好科技etf", "相关公司受益",
+)
+
+
+def _contains_any(text: str, markers: tuple[str, ...]) -> bool:
+    lowered = str(text or "").lower()
+    return any(marker.lower() in lowered for marker in markers)
+
+
+def _validate_direct_etf_evidence(
+    *,
+    code: str,
+    event_type: str,
+    status: str,
+    novelty: str,
+    scope: str,
+    entities: list[str],
+    source_text: str,
+    transmission: str,
+    relevance: float,
+    strength: str,
+    direction: str,
+) -> tuple[bool, str]:
+    """Independently verify that an event has ETF-wide, already-public impact."""
+    if status not in {"occurred", "announced"}:
+        return False, "event_not_actionable"
+    if novelty not in {"new", "update"}:
+        return False, "event_not_new"
+    if direction == "neutral" or relevance < 0.55 or strength not in {"strong", "moderate"}:
+        return False, "insufficient_direction_or_strength"
+
+    combined_source = str(source_text or "").lower()
+    transmission_lower = str(transmission or "").lower()
+    if _contains_any(combined_source, _FORECAST_MARKERS):
+        return False, "forecast_or_broker_opinion"
+
+    direct_terms = _ETF_DIRECT_TERMS.get(code, ())
+    explicitly_names_exposure = _contains_any(combined_source, direct_terms)
+    has_sector_breadth = _contains_any(combined_source, _SECTOR_BREADTH_MARKERS)
+    indirect_claim = _contains_any(transmission_lower, _INDIRECT_TRANSMISSION_MARKERS)
+
+    if scope == "single_company":
+        return False, "single_company_dilution"
+    if scope == "market":
+        if event_type in {"macro", "policy", "regulation"} or explicitly_names_exposure:
+            return True, "market_wide_grounded_event"
+        return False, "market_scope_without_market_mechanism"
+    if scope == "sector":
+        if code in _BROAD_MARKET_CODES and not explicitly_names_exposure:
+            return False, "sector_event_diluted_in_broad_index"
+        if explicitly_names_exposure or has_sector_breadth:
+            if indirect_claim and not has_sector_breadth:
+                return False, "indirect_value_chain_claim"
+            return True, "sector_wide_grounded_event"
+        return False, "sector_scope_not_supported_by_source"
+    if scope == "multi_company":
+        if len(entities) >= 2 and (explicitly_names_exposure or has_sector_breadth):
+            return True, "multi_company_sector_evidence"
+        return False, "multi_company_event_not_etf_wide"
+    return False, "unclear_or_unsupported_scope"
+
+
 def _parse_structured_response(
     raw: str,
     valid_codes: set[str],
@@ -261,7 +348,12 @@ def _parse_structured_response(
 
         actionable_status = status in {"occurred", "announced"}
         not_repeated = novelty in {"new", "update"}
-        etf_wide_scope = scope in {"market", "sector", "multi_company"}
+        entities = [
+            str(value).strip()[:40]
+            for value in (item.get("entities") or [])[:8]
+            if str(value).strip()
+        ]
+        event_type = str(item.get("event_type") or "other").lower()[:40]
         judgments: list[dict[str, Any]] = []
         raw_judgments = item.get("etf_judgments") or []
         if not isinstance(raw_judgments, list):
@@ -285,13 +377,21 @@ def _parse_structured_response(
                 direction = "neutral"
             if strength not in valid_strengths:
                 strength = "weak"
-            direct_evidence = bool(
-                actionable_status
-                and not_repeated
-                and etf_wide_scope
-                and direction != "neutral"
-                and relevance >= 0.55
-                and strength in {"strong", "moderate"}
+            transmission = str(
+                judgment.get("transmission") or judgment.get("reason") or ""
+            )[:160]
+            direct_evidence, direct_evidence_reason = _validate_direct_etf_evidence(
+                code=code,
+                event_type=event_type,
+                status=status,
+                novelty=novelty,
+                scope=scope,
+                entities=entities,
+                source_text=source_text,
+                transmission=transmission,
+                relevance=relevance,
+                strength=strength,
+                direction=direction,
             )
             if not actionable_status or not not_repeated:
                 relevance = min(relevance, RELEVANCE_FLOOR - 0.01)
@@ -306,20 +406,13 @@ def _parse_structured_response(
                 "direction": direction,
                 "sentiment": direction,
                 "strength": strength,
-                "transmission": str(
-                    judgment.get("transmission") or judgment.get("reason") or ""
-                )[:160],
+                "transmission": transmission,
                 "direct_evidence": direct_evidence,
+                "direct_evidence_reason": direct_evidence_reason,
             })
 
         if not judgments:
             continue
-        entities = [
-            str(value).strip()[:40]
-            for value in (item.get("entities") or [])[:8]
-            if str(value).strip()
-        ]
-        event_type = str(item.get("event_type") or "other").lower()[:40]
         event_key = str(item.get("event_key") or "").strip()[:120]
         if not event_key:
             seed = "|".join(entities + [event_type, grounded_evidence[:80]])

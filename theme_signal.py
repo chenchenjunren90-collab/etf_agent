@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import json
+import hashlib
+import os
+import tempfile
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -11,6 +14,7 @@ from typing import Any
 BASE_DIR = Path(__file__).resolve().parent
 SIGNAL_DIR = BASE_DIR / "data" / "daily_news_signal"
 ARCHIVE_DIR = SIGNAL_DIR / "archive"
+SNAPSHOT_DIR = SIGNAL_DIR / "snapshots"
 AUTO_SIGNAL_PATH = BASE_DIR / "auto_theme_signal.json"
 
 
@@ -24,17 +28,72 @@ def signal_path(date_str: str | None = None) -> Path:
     return SIGNAL_DIR / f"{_norm_date(date_str)}.json"
 
 
+def _atomic_write(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temp_name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_name, path)
+    finally:
+        try:
+            Path(temp_name).unlink(missing_ok=True)
+        except OSError:
+            pass
+
+
+def write_immutable_news_snapshot(
+    signal: dict[str, Any],
+    date_str: str | None = None,
+    *,
+    snapshot_dir: Path = SNAPSHOT_DIR,
+) -> dict[str, Any]:
+    """Store a content-addressed news snapshot without overwriting earlier runs."""
+    normalized_date = _norm_date(date_str or signal.get("date"))
+    captured_at = datetime.now().astimezone().isoformat(timespec="seconds")
+    payload_text = json.dumps(
+        signal, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    )
+    digest = hashlib.sha256(payload_text.encode("utf-8")).hexdigest()
+    document = {
+        "captured_at": captured_at,
+        "trade_date": normalized_date,
+        "sha256": digest,
+        "raw_article_count": len(signal.get("raw_articles") or []),
+        "signal": signal,
+    }
+    day_dir = snapshot_dir / normalized_date
+    day_dir.mkdir(parents=True, exist_ok=True)
+    path = day_dir / f"{digest}.json"
+    try:
+        with path.open("x", encoding="utf-8") as handle:
+            json.dump(document, handle, ensure_ascii=False, indent=2)
+            handle.flush()
+            os.fsync(handle.fileno())
+    except FileExistsError:
+        pass
+    return {
+        "captured_at": captured_at,
+        "sha256": digest,
+        "raw_article_count": document["raw_article_count"],
+        "path": str(path),
+    }
+
+
 def save_theme_signal(signal: dict[str, Any], date_str: str | None = None) -> Path:
     SIGNAL_DIR.mkdir(parents=True, exist_ok=True)
     ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
     path = signal_path(date_str or signal.get("date"))
     text = json.dumps(signal, ensure_ascii=False, indent=2)
+    write_immutable_news_snapshot(signal, date_str or signal.get("date"))
     if path.exists():
         stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         backup = ARCHIVE_DIR / f"{path.stem}_{stamp}{path.suffix}"
-        backup.write_text(path.read_text(encoding="utf-8"), encoding="utf-8")
-    path.write_text(text, encoding="utf-8")
-    AUTO_SIGNAL_PATH.write_text(text, encoding="utf-8")
+        _atomic_write(backup, path.read_text(encoding="utf-8"))
+    _atomic_write(path, text)
+    _atomic_write(AUTO_SIGNAL_PATH, text)
     return path
 
 

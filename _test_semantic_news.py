@@ -86,6 +86,96 @@ def test_single_company_event_is_not_direct_etf_evidence() -> None:
     assert judgment["strength"] == "weak"
 
 
+def test_company_product_and_broker_forecast_are_not_direct_etf_evidence() -> None:
+    company_candidate = {
+        "article_id": "company",
+        "title": "华为推出星河AI数据中心网络方案",
+        "source": "wire",
+        "content_excerpt": "华为推出星河AI数据中心网络方案，Token生产效率提升2至5倍。",
+    }
+    company_event = {
+        "article_id": "company",
+        "event_type": "technology",
+        "event_status": "announced",
+        "novelty": "new",
+        "scope": "sector",
+        "event_key": "华为|产品|AI数据中心网络方案",
+        "entities": ["华为"],
+        "evidence": "华为推出星河AI数据中心网络方案",
+        "etf_judgments": [{
+            "code": "588000",
+            "relevance": 0.7,
+            "direction": "positive",
+            "strength": "strong",
+            "transmission": "利好科技ETF，科创50包含相关产业链公司",
+        }],
+    }
+    parsed = _parse_structured_response(
+        json.dumps([company_event], ensure_ascii=False),
+        {"588000"},
+        [company_candidate],
+    )
+    judgment = parsed[0]["etf_judgments"][0]
+    assert judgment["direct_evidence"] is False
+    assert judgment["direct_evidence_reason"] in {
+        "sector_scope_not_supported_by_source", "indirect_value_chain_claim"
+    }
+
+    broker_candidate = {
+        "article_id": "broker",
+        "title": "广发证券：液冷交换机、液冷光模块迎来大量新增需求",
+        "source": "wire",
+        "content_excerpt": "广发证券研报预计液冷交换机需求增长。",
+    }
+    broker_event = dict(company_event)
+    broker_event.update({
+        "article_id": "broker",
+        "event_key": "广发证券|研报|液冷需求",
+        "entities": ["广发证券"],
+        "evidence": "广发证券研报预计液冷交换机需求增长",
+    })
+    parsed = _parse_structured_response(
+        json.dumps([broker_event], ensure_ascii=False),
+        {"588000"},
+        [broker_candidate],
+    )
+    judgment = parsed[0]["etf_judgments"][0]
+    assert judgment["direct_evidence"] is False
+    assert judgment["direct_evidence_reason"] == "forecast_or_broker_opinion"
+
+
+def test_sector_wide_realized_event_can_remain_direct() -> None:
+    candidate = {
+        "article_id": "sector",
+        "title": "功率半导体行业进入涨价周期",
+        "source": "wire",
+        "content_excerpt": "功率半导体行业进入涨价周期，多家龙头企业密集宣布涨价。",
+    }
+    event = {
+        "article_id": "sector",
+        "event_type": "supply",
+        "event_status": "occurred",
+        "novelty": "new",
+        "scope": "sector",
+        "event_key": "功率半导体|涨价|行业周期",
+        "entities": ["功率半导体行业"],
+        "evidence": "功率半导体行业进入涨价周期",
+        "etf_judgments": [{
+            "code": "588000",
+            "relevance": 0.7,
+            "direction": "positive",
+            "strength": "moderate",
+            "transmission": "半导体行业价格上调改善行业收入",
+        }],
+    }
+    parsed = _parse_structured_response(
+        json.dumps([event], ensure_ascii=False), {"588000"}, [candidate]
+    )
+    judgment = parsed[0]["etf_judgments"][0]
+    assert judgment["direct_evidence"] is True
+    assert judgment["direct_evidence_reason"] == "sector_wide_grounded_event"
+
+
 def test_semantic_event_can_recover_rule_miss_but_keyword_cannot_self_confirm() -> None:
     signal = {
         "theme_scores": {"510300": 0.4},
@@ -192,6 +282,8 @@ if __name__ == "__main__":
     test_high_recall_candidates_include_rule_misses_with_body()
     test_llm_evidence_must_be_grounded_in_article()
     test_single_company_event_is_not_direct_etf_evidence()
+    test_company_product_and_broker_forecast_are_not_direct_etf_evidence()
+    test_sector_wide_realized_event_can_remain_direct()
     test_semantic_event_can_recover_rule_miss_but_keyword_cannot_self_confirm()
     test_successful_empty_review_is_not_treated_as_llm_failure()
     test_partial_llm_failure_falls_back_only_for_failed_articles()
