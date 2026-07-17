@@ -234,8 +234,24 @@ def test_event_rotation_probe_is_small_and_price_confirmed() -> None:
         assert deep_downtrend["action"] == "cash"
         assert deep_downtrend["reason"] == "deep_short_term_downtrend"
 
+        idiosyncratic = evidence.evaluate_candidate(
+            _candidate(code="159949", price_score=43.0),
+            {
+                "confidence": 0.9,
+                "fresh_accepted_articles": [{
+                    "title": "某公司创业板IPO下周上会",
+                    "source": "test",
+                    "quality": "strong",
+                    "theme_scores": {"159949": 0.4},
+                }],
+            },
+            "2026-07-13",
+        )
+        assert idiosyncratic["action"] == "cash"
+        assert idiosyncratic["reason"] == "news_promoted_without_price_gate"
 
-def test_cadence_cap_never_forces_or_overtrades() -> None:
+
+def test_cadence_target_sizes_but_does_not_block_qualified_edge() -> None:
     history = [
         {"date": f"2026-07-{day:02d}", "symbols": ["510300"]}
         for day in (1, 3, 6, 8)
@@ -247,9 +263,14 @@ def test_cadence_cap_never_forces_or_overtrades() -> None:
             "2026-07-13",
             recent_submit_history=history,
         )
-    assert eligible == []
-    assert audit["mode"] == "cash"
-    assert audit["cadence"]["max_reached"] is True
+    assert [item["code"] for item in eligible] == ["510300"]
+    selected = eligible[0]["profitability_evidence"]
+    assert selected["exposure_cap"] == evidence.CADENCE_ABOVE_TARGET_EXPOSURE_CAP
+    assert selected["cadence_size_limited"] is True
+    assert audit["mode"] == "trade"
+    assert audit["cadence"]["upper_target_reached"] is True
+    assert audit["cadence"]["hard_blocked"] is False
+    assert audit["cadence"]["size_limited"] is True
     assert audit["cadence"]["forced_trade"] is False
 
 
@@ -271,7 +292,7 @@ def test_cadence_probe_requires_positive_calibrated_edge() -> None:
     )
     with patch.object(evidence, "estimate_empirical_edge", return_value=calibrated):
         eligible, audit = evidence.evaluate_trade_candidates(
-            [_candidate(price_score=42.0)],
+            [_candidate(price_score=52.0)],
             {},
             "2026-07-13",
             recent_submit_history=history,
@@ -283,6 +304,16 @@ def test_cadence_probe_requires_positive_calibrated_edge() -> None:
     assert selected["score_gate_floor"] == evidence.CADENCE_PROBE_MIN_PRICE_SCORE
     assert audit["cadence"]["probe_code"] == "510300"
     assert audit["cadence"]["forced_trade"] is False
+
+    with patch.object(evidence, "estimate_empirical_edge", return_value=calibrated):
+        rejected, rejected_audit = evidence.evaluate_trade_candidates(
+            [_candidate(price_score=42.0)],
+            {},
+            "2026-07-13",
+            recent_submit_history=history,
+        )
+    assert rejected == []
+    assert rejected_audit["cadence"]["probe_code"] is None
 
 
 def test_estimator_uses_only_strictly_prior_rows() -> None:
@@ -337,7 +368,7 @@ if __name__ == "__main__":
     test_gate_actions()
     test_news_and_entry_risk_can_veto()
     test_event_rotation_probe_is_small_and_price_confirmed()
-    test_cadence_cap_never_forces_or_overtrades()
+    test_cadence_target_sizes_but_does_not_block_qualified_edge()
     test_cadence_probe_requires_positive_calibrated_edge()
     test_estimator_uses_only_strictly_prior_rows()
     test_offline_price_read_never_refreshes_network()

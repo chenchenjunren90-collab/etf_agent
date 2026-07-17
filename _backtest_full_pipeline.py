@@ -260,6 +260,7 @@ def run_full_pipeline(
     dates: list[str],
     *,
     cache_only: bool,
+    allow_legacy_saved_llm: bool = False,
 ) -> list[dict[str, Any]]:
     os.environ["ETF_AGENT_STABLE_MODE"] = "1"
     # Do NOT skip news LLM / decision LLM — full project path.
@@ -289,8 +290,9 @@ def run_full_pipeline(
         llm_decision = None
         llm_meta = {"used": False, "source": None, "cache_hit": None, "error": None}
 
-        # 1) Prefer historical live LLM decision from full.json (true replay)
-        saved = _load_saved_llm_decision(trade_date)
+        # Old full.json files belong to prior strategy versions. A current-policy
+        # simulation must not silently reuse their decisions.
+        saved = _load_saved_llm_decision(trade_date) if allow_legacy_saved_llm else None
         if saved is not None:
             llm_decision = saved
             llm_meta = {"used": True, "source": "full_json", "cache_hit": True, "error": None}
@@ -335,6 +337,14 @@ def run_full_pipeline(
         validate_execution_consistency(result, comp)
         pnl, used = _settle(comp, trade_date)
         conc = result.get("concentration_risk") or {}
+        profitability_gate = result.get("profitability_gate") or {}
+        selected_evidence = next((
+            item
+            for item in (profitability_gate.get("candidates") or [])
+            if str(item.get("code") or "").zfill(6)
+            == str(profitability_gate.get("selected_code") or "").zfill(6)
+        ), {})
+        selected_empirical = selected_evidence.get("empirical") or {}
         rows.append({
             "date": trade_date,
             "pnl": round(pnl, 2),
@@ -348,6 +358,11 @@ def run_full_pipeline(
             "llm_cache_hit": llm_meta.get("cache_hit"),
             "concentration_applied": bool(conc.get("applied")),
             "mode": (result.get("summary") or {}).get("mode"),
+            "evidence_version": profitability_gate.get("version"),
+            "evidence_reason": selected_evidence.get("reason"),
+            "evidence_probability": selected_empirical.get("positive_probability"),
+            "evidence_expected_net": selected_empirical.get("expected_net_return"),
+            "cadence": profitability_gate.get("cadence"),
         })
         src = llm_meta.get("source") or "rule"
         err = llm_meta.get("error")
@@ -438,6 +453,11 @@ def main() -> int:
         action="store_true",
         help="On cache miss, call DeepSeek (costs tokens). Default if not --cache-only.",
     )
+    parser.add_argument(
+        "--allow-legacy-saved-llm",
+        action="store_true",
+        help="Explicitly replay LLM decisions from old full.json files (off by default).",
+    )
     args = parser.parse_args()
 
     os.environ["ETF_AGENT_STRICT_DATA"] = "1"
@@ -469,9 +489,14 @@ def main() -> int:
         f"Full backtest {args.start} → {args.end} ({len(dates)} days)\n"
         f"  news files: {news_ok}/{len(dates)}\n"
         f"  LLM mode: {'cache_only' if cache_only else 'cache+live'}\n"
+        f"  legacy full.json LLM replay: {bool(args.allow_legacy_saved_llm)}\n"
     )
 
-    rows = run_full_pipeline(dates, cache_only=cache_only)
+    rows = run_full_pipeline(
+        dates,
+        cache_only=cache_only,
+        allow_legacy_saved_llm=bool(args.allow_legacy_saved_llm),
+    )
     stats = _stats(rows, "current_policy_simulation")
     print("\n=== SUMMARY ===")
     print(json.dumps(stats, ensure_ascii=False, indent=2))
@@ -495,6 +520,7 @@ def main() -> int:
                 "start": args.start,
                 "end": args.end,
                 "cache_only": cache_only,
+                "allow_legacy_saved_llm": bool(args.allow_legacy_saved_llm),
                 "replay_kind": "current_policy_simulation_not_historical_track_record",
                 "stats": stats,
                 "rows": rows,

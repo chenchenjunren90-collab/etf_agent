@@ -16,6 +16,7 @@ from typing import Any
 
 import pandas as pd
 
+from decision_snapshot import is_current_strategy_output
 from settlement_prices import conservative_risk_pnl, settle_competition_output
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -81,6 +82,8 @@ def build_recent_risk_context(
             if pd.isna(d) or d >= cutoff:
                 continue
             payload = json.loads(path.read_text(encoding="utf-8"))
+            if not is_current_strategy_output(payload):
+                continue
             if payload.get("mode") in {"personal_sandbox", "fatal_fallback"}:
                 continue
             comp = payload.get("competition_output") or []

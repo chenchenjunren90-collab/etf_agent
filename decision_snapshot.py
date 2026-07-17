@@ -12,7 +12,29 @@ from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parent
 SNAPSHOT_DIR = BASE_DIR / "data" / "decision_snapshots"
-STRATEGY_VERSION = "competition-balanced-entry-v4"
+STRATEGY_VERSION = "competition-balanced-entry-v5"
+
+
+def output_strategy_version(payload: dict[str, Any] | None) -> str | None:
+    """Return the explicit strategy version carried by an official output."""
+    if not isinstance(payload, dict):
+        return None
+    snapshot = payload.get("decision_snapshot")
+    if isinstance(snapshot, dict):
+        value = str(snapshot.get("strategy_version") or "").strip()
+        if value:
+            return value
+    value = str(payload.get("strategy_version") or "").strip()
+    return value or None
+
+
+def is_current_strategy_output(
+    payload: dict[str, Any] | None,
+    *,
+    expected_version: str = STRATEGY_VERSION,
+) -> bool:
+    """True only for outputs explicitly produced by the active strategy."""
+    return output_strategy_version(payload) == expected_version
 
 
 def _env_int(name: str, default: int) -> int:
@@ -74,6 +96,7 @@ def strategy_manifest() -> dict[str, Any]:
         CONSERVATIVE_PROBABILITY,
         HIGH_EXPOSURE_CAP,
         HIGH_PROBABILITY,
+        PROFITABILITY_EVIDENCE_VERSION,
         ROUND_TRIP_COST,
     )
 
@@ -93,6 +116,7 @@ def strategy_manifest() -> dict[str, Any]:
             "goal_max_drawdown": GOAL_MAX_DRAWDOWN,
             "daily_var_budget": DAILY_VAR_BUDGET,
             "empirical_round_trip_cost": ROUND_TRIP_COST,
+            "profitability_evidence_version": PROFITABILITY_EVIDENCE_VERSION,
             "high_probability_floor": HIGH_PROBABILITY,
             "conservative_probability_floor": CONSERVATIVE_PROBABILITY,
             "high_exposure_cap": HIGH_EXPOSURE_CAP,
