@@ -183,17 +183,12 @@ def _format_competition(kb: dict[str, Any]) -> str:
 
 def _format_competition_json(kb: dict[str, Any] | None) -> str:
     """比赛提交格式：仅输出 JSON 指令。"""
-    today_str = shanghai_now().strftime("%Y-%m-%d")
-    today_submit = BASE_DIR / "data" / "daily_output" / f"{today_str}_submit.json"
-    if today_submit.exists():
-        try:
-            out = json.loads(today_submit.read_text(encoding="utf-8"))
-        except Exception:
-            out = []
-    else:
-        if not kb:
-            return "暂无当日预测，请先说「测一下今天」。"
-        out = kb.get("competition_output") or []
+    if not kb:
+        return "暂无当日预测，请先说「测一下今天」。"
+    # The selected knowledge base may be a locked next-session or historical
+    # result. Formatting it through today's submit file can silently display a
+    # different portfolio, so the reply and UI card must share this payload.
+    out = kb.get("competition_output") or []
     return "```json\n" + json.dumps(out, ensure_ascii=False, indent=2) + "\n```"
 
 
