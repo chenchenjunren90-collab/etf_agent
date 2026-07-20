@@ -153,6 +153,15 @@ def _market_closed_response(sess: dict[str, Any], message: str = "") -> dict[str
     )
 
 
+def _has_published_research_advice() -> bool:
+    today = _today_str()
+    current = load_knowledge_base(today)
+    if current and current.get("prediction_source") == "human_public_research":
+        return True
+    upcoming = load_upcoming_researched_knowledge_base(today)
+    return bool(upcoming and settlement_ready(today, as_of=shanghai_now()))
+
+
 def _start_collection(sess: dict[str, Any], message: str) -> dict[str, Any]:
     profile = dict(sess.get("profile") or {})
     profile = try_extract_from_message(message, profile)
@@ -455,6 +464,15 @@ def handle_chat(
         if message and wants_competition_mode(message):
             return _handle_competition(sess, message)
         return _continue_collection(sess, message, field_answer)
+
+    # A generic advice request should open the already-published official
+    # research result. Explicitly personalized requests still use the wizard.
+    direct_advice_messages = {
+        "今日投资建议", "今天投资建议",
+        "明日投资建议", "明天投资建议",
+    }
+    if message in direct_advice_messages and _has_published_research_advice():
+        return _handle_competition(sess, message)
 
     # --- Start personal advice wizard ---
     if message and wants_personal_advice(message):

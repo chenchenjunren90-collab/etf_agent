@@ -139,6 +139,7 @@ def rebuild_knowledge_base(date_str: str) -> Path:
     kb: dict[str, Any] = {
         "date": date_str,
         "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "prediction_source": strategy.get("mode") or full.get("mode") or "",
         "competition_output": competition,
         "is_empty_position": len(competition) == 0,
         "decision_summary_zh": (llm_trace.get("summary_zh") or "").strip(),

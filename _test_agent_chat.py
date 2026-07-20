@@ -29,6 +29,8 @@ def main() -> None:
     })
     _assert('"symbol": "510880"' in future_json, "selected KB drives JSON reply")
     _assert('"volume": 30800' in future_json, "selected KB volume preserved")
+    real_has_research = orchestrator._has_published_research_advice
+    orchestrator._has_published_research_advice = lambda: False
 
     boot = start_session()
     sid = boot["session"]["session_id"]
@@ -86,6 +88,7 @@ def main() -> None:
     _assert(closed_comp["intent"] == "market_closed", "closed competition blocked")
     _assert(not closed_comp.get("ui_blocks"), "closed response has no holdings")
     orchestrator.is_trading_day = real_is_trading_day
+    orchestrator._has_published_research_advice = real_has_research
 
     print("\nALL SMOKE TESTS PASSED")
     print(json.dumps({"sample_session": r.get("session")}, ensure_ascii=False, indent=2))
