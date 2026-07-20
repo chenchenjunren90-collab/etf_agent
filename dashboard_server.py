@@ -27,6 +27,7 @@ from daily_pnl import _load_bar
 import llm_client
 import llm_decider
 import security_guard
+from agent_kb import load_upcoming_researched_knowledge_base
 from settlement_prices import settlement_ready, shanghai_now
 from trading_calendar import is_trading_day
 from strategy_review import load_current_review
@@ -170,7 +171,8 @@ def _system_info() -> dict[str, Any]:
 
 
 def load_status(view_date: str | None = None) -> dict[str, Any]:
-    today = shanghai_now().date()
+    now = shanghai_now()
+    today = now.date()
     today_str = today.strftime("%Y-%m-%d")
     today_is_trading = is_trading_day(today)
     if view_date:
@@ -181,17 +183,34 @@ def load_status(view_date: str | None = None) -> dict[str, Any]:
     else:
         target = today
 
+    upcoming_kb = None
+    if not view_date and today_is_trading and settlement_ready(today_str, as_of=now):
+        upcoming_kb = load_upcoming_researched_knowledge_base(today_str)
+        if upcoming_kb:
+            target = datetime.strptime(str(upcoming_kb["date"]), "%Y-%m-%d").date()
+    is_upcoming_view = bool(upcoming_kb and target > today)
+
     # The default view is always exact. On a closed day, returning the previous
     # session here would make historical holdings look like today's advice.
     closed_default = not view_date and not today_is_trading
-    full_path = _latest_file(f"{target.strftime('%Y-%m-%d')}*_full.json", OUTPUT_DIR)
+    if target > today:
+        candidate = OUTPUT_DIR / f"{target.strftime('%Y-%m-%d')}_full.json"
+        full_path = candidate if candidate.exists() and is_upcoming_view else None
+    else:
+        full_path = _latest_file(f"{target.strftime('%Y-%m-%d')}*_full.json", OUTPUT_DIR)
     if closed_default:
         # A stale/manual artifact must never turn a closed session into today's
         # actionable advice. Explicit historical views remain available below.
         full_path = None
     output_date = full_path.name.split("_")[0] if full_path else target.strftime("%Y-%m-%d")
-    submit_path = _latest_file(f"{output_date}*_submit.json", OUTPUT_DIR)
-    news_path = _latest_file(f"{output_date}.json", NEWS_DIR)
+    if is_upcoming_view:
+        submit_candidate = OUTPUT_DIR / f"{output_date}_submit.json"
+        news_candidate = NEWS_DIR / f"{output_date}.json"
+        submit_path = submit_candidate if submit_candidate.exists() else None
+        news_path = news_candidate if news_candidate.exists() else None
+    else:
+        submit_path = _latest_file(f"{output_date}*_submit.json", OUTPUT_DIR)
+        news_path = _latest_file(f"{output_date}.json", NEWS_DIR)
     if closed_default:
         submit_path = None
         news_path = None
@@ -200,7 +219,7 @@ def load_status(view_date: str | None = None) -> dict[str, Any]:
     submit = _read_json(submit_path)
     news = _read_json(news_path)
 
-    previous_pnl = _settle_prediction(full_path) if full_path else None
+    previous_pnl = _settle_prediction(full_path) if full_path and not is_upcoming_view else None
     latest_available = _latest_file("*_full.json", OUTPUT_DIR, only_weekdays=True)
     target_is_trading = is_trading_day(target)
 
@@ -211,6 +230,7 @@ def load_status(view_date: str | None = None) -> dict[str, Any]:
         "today_is_weekend": today.weekday() >= 5,
         "today_is_trading_day": today_is_trading,
         "market_closed": not today_is_trading,
+        "is_upcoming_view": is_upcoming_view,
         "view_is_trading_day": target_is_trading,
         "is_historical_view": bool(view_date and target != today),
         "latest_available_date": (
