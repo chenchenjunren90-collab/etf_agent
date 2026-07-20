@@ -139,7 +139,13 @@ def run_variant(
     rows: list[dict[str, Any]] = []
     for trade_date in dates:
         recent_risk = _risk_context(rows, trade_date) if stable else None
-        integrity_ctx = _integrity_from_history(rows, trade_date) if concentration else None
+        # Production always supplies submit history to the profitability/cadence gate.
+        # The concentration flag only controls the optional repeat-holding tilt.
+        integrity_ctx = (
+            _integrity_from_history(rows, trade_date)
+            if stable or concentration
+            else None
+        )
         with contextlib.redirect_stdout(io.StringIO()):
             result = run_decision(
                 trade_date,
@@ -147,9 +153,7 @@ def run_variant(
                 recent_risk=recent_risk,
                 integrity_ctx=integrity_ctx,
             )
-        # If concentration disabled, strip any accidental application by not passing ctx.
-        # If enabled but run_decision already applied it via integrity_ctx — good.
-        # Extra safety: when concentration=False we already pass None.
+        # Repeat-holding concentration behavior is controlled by ETF_REPEAT_TILT.
         if concentration and integrity_ctx and result.get("ranked"):
             # already applied inside run_decision; nothing else needed
             pass

@@ -57,7 +57,7 @@ def test_gate_actions() -> None:
     with patch.object(evidence, "estimate_empirical_edge", return_value=_empirical()):
         strong = evidence.evaluate_candidate(_candidate(), {}, "2026-07-13")
         assert strong["action"] == "trade"
-        assert strong["exposure_cap"] == 0.12
+        assert strong["exposure_cap"] == 0.30
 
     with patch.object(
         evidence,
@@ -66,7 +66,7 @@ def test_gate_actions() -> None:
     ):
         cautious = evidence.evaluate_candidate(_candidate(), {}, "2026-07-13")
         assert cautious["action"] == "conservative"
-        assert cautious["exposure_cap"] == 0.08
+        assert cautious["exposure_cap"] == 0.12
 
     with patch.object(
         evidence,
@@ -99,7 +99,7 @@ def test_gate_actions() -> None:
     ):
         trial = evidence.evaluate_candidate(_candidate(), {}, "2026-07-13")
         assert trial["action"] == "conservative"
-        assert trial["exposure_cap"] == 0.05
+        assert trial["exposure_cap"] == 0.10
 
 
 def test_news_and_entry_risk_can_veto() -> None:
@@ -365,6 +365,42 @@ def test_cadence_probe_requires_positive_calibrated_edge() -> None:
     assert rejected_audit["cadence"]["probe_code"] is None
 
 
+def test_starter_probe_uses_small_size_only_without_history() -> None:
+    starter_edge = _empirical(
+        probability=0.535,
+        expected_net=0.0016,
+        lower_net=-0.0002,
+        calibration={
+            "status": "negative",
+            "signal_count": 14,
+            "posterior_win_rate": 0.45,
+            "mean_realized_net_return": -0.001,
+        },
+    )
+    with patch.object(evidence, "estimate_empirical_edge", return_value=starter_edge):
+        eligible, audit = evidence.evaluate_trade_candidates(
+            [_candidate(score=53.0, price_score=51.0, fresh_theme_raw=0.3)],
+            {"confidence": 0.2, "fresh_accepted_articles": []},
+            "2026-07-20",
+            recent_submit_history=[],
+        )
+    assert [item["code"] for item in eligible] == ["510300"]
+    selected = eligible[0]["profitability_evidence"]
+    assert selected["reason"] == "competition_starter_empirical_probe"
+    assert selected["exposure_cap"] == evidence.STARTER_PROBE_EXPOSURE_CAP
+    assert audit["cadence"]["starter_probe_code"] == "510300"
+
+    with patch.object(evidence, "estimate_empirical_edge", return_value=starter_edge):
+        later_eligible, later_audit = evidence.evaluate_trade_candidates(
+            [_candidate(score=53.0, price_score=51.0, fresh_theme_raw=0.3)],
+            {"confidence": 0.2, "fresh_accepted_articles": []},
+            "2026-07-20",
+            recent_submit_history=[{"date": "2026-07-17", "symbols": []}],
+        )
+    assert later_eligible == []
+    assert later_audit["cadence"]["starter_probe_code"] is None
+
+
 def test_estimator_uses_only_strictly_prior_rows() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         root = Path(tmp)
@@ -420,6 +456,7 @@ if __name__ == "__main__":
     test_event_rotation_probe_is_small_and_price_confirmed()
     test_cadence_target_sizes_but_does_not_block_qualified_edge()
     test_cadence_probe_requires_positive_calibrated_edge()
+    test_starter_probe_uses_small_size_only_without_history()
     test_estimator_uses_only_strictly_prior_rows()
     test_offline_price_read_never_refreshes_network()
     print("PROFITABILITY EVIDENCE OK")
