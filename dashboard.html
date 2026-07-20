@@ -222,39 +222,8 @@
       .sp-grid { grid-template-columns: 1fr; }
     }
 
-    #currentReviewBand {
-      display: none;
-      margin-bottom: 18px;
-      padding: 18px 20px;
-      border: 1px solid var(--banner-info-border);
-      border-left: 4px solid var(--accent);
-      border-radius: 8px;
-      background: var(--banner-info-bg);
-      color: var(--text);
-    }
-    .review-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 12px;
-    }
-    .review-title { font-size: 18px; font-weight: 700; }
-    .review-note { margin-top: 5px; color: var(--muted); font-size: 13px; }
-    .review-meta {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-      white-space: pre-line;
-    }
-    @media (max-width: 700px) {
-      .review-head { flex-direction: column; }
-    }
-
     /* 截图模式：只保留提交预览卡片，隐藏其余所有内容，方便一键截图 */
     body.screenshot-mode header .actions,
-    body.screenshot-mode #currentReviewBand,
     body.screenshot-mode #weekendBanner,
     body.screenshot-mode .grid,
     body.screenshot-mode .sp-actions {
@@ -371,20 +340,6 @@
     <pre id="runTerminal"></pre>
   </div>
   <main>
-    <section id="currentReviewBand" aria-live="polite">
-      <div class="review-head">
-        <div>
-          <div class="review-title">当前策略复核</div>
-          <div class="review-note">使用早晨已保存的信息按当前代码重算，仅用于解释版本差异，不替代比赛正式提交。</div>
-        </div>
-        <span class="sp-status" id="reviewStatus">--</span>
-      </div>
-      <table>
-        <thead><tr><th>代码</th><th>名称</th><th>数量（股）</th><th>仓位</th><th>金额</th></tr></thead>
-        <tbody id="reviewRows"></tbody>
-      </table>
-      <div class="review-meta" id="reviewMeta"></div>
-    </section>
     <div id="submitPreviewCard">
       <div class="sp-head">
         <div>
@@ -652,13 +607,6 @@
       try {
         var res = await fetch(url);
         var data = await res.json();
-        var reviewUrl = date ? "api/current-review?date=" + encodeURIComponent(date) : "api/current-review";
-        try {
-          var reviewRes = await fetch(reviewUrl, { cache: "no-store" });
-          data.current_strategy_review = reviewRes.ok ? await reviewRes.json() : null;
-        } catch(reviewError) {
-          data.current_strategy_review = null;
-        }
         render(data);
       } catch(e) {
         document.getElementById("log").textContent = "加载失败: " + e.message;
@@ -733,7 +681,6 @@
         pnlEl.className = "value";
       }
       schedulePnlAutoRefresh(data, pnl);
-      renderCurrentReview(data);
 
       var submitHtml = "";
       for (var i = 0; i < submit.length; i++) {
@@ -831,49 +778,6 @@
 
       renderSubmitPreview(data, submit);
       applyMarketUi(data);
-    }
-
-    function renderCurrentReview(data) {
-      var band = document.getElementById("currentReviewBand");
-      var review = data.current_strategy_review;
-      var marketClosedDefault = !!data.market_closed && !data.is_historical_view;
-      if (!review || review.status !== "ok" || marketClosedDefault) {
-        band.style.display = "none";
-        return;
-      }
-
-      var output = Array.isArray(review.competition_output) ? review.competition_output : [];
-      var strategy = review.strategy_result || {};
-      var summary = strategy.summary || {};
-      var holds = Array.isArray(summary.held_stocks) ? summary.held_stocks : [];
-      var byCode = {};
-      for (var i = 0; i < holds.length; i++) {
-        byCode[String(holds[i].code || "").padStart(6, "0")] = holds[i];
-      }
-
-      var rows = "";
-      for (var i = 0; i < output.length; i++) {
-        var item = output[i];
-        var held = byCode[String(item.symbol || "").padStart(6, "0")] || {};
-        var weight = held.weight == null ? "--" : Number(held.weight).toFixed(1) + "%";
-        var amount = held.amount == null ? "--" : fmt.format(Number(held.amount).toFixed(2)) + " 元";
-        rows += "<tr><td>" + escapeHtml(item.symbol) + "</td><td>" + escapeHtml(item.symbol_name) +
-          "</td><td>" + fmt.format(Number(item.volume || 0)) + "</td><td>" + weight +
-          "</td><td>" + amount + "</td></tr>";
-      }
-      document.getElementById("reviewRows").innerHTML = rows ||
-        '<tr><td colspan="5" class="small">当前版本复核仍建议空仓</td></tr>';
-
-      var status = document.getElementById("reviewStatus");
-      status.textContent = output.length ? "复核建议 " + output.length + " 只" : "复核空仓";
-      status.className = "sp-status " + (output.length ? "ok" : "empty");
-      var generated = review.generated_at ? String(review.generated_at).replace("T", " ") : "--";
-      var utilization = summary.utilization_rate == null ? "--" : summary.utilization_rate + "%";
-      var reason = strategy.market_reason || "当前策略已完成复核。";
-      document.getElementById("reviewMeta").textContent =
-        "复核时间：" + generated + " · 当前策略仓位：" + utilization +
-        " · 正式提交保持不变。\n" + reason;
-      band.style.display = "block";
     }
 
     function renderSubmitPreview(data, submit) {
