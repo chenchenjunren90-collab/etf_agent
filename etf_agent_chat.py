@@ -173,7 +173,11 @@ def _format_holdings(kb: dict[str, Any] | None) -> str:
     lines = [f"**{date} 持仓建议**", ""]
     for p in out:
         name = p.get("symbol_name") or p.get("symbol")
-        lines.append(f"- **{name}** × {int(p['volume']):,} 股")
+        symbol = p.get("symbol") or ""
+        lines.append(f"- **{name}（{symbol}）** × {int(p['volume']):,} 份")
+    summary = str(kb.get("decision_summary_zh") or "").strip()
+    if summary:
+        lines.extend(["", "**策略判断**", summary])
     return "\n".join(lines)
 
 
