@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import agent_orchestrator as orchestrator
 from agent_orchestrator import handle_chat, start_session
-from etf_agent_chat import _format_competition_json
+from etf_agent_chat import _format_competition, _format_competition_json
 from info_collector import parse_capital, wants_personal_advice
 
 
@@ -21,14 +21,19 @@ def main() -> None:
     _assert(wants_personal_advice("我想要今日投资建议"), "detect personal advice")
     _assert(parse_capital("20万") == 200000, "parse 20万")
     _assert(parse_capital(150000) == 150000, "parse int capital")
-    future_json = _format_competition_json({
+    future_kb = {
         "date": "2026-07-21",
+        "decision_summary_zh": "相对强度领先，但仅使用约20%资金。",
         "competition_output": [
             {"symbol": "510880", "symbol_name": "红利ETF", "volume": 30800},
         ],
-    })
+    }
+    future_json = _format_competition_json(future_kb)
     _assert('"symbol": "510880"' in future_json, "selected KB drives JSON reply")
     _assert('"volume": 30800' in future_json, "selected KB volume preserved")
+    future_text = _format_competition(future_kb)
+    _assert("红利ETF（510880）" in future_text, "holding text includes ETF code")
+    _assert("仅使用约20%资金" in future_text, "holding text includes research judgment")
     real_has_research = orchestrator._has_published_research_advice
     orchestrator._has_published_research_advice = lambda: False
 
