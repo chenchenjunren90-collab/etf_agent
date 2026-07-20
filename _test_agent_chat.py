@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import agent_orchestrator as orchestrator
 from agent_orchestrator import handle_chat, start_session
+from etf_agent_chat import _format_competition_json
 from info_collector import parse_capital, wants_personal_advice
 
 
@@ -20,6 +21,14 @@ def main() -> None:
     _assert(wants_personal_advice("我想要今日投资建议"), "detect personal advice")
     _assert(parse_capital("20万") == 200000, "parse 20万")
     _assert(parse_capital(150000) == 150000, "parse int capital")
+    future_json = _format_competition_json({
+        "date": "2026-07-21",
+        "competition_output": [
+            {"symbol": "510880", "symbol_name": "红利ETF", "volume": 30800},
+        ],
+    })
+    _assert('"symbol": "510880"' in future_json, "selected KB drives JSON reply")
+    _assert('"volume": 30800' in future_json, "selected KB volume preserved")
 
     boot = start_session()
     sid = boot["session"]["session_id"]
