@@ -106,10 +106,9 @@ def main() -> None:
         dashboard = (Path(__file__).resolve().parent / "dashboard.html").read_text(
             encoding="utf-8"
         )
-        assert "当前策略复核" in dashboard
-        assert "不替代比赛正式提交" in dashboard
+        assert "当前策略复核" not in dashboard
+        assert "data.current_strategy_review" not in dashboard
         assert "比赛正式提交 · 截止前封存结果" in dashboard
-        assert "data.current_strategy_review" in dashboard
         assert "JSON.stringify(submit, null, 2)" in dashboard
 
         current_official = dict(official_payload)
