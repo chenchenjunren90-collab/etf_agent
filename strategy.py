@@ -374,6 +374,30 @@ def run_decision(
         f"mode={profitability_gate.get('mode')} selected={profitability_gate.get('selected_code')} "
         f"cap={evidence_cap:.0%}"
     )
+    if (
+        recent_risk
+        and float(recent_risk.get("last5_return_pct") or 0.0) < -0.10
+        and str(profitability_gate.get("mode") or "") == "conservative"
+    ):
+        reason = (
+            "近期小仓试探已出现亏损，暂停普通保守信号；"
+            "仅高精度盈利证据才继续交易。"
+        )
+        if llm_trace is not None:
+            llm_trace["summary_zh_original"] = llm_trace.get("summary_zh")
+            llm_trace["summary_zh"] = reason
+            llm_trace["hard_rules_applied"].append("recent_loss_probe_cooldown")
+        profitability_gate["recent_loss_probe_cooldown"] = True
+        print(f"  [EvidenceGate] {reason}")
+        return _empty_cash_result(
+            date_str,
+            total_capital,
+            proposed_ranked,
+            theme_signals,
+            reason,
+            llm_trace=llm_trace,
+            profitability_gate=profitability_gate,
+        )
 
     print("[Step 2/4] Evaluating market regime...")
     invest_ratio, market_reason = evaluate_market_regime(date_str)

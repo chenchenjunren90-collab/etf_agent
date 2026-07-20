@@ -27,9 +27,9 @@ HIGH_PROBABILITY = 0.57
 CONSERVATIVE_PROBABILITY = 0.53
 HIGH_NET_EDGE = 0.0006
 CONSERVATIVE_NET_EDGE = 0.0002
-HIGH_EXPOSURE_CAP = 0.12
-CONSERVATIVE_EXPOSURE_CAP = 0.08
-UNCALIBRATED_EXPOSURE_CAP = 0.05
+HIGH_EXPOSURE_CAP = 0.30
+CONSERVATIVE_EXPOSURE_CAP = 0.12
+UNCALIBRATED_EXPOSURE_CAP = 0.10
 CALIBRATION_MIN_SIGNALS = 8
 CALIBRATION_MAX_ANCHORS = 90
 PRICE_ADMISSION_GATE = 50.0
@@ -42,13 +42,18 @@ CADENCE_WINDOW_DAYS = 12
 CADENCE_MIN_TRADE_DAYS = 2
 CADENCE_MAX_TRADE_DAYS = 4
 CADENCE_MIN_CASH_STREAK = 3
-CADENCE_PROBE_EXPOSURE_CAP = 0.02
-CADENCE_PROBE_PROBABILITY = 0.54
+CADENCE_PROBE_EXPOSURE_CAP = 0.08
+CADENCE_PROBE_PROBABILITY = 0.535
 CADENCE_PROBE_MIN_PRICE_SCORE = PRICE_ADMISSION_GATE
 CADENCE_PROBE_MIN_EXPECTED_NET = 0.0
 CADENCE_PROBE_MIN_LOWER_NET = -0.0025
-CADENCE_ABOVE_TARGET_EXPOSURE_CAP = 0.05
-PROFITABILITY_EVIDENCE_VERSION = "profitability-evidence-v8-verified-transmission"
+CADENCE_ABOVE_TARGET_EXPOSURE_CAP = 0.12
+STARTER_PROBE_EXPOSURE_CAP = 0.05
+STARTER_PROBE_PROBABILITY = 0.53
+STARTER_PROBE_MIN_PRICE_SCORE = PRICE_ADMISSION_GATE
+STARTER_PROBE_MIN_EXPECTED_NET = 0.0015
+STARTER_PROBE_MIN_LOWER_NET = -0.0003
+PROFITABILITY_EVIDENCE_VERSION = "profitability-evidence-v9-balanced-participation"
 
 _SAMPLE_CACHE: dict[tuple[str, str, int, int], list[dict[str, Any]]] = {}
 _CALIBRATION_CACHE: dict[tuple[str, str, str, int, int], dict[str, Any]] = {}
@@ -735,6 +740,59 @@ def evaluate_trade_candidates(
                 if str(audit_item.get("code") or "").zfill(6) == cadence_probe_code:
                     audit_item.update(evidence)
                     break
+    starter_probe_code = None
+    if not eligible and not recent_rows:
+        starter_candidates: list[dict[str, Any]] = []
+        starter_hard_flags = {
+            "one_day_surge_entry_risk",
+            "low_volume_late_breakout",
+            "violent_reversal_entry_risk",
+            "deep_short_term_downtrend",
+            "news_promoted_without_price_gate",
+            "direct_strong_negative_news",
+        }
+        for item in evaluated_items:
+            evidence = item.get("profitability_evidence") or {}
+            empirical = evidence.get("empirical") or {}
+            flags = set(evidence.get("risk_flags") or [])
+            if (
+                empirical.get("available")
+                and float(evidence.get("price_score") or 0.0)
+                >= STARTER_PROBE_MIN_PRICE_SCORE
+                and float(empirical.get("positive_probability") or 0.0)
+                >= STARTER_PROBE_PROBABILITY
+                and float(empirical.get("expected_net_return") or 0.0)
+                >= STARTER_PROBE_MIN_EXPECTED_NET
+                and float(empirical.get("lower_expected_net") or 0.0)
+                >= STARTER_PROBE_MIN_LOWER_NET
+                and not (flags & starter_hard_flags)
+            ):
+                starter_candidates.append(item)
+        starter_candidates.sort(
+            key=lambda item: (
+                float((item.get("profitability_evidence") or {}).get("empirical", {}).get("expected_net_return") or 0.0),
+                float((item.get("profitability_evidence") or {}).get("empirical", {}).get("positive_probability") or 0.0),
+                float(item.get("price_score") or 0.0),
+            ),
+            reverse=True,
+        )
+        if starter_candidates:
+            selected = starter_candidates[0]
+            evidence = dict(selected.get("profitability_evidence") or {})
+            evidence.update({
+                "action": "conservative",
+                "exposure_cap": STARTER_PROBE_EXPOSURE_CAP,
+                "reason": "competition_starter_empirical_probe",
+                "starter_probe": True,
+                "score_gate_floor": STARTER_PROBE_MIN_PRICE_SCORE,
+            })
+            selected["profitability_evidence"] = evidence
+            starter_probe_code = str(selected.get("code") or "").zfill(6)
+            eligible = [selected]
+            for audit_item in audited:
+                if str(audit_item.get("code") or "").zfill(6) == starter_probe_code:
+                    audit_item.update(evidence)
+                    break
     cadence_size_limited = False
     if cadence_upper_target_reached and eligible:
         for item in eligible:
@@ -780,12 +838,13 @@ def evaluate_trade_candidates(
             "size_limited": cadence_size_limited,
             "forced_trade": False,
             "probe_code": cadence_probe_code,
+            "starter_probe_code": starter_probe_code,
         },
         "candidates": audited,
         "notes": (
             "仅在严格历史相似状态显示成本后正优势时交易；证据不足默认空仓。"
             if not eligible
-            else "高置信证据仓位上限12%；保守正优势上限8%；未校准试探上限5%。"
+            else "高置信证据仓位上限30%；保守正优势上限12%；开局试探上限5%。"
         ),
     }
     return eligible, audit
