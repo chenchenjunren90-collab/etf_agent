@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from strategy import OFFENSIVE_POOL, TRADING_POOL
+from trading_calendar import next_trading_day
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -206,6 +207,20 @@ def load_knowledge_base(date_str: str | None = None) -> dict[str, Any] | None:
         return load_knowledge_base(d)
     except Exception:
         return None
+
+
+def load_upcoming_researched_knowledge_base(
+    as_of_date: str,
+) -> dict[str, Any] | None:
+    """Load a locked manual-research result for the next trading session only."""
+    next_date = next_trading_day(as_of_date).isoformat()
+    full = _read_json(OUTPUT_DIR / f"{next_date}_full.json")
+    if not isinstance(full, dict):
+        return None
+    strategy = full.get("strategy_result") or {}
+    if strategy.get("mode") != "human_public_research":
+        return None
+    return load_knowledge_base(next_date)
 
 
 def resolve_etf_code(text: str) -> str | None:

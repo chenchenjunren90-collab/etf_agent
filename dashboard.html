@@ -685,7 +685,14 @@
 
       var banner = document.getElementById("weekendBanner");
       var detail = document.getElementById("weekendBannerDetail");
-      if (data.market_closed) {
+      if (data.is_upcoming_view) {
+        banner.style.display = "block";
+        banner.style.background = "var(--banner-info-bg)";
+        banner.style.borderColor = "var(--banner-info-border)";
+        banner.style.color = "var(--banner-info-text)";
+        detail.style.color = "var(--banner-info-text)";
+        detail.textContent = " 已发布 " + data.view_date + " 下一交易日赛前投资建议。";
+      } else if (data.market_closed) {
         banner.style.display = "block";
         banner.style.background = "var(--banner-warn-bg)";
         banner.style.borderColor = "var(--banner-warn-border)";

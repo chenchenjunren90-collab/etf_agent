@@ -74,6 +74,14 @@ def previous_trading_day(value: str | date | datetime) -> date:
     return d
 
 
+def next_trading_day(value: str | date | datetime) -> date:
+    """Strict next trading session after ``value``."""
+    d = _as_date(value) + timedelta(days=1)
+    while not is_trading_day(d):
+        d += timedelta(days=1)
+    return d
+
+
 def latest_trading_day(as_of: str | date | datetime | None = None) -> date:
     """Nearest trading day on or before ``as_of`` (default: today)."""
     d = _as_date(as_of) if as_of is not None else datetime.now().date()

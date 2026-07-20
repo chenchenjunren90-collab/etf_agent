@@ -25,6 +25,8 @@ def main() -> int:
         held = result["summary"]["held_stocks"][0]
         assert held["latest_price"] == 3.242
         assert held["amount"] == 99853.6
+        assert held["weight"] == 20.0
+        assert result["summary"]["utilization_rate"] == 20.0
         assert result["manual_research"]["price_date"] == "2026-07-20"
         assert news["source"] == "human_public_research"
 

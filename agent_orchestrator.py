@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from agent_kb import load_knowledge_base
+from agent_kb import load_knowledge_base, load_upcoming_researched_knowledge_base
 from etf_agent_chat import (
     COMPETITION_HINTS,
     _format_competition,
@@ -33,7 +33,7 @@ from personalized_advisor import (
     competition_ui_blocks,
     format_advice_markdown,
 )
-from settlement_prices import shanghai_now
+from settlement_prices import settlement_ready, shanghai_now
 from live_personal_runner import run_live_personal_advice
 import session_store as store
 from strategy import OFFENSIVE_POOL, TRADING_POOL
@@ -308,8 +308,17 @@ def _handle_competition(sess: dict[str, Any], message: str) -> dict[str, Any]:
     today = shanghai_now().strftime("%Y-%m-%d")
     kb = load_knowledge_base(today)
     used_fallback = False
+    upcoming = load_upcoming_researched_knowledge_base(today)
+    if upcoming and (
+        "明日" in message
+        or "明天" in message
+        or settlement_ready(today, as_of=shanghai_now())
+    ):
+        kb = upcoming
 
-    if _wants_run_prediction(message):
+    if _wants_run_prediction(message) and (
+        kb is None or str(kb.get("date") or "") == today
+    ):
         # Chat may only create a first-run or read cache — never force-overwrite
         # competition artifacts from the public conversational UI.
         run = _run_today_prediction(skip_price_update=False, force=False)
@@ -342,6 +351,8 @@ def _handle_competition(sess: dict[str, Any], message: str) -> dict[str, Any]:
     note = ""
     if used_fallback and date_label != today:
         note = f"\n\n说明：今日尚未生成预测，以下为最近交易日 **{date_label}** 结果。需要最新请说「测一下今天」。\n"
+    elif date_label > today:
+        note = f"\n\n说明：这是已封存的下一交易日 **{date_label}** 赛前投资建议。\n"
 
     if _wants_competition_json(message) or "格式" in message or "json" in message.lower():
         reply = (

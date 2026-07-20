@@ -117,7 +117,7 @@ def build_prediction(
         "volume": volume,
         "latest_price": close,
         "amount": amount,
-        "weight": round(actual_ratio, 6),
+        "weight": round(actual_ratio * 100, 1),
         "reason": reason.strip(),
     }
     result = {
@@ -146,6 +146,7 @@ def build_prediction(
             "used": amount,
             "cash": round(float(COMPETITION_CAPITAL) - amount, 2),
             "invest_ratio": round(actual_ratio, 6),
+            "utilization_rate": round(actual_ratio * 100, 1),
             "held_stocks": [held],
         },
     }
